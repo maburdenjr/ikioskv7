@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.ui-header .ui-title, .ui-footer .ui-title {
+	margin:0px;
+	padding:10px;
+	font-size:20px;
+	text-transform:uppercase;
+	text-align:center;
+}
+
+.ui-bar-b.ui-header {
+	box-shadow:none;
+}
