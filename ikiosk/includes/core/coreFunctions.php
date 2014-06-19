@@ -34,4 +34,12 @@ function renderUIFooter() {
 		include($SYSTEM['system_fileroot'].'/ikiosk/includes/gui/desktopFooter.php'); 
 	}	
 }
+
+function messageHandler($msgType, $msgContent) {
+		global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+		if (!empty($msgContent)) {
+			$msgElement = "<div class='inset'><div class='message ".$msgType."'>".$msgContent."</div></div>";
+			echo $msgElement;
+		}
+}
 ?>

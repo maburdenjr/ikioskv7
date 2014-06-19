@@ -20,10 +20,9 @@ form .ui-listview >.ui-li-divider {
 	border-bottom: 1px dotted rgba(0,0,0,0.1);
 }
 
-form div.error {
+form div.validationError {
 	clear:both;
 	background-color: #f8c9c9;
-	border: 1px solid #ee9b9b;
 	color: #864d4d;
 	margin-top:5px;
 	text-shadow:none;
@@ -39,6 +38,8 @@ form div.error {
 		background-color: #33B5E5 !important;
 		color:#FFF !important;
 		border: 1px solid #33B5E5 !important;
+		text-shadow: none !important;
+		font-weight:400;
 }
 
 .btn-cancel {
@@ -47,7 +48,7 @@ form div.error {
 }	
 
 @media (min-width: 28em) {
-	form div.error {
+	form div.validationError {
 		margin-left:22%;
 		top:5px;
 	}
