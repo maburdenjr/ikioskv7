@@ -12,5 +12,8 @@
 <!-- Javascript -->
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>	
+<script src="/ikiosk/library/js/jquery.validate.js"></script>	
+<script src="/ikiosk/library/js/additional-methods.js"></script>	
+<script src="/ikiosk/library/js/ikiosk.mobile.js"></script>	
 </head>
 <body>
