@@ -49,8 +49,6 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 }
 
 renderUIHeader(); //Renders UI Header
-
-if ($_SESSION['is_mobile'] == "True") { // Mobile UI
 ?>
 <div data-role="page" id="install">
 	<div data-role="header" data-position="fixed" data-theme="b">
@@ -104,8 +102,6 @@ if ($_SESSION['is_mobile'] == "True") { // Mobile UI
     </form>
   </div>
 </div>
-<?php } else { // Desktop UI?>
-
-<?php }  
+<?php 
 renderUIFooter(); //Renders UI Footer 
 ?>
