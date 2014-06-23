@@ -91,7 +91,36 @@
 						</div>
 						<!-- end collapse menu -->
 
-						<!-- #MOBILE -->						
+						<!-- #MOBILE -->	
+           <!-- Top menu profile link : this shows only when top menu is active -->
+						<ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
+							<li class="">
+								<a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown"> 
+									<img src="<?php echo ASSETS_URL; ?>/img/avatars/sunny.png" alt="John Doe" class="online" />
+								</a>
+								<ul class="dropdown-menu pull-right">
+									<li>
+										<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<a href="#ajax/profile.php" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> <u>P</u>rofile</a>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full <u>S</u>creen</a>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<a href="login.php" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+									</li>
+								</ul>
+							</li>
+						</ul>					
 
 						<!-- logout button -->
 						<div id="logout" class="btn-header transparent pull-right">
@@ -149,24 +178,6 @@
 					}
 					
 					?>
-						<li>
-							<a href="#ajax/inbox.php" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
-						</li>
-						<li>
-							<a href="#ajax/calendar.php" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
-						</li>
-						<li>
-							<a href="#ajax/gmap-xml.php" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
-						</li>
-						<li>
-							<a href="#ajax/invoice.php" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
-						</li>
-						<li>
-							<a href="#ajax/gallery.php" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
-						</li>
-						<li>
-							<a href="#ajax/profile.php" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
-						</li>
 					</ul>
 				</div>
 				<!-- END SHORTCUT AREA -->

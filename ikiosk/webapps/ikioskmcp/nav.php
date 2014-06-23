@@ -1,5 +1,28 @@
 <?php
 //Navigation File
+//Navigation File
+$app_shortcuts["ikioskmcp"] = array(
+	"packages" => array(
+		"title" => "Software Packages",
+		"url" => "webapps/ikioskmcp/softwarePackages.php",
+		"icon" => "fa-briefcase",
+		"tile" => "bg-color-teal"
+	),
+	"cloudsites" => array(
+		"title" => "iKioskCloud Sites",
+		"url" => "webapps/ikioskmcp/cloudSites.php",
+		"icon" => "fa-sitemap",
+		"tile" => "bg-color-pinkDark"
+	),
+	"users" => array(
+		"title" => "Licenses",
+		"url" => "webapps/ikioskmcp/licenses.php",
+		"icon" => "fa-cloud-download",
+		"tile" => "bg-color-green"
+	)
+	
+);
+
 $page_nav["ikioskmcp"] = array(
 	"title" => "iKiosk MCP",
 	"url" => "webapps/ikioskmcp/index.php",
@@ -11,19 +34,19 @@ $page_nav["ikioskmcp"] = array(
 			),
 			"dbupdate" => array(
 				"title" => "Database Updates",
-				"url" => "webapps/cms/dbUpdates.php"
+				"url" => "webapps/ikioskmcp/dbUpdates.php"
 			),
 			"software" => array(
 				"title" => "Software Packages",
-				"url" => "webapps/cms/softwarePackages.php"
+				"url" => "webapps/ikioskmcp/softwarePackages.php"
 			),
 			"licenses" => array(
 				"title" => "License Management",
-				"url" => "webapps/cms/licenses.php"
+				"url" => "webapps/ikioskmcp/licenses.php"
 			),
 			"codebase" => array(
 				"title" => "Update Codebase",
-				"url" => "webapps/cms/updateCodebase.php"
+				"url" => "webapps/ikioskmcp/updateCodebase.php"
 			)
 		)
 )

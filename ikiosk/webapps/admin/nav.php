@@ -4,20 +4,20 @@ $app_shortcuts["admin"] = array(
 	"applications" => array(
 		"title" => "Applications",
 		"url" => "webapps/admin/applications.php",
-		"icon" => "fa-wrench",
+		"icon" => "fa-codepen",
 		"tile" => "bg-color-blue"
 	),
 	"sysconfig" => array(
 		"title" => "iKiosk Config",
 		"url" => "webapps/admin/sysConfig.php",
-		"icon" => "fa-wrench",
-		"tile" => "bg-color-blue"
+		"icon" => "fa-cogs",
+		"tile" => "bg-color-orangeDark"
 	),
 	"users" => array(
 		"title" => "Users",
 		"url" => "webapps/admin/users.php",
-		"icon" => "fa-wrench",
-		"tile" => "bg-color-blue"
+		"icon" => "fa-users",
+		"tile" => "bg-color-blueDark"
 	)
 	
 );
@@ -35,7 +35,7 @@ $page_nav["admin"] = array(
 			"title" => "Error Codes",
 			"url" => "webapps/admin/errorCodes.php"
 		),
-		"applications" => array(
+		"sites" => array(
 			"title" => "Sites",
 			"url" => "webapps/admin/sites.php"
 		),
