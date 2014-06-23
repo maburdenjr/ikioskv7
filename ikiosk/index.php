@@ -1,7 +1,7 @@
 <?php
 /* iKiosk 7.0 Tiger */
 $PAGE['application_code'] = "USER";
-require($SYSTEM['ikiosk_docroot'].'includes/core/ikiosk.php');
+require('includes/core/ikiosk.php');
 require($SYSTEM['ikiosk_docroot'].'/smartui/inc/init.php');
 require($SYSTEM['ikiosk_docroot'].'/smartui/inc/config.ui.php');
 

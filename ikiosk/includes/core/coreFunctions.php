@@ -955,6 +955,21 @@ function displayAvatar($user_id) {
 	return $avatar;
 }
 
+function getAvatar($user_id) {
+	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+	
+	$photo_id = getUserData($user_id, "user_photo_id");
+	
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$query_getRecords = "SELECT * FROM sys_photos WHERE photo_id = '".$photo_id."' AND ".$_SESSION['team_filter']." AND deleted = '0'";
+	$getRecords = mysql_query($query_getRecords, $ikiosk) or sqlError(mysql_error());
+	$row_getRecords = mysql_fetch_assoc($getRecords);
+	$totalRows_getRecords = mysql_num_rows($getRecords);
+	
+	$avatar =  $SYSTEM['ikiosk_root'].$row_getRecords['image_mini_thumbnail'];
+	echo $avatar;
+}
+
 //Check to See If Site Exists
 function checkSite($shortname) {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;

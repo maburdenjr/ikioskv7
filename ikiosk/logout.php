@@ -120,6 +120,7 @@ include($SYSTEM['ikiosk_docroot'].'/smartui/inc/scripts.php');
 				error.insertAfter(element.parent());
 			}
 		});
+		
 	});
 </script>
 <?php

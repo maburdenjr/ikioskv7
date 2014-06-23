@@ -1,5 +1,27 @@
 <?php
 //Navigation File
+$app_shortcuts["admin"] = array(
+	"applications" => array(
+		"title" => "Applications",
+		"url" => "webapps/admin/applications.php",
+		"icon" => "fa-wrench",
+		"tile" => "bg-color-blue"
+	),
+	"sysconfig" => array(
+		"title" => "iKiosk Config",
+		"url" => "webapps/admin/sysConfig.php",
+		"icon" => "fa-wrench",
+		"tile" => "bg-color-blue"
+	),
+	"users" => array(
+		"title" => "Users",
+		"url" => "webapps/admin/users.php",
+		"icon" => "fa-wrench",
+		"tile" => "bg-color-blue"
+	)
+	
+);
+
 $page_nav["admin"] = array(
 	"title" => "Administration",
 	"url" => "webapps/admin/index.php",

@@ -22,6 +22,7 @@ ex:
 */
 
 $page_nav = array();
+$app_shortcuts = array();
 
 //Get All Master Applications
 mysql_select_db($database_ikiosk, $ikiosk);

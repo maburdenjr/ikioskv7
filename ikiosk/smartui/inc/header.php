@@ -78,44 +78,8 @@
 
 						<!-- PLACE YOUR LOGO HERE -->
 						<span id="logo"> <img src="<?php echo ASSETS_URL; ?>/img/logo.png" alt="SmartAdmin"> </span>
-						<!-- END LOGO PLACEHOLDER -->
+						<!-- END LOGO PLACEHOLDER -->						
 
-						<!-- Note: The activity badge color changes when clicked and resets the number to 0
-						Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-						<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
-
-						<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
-						<div class="ajax-dropdown">
-
-							<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
-							<div class="btn-group btn-group-justified" data-toggle="buttons">
-								<label class="btn btn-default">
-									<input type="radio" name="activity" id="<?php echo APP_URL; ?>/ajax/notify/mail.php">
-									Msgs (14) </label>
-								<label class="btn btn-default">
-									<input type="radio" name="activity" id="<?php echo APP_URL; ?>/ajax/notify/notifications.php">
-									notify (3) </label>
-								<label class="btn btn-default">
-									<input type="radio" name="activity" id="<?php echo APP_URL; ?>/ajax/notify/tasks.php">
-									Tasks (4) </label>
-							</div>
-
-							<!-- notification content -->
-							<div class="ajax-notifications custom-scroll">
-
-								<div class="alert alert-transparent">
-									<h4>Click a button to show messages here</h4>
-									This blank page message helps protect your privacy, or you can show the first message here automatically.
-								</div>
-
-								<i class="fa fa-lock fa-4x fa-border"></i>
-
-							</div>
-							<!-- end notification content -->
-							<!-- end footer -->
-
-						</div>
-						<!-- END AJAX-DROPDOWN -->
 					</div>
 
 					<!-- pulled right: nav area -->
@@ -127,42 +91,29 @@
 						</div>
 						<!-- end collapse menu -->
 
-						<!-- #MOBILE -->
-						<!-- Top menu profile link : this shows only when top menu is active -->
-						<ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
-							<li class="">
-								<a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown"> 
-									<img src="<?php echo ASSETS_URL; ?>/img/avatars/sunny.png" alt="John Doe" class="online" />
-								</a>
-								<ul class="dropdown-menu pull-right">
-									<li>
-										<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="#ajax/profile.php" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> <u>P</u>rofile</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full <u>S</u>creen</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="logout.php" target="_top" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
-									</li>
-								</ul>
-							</li>
-						</ul>
+						<!-- #MOBILE -->						
 
 						<!-- logout button -->
 						<div id="logout" class="btn-header transparent pull-right">
 							<span> <a href="logout.php" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
 						</div>
 						<!-- end logout button -->
+                        
+                        <!-- search mobile button (this is hidden till mobile view port) -->
+						<div id="search-mobile" class="btn-header transparent pull-right">
+							<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
+						</div>
+						<!-- end search mobile button -->
+
+						<!-- input: search field -->
+						<form action="#ajax/search.php" class="header-search pull-right">
+							<input type="text" name="param" placeholder="Search" id="search-fld">
+							<button type="submit">
+								<i class="fa fa-search"></i>
+							</button>
+							<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+						</form>
+						<!-- end input: search field -->
 
 						<!-- fullscreen button -->
 						<div id="fullscreen" class="btn-header transparent pull-right">
@@ -183,6 +134,21 @@
 				-->
 				<div id="shortcut">
 					<ul>
+                    <?php 
+					// Process Shortcuts 
+					foreach ($app_shortcuts as $key => $nav_item) {
+						foreach ($nav_item as $keyExt => $sub_item) {
+						  $url = isset($sub_item["url"]) ? $sub_item["url"] : "#";
+						  $icon = isset($sub_item["icon"]) ? '<i class="fa fa-4x '.$sub_item["icon"].'"></i>' : "";
+						  $nav_title = isset($sub_item["title"]) ? $sub_item["title"] : "(No Name)";
+						  $tile = isset($sub_item['title']) ? $sub_item['tile'] : "bg-color-blue";
+						  
+						  echo '<li><a href="#'.$url.'" class="jarvismetro-tile big-cubes '.$tile.'"><span class="iconbox">'.$icon.'<span>'.$nav_title.'</span></span></a></li>';
+						}
+
+					}
+					
+					?>
 						<li>
 							<a href="#ajax/inbox.php" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
 						</li>
