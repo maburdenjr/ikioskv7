@@ -11,7 +11,7 @@ include($SYSTEM['ikiosk_docroot'].'/smartui/inc/header.php');
 include($SYSTEM['ikiosk_docroot'].'/smartui/inc/nav.php');
 ?>
 <div id="main" role="main">
-<?php include($SYSTEM['ikiosk_docroot']."inc/ribbon.php"); ?>
+<?php include($SYSTEM['ikiosk_docroot']."/smartui/inc/ribbon.php"); ?>
 <div id="content"></div>
 </div>
 <?php 
