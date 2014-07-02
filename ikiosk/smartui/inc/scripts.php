@@ -56,7 +56,12 @@
 
 		<!-- SlimScroll: For fixed navigation scrolling -->
 		<script src="<?php echo ASSETS_URL; ?>/js/plugin/slimscroll/jquery.slimscroll.min.js"></script>
-
+	
+  	<!-- DataTables -->
+    <script src="<?php echo ASSETS_URL; ?>/js/plugin/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo ASSETS_URL; ?>/js/plugin/datatables/dataTables.colVis.min.js"></script>
+    <script src="<?php echo ASSETS_URL; ?>/js/plugin/datatables/dataTables.tableTools.min.js"></script>
+    <script src="<?php echo ASSETS_URL; ?>/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
 		<!--[if IE 8]>
 
 			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
