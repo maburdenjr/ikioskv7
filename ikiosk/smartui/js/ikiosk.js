@@ -1,24 +1,33 @@
 // JavaScript Document
 function iKioskUI() {
-	//Ajax Form Processing
-	$('.btn-ajax-submit').on("click", function() {
-		var targetForm = $(this).data("form");
-		var formData = $('#'+targetForm).serialize();
-		/* setTimeout(function(){
+	
+	//Delete Records
+	$('.delete-record').on('click', function(){
+		var deleteRecord = confirm("Are you sure you want to delete this item?");
+		if (deleteRecord == true) {
+			$('.system-message').hide();
+			var table = $(this).data("table");
+			var record = $(this).data("record");
+			var code = $(this).data("code");
+			var field = $(this).data("field");
 			$.ajax({
-					type:"POST",
-					url: site_url,
-					data: formData,
-					timeout:3000,
-					error: function(data) {
-					},
-					success: function(data) {
-					}
-			})
-		}, 1200); */	
+							url: "includes/core/formProcessor.php",
+							data: {table: table, record: record, application_code: code, action: "deleteRecord", field: field},
+							timeout: 3000,
+							error: function(data) {
+									var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+									$('.system-message').html(error).fadeIn('slow');
+							},
+							success: function(data) {
+									$('.system-message').html(data).fadeIn('slow');
+							}
+				});
+		}
 	});
+
 }
 
+//AJAX Form Processing
 function submitAjaxForm(formID) {
 	var targetForm = "#"+formID;
 	var formData = $(targetForm).serialize();

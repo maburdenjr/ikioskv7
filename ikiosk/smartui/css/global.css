@@ -1,8 +1,21 @@
-.form-response {
+.form-response, .system-message {
 	display:none;
 }
 
 .widget-body.no-padding form .alert {
 	border-width: 0px 0px 0px 5px !important;
 	font-size:12px;
+}
+
+.icon {
+	text-align:center;
+}
+.delete-record {
+	cursor:pointer;
+	color:rgba(0,0,0,0.75);
+}
+
+.delete-record i {
+		font-size:16px;
+		text-align:center;
 }

@@ -4,6 +4,36 @@ $iKioskPos = strpos($_SERVER['PHP_SELF'], "/ikiosk/");
 $iKioskAssetRoot = substr($_SERVER['PHP_SELF'], 0, $iKioskPos); 
 $SYSTEM['html_root'] = $iKioskAssetRoot;
 
+//New Record Deletion
+function deleteRecordv7($table, $field, $record) {
+	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+	$restrictedID = array("sys-admin", "sys-user", "sys-ikiosk", "sys-cms");
+	if (!in_array($record, $restrictedID)) {
+		$response = array("success", "Item deleted");
+		$updateSQL = "UPDATE ".$table." SET deleted = '1' WHERE ".$field." = '".$record."'";
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($updateSQL);
+	} else {
+		$response = array("danger", "The item you selected is part of the IntelliKiosk core framework and cannot be deleted.");
+	}
+	return $response;
+}
+
+//Write Javascript
+function insertJS($script) {
+		global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+		$js = "<script type='text/javascript'>".$script."</script>";
+		echo $js;
+}
+
+//Display Alerts
+function displayAlert($type, $message) {
+		global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+		$alert = "<div class='alert alert-".$type." fade in'><button class='close' data-dismiss='alert'>×</button>".$message."</div>";
+		echo $alert;
+}
+
 //Delete Site
 function deleteSite($site_id) {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
