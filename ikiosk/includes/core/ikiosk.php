@@ -12,7 +12,7 @@ $APPLICATION = array();
 
 //Load Core Functions
 require('db_conn.php');  
-require('corefunctions.php'); 
+require('coreFunctions.php'); 
 require('cms.php'); 
 
 //Load System Properties
@@ -38,6 +38,7 @@ $SYSTEM['html_root'] = $SYSTEM['system_url'];
 $init_currentpage = $_SERVER['PHP_SELF'];
 if (!empty($_SERVER['QUERY_STRING'])) { 
 $SYSTEM['current_page'] = $init_currentpage."?".$_SERVER['QUERY_STRING'];
+$SYSTEM['ajax_url'] = "index.php?".$_SERVER['QUERY_STRING']."#".str_replace("/ikiosk/", "", $init_currentpage);
 } else {
 $SYSTEM['current_page'] = $init_currentpage."?v=0";
 }
