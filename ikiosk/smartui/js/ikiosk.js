@@ -12,7 +12,7 @@ function iKioskUI() {
 			var field = $(this).data("field");
 			$.ajax({
 							url: "includes/core/formProcessor.php",
-							data: {table: table, record: record, application_code: code, action: "deleteRecord", field: field},
+							data: {table: table, record: record, appCode: code, ajaxAction: "deleteRecord", field: field},
 							timeout: 3000,
 							error: function(data) {
 									var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
@@ -24,6 +24,17 @@ function iKioskUI() {
 				});
 		}
 	});
+	
+	//Add Record Inline
+	$('.btn-add').on('click', function(){
+		var targetPanel = $(this).data("target");
+		$('#'+targetPanel).slideDown();
+	});
+	
+	$('.btn-close-panel').on('click', function(){
+		var targetPanel = $(this).data("target");
+		$('#'+targetPanel).slideUp();
+	});
 
 }
 
@@ -31,6 +42,8 @@ function iKioskUI() {
 function submitAjaxForm(formID) {
 	var targetForm = "#"+formID;
 	var formData = $(targetForm).serialize();
+	var formType = $(targetForm).data("type");
+	var formContainer = $(targetForm).data("container");
 	$(targetForm+' button').attr("disabled", "disabled");
 	$(targetForm+ ' section').css("opacity", 0.2);
 	var progressBar = "<div class='progress progress-sm progress-striped active'><div class='progress-bar bg-color-blue' style='width: 0px'></div></div>";	
@@ -56,6 +69,10 @@ function submitAjaxForm(formID) {
 										$(targetForm+' .form-response').html(data);
 										$(targetForm+' button').removeAttr("disabled");
 										$(targetForm+ ' section').css("opacity", 1);
+										if (formType == "create") {
+											$('#'+formContainer).slideUp();
+											$(targetForm)[0].reset();
+										}
 								}
 					});
 					}, 1200);

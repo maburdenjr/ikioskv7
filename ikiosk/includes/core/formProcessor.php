@@ -1,12 +1,12 @@
 <?php
-$PAGE['application_code'] = isset($_POST['application_code']) ? $_POST['application_code'] : $_GET['application_code'];
+$PAGE['application_code'] = isset($_POST['appCode']) ? $_POST['appCode'] : $_GET['appCode'];
 require('../../includes/core/ikiosk.php');
 
 //Record Action Wrapper ###############################################################################
-if (isset($_GET['action'])) {
+if (isset($_GET['ajaxAction'])) {
 
 // Delete Records --------------------------------------------------------------------------------	
-	if($_GET['action'] == "deleteRecord") {
+	if($_GET['ajaxAction'] == "deleteRecord") {
 		$status = deleteRecordv7($_GET['table'], $_GET['field'], $_GET['record']);
 		displayAlert($status[0], $status[1]);
 		if ($status[0] == "success") {
@@ -43,6 +43,11 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 			insertJS("$('.".$_POST['application_id']." a').hide().text('".$_POST['application_title']."').fadeIn()");
 			displayAlert("success", "Changes saved.");
 			exit;
+	}
+	// Applications: Edit --------------------------------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "createApplication")) {
+		displayAlert("success", "Record created");
+		exit;
 	}
 	
 } // End AJAX Post Wrapper
