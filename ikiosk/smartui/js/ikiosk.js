@@ -25,15 +25,17 @@ function iKioskUI() {
 		}
 	});
 	
-	//Add Record Inline
-	$('.btn-add').on('click', function(){
-		var targetPanel = $(this).data("target");
-		$('#'+targetPanel).slideDown();
+	//Slide Toggle
+	$('.btn-toggle').on('click', function(){
+		var openTarget = $(this).data("open");
+		var closeTarget = $(this).data("close");
+		$('#'+openTarget+', #'+openTarget+' .jarviswidget').fadeIn();
+		$('#'+closeTarget).hide();
 	});
 	
 	$('.btn-close-panel').on('click', function(){
 		var targetPanel = $(this).data("target");
-		$('#'+targetPanel).slideUp();
+		$('#'+targetPanel).fadeOut();
 	});
 
 }
@@ -42,8 +44,6 @@ function iKioskUI() {
 function submitAjaxForm(formID) {
 	var targetForm = "#"+formID;
 	var formData = $(targetForm).serialize();
-	var formType = $(targetForm).data("type");
-	var formContainer = $(targetForm).data("container");
 	$(targetForm+' button').attr("disabled", "disabled");
 	$(targetForm+ ' section').css("opacity", 0.2);
 	var progressBar = "<div class='progress progress-sm progress-striped active'><div class='progress-bar bg-color-blue' style='width: 0px'></div></div>";	
@@ -69,10 +69,6 @@ function submitAjaxForm(formID) {
 										$(targetForm+' .form-response').html(data);
 										$(targetForm+' button').removeAttr("disabled");
 										$(targetForm+ ' section').css("opacity", 1);
-										if (formType == "create") {
-											$('#'+formContainer).slideUp();
-											$(targetForm)[0].reset();
-										}
 								}
 					});
 					}, 1200);

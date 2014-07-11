@@ -31,7 +31,7 @@ $totalRows_listView = mysql_num_rows($listView);
   </div>
 </div>
 <section id="widget-grid">
-  <div id="createApp" class="row create-panel">
+  <div id="createApp" class="row hidden-panel">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="jarviswidget" id="add-application" data-widget-editbutton="false" data-widget-deletebutton="false">
         <header> <span class="widget-icon"> <i class="fa fa-plus"></i> </span>
@@ -47,7 +47,7 @@ $totalRows_listView = mysql_num_rows($listView);
           
           <!-- widget content -->
           <div class="widget-body no-padding">
-            <form id= "createApplication" class="smart-form" method="post" data-type="create" data-container="createApp">
+            <form id= "createApplication" class="smart-form" method="post" data-type="create" data-container="createApp" data-toggle="appList">
               <fieldset>
                 <div class="form-response"></div>
                 <div class="row">
@@ -110,6 +110,7 @@ $totalRows_listView = mysql_num_rows($listView);
                       </select>
                       <i></i> </label>
                   </section>
+            
                   <section class="col col-4">
                     <label class="label">Status</label>
                     <label class="select">
@@ -126,10 +127,22 @@ $totalRows_listView = mysql_num_rows($listView);
                     <textarea name="application_description" rows="3" class="custom-scroll"></textarea>
                   </label>
                 </section>
+                      <section>
+                    <label class="label">Default Access Level</label>
+                    <label class="select">
+                      <select name="default_application_clearance">
+                        <option value="000">No Access</option>
+                        <option value="111">Standard</option>
+                        <option value="112">Admin</option>
+                        <option value="999">Super Admin</option>
+                      </select>
+                      <i></i> </label>
+                      <div class="note">All existing and future users will be granted this access level when this application is created.</div>
+                  </section>
               </fieldset>
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="createApplication"> <i class="fa fa-check"></i> Save </button>
-                <button type="button" class="btn btn-default btn-close-panel" data-target="createApp"><i class="fa fa-times"></i> Cancel </button>
+                <button type="button" class="btn btn-default btn-toggle" data-close="createApp" data-open="appList"><i class="fa fa-times"></i> Cancel </button>
                 <input type="hidden" name="application_id" value="<?php echo $row_getRecord['application_id']; ?>" />
                 <input type="hidden" name="formID" value="createApplication">
                 <input type="hidden" name="iKioskForm" value="Yes" />
@@ -141,7 +154,7 @@ $totalRows_listView = mysql_num_rows($listView);
       </div>
     </article>
   </div>
-  <div class="row">
+  <div id="appList" class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="system-message"></div>
       <div class="jarviswidget" id="sys-applications" data-widget-editbutton="false" data-widget-deletebutton="false">
@@ -172,7 +185,7 @@ $totalRows_listView = mysql_num_rows($listView);
               <tbody>
                 <?php do { ?>
                   <tr class="<?php echo $row_listView['application_id']; ?>">
-                    <td><a href="?action=edit&recordID=<?php echo $row_listView['application_id']; ?>#webapps/admin/applications.php"><?php echo $row_listView['application_title']; ?></a></td>
+                    <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['application_id']; ?>#webapps/admin/applications.php"><?php echo $row_listView['application_title']; ?></a></td>
                     <td><?php echo $row_listView['application_code']; ?></td>
                     <td><?php echo $row_listView['application_security']; ?></td>
                     <td><?php echo $row_listView['application_status']; ?></td>
@@ -188,8 +201,8 @@ $totalRows_listView = mysql_num_rows($listView);
   </div>
 </section>
 <script type="text/javascript">
-		$('#dt_applications').dataTable();
-		$('.dataTables_length').before('<button class="btn btn-primary btn-add" data-target="createApp"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Application</span></button>');
+		var listView = $('#dt_applications').dataTable();
+		$('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add" data-open="createApp" data-close="appList"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Application</span></button>');
 </script>
 <script type="text/javascript">
 	runAllForms();
@@ -200,19 +213,29 @@ $totalRows_listView = mysql_num_rows($listView);
 			// Rules for form validation
 			rules : {
 				application_title : {
-					required : true,
+					required : true
 				},
 				application_root : {
+					required: true
+				},
+				application_code : {
 					required: true,
+					rangelength: [3, 5],
+					remote: "includes/core/formProcessor.php?appCode=SYS&ajaxAction=appCodeCheck"
 				}
 			},
 			// Messages for form validation
 			messages : {
 				application_title : {
-					required : 'Please enter a title for this application',
+					required : 'Please enter a title for this application'
 				},
 				application_root: {
-					required : 'Please the location for this application within the IntelliKiosk filesystem.',
+					required : 'Please the location for this application within the IntelliKiosk filesystem'
+				},
+				application_code: {
+					required : 'Please enter a 3 to 5 code for this application',
+					remote : 'An application with this system code already exists'
+
 				}
 				
 			},
@@ -253,7 +276,7 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
 </div>
 <section id="widget-grid">
   <div class="row">
-    <article class="col-sm-12 col-md-12 col-lg-8">
+    <article class="col-sm-12 col-md-12 col-lg-9">
       <div class="jarviswidget" id="edit-application" data-widget-editbutton="false" data-widget-deletebutton="false">
         <header> <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
           <h2>Edit Application</h2>
@@ -361,7 +384,7 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
         </div>
       </div>
     </article>
-    <article class="col-sm-12 col-md-12 col-lg-4">
+    <article class="col-sm-12 col-md-12 col-lg-3">
       <div class="jarviswidget" id="sys-applications-widget" data-widget-editbutton="false" data-widget-deletebutton="false">
         <header> <span class="widget-icon"> <i class="fa fa-table"></i> </span>
           <h2>Applications</h2>
@@ -386,7 +409,7 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
               <tbody>
                 <?php do { ?>
                   <tr>
-                    <td class="<?php echo $row_listView['application_id']; ?>"><a href="?action=edit&recordID=<?php echo $row_listView['application_id']; ?>#webapps/admin/applications.php"><?php echo $row_listView['application_title']; ?></a></td>
+                    <td class="<?php echo $row_listView['application_id']; ?>"><a href="index.php?action=edit&recordID=<?php echo $row_listView['application_id']; ?>#webapps/admin/applications.php"><?php echo $row_listView['application_title']; ?></a></td>
                     <?php } while ($row_listView = mysql_fetch_assoc($listView)); ?>
               </tbody>
             </table>
