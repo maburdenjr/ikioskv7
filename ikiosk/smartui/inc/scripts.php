@@ -71,3 +71,4 @@
 		<!-- MAIN APP JS FILE -->
 		<script src="<?php echo ASSETS_URL; ?>/js/app.min.js"></script>		
     <script src="<?php echo ASSETS_URL; ?>/js/ikiosk.js"></script>		
+		<script src="<?php echo ASSETS_URL; ?>/js/freeformatter.js"></script>		

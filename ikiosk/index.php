@@ -7,6 +7,7 @@ require($SYSTEM['ikiosk_docroot'].'/smartui/inc/config.ui.php');
 
 $page_title = "Dashboard";
 $page_css[] = "global.css";
+$page_css[] = "prettify.css";
 include($SYSTEM['ikiosk_docroot'].'/smartui/inc/header.php');
 include($SYSTEM['ikiosk_docroot'].'/smartui/inc/nav.php');
 ?>

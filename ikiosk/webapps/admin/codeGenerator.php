@@ -39,16 +39,35 @@ $totalRows_getApps = mysql_num_rows($getApps);
               <fieldset>
                 <div class="form-response"></div>
                 <div class="row">
-                		<section class="col col-3">
-                  <label class="label">App Code</label>
-                  <label class="select">
-                  	<select name="app_code" id="app_code">
-                    <?php do { ?>
-                    	<option value="<?php echo $row_getApps['application_code']; ?>"><?php echo $row_getApps['application_code']." - ".$row_getApps['application_title']; ?></option>
-                    <?php } while ($row_getApps = mysql_fetch_assoc($getApps)); ?>
-                    </select><i></i>
-                  </label>  
-                  </section> 
+                  <section class="col col-6">
+                    <label class="label">Module Title</label>
+                    <label class="input">
+                      <input name="module_title" type="text">
+                    </label>
+                  </section>
+                  <section class="col col-3">
+                    <label class="label">Query Filter</label>
+                    <label class="select">
+                      <select name="query_filter">
+                        <option value="None">None</option>
+                        <option value="Team">Team</option>
+                        <option value="Site">Site</option>
+                      </select>
+                      <i></i></label>
+                  </section>
+
+                </div>
+                <div class="row">
+                  <section class="col col-3">
+                    <label class="label">App Code</label>
+                    <label class="select">
+                      <select name="app_code" id="app_code">
+                        <?php do { ?>
+                        <option value="<?php echo $row_getApps['application_code']; ?>"><?php echo $row_getApps['application_code']." - ".$row_getApps['application_title']; ?></option>
+                        <?php } while ($row_getApps = mysql_fetch_assoc($getApps)); ?>
+                      </select>
+                      <i></i> </label>
+                  </section>
                   <section class="col col-3">
                     <label class="label">Database Table</label>
                     <label class="select">
@@ -76,13 +95,13 @@ do {
                       <i></i> </label>
                   </section>
                   <section class="col col-3">
-                  <label class="label">Form Columns</label>
+                    <label class="label">Form Columns</label>
                     <label class="select">
                       <select name="form_columns" id="form_columns">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
                       </select>
                       <i></i> </label>
                   </section>
@@ -92,7 +111,9 @@ do {
                   <table id="dbFieldList" class="table table-striped table-bordered table-hover" width="100%">
                     <thead>
                       <tr>
-                        <th><label class="checkbox"><input type="checkbox" class="checkall"><i></i></label></th>
+                        <th><label class="checkbox">
+                            <input type="checkbox" class="checkall">
+                            <i></i></label></th>
                         <th>Field Name</th>
                         <th>Label</th>
                         <th>Type</th>
@@ -104,7 +125,7 @@ do {
                   </table>
                 </section>
               </fieldset>
-                <footer>
+              <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="codeSnippet"> <i class="fa fa-check"></i> Generate Code</button>
                 <button type="button" class="btn btn-default" onclick="window.history.back();"><i class="fa fa-times"></i> Cancel </button>
                 <input type="hidden" name="formID" value="codeSnippet">
@@ -118,8 +139,9 @@ do {
     </article>
   </div>
 </section>
-<section id="codeResponse">
-</section>
+<div class="row">
+  <div id="codeResponse" class="col-sm-12"> </div>
+</div>
 <script type="text/javascript">
 	runAllForms();
 
@@ -136,7 +158,7 @@ do {
 			}
 		});
 	});
-</script>
+</script> 
 <script type="text/javascript">
 		pageSetUp();
 		

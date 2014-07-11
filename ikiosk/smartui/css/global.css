@@ -28,3 +28,11 @@
 .hidden-panel {
 	display:none;
 }
+
+pre.prettyprint {
+	padding:10px !important;
+}
+
+pre.html {
+	height:500px;
+}
