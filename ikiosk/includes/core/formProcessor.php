@@ -10,6 +10,45 @@ $refresh .= 'loadURL(iLocation, iContainer); ';
 
 if (isset($_GET['ajaxAction'])) {
 
+// Return DB Fileds in Table  ------------------------------------------------------------------------
+	if($_GET['ajaxAction'] == "dbFields") {
+		
+		$response = "";
+		$restricted = array("date_created", "created_by", "modified_by", "date_modified", "deleted");
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$query_showColumns = "SHOW COLUMNS FROM ".$_GET['table']."";
+		$showColumns = mysql_query($query_showColumns, $ikiosk) or sqlError(mysql_error());
+		$row_showColumns = mysql_fetch_assoc($showColumns);
+		$totalRows_showColumns = mysql_num_rows($showColumns);
+		
+		if ($_GET['option'] == "select") {
+				do {
+					if (!in_array($row_showColumns['Field'], $restricted)) {
+						$response .= "<option value='".$row_showColumns['Field']."'>".$row_showColumns['Field']."</option>";
+					}
+				} while ($row_showColumns = mysql_fetch_assoc($showColumns));
+		}
+		
+		if ($_GET['option'] == "list") {
+				do {
+					if (!in_array($row_showColumns['Field'], $restricted)) {
+						$label = str_replace("_", " ", $row_showColumns['Field']);
+						$label = ucwords($label);
+						$response .= "<tr><td><label class='checkbox'><input type='checkbox' name='include_field[]' value='".$row_showColumns['Field']."'><i></i></label></td>";
+						$response .="<td>".$row_showColumns['Field']."</td>";
+						$response .="<td><label class='input'><input type='text' name='".$row_showColumns['Field']."[label]' value='".$label."'></label></td>";
+						$response .="<td><label class='select'><select name='".$row_showColumns['Field']."[type]'><option value='input'>Text Input</option><option value='select'>Select</option><option value='select-multiple'>Multiple Select</option><option value='textarea'>Textarea</option><option value='radio'>Radio</option><option value='checkbox'>Checkbox</option></select><i></i></label></td>";
+						$response .="<td><label class='toggle'><input type='checkbox' name='".$row_showColumns['Field']."[required]' value='Yes'><i data-swchon-text='YES' data-swchoff-text='NO'></i></label></td></tr>";
+					}
+				} while ($row_showColumns = mysql_fetch_assoc($showColumns));
+		} 
+		 
+		
+		echo $response;
+		exit;	
+	}
+
+
 // Delete Records --------------------------------------------------------------------------------	
 	
 	if($_GET['ajaxAction'] == "deleteRecord") {
@@ -43,6 +82,18 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
+	
+// Code Generator --------------------------------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "codeSnippet")) {
+		
+		$response = "<div class='well'>";
+		$response .= "Oh Hi";
+		$response .="</div>";	
+		displayAlert("success", "Code snippets successfully generated");	
+		$js = "$('#codeResponse').html('".addslashes($response)."')";
+		insertJS($js);
+		exit;
+	}
 	
 // Applications: Edit --------------------------------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "editApplication")) {

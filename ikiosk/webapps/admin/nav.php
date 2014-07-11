@@ -81,8 +81,8 @@ $page_nav["admin"] = array(
 					"url" => "webapps/admin/quickQuery.php"
 				),
 				"querybuilder" => array(
-					"title" => "iKiosk Query Builder",
-					"url" => "webapps/admin/queryBuilder.php"
+					"title" => "Code Generator",
+					"url" => "webapps/admin/codeGenerator.php"
 				),
 				"updates" => array(
 					"title" => "Software Updates",
