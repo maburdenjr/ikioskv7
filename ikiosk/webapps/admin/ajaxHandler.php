@@ -172,7 +172,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 						$formField .= tab(10)."<label class=\"".$type."\">\r\n";
 						$formField .= tab(11)."<input type=\"radio\" name=\"".$value."\" value=\"value2\" <?php if (!(strcmp(\"value2\", \$row_getRecord['".$value."']))) {echo \"checked=\\\"checked\\\"\";} ?>>\r\n".tab(11)."<i></i>Value2\r\n";
 						$formField .= tab(10)."</label>\r\n";
-						$formField .= tab(9)."</row>\r\n";
+						$formField .= tab(9)."</div>\r\n";
 
 					break;
 				case "checkbox":
@@ -190,7 +190,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 			$createForm .= $formField;
 			$createForm .= tab(8)."</section>\r\n";
 			$loop++;
-			if ($loop == $col) { $createForm .= tab(7)."</row>\r\n".tab(7)."<div class=\"row\">\r\n"; $loop = 0;}
+			if ($loop == $col) { $createForm .= tab(7)."</div>\r\n".tab(7)."<div class=\"row\">\r\n"; $loop = 0;}
 		}
 		
 		$listViewRow .= tab(7)."<td class=\"icon\"><a class=\"delete-record\" data-table=\"".$_POST['query_table']."\" data-record=\"<?php echo \$row_listView['".$_POST['primary_key']."']; ?>\" data-code=\"<?php echo \$APPLICATION['application_code']; ?>\" data-field=\"".$_POST['primary_key']."\"><i class=\"fa fa-trash-o\"></i></a></td>\r\n";
@@ -205,7 +205,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		$listView .= tab(5)."</tbody>\r\n";	
 
 		
-		$createForm .= tab(7)."</row>";
+		$createForm .= tab(7)."</div>";
 		$createForm = str_replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;", htmlentities($createForm));
 		$listView = str_replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;", htmlentities($listView));
 

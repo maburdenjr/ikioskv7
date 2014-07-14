@@ -36,3 +36,7 @@ pre.prettyprint {
 pre.html {
 	height:500px;
 }
+
+.smart-form .col-12 {
+	width:100%;
+}

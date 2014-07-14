@@ -193,7 +193,7 @@
                                         <input type="text" name="error_title" value="<?php echo $row_getRecord['error_title']; ?>">
                                     </label>
                                 </section>
-                            </row>
+                            </div>
                             <div class="row">
                                 <section class="col col-12">
                                     <label class="label">Error Description</label>
@@ -201,9 +201,8 @@
                                         <textarea rows="3" class="custom-scroll"><?php echo $row_getRecord['error_description']; ?></textarea>
                                     </label>
                                 </section>
-                            </row>
-                            <div class="row">
-                            </row>
+                            </div>
+                            
                      </fieldset>
                      <footer>
                         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-SysErrors"> <i class="fa fa-check"></i> Save </button>
