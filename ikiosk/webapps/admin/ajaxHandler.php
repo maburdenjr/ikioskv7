@@ -101,7 +101,6 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		$response = str_replace('{TITLE}', $_POST['module_title'], $response);
 		$response = str_replace('{APPID}', $appID, $response);
 		$response = str_replace('{PRIMARYKEY}', $_POST['primary_key'], $response);
-
 		
 		if($_POST['query_filter'] == "Site") {
 				$response = str_replace("{QUERYFILTER}", "AND \".\$SYSTEM['active_site_filter'].\"", $response);	
@@ -113,6 +112,109 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 				$response = str_replace("{QUERYFILTER}", "", $response);	
 		}
 		
+		$col = $_POST['form_columns']; // Number of Columns
+		$colInt = 12 / $col;
+		
+ 		$createForm = tab(7)."<div class=\"row\">\r\n";
+		
+		$loop = 0;
+		$validation = "";
+		$listView = "<thead>\r\n".tab(5)."<tr>\r\n".tab(6)."<th></th>\r\n";
+		$listViewRow = tab(6)."<tr class=\"<?php echo \$row_listView['".$_POST['primary_key']."']; ?>\">\r\n";
+		$listViewRow .= tab(7)."<td><a href=\"index.php?action=edit&recordID=<?php echo \$row_listView['".$_POST['primary_key']."']; ?>#".$_POST['module_index']."\"><?php echo \$row_listView['".$_POST['link_label']."']; ?></a></td>\r\n";
+
+		foreach ($_POST['include_field'] as $key => $value) {
+			
+			if ($_POST[$value]['required'] == "Yes") {
+					$validation .= tab(2).$value." : {\r\n".tab(3)."required : true\r\n".tab(2)."},\r\n";
+			}	
+			
+			$listView .= tab(6)."<th>".$_POST[$value]['label']."</th>\r\n";
+			$listViewRow .= tab(7)."<td><?php echo \$row_listView['".$value."']; ?></td>\r\n";
+			
+			switch($_POST[$value]['type']) {
+				case "input":
+					$type = "input";
+						$formField = tab(9)."<label class=\"".$type."\">\r\n";
+						$formField .= tab(10)."<input type=\"text\" name=\"".$value."\" value=\"<?php echo \$row_getRecord['".$value."']; ?>\">\r\n";
+						$formField .= tab(9)."</label>\r\n";
+					break;
+				case "select":
+					$type = "select";
+						$formField = tab(9)."<label class=\"".$type."\">\r\n";
+						$formField .= tab(10)."<select name=\"".$value."\">\r\n";
+						$formField .= tab(11)."<option value=\"value1\" <?php if (!(strcmp(\"value1\", \$row_getRecord['".$value."']))) {echo \"selected=\\\"selected\\\"\";} ?>>value1</option>\r\n";
+						$formField .= tab(11)."<option value=\"value2\" <?php if (!(strcmp(\"value2\", \$row_getRecord['".$value."']))) {echo \"selected=\\\"selected\\\"\";} ?>>value2</option>\r\n";
+						$formField .= tab(10)."</select><i></i>\r\n";
+						$formField .= tab(9)."</label>\r\n";
+					break;
+				case "select-multiple":
+					$type = "select select-multiple";
+						$formField = tab(9)."<label class=\"".$type."\">\r\n";
+						$formField .= tab(10)."<select multiple name=\"".$value."\" class=\"custom-scroll\">\r\n";
+						$formField .= tab(11)."<option value=\"value1\" <?php if (!(strcmp(\"value1\", \$row_getRecord['".$value."']))) {echo \"selected=\\\"selected\\\"\";} ?>>value1</option>\r\n";
+						$formField .= tab(11)."<option value=\"value2\" <?php if (!(strcmp(\"value2\", \$row_getRecord['".$value."']))) {echo \"selected=\\\"selected\\\"\";} ?>>value2</option>\r\n";
+						$formField .= tab(10)."</select><i></i>\r\n";
+						$formField .= tab(9)."</label>\r\n";
+					break;
+				case "textarea":
+					$type = "textarea";
+						$formField = tab(9)."<label class=\"".$type."\">\r\n";
+						$formField .= tab(10)."<textarea rows=\"3\" class=\"custom-scroll\"><?php echo \$row_getRecord['".$value."']; ?></textarea>\r\n";
+						$formField .= tab(9)."</label>\r\n";
+					break;
+				case "radio":
+					$type = "radio";
+						$formField = tab(9)."<div class=\"row\">\r\n";
+						$formField .= tab(10)."<label class=\"".$type."\">\r\n";
+						$formField .= tab(11)."<input type=\"radio\" name=\"".$value."\" value=\"value1\" <?php if (!(strcmp(\"value1\", \$row_getRecord['".$value."']))) {echo \"checked=\\\"checked\\\"\";} ?>>\r\n".tab(11)."<i></i>Value1\r\n";
+						$formField .= tab(10)."</label>\r\n";
+						$formField .= tab(10)."<label class=\"".$type."\">\r\n";
+						$formField .= tab(11)."<input type=\"radio\" name=\"".$value."\" value=\"value2\" <?php if (!(strcmp(\"value2\", \$row_getRecord['".$value."']))) {echo \"checked=\\\"checked\\\"\";} ?>>\r\n".tab(11)."<i></i>Value2\r\n";
+						$formField .= tab(10)."</label>\r\n";
+						$formField .= tab(9)."</row>\r\n";
+
+					break;
+				case "checkbox":
+					$type = "checkbox";
+					$formField = tab(9)."<div class=\"inline-group\">\r\n";
+					$formField .= tab(10)."<label class=\"".$type."\">\r\n";
+					$formField .= tab(11)."<input type=\"checkbox\" name=\"".$value."\"  <?php if (!(strcmp(\"value2\", \$row_getRecord['".$value."']))) {echo \"checked=\\\"checked\\\"\";} ?>>\r\n".tab(11)."<i></i>Value1\r\n";
+					$formField .= tab(10)."</label>\r\n";
+					$formField .= tab(9)."</div>\r\n";
+					break;				
+			}
+			
+			$createForm .= tab(8)."<section class=\"col col-".$colInt."\">\r\n";
+			$createForm .= tab(9)."<label class=\"label\">".$_POST[$value]['label']."</label>\r\n";
+			$createForm .= $formField;
+			$createForm .= tab(8)."</section>\r\n";
+			$loop++;
+			if ($loop == $col) { $createForm .= tab(7)."</row>\r\n".tab(7)."<div class=\"row\">\r\n"; $loop = 0;}
+		}
+		
+		$listViewRow .= tab(7)."<td class=\"icon\"><a class=\"delete-record\" data-table=\"".$_POST['query_table']."\" data-record=\"<?php echo \$row_listView['".$_POST['primary_key']."']; ?>\" data-code=\"<?php echo \$APPLICATION['application_code']; ?>\" data-field=\"".$_POST['primary_key']."\"><i class=\"fa fa-trash-o\"></i></a></td>\r\n";
+		$listViewRow .= tab(6)."</tr>\r\n";
+
+		
+		$listView .= tab(6)."<th></th>\r\n".tab(5)."</tr>\r\n".tab(4)."</thead>\r\n";
+		$listView .= tab(5)."<tbody>\r\n";
+		$listView .= tab(6)."<?php do { ?>\r\n";
+		$listView .= $listViewRow;
+		$listView .= tab(6)."<?php } while (\$row_listView = mysql_fetch_assoc(\$listView)); ?>\r\n";
+		$listView .= tab(5)."</tbody>\r\n";	
+
+		
+		$createForm .= tab(7)."</row>";
+		$createForm = str_replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;", htmlentities($createForm));
+		$listView = str_replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;", htmlentities($listView));
+
+		$response = str_replace('{CREATEFORM}', $createForm, $response);
+		$response = str_replace('{EDITFORM}', $createForm, $response);
+		$response = str_replace('{VALIDATION}', $validation, $response);
+		$response = str_replace('{LISTVIEW}', $listView, $response);
+		$response = str_replace('{LINKLABEL}', $_POST['link_label'], $response);
+				
 		echo $response;
 		
 		$js = "$('#codeResponse').hide().html('').fadeIn(); ";

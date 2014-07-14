@@ -30,8 +30,8 @@
    </div>
 </div>
 <section id="widget-grid">
-   // Begin Create Record
-   <div id="createCnt-{APPID}" class="row hidden-panel">
+   <!-- Begin Create Record -->
+   <div id="createCtn-{APPID}" class="row hidden-panel">
       <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
          <div class="jarviswidget" id="add-{APPID}" data-widget-editbutton="false" data-widget-deletebutton="false">
             <header>
@@ -45,11 +45,12 @@
                <div class="widget-body no-padding">
                   <form id = "create-{APPID}" class="smart-form" method="post">
                      <fieldset>
+											<div class="form-response"></div>
                         {CREATEFORM}
                      </fieldset>
                      <footer>
                         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-{APPID}"> <i class="fa fa-check"></i> Save </button>
-                        <button type="button" class="btn btn-default btn-toggle" data-close="createCtn-{APPID}" data-open="listCnt-{APPID}"><i class="fa fa-times"></i> Cancel </button>
+                        <button type="button" class="btn btn-default btn-toggle" data-close="createCtn-{APPID}" data-open="listCtn-{APPID}"><i class="fa fa-times"></i> Cancel </button>
                         <input type="hidden" name="formID" value="create-{APPID}">
                         <input type="hidden" name="iKioskForm" value="Yes">
                         <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
@@ -60,9 +61,9 @@
          </div>
       </article>
    </div>
-   // End Create Record
-   // Start List View
-   <div id="listCnt-{APPID}" class="row">
+  <!-- End Create Record -->
+   <!-- Start List View -->
+   <div id="listCtn-{APPID}" class="row">
    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="system-message"></div>
       <div class="jarviswidget" id="list-{APPID}" data-widget-editbutton="false" data-widget-deletebutton="false">
@@ -83,7 +84,7 @@
       </div>
    </article>
    <div>
-   // End List View
+  <!--  End List View -->
 </section>
 <script type="text/javascript">
    var listView = $('#dt-{APPID}').dataTable();
@@ -96,7 +97,9 @@
    	// Validation
    	$("#create-{APPID}").validate({
    	
-   		{VALIDATION}
+   		rules : {
+				{VALIDATION}
+			},
    		
    		// Do not change code below
    		errorPlacement : function(error, element) {
@@ -142,7 +145,7 @@
                </div>
                <div class="widget-body no-padding">
                   <form id= "edit-{APPID}" class="smart-form" method="post">
-                     <header> <?php echo $row_getRecord['application_title']; ?> </header>
+                     <header> <?php echo $row_getRecord['{LINKLABEL}']; ?> </header>
                      <fieldset>
                         <div class="form-response"></div>
                         {EDITFORM}
@@ -168,8 +171,9 @@
    $(function() {
    	// Validation
    	$("#edit-{APPID}").validate({
-   	
-   		{VALIDATION}
+			rules : {
+				{VALIDATION}
+			},
    		
    		// Do not change code below
    		errorPlacement : function(error, element) {

@@ -5,6 +5,16 @@ $iKioskAssetRoot = substr($_SERVER['PHP_SELF'], 0, $iKioskPos);
 $SYSTEM['html_root'] = $iKioskAssetRoot;
 
 
+function tab($count) {
+	$response = "";
+	$x = 1;
+	do {
+	$response .="\t";
+	$x++;
+	} while ($x <= $count); 
+	return($response);
+}
+
 //New Record Deletion
 function deleteRecordv7($table, $field, $record) {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;

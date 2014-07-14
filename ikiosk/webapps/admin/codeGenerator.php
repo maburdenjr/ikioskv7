@@ -39,34 +39,11 @@ $totalRows_getApps = mysql_num_rows($getApps);
               <fieldset>
                 <div class="form-response"></div>
                 <div class="row">
-                  <section class="col col-6">
+                  <section class="col col-3">
                     <label class="label">Module Title</label>
                     <label class="input">
                       <input name="module_title" type="text">
                     </label>
-                  </section>
-                  <section class="col col-3">
-                    <label class="label">Query Filter</label>
-                    <label class="select">
-                      <select name="query_filter">
-                        <option value="None">None</option>
-                        <option value="Team">Team</option>
-                        <option value="Site">Site</option>
-                      </select>
-                      <i></i></label>
-                  </section>
-
-                </div>
-                <div class="row">
-                  <section class="col col-3">
-                    <label class="label">App Code</label>
-                    <label class="select">
-                      <select name="app_code" id="app_code">
-                        <?php do { ?>
-                        <option value="<?php echo $row_getApps['application_code']; ?>"><?php echo $row_getApps['application_code']." - ".$row_getApps['application_title']; ?></option>
-                        <?php } while ($row_getApps = mysql_fetch_assoc($getApps)); ?>
-                      </select>
-                      <i></i> </label>
                   </section>
                   <section class="col col-3">
                     <label class="label">Database Table</label>
@@ -94,6 +71,45 @@ do {
                       </select>
                       <i></i> </label>
                   </section>
+
+                  <section class="col col-3">
+                    <label class="label">Link Label</label>
+                    <label class="select">
+                      <select name="link_label" id="link_label">
+                      </select>
+                      <i></i></label>
+                  </section>
+                  
+
+                </div>
+                <div class="row">
+                <section class="col col-3">
+                    <label class="label">Module Index</label>
+                    <label class="input">
+                      <input name="module_index" type="text">
+                    </label>
+                  </section>
+                <section class="col col-3">
+                    <label class="label">Query Filter</label>
+                    <label class="select">
+                      <select name="query_filter">
+                        <option value="None">None</option>
+                        <option value="Team">Team</option>
+                        <option value="Site">Site</option>
+                      </select>
+                      <i></i></label>
+                  </section>
+                  <section class="col col-3">
+                    <label class="label">App Code</label>
+                    <label class="select">
+                      <select name="app_code" id="app_code">
+                        <?php do { ?>
+                        <option value="<?php echo $row_getApps['application_code']; ?>"><?php echo $row_getApps['application_code']." - ".$row_getApps['application_title']; ?></option>
+                        <?php } while ($row_getApps = mysql_fetch_assoc($getApps)); ?>
+                      </select>
+                      <i></i> </label>
+                  </section>
+                                    
                   <section class="col col-3">
                     <label class="label">Form Columns</label>
                     <label class="select">
@@ -174,6 +190,7 @@ do {
 					},
 					success: function(data) {
 							$('#codeSnippet #primary_key').html(data);
+							$('#codeSnippet #link_label').html(data);
 					}
 			});
 			

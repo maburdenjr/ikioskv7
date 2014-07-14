@@ -31,6 +31,7 @@ function iKioskUI() {
 		var closeTarget = $(this).data("close");
 		$('#'+openTarget+', #'+openTarget+' .jarviswidget').fadeIn();
 		$('#'+closeTarget).hide();
+		console.log(openTarget);
 	});
 	
 	$('.btn-close-panel').on('click', function(){
