@@ -36,7 +36,7 @@
          <div class="jarviswidget" id="add-SysErrors" data-widget-editbutton="false" data-widget-deletebutton="false">
             <header>
                <span class="widget-icon"> <i class="fa fa-plus"></i> </span>
-               <h2>New Error Codes</h2>
+               <h2>New Error Code</h2>
             </header>
             <div>
                <div class="jarviswidget-editbox"> 
@@ -96,7 +96,6 @@
                <table id="dt-SysErrors" class="table table-striped table-bordered table-hover" width="100%">
                   <thead>
                     <tr>
-                        <th></th>
                         <th>Error Title</th>
                         <th>Error Description</th>
                         <th></th>
@@ -106,7 +105,6 @@
                         <?php do { ?>
                         <tr class="<?php echo $row_listView['error_id']; ?>">
                             <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['error_id']; ?>#webapps/admin/errorCodes.php"><?php echo $row_listView['error_title']; ?></a></td>
-                            <td><?php echo $row_listView['error_title']; ?></td>
                             <td><?php echo $row_listView['error_description']; ?></td>
                             <td class="icon"><a class="delete-record" data-table="sys_errors" data-record="<?php echo $row_listView['error_id']; ?>" data-code="<?php echo $APPLICATION['application_code']; ?>" data-field="error_id"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
@@ -123,7 +121,7 @@
 </section>
 <script type="text/javascript">
    var listView = $('#dt-SysErrors').dataTable();
-   $('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add" data-open="createCtn-SysErrors" data-close="listCtn-SysErrors"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Error Codes</span></button>');
+   $('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add" data-open="createCtn-SysErrors" data-close="listCtn-SysErrors"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Error Code</span></button>');
 </script>
 <script type="text/javascript">
    runAllForms();
@@ -174,7 +172,7 @@
          <div class="jarviswidget" id="editCtn-SysErrors" data-widget-editbutton="false" data-widget-deletebutton="false">
             <header>
                <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-               <h2>Edit Error Codes</h2>
+               <h2>Edit Error Code</h2>
             </header>
             <div>
                <div class="jarviswidget-editbox">
