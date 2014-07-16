@@ -83,7 +83,7 @@
 				case "textarea":
 					$type = "textarea";
 						$formField = tab(9)."<label class=\"".$type."\">\r\n";
-						$formField .= tab(10)."<textarea rows=\"3\" class=\"custom-scroll\"><?php echo \$row_getRecord['".$value."']; ?></textarea>\r\n";
+						$formField .= tab(10)."<textarea rows=\"3\" class=\"custom-scroll\" name=\"".$value."\"><?php echo \$row_getRecord['".$value."']; ?></textarea>\r\n";
 						$formField .= tab(9)."</label>\r\n";
 					break;
 				case "radio":
@@ -170,7 +170,7 @@
 		$sprintSet = substr($sprintSet, 0, -2);
 		$sqlSet = substr($sqlSet, 0, -3);
 		$formHandler .= $columnSet.") VALUES (".$sprintSet.")\",\r\n".$sqlSet.");\r\n\r\n";
-		$formHandler .= tab(1)."mysql_select_db(\$database_ikiosk, \$ikiosk)\r\n";
+		$formHandler .= tab(1)."mysql_select_db(\$database_ikiosk, \$ikiosk);\r\n";
 		$formHandler .= tab(1)."\$Result1 = mysql_query(\$insertSQL, \$ikiosk) or sqlError(mysql_error());\r\n";
 		$formHandler .= tab(1)."sqlQueryLog(\$insertSQL);\r\n";
 		$formHandler .= tab(1)."insertJS(\$refresh);\r\n";
@@ -212,7 +212,7 @@
 		$formHandler .= tab(1)."\$Result1 = mysql_query(\$updateSQL, \$ikiosk) or sqlError(mysql_error());\r\n";
 		$formHandler .= tab(1)."sqlQueryLog(\$updateSQL);\r\n\r\n";
 		$formHandler .= tab(1)."displayAlert(\"success\", \"Changes saved.\");\r\n";
-		$formHandler .= tab(1)."}\r\n";
+		$formHandler .= "}\r\n";
 
 		$formHandler = str_replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;", htmlentities($formHandler));
 

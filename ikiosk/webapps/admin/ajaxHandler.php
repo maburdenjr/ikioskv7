@@ -78,6 +78,38 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
 	include('ajaxCodeGen.php'); // Code Generator
 	
+	// Error Codes: Create -------------------------------------------
+
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-SysErrors")) {
+    $generateID = create_guid();
+    $insertSQL = sprintf("INSERT INTO sys_errors (`error_id`, `error_title`, `error_description`) VALUES (%s, %s, %s)",
+        GetSQLValueString($generateID, "text"),
+        GetSQLValueString($_POST['error_title'], "text"),
+        GetSQLValueString($_POST['error_description'], "text"));
+
+    mysql_select_db($database_ikiosk, $ikiosk);
+    $Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+    sqlQueryLog($insertSQL);
+    insertJS($refresh);
+    exit;
+}
+
+// Error Codes: Edit -------------------------------------------
+
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysErrors")) {
+    $updateSQL = sprintf("UPDATE sys_errors SET 
+`error_title`=%s, `error_description`=%s WHERE error_id=%s",
+        GetSQLValueString($_POST['error_title'], "text"),
+        GetSQLValueString($_POST['error_description'], "text"),
+        GetSQLValueString($_POST['error_id'], "text"));
+
+    mysql_select_db($database_ikiosk, $ikiosk);
+    $Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+    sqlQueryLog($updateSQL);
+
+    displayAlert("success", "Changes saved.");
+}
+	
 // Applications: Edit --------------------------------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "editApplication")) {
 			$updateSQL = sprintf("UPDATE sys_applications SET application_title=%s, application_root=%s, application_type=%s, application_description=%s, application_security=%s, application_clearance=%s, application_version=%s, application_status=%s, date_modified=%s, modified_by=%s WHERE application_id=%s",

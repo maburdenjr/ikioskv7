@@ -58,7 +58,7 @@
                                 <section class="col col-12">
                                     <label class="label">Error Description</label>
                                     <label class="textarea">
-                                        <textarea rows="3" class="custom-scroll"><?php echo $row_getRecord['error_description']; ?></textarea>
+                                        <textarea rows="3" class="custom-scroll" name="error_description"><?php echo $row_getRecord['error_description']; ?></textarea>
                                     </label>
                                 </section>
                             </div>
@@ -96,14 +96,16 @@
                <table id="dt-SysErrors" class="table table-striped table-bordered table-hover" width="100%">
                   <thead>
                     <tr>
-                        <th>Error Title</th>
-                        <th>Error Description</th>
+                        <th>Code</th>
+                        <th>Title</th>
+                        <th>Description</th>
                         <th></th>
                     </tr>
                 </thead>
                     <tbody>
                         <?php do { ?>
                         <tr class="<?php echo $row_listView['error_id']; ?>">
+                        		 <td><?php echo $row_listView['error_id']; ?></td>
                             <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['error_id']; ?>#webapps/admin/errorCodes.php"><?php echo $row_listView['error_title']; ?></a></td>
                             <td><?php echo $row_listView['error_description']; ?></td>
                             <td class="icon"><a class="delete-record" data-table="sys_errors" data-record="<?php echo $row_listView['error_id']; ?>" data-code="<?php echo $APPLICATION['application_code']; ?>" data-field="error_id"><i class="fa fa-trash-o"></i></a></td>
@@ -196,7 +198,7 @@
                                 <section class="col col-12">
                                     <label class="label">Error Description</label>
                                     <label class="textarea">
-                                        <textarea rows="3" class="custom-scroll"><?php echo $row_getRecord['error_description']; ?></textarea>
+                                        <textarea rows="3" class="custom-scroll" name="error_description"><?php echo $row_getRecord['error_description']; ?></textarea>
                                     </label>
                                 </section>
                             </div>
