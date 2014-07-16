@@ -82,8 +82,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 
 if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-SysErrors")) {
     $generateID = create_guid();
-    $insertSQL = sprintf("INSERT INTO sys_errors (`error_id`, `error_title`, `error_description`) VALUES (%s, %s, %s)",
-        GetSQLValueString($generateID, "text"),
+    $insertSQL = sprintf("INSERT INTO sys_errors (`error_title`, `error_description`) VALUES (%s, %s, %s)",
         GetSQLValueString($_POST['error_title'], "text"),
         GetSQLValueString($_POST['error_description'], "text"));
 
