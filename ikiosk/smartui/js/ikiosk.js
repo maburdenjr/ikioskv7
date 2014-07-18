@@ -2,7 +2,7 @@
 function iKioskUI() {
 	
 	//Delete Records
-	$('.delete-record').on('click', function(){
+	$('#content').on('click', '.delete-record', function(){
 		var deleteRecord = confirm("Are you sure you want to delete this item?");
 		if (deleteRecord == true) {
 			$('.system-message').hide();

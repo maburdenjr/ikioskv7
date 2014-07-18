@@ -67,6 +67,22 @@ if (isset($_GET['ajaxAction'])) {
 			echo "false";
 		}
 	}
+	
+	// AppCode Check --------------------------------------------------------------------------------	
+	
+	if($_GET['ajaxAction'] == "siteRootCheck") {
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$query_listView = "SELECT * FROM sys_sites WHERE deleted = '0' AND site_root = '/".$_GET['site_root']."'";
+		$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
+		$row_listView = mysql_fetch_assoc($listView);
+		$totalRows_listView = mysql_num_rows($listView);
+		
+		if($totalRows_listView == 0) {
+			echo "true";
+		} else {
+			echo "false";
+		}
+	}
 
 } // End AJAX Get Wrapper
 
@@ -78,11 +94,22 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
 	include('ajaxCodeGen.php'); // Code Generator
 	
+	// : Create -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-SysSites")) {
+			$rootFolder = $SYSTEM['ikiosk_filesystem_root']."/sites/".$_POST['site_root'];
+			if (!file_exists($rootFolder)) {
+					createDIR($rootFolder);	
+					createDIR($rootFolder."/blog");
+					createDIR($rootFolder."/static");
+					createDIR($rootFolder."/admin");
+			}
+	}
+	
 	// Error Codes: Create -------------------------------------------
 
 if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-SysErrors")) {
     $generateID = create_guid();
-    $insertSQL = sprintf("INSERT INTO sys_errors (`error_title`, `error_description`) VALUES (%s, %s, %s)",
+    $insertSQL = sprintf("INSERT INTO sys_errors (`error_title`, `error_description`) VALUES (%s, %s)",
         GetSQLValueString($_POST['error_title'], "text"),
         GetSQLValueString($_POST['error_description'], "text"));
 

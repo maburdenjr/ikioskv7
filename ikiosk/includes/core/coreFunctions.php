@@ -18,7 +18,7 @@ function tab($count) {
 //New Record Deletion
 function deleteRecordv7($table, $field, $record) {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
-	$restrictedID = array("sys-admin", "sys-user", "sys-ikiosk", "sys-cms");
+	$restrictedID = array("sys-admin", "sys-user", "sys-ikiosk", "sys-cms", "sys-default");
 	$byPass = "Yes";
 	if ($table == "sys_errors" && $record <= 13) {$byPass = "No";}
 	if (!in_array($record, $restrictedID) && $byPass == "Yes") {
