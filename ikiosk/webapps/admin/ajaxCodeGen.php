@@ -24,6 +24,7 @@
 		$response = str_replace('{TITLE}', $_POST['module_title'], $response);
 		$response = str_replace('{APPID}', $appID, $response);
 		$response = str_replace('{PRIMARYKEY}', $_POST['primary_key'], $response);
+		$response = str_replace('{MODULEINDEX}', $_POST['module_index'], $response);
 		
 		if($_POST['query_filter'] == "Site") {
 				$response = str_replace("{QUERYFILTER}", "AND \".\$SYSTEM['active_site_filter'].\"", $response);	
@@ -44,7 +45,7 @@
 		$validation = "";
 		$listView = "<thead>\r\n".tab(5)."<tr>\r\n".tab(6)."<th></th>\r\n";
 		$listViewRow = tab(6)."<tr class=\"<?php echo \$row_listView['".$_POST['primary_key']."']; ?>\">\r\n";
-		$listViewRow .= tab(7)."<td><a href=\"index.php?action=edit&recordID=<?php echo \$row_listView['".$_POST['primary_key']."']; ?>#".$_POST['module_index']."\"><?php echo \$row_listView['".$_POST['link_label']."']; ?></a></td>\r\n";
+		$listViewRow .= tab(7)."<td><a href=\"index.php?action=edit&recordID=<?php echo \$row_listView['".$_POST['primary_key']."']; ?>#".$_POST['module_index']."\" class=\"ajaxLink\"><?php echo \$row_listView['".$_POST['link_label']."']; ?></a></td>\r\n";
 
 		foreach ($_POST['include_field'] as $key => $value) {
 			

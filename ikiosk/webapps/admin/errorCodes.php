@@ -106,7 +106,7 @@
                         <?php do { ?>
                         <tr class="<?php echo $row_listView['error_id']; ?>">
                         		 <td><?php echo $row_listView['error_id']; ?></td>
-                            <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['error_id']; ?>#webapps/admin/errorCodes.php"><?php echo $row_listView['error_title']; ?></a></td>
+                            <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['error_id']; ?>#webapps/admin/errorCodes.php" class="ajaxLink"><?php echo $row_listView['error_title']; ?></a></td>
                             <td><?php echo $row_listView['error_description']; ?></td>
                             <td class="icon"><a class="delete-record" data-table="sys_errors" data-record="<?php echo $row_listView['error_id']; ?>" data-code="<?php echo $APPLICATION['application_code']; ?>" data-field="error_id"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
@@ -206,7 +206,7 @@
                      </fieldset>
                      <footer>
                         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-SysErrors"> <i class="fa fa-check"></i> Save </button>
-                        <button type="button" class="btn btn-default" onclick="window.history.back();"><i class="fa fa-times"></i> Cancel </button>
+                        <button type="button" class="btn btn-default ajaxLink" href="index.php#webapps/admin/errorCodes.php"><i class="fa fa-times"></i> Cancel </button>
                         <input type="hidden" name="error_id" value="<?php echo $row_getRecord['error_id']; ?>" />
                         <input type="hidden" name="formID" value="edit-SysErrors">
                         <input type="hidden" name="iKioskForm" value="Yes" />

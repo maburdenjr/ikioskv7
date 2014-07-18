@@ -102,6 +102,62 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 					createDIR($rootFolder."/blog");
 					createDIR($rootFolder."/static");
 					createDIR($rootFolder."/admin");
+					
+					$generateID = create_guid();
+					
+					$insertSQL = sprintf("INSERT INTO sys_sites (site_id, site_name, site_url, site_status, public_home, ikiosk_home, site_root, support_email, site_timezone, force_ssl, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+        GetSQLValueString($generateID, "text"),
+        GetSQLValueString($_POST['site_name'], "text"),
+        GetSQLValueString($_POST['site_url'], "text"),
+        GetSQLValueString("Active", "text"),
+        GetSQLValueString("/index.htm", "text"),
+        GetSQLValueString("/webapps/index.php", "text"),
+        GetSQLValueString("/".$_POST['site_root'], "text"),
+        GetSQLValueString($_POST['support_email'], "text"),
+        GetSQLValueString($_POST['site_timezone'], "text"),
+        GetSQLValueString($_POST['force_ssl'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"));
+
+				mysql_select_db($database_ikiosk, $ikiosk);
+				$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+				sqlQueryLog($insertSQL);
+				
+				//Link Users 2 New Site
+				$insertSQL = sprintf("INSERT INTO sys_users2sites (site_id, user_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+								GetSQLValueString($generateID, "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"),
+								GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"),
+								GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"));
+				
+				mysql_select_db($database_ikiosk, $ikiosk);
+				$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+				sqlQueryLog($insertSQL);
+				
+				
+				if ($_SESSION['user_id'] != "sys-admin") {
+				$insertSQL = sprintf("INSERT INTO sys_users2sites (site_id, user_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+								GetSQLValueString($generateID, "text"),
+								GetSQLValueString("sys-admin", "text"),
+								GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"),
+								GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"));
+						
+				
+				mysql_select_db($database_ikiosk, $ikiosk);
+				$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+				sqlQueryLog($insertSQL);
+				}
+				
+				insertJS($refresh);
+   			exit;
+			} else {
+				displayAlert("danger", "It appears that this site already exists.  Please try again.");	
 			}
 	}
 	

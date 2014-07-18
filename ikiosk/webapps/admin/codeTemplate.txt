@@ -152,7 +152,7 @@
                      </fieldset>
                      <footer>
                         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-{APPID}"> <i class="fa fa-check"></i> Save </button>
-                        <button type="button" class="btn btn-default" onclick="window.history.back();"><i class="fa fa-times"></i> Cancel </button>
+                        <button type="button" class="btn btn-default ajaxLink" href="index.php#{MODULEINDEX}"><i class="fa fa-times"></i> Cancel </button>
                         <input type="hidden" name="{PRIMARYKEY}" value="<?php echo $row_getRecord['{PRIMARYKEY}']; ?>" />
                         <input type="hidden" name="formID" value="edit-{APPID}">
                         <input type="hidden" name="iKioskForm" value="Yes" />

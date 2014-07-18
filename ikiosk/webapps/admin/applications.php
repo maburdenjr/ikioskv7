@@ -185,7 +185,7 @@ $totalRows_listView = mysql_num_rows($listView);
               <tbody>
                 <?php do { ?>
                   <tr class="<?php echo $row_listView['application_id']; ?>">
-                    <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['application_id']; ?>#webapps/admin/applications.php"><?php echo $row_listView['application_title']; ?></a></td>
+                    <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['application_id']; ?>#webapps/admin/applications.php" class="ajaxLink"><?php echo $row_listView['application_title']; ?></a></td>
                     <td><?php echo $row_listView['application_code']; ?></td>
                     <td><?php echo $row_listView['application_security']; ?></td>
                     <td><?php echo $row_listView['application_status']; ?></td>
@@ -373,7 +373,7 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
               </fieldset>
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="editApplication"> <i class="fa fa-check"></i> Save </button>
-                <button type="button" class="btn btn-default" onclick="window.history.back();"><i class="fa fa-times"></i> Cancel </button>
+                <button type="button" class="btn btn-default ajaxLink" href="index.php#webapps/admin/applications.php"><i class="fa fa-times"></i> Cancel </button>
                 <input type="hidden" name="application_id" value="<?php echo $row_getRecord['application_id']; ?>" />
                 <input type="hidden" name="formID" value="editApplication">
                 <input type="hidden" name="iKioskForm" value="Yes" />
@@ -409,7 +409,7 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
               <tbody>
                 <?php do { ?>
                   <tr>
-                    <td class="<?php echo $row_listView['application_id']; ?>"><a href="index.php?action=edit&recordID=<?php echo $row_listView['application_id']; ?>#webapps/admin/applications.php"><?php echo $row_listView['application_title']; ?></a></td>
+                    <td class="<?php echo $row_listView['application_id']; ?>"><a href="index.php?action=edit&recordID=<?php echo $row_listView['application_id']; ?>#webapps/admin/applications.php" class="ajaxLink"><?php echo $row_listView['application_title']; ?></a></td>
                     <?php } while ($row_listView = mysql_fetch_assoc($listView)); ?>
               </tbody>
             </table>

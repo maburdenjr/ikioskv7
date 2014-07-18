@@ -121,7 +121,7 @@
               <th>Site Name</th>
               <th>Site URL</th>
               <th>Site Root</th>
-              <th>Force Ssl</th>
+              <th>Force SSL</th>
               <th>Status</th>
               <th></th>
             </tr>
@@ -129,7 +129,7 @@
           <tbody>
             <?php do { ?>
               <tr class="<?php echo $row_listView['site_id']; ?>">
-                <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['site_id']; ?>#webapps/admin/sites.php"><?php echo $row_listView['site_name']; ?></a></td>
+                <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['site_id']; ?>#webapps/admin/sites.php" class="ajaxLink"2><?php echo $row_listView['site_name']; ?></a></td>
                 <td><a href="<?php echo $row_listView['site_url']; ?>" target="_blank"><?php echo $row_listView['site_url']; ?></a></td>
                 <td><?php echo $row_listView['site_root']; ?></td>
                 <td><?php echo $row_listView['force_ssl']; ?></td>
@@ -349,7 +349,7 @@
                 </div>
                 <div class="row">
                   <section class="col col-6">
-                    <label class="label">Force Ssl</label>
+                    <label class="label">Force SSL</label>
                     <label class="select">
                       <select name="force_ssl">
                         <option value="value1" <?php if (!(strcmp("value1", $row_getRecord['force_ssl']))) {echo "selected=\"selected\"";} ?>>value1</option>
@@ -550,7 +550,7 @@
               </fieldset>
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-SysSites"> <i class="fa fa-check"></i> Save </button>
-                <button type="button" class="btn btn-default" onclick="window.history.back();"><i class="fa fa-times"></i> Cancel </button>
+                <button type="button" class="btn btn-default ajaxLink" href="index.php#webapps/admin/sites.php"><i class="fa fa-times"></i> Cancel </button>
                 <input type="hidden" name="site_id" value="<?php echo $row_getRecord['site_id']; ?>" />
                 <input type="hidden" name="formID" value="edit-SysSites">
                 <input type="hidden" name="iKioskForm" value="Yes" />
