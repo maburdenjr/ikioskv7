@@ -284,352 +284,309 @@
                       </section>
                     </div>
                     <div class="row">
-                    	<section class="col col-4">
-                      <label class="label">Default Timezone</label>
-                  <label class="select">
-                    <select name="site_timezone">
-                      <?php selectTimeZone($row_getRecord['site_timezone']); ?>
-                    </select>
-                    <i></i> </label>
+                      <section class="col col-4">
+                        <label class="label">Default Timezone</label>
+                        <label class="select">
+                          <select name="site_timezone">
+                            <?php selectTimeZone($row_getRecord['site_timezone']); ?>
+                          </select>
+                          <i></i> </label>
                       </section>
                       <section class="col col-4">
-                      <label class="label">Date Format</label>
-                    <label class="input">
-                      <input type="text" name="site_dateformat" value="<?php echo $row_getRecord['site_dateformat']; ?>">
-                    </label>
+                        <label class="label">Date Format</label>
+                        <label class="input">
+                          <input type="text" name="site_dateformat" value="<?php echo $row_getRecord['site_dateformat']; ?>">
+                        </label>
                       </section>
                       <section class="col col-4">
-                      <label class="label">Status</label>
-                    <label class="select">
-                      <select name="site_status">
-                        <option value="Active" <?php if (!(strcmp("Active", $row_getRecord['site_status']))) {echo "selected=\"selected\"";} ?>>Active</option>
-                        <option value="Inactive" <?php if (!(strcmp("Inactive", $row_getRecord['site_status']))) {echo "selected=\"selected\"";} ?>>Inactive</option>
-                      </select>
-                      <i></i> </label>
+                        <label class="label">Status</label>
+                        <label class="select">
+                          <select name="site_status">
+                            <option value="Active" <?php if (!(strcmp("Active", $row_getRecord['site_status']))) {echo "selected=\"selected\"";} ?>>Active</option>
+                            <option value="Inactive" <?php if (!(strcmp("Inactive", $row_getRecord['site_status']))) {echo "selected=\"selected\"";} ?>>Inactive</option>
+                          </select>
+                          <i></i> </label>
                       </section>
                     </div>
                   </div>
                   <div class="tab-pane fade in" id="images">
-                  <div class="row">
-                  	<section class="col col-4">
-                    <label class="label">Mini-Thumbnail Width</label>
-                    <label class="input">
-                      <input type="text" name="image_mini_thumbnailX" value="<?php echo $row_getRecord['image_mini_thumbnailX']; ?>">
-                    </label>
-                    </section>
-                    <section class="col col-4">
-                    <label class="label">Thumbnail Width</label>
-                    <label class="input">
-                      <input type="text" name="image_thumbnailX" value="<?php echo $row_getRecord['image_thumbnailX']; ?>">
-                    </label>
-                    
-                    </section>
-                    <section class="col col-4">
-                    <label class="label">Max Width for Inline Images</label>
-                    <label class="input">
-                      <input type="text" name="image_inline" value="<?php echo $row_getRecord['image_inline']; ?>">
-                    </label>
-                    </section>
-                  </div>
-                  <div class="row">
-                  	<section class="col col-4">
-                    <label class="label">Mini Thumbnail Height</label>
-                    <label class="input">
-                      <input type="text" name="image_mini_thumbnailY" value="<?php echo $row_getRecord['image_mini_thumbnailY']; ?>">
-                    </label>
-                    </section>
-                    <section class="col col-4">
-                    <label class="label">Thumbnail Height</label>
-                    <label class="input">
-                      <input type="text" name="image_thumbnailY" value="<?php echo $row_getRecord['image_thumbnailY']; ?>">
-                    </label>
-                    </section>
-                    <section class="col col-4">
-                    <label class="label">Max Width for Resized Images</label>
-                    <label class="input">
-                      <input type="text" name="image_resized" value="<?php echo $row_getRecord['image_resized']; ?>">
-                    </label>
-                    </section>
-                  </div>
-                  </div>
-                  <div class="tab-pane fade in" id="social">
-                  	<div class="row">
-                    	<section class="col col-6">
-                      	<h5 class="pb10">Facebook</h5>
-                        <div class="row">
-                        	<section class="col col-6">
-                                              <label class="label">Facebook App ID</label>
-                    <label class="input">
-                      <input type="text" name="facebook_app_id" value="<?php echo $row_getRecord['facebook_app_id']; ?>">
-                    </label>
-
-                          </section>
-                          <section class="col col-6">
-                          <label class="label">Facebook App Url</label>
-                    <label class="input">
-                      <input type="text" name="facebook_app_url" value="<?php echo $row_getRecord['facebook_app_url']; ?>">
-                    </label>
-                          </section>
-                        </div>
-                        <div class="row">
-                        	<section class="col col-6">
-                          <label class="label">Facebook Secret</label>
-                    <label class="input">
-                      <input type="text" name="facebook_secret" value="<?php echo $row_getRecord['facebook_secret']; ?>">
-                    </label>
-                          </section>
-                          <section class="col col-6">
-                         <label class="label">Facebook Key</label>
-                    <label class="input">
-                      <input type="text" name="facebook_key" value="<?php echo $row_getRecord['facebook_key']; ?>">
-                    </label>
-                          </section>
-                        </div>
-                        <div class="row">
-                        	<section class="col col-12">
-                          <label class="textarea">Facebook Permissions</label>
-                    <label class="textarea">
-                      <textarea name="facebook_permissions"><?php echo $row_getRecord['facebook_permissions']; ?></textarea><div class="note">Enter a comma-separated list of permissions to be requested during the Facebook authentication process. (ie. 'email, publish_stream')</div>
-                    </label>
-                          </section>
-                        </div>
-                        <h5 class="pb10">Instagram</h5>
-                        <div class="row">
-                        	<section class="col col-6">
-                          <label class="label">Instagram Client ID</label>
-                    <label class="input">
-                      <input type="text" name="instagram_key" value="<?php echo $row_getRecord['instagram_key']; ?>">
-                    </label>
-                          </section>
-                          <section class="col col-6">
-                          <label class="label">Instagram Secret</label>
-                    <label class="input">
-                      <input type="text" name="instagram_secret" value="<?php echo $row_getRecord['instagram_secret']; ?>">
-                    </label>
-                          </section>
-                        </div>
-                        <h5 class="pb10">Twitter</h5>
-                        <div class="row">
-                        	<section class="col col-6">
-                          <label class="label">Twitter API Key</label>
-                    <label class="input">
-                      <input type="text" name="twitter_api" value="<?php echo $row_getRecord['twitter_api']; ?>">
-                    </label>
-                          </section>
-                          <section class="col col-6">
-                            <label class="label">Twitter Consumer Key</label>
-                    <label class="input">
-                      <input type="text" name="twitter_consumer_key" value="<?php echo $row_getRecord['twitter_consumer_key']; ?>">
-                    </label>
-                          </section>
-                        </div>
-                        <div class="row">
-                        	<section class="col col-12">
-                          <label class="label">Twitter Consumer Secret</label>
-                    <label class="input">
-                      <input type="text" name="twitter_consumer_secret" value="<?php echo $row_getRecord['twitter_consumer_secret']; ?>">
-                    </label>
-                          </section>
- 
-                        </div>
+                    <div class="row">
+                      <section class="col col-3">
+                        <label class="label">Mini-Thumbnail Width</label>
+                        <label class="input">
+                          <input type="text" name="image_mini_thumbnailX" value="<?php echo $row_getRecord['image_mini_thumbnailX']; ?>">
+                        </label>
                       </section>
-                      <section class="col col-6">
-                      	<h5>Photobucket</h5>
-                        <div class="row">
-                        	<section class="col col-6">
-                          Test
-                          </section>
-                          <section class="col col-6">
-                          Test
-                          </section>
-                        </div>
-                        <h5>YouTube</h5>
-                        <div class="row">
-                        	<section class="col col-6">
-                          Test
-                          </section>
-                          <section class="col col-6">
-                          Test
-                          </section>
-                        </div>
-                         <h5>Flickr</h5>
-                         <div class="row">
-                        	<section class="col col-6">
-                          Test
-                          </section>
-                          <section class="col col-6">
-                          Test
-                          </section>
-                        </div>
+                      <section class="col col-3">
+                        <label class="label">Mini Thumbnail Height</label>
+                        <label class="input">
+                          <input type="text" name="image_mini_thumbnailY" value="<?php echo $row_getRecord['image_mini_thumbnailY']; ?>">
+                        </label>
+                      </section>
+                      <section class="col col-3">
+                        <label class="label">Thumbnail Width</label>
+                        <label class="input">
+                          <input type="text" name="image_thumbnailX" value="<?php echo $row_getRecord['image_thumbnailX']; ?>">
+                        </label>
+                      </section>
+                      <section class="col col-3">
+                        <label class="label">Thumbnail Height</label>
+                        <label class="input">
+                          <input type="text" name="image_thumbnailY" value="<?php echo $row_getRecord['image_thumbnailY']; ?>">
+                        </label>
+                      </section>
+                    </div>
+                    <div class="row">
+                      <section class="col col-3">
+                        <label class="label">Max Width for Inline Images</label>
+                        <label class="input">
+                          <input type="text" name="image_inline" value="<?php echo $row_getRecord['image_inline']; ?>">
+                        </label>
+                      </section>
+                      <section class="col col-3">
+                        <label class="label">Max Width for Resized Images</label>
+                        <label class="input">
+                          <input type="text" name="image_resized" value="<?php echo $row_getRecord['image_resized']; ?>">
+                        </label>
                       </section>
                     </div>
                   </div>
-                  <div class="tab-pane fade in" id="google">Test 4</div>
+                  <div class="tab-pane fade in" id="social">
+                    <ul id="social-tabs" class="nav nav-tabs bordered">
+                      <li class="active"> <a data-toggle="tab" href="#facebook"><i class="fa fa-facebook-square"></i> Facebook</a> </li>
+                      <li> <a data-toggle="tab" href="#instagram"><i class="fa fa-instagram"></i> Instagram</a> </li>
+                      <li> <a data-toggle="tab" href="#twitter"><i class="fa fa-twitter"></i> Twitter</a> </li>
+                      <li> <a data-toggle="tab" href="#youtube"><i class="fa fa-youtube"></i> YouTube</a> </li>
+                      <li> <a data-toggle="tab" href="#flickr"><i class="fa fa-flickr"></i> Flickr</a> </li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane fade in active padding-10" id="facebook">
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Facebook App ID</label>
+                            <label class="input">
+                              <input type="text" name="facebook_app_id" value="<?php echo $row_getRecord['facebook_app_id']; ?>">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="label">Facebook App Url</label>
+                            <label class="input">
+                              <input type="text" name="facebook_app_url" value="<?php echo $row_getRecord['facebook_app_url']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Facebook Secret</label>
+                            <label class="input">
+                              <input type="text" name="facebook_secret" value="<?php echo $row_getRecord['facebook_secret']; ?>">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="label">Facebook Key</label>
+                            <label class="input">
+                              <input type="text" name="facebook_key" value="<?php echo $row_getRecord['facebook_key']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                        <div class="row">
+                          <section class="col col-12">
+                            <label class="label">Facebook Permissions</label>
+                            <label class="textarea">
+                            <textarea name="facebook_permissions"><?php echo $row_getRecord['facebook_permissions']; ?></textarea>
+                            <div class="note">Enter a comma-separated list of permissions to be requested during the Facebook authentication process. (ie. 'email, publish_stream')</div>
+                            </label>
+                          </section>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade in padding-10" id="instagram">
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Instagram Client ID</label>
+                            <label class="input">
+                              <input type="text" name="instagram_key" value="<?php echo $row_getRecord['instagram_key']; ?>">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="label">Instagram Secret</label>
+                            <label class="input">
+                              <input type="text" name="instagram_secret" value="<?php echo $row_getRecord['instagram_secret']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade in padding-10" id="twitter">
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Twitter API Key</label>
+                            <label class="input">
+                              <input type="text" name="twitter_api" value="<?php echo $row_getRecord['twitter_api']; ?>">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="label">Twitter Consumer Key</label>
+                            <label class="input">
+                              <input type="text" name="twitter_consumer_key" value="<?php echo $row_getRecord['twitter_consumer_key']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                        <div class="row">
+                          <section class="col col-12">
+                            <label class="label">Twitter Consumer Secret</label>
+                            <label class="input">
+                              <input type="text" name="twitter_consumer_secret" value="<?php echo $row_getRecord['twitter_consumer_secret']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade in padding-10" id="photobucket">
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Photobucket Key</label>
+                            <label class="input">
+                              <input type="text" name="photobucket_key" value="<?php echo $row_getRecord['photobucket_key']; ?>">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="label">Photobucket Secret</label>
+                            <label class="input">
+                              <input type="text" name="photobucket_secret" value="<?php echo $row_getRecord['photobucket_secret']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade in padding-10" id="youtube">
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Youtube App Url</label>
+                            <label class="input">
+                              <input type="text" name="youtube_app_url" value="<?php echo $row_getRecord['youtube_app_url']; ?>">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="label">Youtube Client ID</label>
+                            <label class="input">
+                              <input type="text" name="youtube_client_id" value="<?php echo $row_getRecord['youtube_client_id']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                        <div class="row">
+                          <section class="col col-12">
+                            <label class="label">Youtube Developer Key</label>
+                            <label class="input">
+                              <input type="text" name="youtube_developer_key" value="<?php echo $row_getRecord['youtube_developer_key']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade in padding-10" id="flickr">
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Flickr API Key</label>
+                            <label class="input">
+                              <input type="text" name="flickr_api_key" value="<?php echo $row_getRecord['flickr_api_key']; ?>">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="label">Flickr API Secret</label>
+                            <label class="input">
+                              <input type="text" name="flickr_api_secret" value="<?php echo $row_getRecord['flickr_api_secret']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                        <div class="row">
+                          <section class="col col-12">
+                            <label class="label">Flickr API Permissions</label>
+                            <label class="textarea">
+                              <textarea name="flickr_api_permissions"><?php echo $row_getRecord['flickr_api_permissions']; ?></textarea>
+                            </label>
+                          </section>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade in" id="google">
+                    <ul id="google-tabs" class="nav nav-tabs bordered">
+                      <li class="active"> <a data-toggle="tab" href="#g-apps"><i class="fa fa-google"></i> Google Apps</a> </li>
+                      <li> <a data-toggle="tab" href="#g-api"><i class="fa fa-google"></i> Google API</a> </li>
+                      <li> <a data-toggle="tab" href="#g-analytics"><i class="fa fa-google"></i> Google Analytics</a> </li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane fade in padding-10 active" id="g-apps">
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Google Site Verification</label>
+                            <label class="input">
+                              <input type="text" name="google_site_verification" value="<?php echo $row_getRecord['google_site_verification']; ?>">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="label">Google Consumer Key</label>
+                            <label class="input">
+                              <input type="text" name="google_consumer_key" value="<?php echo $row_getRecord['google_consumer_key']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                        <div class="row">
+                          <section class="col col-12">
+                            <label class="label">Google Consumer Secret</label>
+                            <label class="input">
+                              <input type="text" name="google_consumer_secret" value="<?php echo $row_getRecord['google_consumer_secret']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade in padding-10" id="g-api">
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Google Api Client Id</label>
+                            <label class="input">
+                              <input type="text" name="google_api_client_id" value="<?php echo $row_getRecord['google_api_client_id']; ?>">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="label">Google Api Client Secret</label>
+                            <label class="input">
+                              <input type="text" name="google_api_client_secret" value="<?php echo $row_getRecord['google_api_client_secret']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Google Api Redirect Url</label>
+                            <label class="input">
+                              <input type="text" name="google_api_redirect_url" value="<?php echo $row_getRecord['google_api_redirect_url']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Google Api Key</label>
+                            <label class="input">
+                              <input type="text" name="google_api_key" value="<?php echo $row_getRecord['google_api_key']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade in padding-10" id="g-analytics">
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="label">Analytics Account ID</label>
+                            <label class="input">
+                              <input type="text" name="google_analytics_key" value="<?php echo $row_getRecord['google_analytics_key']; ?>">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="label">Analytics Web Property ID</label>
+                            <label class="input">
+                              <input type="text" name="google_analytics_profile" value="<?php echo $row_getRecord['google_analytics_profile']; ?>">
+                            </label>
+                          </section>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-     
-
-           
-                <div class="row">
-                  <section class="col col-6"> </section>
-                  <section class="col col-6">
-                    
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    
-                  </section>
-                  <section class="col col-6">
-                    
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                  </section>
-                  <section class="col col-6">
-                    
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    
-                  </section>
-                  <section class="col col-6">
-                  
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Flickr Api Key</label>
-                    <label class="input">
-                      <input type="text" name="flickr_api_key" value="<?php echo $row_getRecord['flickr_api_key']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Flickr Api Secret</label>
-                    <label class="input">
-                      <input type="text" name="flickr_api_secret" value="<?php echo $row_getRecord['flickr_api_secret']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Flickr Api Permissions</label>
-                    <label class="input">
-                      <input type="text" name="flickr_api_permissions" value="<?php echo $row_getRecord['flickr_api_permissions']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Google Site Verification</label>
-                    <label class="input">
-                      <input type="text" name="google_site_verification" value="<?php echo $row_getRecord['google_site_verification']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Google Consumer Key</label>
-                    <label class="input">
-                      <input type="text" name="google_consumer_key" value="<?php echo $row_getRecord['google_consumer_key']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Google Consumer Secret</label>
-                    <label class="input">
-                      <input type="text" name="google_consumer_secret" value="<?php echo $row_getRecord['google_consumer_secret']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Google Analytics Key</label>
-                    <label class="input">
-                      <input type="text" name="google_analytics_key" value="<?php echo $row_getRecord['google_analytics_key']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Google Analytics Profile</label>
-                    <label class="input">
-                      <input type="text" name="google_analytics_profile" value="<?php echo $row_getRecord['google_analytics_profile']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Google Api Client Id</label>
-                    <label class="input">
-                      <input type="text" name="google_api_client_id" value="<?php echo $row_getRecord['google_api_client_id']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Google Api Client Secret</label>
-                    <label class="input">
-                      <input type="text" name="google_api_client_secret" value="<?php echo $row_getRecord['google_api_client_secret']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Google Api Redirect Url</label>
-                    <label class="input">
-                      <input type="text" name="google_api_redirect_url" value="<?php echo $row_getRecord['google_api_redirect_url']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Google Api Key</label>
-                    <label class="input">
-                      <input type="text" name="google_api_key" value="<?php echo $row_getRecord['google_api_key']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Youtube App Url</label>
-                    <label class="input">
-                      <input type="text" name="youtube_app_url" value="<?php echo $row_getRecord['youtube_app_url']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Youtube Client Id</label>
-                    <label class="input">
-                      <input type="text" name="youtube_client_id" value="<?php echo $row_getRecord['youtube_client_id']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Youtube Developer Key</label>
-                    <label class="input">
-                      <input type="text" name="youtube_developer_key" value="<?php echo $row_getRecord['youtube_developer_key']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Photobucket Key</label>
-                    <label class="input">
-                      <input type="text" name="photobucket_key" value="<?php echo $row_getRecord['photobucket_key']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Photobucket Secret</label>
-                    <label class="input">
-                      <input type="text" name="photobucket_secret" value="<?php echo $row_getRecord['photobucket_secret']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    
-                  </section>
-                  <section class="col col-6">
-                    
-                  </section>
-                </div>
-                <div class="row"> </div>
               </fieldset>
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-SysSites"> <i class="fa fa-check"></i> Save </button>
