@@ -215,8 +215,9 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 				$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
 				sqlQueryLog($insertSQL);
 				}
-				
-				insertJS($refresh);
+					
+				$hideModal= "$('.modal-backdrop').remove(); \r\n";
+				insertJS($hideModal." ".$refresh);
    			exit;
 			} else {
 				displayAlert("danger", "It appears that this site already exists.  Please try again.");	

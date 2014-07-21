@@ -32,6 +32,70 @@
 </div>
 <section id="widget-grid">
 <!-- Begin Create Record -->
+<div class="modal fade" id="createSite">
+	  <div class="modal-dialog">
+    	<div class="modal-content">
+              <form id = "create-SysSites" class="smart-form" method="post">
+
+      	<div class="modal-header">
+        	<h4 class="modal-title">Create New Site</h4>
+        </div>
+        <div class="modal-body">
+              <div class="form-response"></div>
+                <section>
+                  <label class="label">Site Name</label>
+                  <label class="input">
+                    <input type="text" name="site_name" value="<?php echo $row_getRecord['site_name']; ?>">
+                  </label>
+                </section>
+                <section>
+                  <label class="label">Domain Name / URL</label>
+                  <label class="input">
+                  <label class="input"> <i class="icon-append fa fa-question-circle"></i>
+                    <input type="text" name="site_url" value="<?php echo $row_getRecord['site_url']; ?>">
+                    <b class="tooltip tooltip-top-right">This is the URL or domain name for this site (i.e. http://www.example.com). Do not include the trailing slash.</b> </label>
+                </section>
+                <section>
+                  <label class="label">Shortname</label>
+                  <label class="input">
+                  <label class="input"> <i class="icon-append fa fa-question-circle"></i>
+                    <input type="text" name="site_root" value="<?php echo $row_getRecord['site_root']; ?>">
+                    <b class="tooltip tooltip-top-right">The shortname is used to identify your site within the IntelliKiosk system.</b> </label>
+                </section>
+    
+                <section>
+                  <label class="label">Force SSL?</label>
+                  <label class="select">
+                    <select name="force_ssl">
+                      <option value="No" <?php if (!(strcmp("No", $row_getRecord['force_ssl']))) {echo "selected=\"selected\"";} ?>>No</option>
+                      <option value="Yes" <?php if (!(strcmp("Yes", $row_getRecord['force_ssl']))) {echo "selected=\"selected\"";} ?>>Yes</option>
+                    </select>
+                    <i></i> </label>
+                </section>
+                <section>
+                  <label class="label">Default Timezone</label>
+                  <label class="select">
+                    <select name="site_timezone">
+                      <?php selectTimeZone($_POST['site_timezone']); ?>
+                    </select>
+                    <i></i> </label>
+                </section>
+          
+              <input type="hidden" name="formID" value="create-SysSites">
+              <input type="hidden" name="iKioskForm" value="Yes">
+              <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-SysSites"> <i class="fa fa-check"></i> Save </button>
+              
+        </div>
+      </div>
+                </form>
+
+		</div>
+</div>
+
 <div id="createCtn-SysSites" class="row hidden-panel">
   <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="jarviswidget" id="add-SysSites" data-widget-editbutton="false" data-widget-deletebutton="false">
@@ -43,59 +107,7 @@
           <input class="form-control" type="text">
         </div>
         <div class="widget-body no-padding">
-          <form id = "create-SysSites" class="smart-form" method="post">
-            <fieldset>
-              <div class="form-response"></div>
-              <div class="row">
-                <section class="col col-4">
-                  <label class="label">Site Name</label>
-                  <label class="input">
-                    <input type="text" name="site_name" value="<?php echo $row_getRecord['site_name']; ?>">
-                  </label>
-                </section>
-                <section class="col col-4">
-                  <label class="label">Domain Name / URL</label>
-                  <label class="input">
-                  <label class="input"> <i class="icon-append fa fa-question-circle"></i>
-                    <input type="text" name="site_url" value="<?php echo $row_getRecord['site_url']; ?>">
-                    <b class="tooltip tooltip-top-right">This is the URL or domain name for this site (i.e. http://www.example.com). Do not include the trailing slash.</b> </label>
-                </section>
-                <section class="col col-4">
-                  <label class="label">Shortname</label>
-                  <label class="input">
-                  <label class="input"> <i class="icon-append fa fa-question-circle"></i>
-                    <input type="text" name="site_root" value="<?php echo $row_getRecord['site_root']; ?>">
-                    <b class="tooltip tooltip-top-right">The shortname is used to identify your site within the IntelliKiosk system.</b> </label>
-                </section>
-              </div>
-              <div class="row">
-                <section class="col col-4">
-                  <label class="label">Force SSL?</label>
-                  <label class="select">
-                    <select name="force_ssl">
-                      <option value="No" <?php if (!(strcmp("No", $row_getRecord['force_ssl']))) {echo "selected=\"selected\"";} ?>>No</option>
-                      <option value="Yes" <?php if (!(strcmp("Yes", $row_getRecord['force_ssl']))) {echo "selected=\"selected\"";} ?>>Yes</option>
-                    </select>
-                    <i></i> </label>
-                </section>
-                <section class="col col-4">
-                  <label class="label">Default Timezone</label>
-                  <label class="select">
-                    <select name="site_timezone">
-                      <?php selectTimeZone($_POST['site_timezone']); ?>
-                    </select>
-                    <i></i> </label>
-                </section>
-              </div>
-            </fieldset>
-            <footer>
-              <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-SysSites"> <i class="fa fa-check"></i> Save </button>
-              <button type="button" class="btn btn-default btn-toggle" data-close="createCtn-SysSites" data-open="listCtn-SysSites"><i class="fa fa-times"></i> Cancel </button>
-              <input type="hidden" name="formID" value="create-SysSites">
-              <input type="hidden" name="iKioskForm" value="Yes">
-              <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
-            </footer>
-          </form>
+          
         </div>
       </div>
     </div>
@@ -148,7 +160,7 @@
 </section>
 <script type="text/javascript">
    var listView = $('#dt-SysSites').dataTable();
-   $('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add" data-open="createCtn-SysSites" data-close="listCtn-SysSites"><i class="fa fa-plus"></i> Create <span class="hidden-mobile"> Site</span></button>');
+   $('.dataTables_length').before('<button class="btn btn-primary btn-add" data-toggle="modal" data-target="#createSite"><i class="fa fa-plus"></i> Create <span class="hidden-mobile"> Site</span></button>');
 </script> 
 <script type="text/javascript">
    runAllForms();

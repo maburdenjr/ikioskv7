@@ -50,3 +50,20 @@ pre.html {
 	padding: 8px 0;
 	margin-bottom:15px;
 }
+
+.modal .smart-form .modal-body {
+	padding:20px;
+}
+
+.modal .smart-form .modal-header {
+	padding:15px;
+}
+
+.modal .smart-form .modal-footer {
+	margin-top: 15px;
+	padding: 19px 20px 20px;
+}
+
+.modal .smart-form .btn {
+	padding: 6px 12px;
+}
