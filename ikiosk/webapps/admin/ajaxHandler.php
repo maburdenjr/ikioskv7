@@ -94,7 +94,69 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
 	include('ajaxCodeGen.php'); // Code Generator
 	
-	// : Create -------------------------------------------
+	// Sites : Edit -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysSites")) {
+		
+		$updateSQL = sprintf("UPDATE sys_sites SET site_name=%s, site_status=%s, site_status_message=%s, public_home=%s, ikiosk_home=%s, site_url=%s, support_email=%s, site_timezone=%s, site_dateformat=%s, site_css=%s, image_mini_thumbnailX=%s, image_mini_thumbnailY=%s, image_thumbnailX=%s, image_thumbnailY=%s, image_inline=%s, image_resized=%s, force_ssl=%s, facebook_app_url=%s, facebook_key=%s, facebook_secret=%s, facebook_app_id=%s, facebook_permissions=%s, twitter_api=%s, twitter_consumer_key=%s, twitter_consumer_secret=%s, flickr_api_key=%s, flickr_api_secret=%s, flickr_api_permissions=%s, google_site_verification=%s, google_consumer_key=%s, google_consumer_secret=%s, google_analytics_key=%s, google_analytics_profile=%s, google_api_client_id=%s, google_api_client_secret=%s, google_api_redirect_url=%s, google_api_key=%s, youtube_app_url=%s, youtube_client_id=%s, youtube_developer_key=%s, photobucket_key=%s, photobucket_secret=%s, instagram_key=%s, instagram_secret=%s, date_modified=%s, modified_by=%s WHERE site_id=%s",
+        GetSQLValueString($_POST['site_name'], "text"),
+        GetSQLValueString($_POST['site_status'], "text"),
+        GetSQLValueString($_POST['site_status_message'], "text"),
+        GetSQLValueString($_POST['public_home'], "text"),
+        GetSQLValueString($_POST['ikiosk_home'], "text"),
+        GetSQLValueString($_POST['site_url'], "text"),
+        GetSQLValueString($_POST['support_email'], "text"),
+        GetSQLValueString($_POST['site_timezone'], "text"),
+        GetSQLValueString($_POST['site_dateformat'], "text"),
+        GetSQLValueString($_POST['site_css'], "text"),
+        GetSQLValueString($_POST['image_mini_thumbnailX'], "text"),
+        GetSQLValueString($_POST['image_mini_thumbnailY'], "text"),
+        GetSQLValueString($_POST['image_thumbnailX'], "text"),
+        GetSQLValueString($_POST['image_thumbnailY'], "text"),
+        GetSQLValueString($_POST['image_inline'], "text"),
+        GetSQLValueString($_POST['image_resized'], "text"),
+        GetSQLValueString($_POST['force_ssl'], "text"),
+        GetSQLValueString($_POST['facebook_app_url'], "text"),
+        GetSQLValueString($_POST['facebook_key'], "text"),
+        GetSQLValueString($_POST['facebook_secret'], "text"),
+        GetSQLValueString($_POST['facebook_app_id'], "text"),
+        GetSQLValueString($_POST['facebook_permissions'], "text"),
+        GetSQLValueString($_POST['twitter_api'], "text"),
+        GetSQLValueString($_POST['twitter_consumer_key'], "text"),
+        GetSQLValueString($_POST['twitter_consumer_secret'], "text"),
+        GetSQLValueString($_POST['flickr_api_key'], "text"),
+        GetSQLValueString($_POST['flickr_api_secret'], "text"),
+        GetSQLValueString($_POST['flickr_api_permissions'], "text"),
+        GetSQLValueString($_POST['google_site_verification'], "text"),
+        GetSQLValueString($_POST['google_consumer_key'], "text"),
+        GetSQLValueString($_POST['google_consumer_secret'], "text"),
+        GetSQLValueString($_POST['google_analytics_key'], "text"),
+        GetSQLValueString($_POST['google_analytics_profile'], "text"),
+				GetSQLValueString($_POST['google_api_client_id'], "text"),
+				GetSQLValueString($_POST['google_api_client_secret'], "text"),
+				GetSQLValueString($_POST['google_api_redirect_url'], "text"),
+				GetSQLValueString($_POST['google_api_key'], "text"),
+        GetSQLValueString($_POST['youtube_app_url'], "text"),
+        GetSQLValueString($_POST['youtube_client_id'], "text"),
+        GetSQLValueString($_POST['youtube_developer_key'], "text"),
+				 GetSQLValueString($_POST['photobucket_key'], "text"),
+        GetSQLValueString($_POST['photobucket_secret'], "text"),
+        GetSQLValueString($_POST['instagram_key'], "text"),
+        GetSQLValueString($_POST['instagram_secret'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($_POST['site_id'], "text"));
+
+				mysql_select_db($database_ikiosk, $ikiosk);
+				$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+				sqlQueryLog($updateSQL);
+			
+				displayAlert("success", "Changes saved.");
+				exit;
+
+		
+	}
+	
+	// Sites : Create -------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-SysSites")) {
 			$rootFolder = $SYSTEM['ikiosk_filesystem_root']."/sites/".$_POST['site_root'];
 			if (!file_exists($rootFolder)) {
@@ -190,6 +252,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysErrors")) {
     sqlQueryLog($updateSQL);
 
     displayAlert("success", "Changes saved.");
+		exit;
 }
 	
 // Applications: Edit --------------------------------------------------------------------------------

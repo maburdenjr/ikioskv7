@@ -324,4 +324,5 @@ if ($sitePos != 0) {
 if ($_GET['sys_action'] == "dbupdate") {
 	ikiosk_db_update();	
 }
+
 ?>

@@ -44,3 +44,9 @@ pre.html {
 .pb10 {
 	padding-bottom:10px;
 }
+
+.form-header {
+	border-bottom: 1px dashed rgba(0,0,0,.2);
+	padding: 8px 0;
+	margin-bottom:15px;
+}
