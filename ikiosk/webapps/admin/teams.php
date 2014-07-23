@@ -41,28 +41,25 @@
         </div>
         <div class="modal-body">
           <div class="form-response"></div>
-            <section>
-              <label class="label">Title</label>
-              <label class="input">
-                <input type="text" name="title" value="<?php echo $row_getRecord['title']; ?>">
-              </label>
-            </section>
-
-            <section>
-              <label class="label">Description</label>
-              <label class="textarea">
-                <textarea rows="3" class="custom-scroll" name="description"><?php echo $row_getRecord['description']; ?></textarea>
-              </label>
-            </section>
-                      <input type="hidden" name="formID" value="create-SysTeams">
-            <input type="hidden" name="iKioskForm" value="Yes">
-            <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
-
+          <section>
+            <label class="label">Title</label>
+            <label class="input">
+              <input type="text" name="title" value="<?php echo $row_getRecord['title']; ?>">
+            </label>
+          </section>
+          <section>
+            <label class="label">Description</label>
+            <label class="textarea">
+              <textarea rows="3" class="custom-scroll" name="description"><?php echo $row_getRecord['description']; ?></textarea>
+            </label>
+          </section>
+          <input type="hidden" name="formID" value="create-SysTeams">
+          <input type="hidden" name="iKioskForm" value="Yes">
+          <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
-         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-SysTeams"> <i class="fa fa-check"></i> Save </button>
-              
+          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+          <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-SysTeams"> <i class="fa fa-check"></i> Save </button>
         </div>
       </form>
     </div>
@@ -155,8 +152,9 @@
   </div>
 </div>
 <section id="widget-grid">
+  <div class="system-message"></div>
   <div class="row">
-    <article class="col-sm-12 col-md-12 col-lg-12">
+    <article class="col-sm-12 col-md-5 col-lg-5">
       <div class="jarviswidget" id="editCtn-SysTeams-<?php echo $row_getRecord['team_id']; ?>" data-widget-editbutton="false" data-widget-deletebutton="false">
         <header> <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
           <h2>Edit Team</h2>
@@ -186,7 +184,6 @@
                     </label>
                   </section>
                 </div>
-                <div class="row"> </div>
               </fieldset>
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-SysTeams"> <i class="fa fa-check"></i> Save </button>
@@ -198,6 +195,34 @@
               </footer>
             </form>
           </div>
+        </div>
+      </div>
+      <div class="jarviswidget" id="editCtn-SysTeams-Add" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMemberSelect&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
+        <header> <span class="widget-icon"> <i class="fa fa-user"></i> </span>
+          <h2>Add User</h2>
+        </header>
+        <div>
+          <div class="jarviswidget-editbox"> 
+            <!-- This area used as dropdown edit box -->
+            <input class="form-control" type="text">
+          </div>
+          <div class="widget-body no-padding">
+            
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="col-sm-12 col-md-7 col-lg-7">
+      <div class="jarviswidget" id="editCtn-SysTeams-<?php echo $row_getRecord['team_id']; ?>-members" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMembers&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
+        <header> <span class="widget-icon"> <i class="fa fa-user"></i> </span>
+          <h2>Team Members</h2>
+        </header>
+        <div>
+          <div class="jarviswidget-editbox"> 
+            <!-- This area used as dropdown edit box -->
+            <input class="form-control" type="text">
+          </div>
+          <div class="widget-body no-padding"> </div>
         </div>
       </div>
     </article>
@@ -226,6 +251,17 @@
                submitAjaxForm(targetForm);
            }
        });
+			 $("#edit-AddUserToTeam").validate({
+				 // Do not change code below
+           errorPlacement : function(error, element) {
+               error.insertAfter(element.parent());
+           },
+           //Handler
+           submitHandler: function(form) {
+               var targetForm = $(this.currentForm).attr("id");
+               submitAjaxForm(targetForm);
+           }
+			 });
    });
 </script>
 <?php } ?>

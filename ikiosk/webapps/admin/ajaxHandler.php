@@ -2,6 +2,76 @@
 //Record Action Wrapper ###############################################################################
 
 if (isset($_GET['ajaxAction'])) {
+	
+	// List of Team Members for a Specific Team
+	if($_GET['ajaxAction'] == "teamMemberSelect") {
+
+		$response = "<form id = \"edit-AddUserToTeam\" class=\"smart-form\" method=\"post\">
+              <fieldset>
+              <div class=\"form-response\"></div>
+                <section>
+                  <label class=\"select\">
+                    <select name=\"add_user\">
+                      <option value=\"\">Select User</option>
+                      ".addUser2Team($_GET['recordID'])."</select><i></i>
+                  </label>
+                </section>
+              </fieldset>
+              <footer>
+                <button type=\"submit\" class=\"btn btn-default btn-ajax-submit\" data-form=\"edit-AddUserToTeam\"> <i class=\"fa fa-plus\"></i> Add </button>
+                <input type=\"hidden\" name=\"team_id\" value=\"".$_GET['recordID']."\" />
+                <input type=\"hidden\" name=\"formID\" value=\"edit-AddUserToTeam\">
+                <input type=\"hidden\" name=\"iKioskForm\" value=\"Yes\" />
+                <input type=\"hidden\" name=\"appCode\" value=\"".$APPLICATION['application_code']."\" />
+              </footer>
+            </form>";
+						
+						$response .= "<script type=\"text/javascript\">
+						$(\"#edit-AddUserToTeam\").validate({
+           errorPlacement : function(error, element) {
+               error.insertAfter(element.parent());
+           },
+           submitHandler: function(form) {
+               var targetForm = $(this.currentForm).attr(\"id\");
+               submitAjaxForm(targetForm);
+           }
+			 });
+			 </script>";
+						echo $response;
+						exit;
+	}
+	
+	// List of Team Members for a Specific Team
+	if($_GET['ajaxAction'] == "teamMembers") {
+		$response = "";
+		
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$query_listView = "SELECT * FROM sys_users2teams WHERE team_id='".$_GET['recordID']."' AND deleted='0'";
+	$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
+	$row_listView = mysql_fetch_assoc($listView);
+	$totalRows_listView = mysql_num_rows($listView);
+	
+		
+		$response = "<table id=\"dt-SysTeams-Members\" class=\"table table-striped table-bordered table-hover\" width=\"100%\"><thead><tr><th>User</th><th>Status</th><th></th></tr></thead>";
+		if ($totalRows_listView != 0) {
+			do {
+				$userCheck = getUserData($row_listView['user_id'], 'display_name');
+				if ($userCheck != "") {
+					$response .="<tr class=\"".$row_listView['join_id']."\">";
+					$response .="<td>".getUserData($row_listView['user_id'], 'display_name')."</td>";
+					$response .="<td>".getUserData($row_listView['user_id'], 'user_status')."</td>";
+					$response .="<td class=\"icon\"><a class=\"delete-record\" data-table=\"sys_users2teams\" data-record=\"".$row_listView['join_id']."\" data-code=\"".$APPLICATION['application_code']."\" data-field=\"join_id\"><i class=\"fa fa-trash-o\"></i></a></td>";
+					$response .= "</tr>";
+				}
+			} while ($row_listView = mysql_fetch_assoc($listView));
+		}
+		$response .= "</table>\r\n";
+		$response .="<script type=\"text/javascript\">\r\n";
+		$response .="var listView = $('#dt-SysTeams-Members').dataTable();\r\n";
+		$response .="</script>";
+		echo $response;
+		exit;
+	}
 
 // Return DB Fileds in Table  ------------------------------------------------------------------------
 	if($_GET['ajaxAction'] == "dbFields") {
@@ -92,6 +162,93 @@ if (isset($_GET['ajaxAction'])) {
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+	// Teams: Add Member -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-AddUserToTeam")) {
+		$generateID = create_guid();
+		$insertSQL = sprintf("INSERT INTO sys_users2teams (`user_id`, `date_created`, `created_by`, `date_modified`, `modified_by`, `team_id`) VALUES (%s, %s, %s, %s, %s, %s)",
+        GetSQLValueString($_POST['add_user'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+				GetSQLValueString($_POST['team_id'], "text"));
+
+    mysql_select_db($database_ikiosk, $ikiosk);
+    $Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+    sqlQueryLog($insertSQL);
+		
+		$js = "$('.jarviswidget-refresh-btn').click();\r\n";
+		insertJS($js);
+		exit;
+	}
+	
+	// Teams: Create -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-SysTeams")) {
+		
+		$generateID = create_guid();
+$insertSQL = sprintf("INSERT INTO sys_teams (team_id, title, description, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+        GetSQLValueString($generateID, "text"),
+		GetSQLValueString($_POST['title'], "text"),
+        GetSQLValueString($_POST['description'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($_POST['dated_modified'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"));
+
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+		
+		//Link Users 2 New Site
+		$insertSQL = sprintf("INSERT INTO sys_users2teams (team_id, user_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+						GetSQLValueString($generateID, "text"),
+						GetSQLValueString($_SESSION['user_id'], "text"),
+						GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+						GetSQLValueString($_SESSION['user_id'], "text"),
+						GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+						GetSQLValueString($_SESSION['user_id'], "text"));
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		
+		if ($_SESSION['user_id'] != "sys-admin") {
+		$insertSQL = sprintf("INSERT INTO sys_users2teams (team_id, user_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+						GetSQLValueString($generateID, "text"),
+						GetSQLValueString("sys-admin", "text"),
+						GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+						GetSQLValueString($_SESSION['user_id'], "text"),
+						GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+						GetSQLValueString($_SESSION['user_id'], "text"));
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());	
+		}
+		
+		$hideModal= "$('.modal-backdrop').remove(); \r\n";
+		insertJS($hideModal." ".$refresh);
+		exit;	
+	}
+	
+	// Teams: Edit -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysTeams")) {
+			$updateSQL = sprintf("UPDATE sys_teams SET 
+	`title`=%s, `description`=%s, `date_modified`=%s, `modified_by`=%s WHERE team_id=%s",
+					GetSQLValueString($_POST['title'], "text"),
+					GetSQLValueString($_POST['description'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($_POST['team_id'], "text"));
+	
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($updateSQL);
+	
+			$updateJS = "$('.page-title').html('".$_POST['title']."');\r\n";
+			insertJS($updateJS);
+			displayAlert("success", "Changes saved.");
+			exit;
+	}
+	
 	include('ajaxCodeGen.php'); // Code Generator
 	
 	// Sites : Edit -------------------------------------------
@@ -149,7 +306,9 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 				mysql_select_db($database_ikiosk, $ikiosk);
 				$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
 				sqlQueryLog($updateSQL);
-			
+				
+				$updateJS = "$('.page-title').html('".$_POST['site_name']."');\r\n";
+				insertJS($updateJS);
 				displayAlert("success", "Changes saved.");
 				exit;
 
@@ -164,6 +323,9 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 					createDIR($rootFolder."/blog");
 					createDIR($rootFolder."/static");
 					createDIR($rootFolder."/admin");
+					createDIR($rootFolder."/static/resources");
+					createDIR($rootFolder."/static/resources/userfiles");
+					createDIR($rootFolder."/static/resources/userphotos");
 					
 					$generateID = create_guid();
 					
@@ -252,6 +414,8 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysErrors")) {
     $Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
     sqlQueryLog($updateSQL);
 
+		$updateJS = "$('.page-title').html('".$_POST['error_title']."');\r\n";
+		insertJS($updateJS);
     displayAlert("success", "Changes saved.");
 		exit;
 }
@@ -275,7 +439,9 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysErrors")) {
 			$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
 			sqlQueryLog($updateSQL);
 			
-			insertJS("$('.".$_POST['application_id']." a').hide().text('".$_POST['application_title']."').fadeIn()");
+			$updateJS = "$('.page-title').html('".$_POST['application_title']."');\r\n";
+	
+			insertJS("$('.".$_POST['application_id']." a').hide().text('".$_POST['application_title']."').fadeIn();\r\n"." ".$updateJS);
 			displayAlert("success", "Changes saved.");
 			exit;
 	}

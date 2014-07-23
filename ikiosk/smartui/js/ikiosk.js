@@ -2,7 +2,7 @@
 function iKioskUI() {
 	
 	//Delete Records
-	$('table').on('click', '.delete-record', function(){
+	$('.widget-body').on('click', '.delete-record', function(){
 		event.stopPropagation();
 		var deleteRecord = confirm("Are you sure you want to delete this item?");
 		if (deleteRecord == true) {
@@ -21,6 +21,7 @@ function iKioskUI() {
 							},
 							success: function(data) {
 									$('.system-message').html(data).fadeIn('slow');
+									$('.jarviswidget-refresh-btn').click();
 							}
 				});
 		}

@@ -165,7 +165,7 @@
    ?>
 <div class="row">
    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-      <h1 class="page-title">Error Codes</h1>
+      <h1 class="page-title"><?php echo $row_getRecord['error_title']; ?></h1>
    </div>
 </div>
 <section id="widget-grid">
@@ -183,7 +183,6 @@
                </div>
                <div class="widget-body no-padding">
                   <form id= "edit-SysErrors" class="smart-form" method="post">
-                     <header> <?php echo $row_getRecord['error_title']; ?> </header>
                      <fieldset>
                         <div class="form-response"></div>
                                                     <div class="row">
