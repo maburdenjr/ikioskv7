@@ -271,7 +271,7 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
 ?>
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">Application Management</h1>
+    <h1 class="page-title"><?php echo $row_getRecord['application_title']; ?></h1>
   </div>
 </div>
 <section id="widget-grid">
@@ -293,7 +293,6 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
           <!-- widget content -->
           <div class="widget-body no-padding">
             <form id= "editApplication" class="smart-form" method="post">
-              <header> <?php echo $row_getRecord['application_title']; ?> </header>
               <fieldset>
                 <div class="form-response"></div>
                 <section>
@@ -401,11 +400,6 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
           <!-- widget content -->
           <div class="widget-body no-padding">
             <table id="dt_applications" class="table table-striped table-bordered table-hover" width="100%">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                </tr>
-              </thead>
               <tbody>
                 <?php do { ?>
                   <tr>

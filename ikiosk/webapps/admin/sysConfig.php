@@ -49,7 +49,7 @@
           <div class="widget-body no-padding">
             <form id= "edit-SysConfig" class="smart-form" method="post">
               <ul id="editSite-tabs" class="nav nav-tabs">
-                <li class="active"> <a data-toggle="tab" href="#site"> Site Properties</a> </li>
+                <li class="active"> <a data-toggle="tab" href="#site"> System Properties</a> </li>
                 <li> <a data-toggle="tab" href="#license"> License Information </a> </li>
                 <li> <a data-toggle="tab" href="#advanced">Advanced</a> </li>
               </ul>

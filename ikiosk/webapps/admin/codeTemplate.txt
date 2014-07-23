@@ -31,36 +31,29 @@
 </div>
 <section id="widget-grid">
    <!-- Begin Create Record -->
-   <div id="createCtn-{APPID}" class="row hidden-panel">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-         <div class="jarviswidget" id="add-{APPID}" data-widget-editbutton="false" data-widget-deletebutton="false">
-            <header>
-               <span class="widget-icon"> <i class="fa fa-plus"></i> </span>
-               <h2>New {TITLE}</h2>
-            </header>
-            <div>
-               <div class="jarviswidget-editbox"> 
-                  <input class="form-control" type="text">
-               </div>
-               <div class="widget-body no-padding">
-                  <form id = "create-{APPID}" class="smart-form" method="post">
-                     <fieldset>
-											<div class="form-response"></div>
+   <div class="modal fade" id="createCtn-{APPID}">
+   		<div class="modal-dialog">
+    		<div class="modal-content">
+        		<form id = "create-{APPID}" class="smart-form" method="post">
+            	<div class="modal-header">
+                <h4 class="modal-title">Create {TITLE}</h4>
+              </div>
+              <div class="modal-body">
+              	<div class="form-response"></div>
                         {CREATEFORM}
-                     </fieldset>
-                     <footer>
-                        <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-{APPID}"> <i class="fa fa-check"></i> Save </button>
-                        <button type="button" class="btn btn-default btn-toggle" data-close="createCtn-{APPID}" data-open="listCtn-{APPID}"><i class="fa fa-times"></i> Cancel </button>
-                        <input type="hidden" name="formID" value="create-{APPID}">
-                        <input type="hidden" name="iKioskForm" value="Yes">
-                        <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
-                     </footer>
-                  </form>
-               </div>
-            </div>
-         </div>
-      </article>
+              		<input type="hidden" name="formID" value="create-{APPID}">
+                  <input type="hidden" name="iKioskForm" value="Yes">
+                  <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
+              </div>
+              <div class="modal-footer">
+              	<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+         				<button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-{APPID}"> <i class="fa fa-check"></i> Save </button>
+              </div>
+						</form>
+    		</div>
+    	</div>
    </div>
+
   <!-- End Create Record -->
    <!-- Start List View -->
    <div id="listCtn-{APPID}" class="row">
@@ -88,7 +81,7 @@
 </section>
 <script type="text/javascript">
    var listView = $('#dt-{APPID}').dataTable();
-   $('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add" data-open="createCtn-{APPID}" data-close="listCtn-{APPID}"><i class="fa fa-plus"></i> New <span class="hidden-mobile">{TITLE}</span></button>');
+   $('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add"   data-toggle="modal" data-target="#createCtn-{APPID}"><i class="fa fa-plus"></i> New <span class="hidden-mobile">{TITLE}</span></button>');
 </script>
 <script type="text/javascript">
    runAllForms();
