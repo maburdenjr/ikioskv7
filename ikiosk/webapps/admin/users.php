@@ -258,6 +258,7 @@
             <form id= "edit-SysUsers" class="smart-form" method="post">
               <ul id="editUser-tabs" class="nav nav-tabs">
                 <li class="active"> <a data-toggle="tab" href="#general">General</a> </li>
+                <li> <a data-toggle="tab" href="#security">Security</a> </li>
                 <li> <a data-toggle="tab" href="#advanced">Preferences</a> </li>
                 <li> <a data-toggle="tab" href="#password">Password</a> </li>
               </ul>
@@ -293,11 +294,11 @@
                         </label>
                       </section>
                     </div>
-                    </fieldset>
-                    <fieldset>
-                    
+                  </fieldset>
+                </div>
+                <div class="tab-pane fade in" id="security">
+                  <fieldset>
                     <div class="row">
-
                       <section class="col col-6">
                         <label class="label">User Type</label>
                         <label class="select">
@@ -313,7 +314,7 @@
                           </select>
                           <i></i> </label>
                       </section>
-                                            <section class="col col-6">
+                      <section class="col col-6">
                         <label class="label">Administrator?</label>
                         <label class="select">
                           <select name="is_admin">
@@ -324,65 +325,63 @@
                       </section>
                     </div>
                     <div class="row">
-                    	<section class="col col-6">
-                      <label class="label">User Status</label>
-                    <label class="select">
-                      <select name="user_status">
-                        <option value="Active" <?php if (!(strcmp("Active", $row_getRecord['user_status']))) {echo "selected=\"selected\"";} ?>>Active</option>
-                        <option value="Inactive" <?php if (!(strcmp("Inactive", $row_getRecord['user_status']))) {echo "selected=\"selected\"";} ?>>Inactive</option>
-                      </select>
-                      <i></i> </label>
+                      <section class="col col-6">
+                        <label class="label">User Status</label>
+                        <label class="select">
+                          <select name="user_status">
+                            <option value="Active" <?php if (!(strcmp("Active", $row_getRecord['user_status']))) {echo "selected=\"selected\"";} ?>>Active</option>
+                            <option value="Inactive" <?php if (!(strcmp("Inactive", $row_getRecord['user_status']))) {echo "selected=\"selected\"";} ?>>Inactive</option>
+                          </select>
+                          <i></i> </label>
                       </section>
                     </div>
                   </fieldset>
                 </div>
                 <div class="tab-pane fade in" id="advanced">
                   <fieldset>
-                  <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Date Format</label>
-                    <label class="input">
-                      <input type="text" name="user_dateformat" value="<?php echo $row_getRecord['user_dateformat']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Timezone</label>
-                    <label class="select">
-                      <select name="user_timezone">
-                        <?php selectTimeZone($row_getRecord['user_timezone']); ?>
-                      </select>
-                      <i></i> </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">iKiosk Homepage</label>
-                    <label class="input">
-                      <input type="text" name="user_homepage" value="<?php echo $row_getRecord['user_homepage']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    
-                  </section>
-                </div>
+                    <div class="row">
+                      <section class="col col-6">
+                        <label class="label">Date Format</label>
+                        <label class="input">
+                          <input type="text" name="user_dateformat" value="<?php echo $row_getRecord['user_dateformat']; ?>">
+                        </label>
+                      </section>
+                      <section class="col col-6">
+                        <label class="label">Timezone</label>
+                        <label class="select">
+                          <select name="user_timezone">
+                            <?php selectTimeZone($row_getRecord['user_timezone']); ?>
+                          </select>
+                          <i></i> </label>
+                      </section>
+                    </div>
+                    <div class="row">
+                      <section class="col col-6">
+                        <label class="label">iKiosk Homepage</label>
+                        <label class="input">
+                          <input type="text" name="user_homepage" value="<?php echo $row_getRecord['user_homepage']; ?>">
+                        </label>
+                      </section>
+                      <section class="col col-6"> </section>
+                    </div>
                   </fieldset>
                 </div>
                 <div class="tab-pane fade in" id="password">
                   <fieldset>
-                  <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Password</label>
-                    <label class="input">
-                      <input type="password" name="login_password" value="<?php echo $row_getRecord['login_password']; ?>">
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Confirm Password</label>
-                    <label class="input">
-                      <input type="password" name="confirm_password" value="<?php echo $row_getRecord['login_password']; ?>">
-                    </label>
-                  </section>
-                </div>
+                    <div class="row">
+                      <section class="col col-6">
+                        <label class="label">Password</label>
+                        <label class="input">
+                          <input type="password" name="login_password" value="<?php echo $row_getRecord['login_password']; ?>">
+                        </label>
+                      </section>
+                      <section class="col col-6">
+                        <label class="label">Confirm Password</label>
+                        <label class="input">
+                          <input type="password" name="confirm_password" value="<?php echo $row_getRecord['login_password']; ?>">
+                        </label>
+                      </section>
+                    </div>
                   </fieldset>
                 </div>
               </div>
