@@ -154,7 +154,7 @@
 <section id="widget-grid">
   <div class="system-message"></div>
   <div class="row">
-    <article class="col-sm-12 col-md-5 col-lg-5">
+    <article class="col-sm-12 col-md-12 col-lg-12">
       <div class="jarviswidget" id="editCtn-SysTeams-<?php echo $row_getRecord['team_id']; ?>" data-widget-editbutton="false" data-widget-deletebutton="false">
         <header> <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
           <h2>Edit Team</h2>
@@ -197,7 +197,26 @@
           </div>
         </div>
       </div>
-      <div class="jarviswidget" id="editCtn-SysTeams-Add" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMemberSelect&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
+      
+    </article>
+  </div>
+  <div class="row">
+  		    <article class="col-sm-12 col-md-7 col-lg-7">
+          <div class="jarviswidget" id="editCtn-SysTeams-<?php echo $row_getRecord['team_id']; ?>-members" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMembers&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
+        <header> <span class="widget-icon"> <i class="fa fa-user"></i> </span>
+          <h2>Team Members</h2>
+        </header>
+        <div>
+          <div class="jarviswidget-editbox"> 
+            <!-- This area used as dropdown edit box -->
+            <input class="form-control" type="text">
+          </div>
+          <div class="widget-body no-padding"> </div>
+        </div>
+      </div>
+					</article>
+          <article class="col-sm-12 col-md-5 col-lg-5">
+          <div class="jarviswidget" id="editCtn-SysTeams-Add" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMemberSelect&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-user"></i> </span>
           <h2>Add User</h2>
         </header>
@@ -211,21 +230,7 @@
           </div>
         </div>
       </div>
-    </article>
-    <article class="col-sm-12 col-md-7 col-lg-7">
-      <div class="jarviswidget" id="editCtn-SysTeams-<?php echo $row_getRecord['team_id']; ?>-members" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMembers&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
-        <header> <span class="widget-icon"> <i class="fa fa-user"></i> </span>
-          <h2>Team Members</h2>
-        </header>
-        <div>
-          <div class="jarviswidget-editbox"> 
-            <!-- This area used as dropdown edit box -->
-            <input class="form-control" type="text">
-          </div>
-          <div class="widget-body no-padding"> </div>
-        </div>
-      </div>
-    </article>
+					</article>
   </div>
 </section>
 <script type="text/javascript">
