@@ -22,6 +22,7 @@ function deleteRecordv7($table, $field, $record) {
 	$byPass = "Yes";
 	if ($table == "sys_errors" && $record <= 13) {$byPass = "No";}
 	if ($table == "sys_teams" && $record == 1) {$byPass = "No";}
+	if ($table == "sys_users" && $record == "sys-admin") {$byPass = "No";}
 	if (!in_array($record, $restrictedID) && $byPass == "Yes") {
 		$response = array("success", "Item deleted");
 		$updateSQL = "UPDATE ".$table." SET deleted = '1' WHERE ".$field." = '".$record."'";
