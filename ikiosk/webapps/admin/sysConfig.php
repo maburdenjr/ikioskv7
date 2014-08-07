@@ -109,19 +109,19 @@
                       <section class="col col-4">
                         <label class="label">Account Name</label>
                         <label class="input state-disabled">
-                          <input type ="text" name="license-account" value="<?php echo $_SESSION['license_account']; ?>">
+                          <input type ="text" name="license-account" value="<?php echo $_SESSION['license_account']; ?>" disabled>
                         </label>
                       </section>
                       <section class="col col-4">
                         <label class="label">iKiosk URL</label>
                         <label class="input state-disabled">
-                          <input type ="text" name="license-url" value="<?php echo $_SESSION['license_url']; ?>">
+                          <input type ="text" name="license-url" value="<?php echo $_SESSION['license_url']; ?>" disabled>
                         </label>
                       </section>
                       <section class="col col-4">
                         <label class="label">License Type</label>
                         <label class="input state-disabled">
-                          <input type ="text" name="license-type" value="<?php echo $_SESSION['license_type']; ?>">
+                          <input type ="text" name="license-type" value="<?php echo $_SESSION['license_type']; ?>" disabled>
                         </label>
                       </section>
                     </div>
@@ -129,19 +129,19 @@
                       <section class="col col-4">
                         <label class="label">Date Issued</label>
                         <label class="input state-disabled">
-                          <input type ="text" name="license-date" value="<?php echo $_SESSION['license_issue']; ?>">
+                          <input type ="text" name="license-date" value="<?php echo $_SESSION['license_issue']; ?>" disabled>
                         </label>
                       </section>
                       <section class="col col-4">
                         <label class="label">Expiration Date</label>
                         <label class="input state-disabled">
-                          <input type ="text" name="license-expire" value="<?php echo $_SESSION['license_expire']; ?>">
+                          <input type ="text" name="license-expire" value="<?php echo $_SESSION['license_expire']; ?>" disabled>
                         </label>
                       </section>
                       <section class="col col-4">
                         <label class="label">License Status</label>
                         <label class="input state-disabled">
-                          <input type ="text" name="license-staus" value="<?php echo $_SESSION['license_status']; ?>">
+                          <input type ="text" name="license-staus" value="<?php echo $_SESSION['license_status']; ?>" disabled>
                         </label>
                       </section>
                     </div>
@@ -149,13 +149,13 @@
                       <section class="col col-4">
                         <label class="label">Max Sites</label>
                         <label class="input state-disabled">
-                          <input type ="text" name="license-sites" value="<?php echo $_SESSION['license_sites']; ?>">
+                          <input type ="text" name="license-sites" value="<?php echo $_SESSION['license_sites']; ?>" disabled>
                         </label>
                       </section>
                       <section class="col col-4">
                         <label class="label">Max Users</label>
                         <label class="input state-disabled">
-                          <input type ="text" name="license-users" value="<?php echo $_SESSION['license_sites']; ?>">
+                          <input type ="text" name="license-users" value="<?php echo $_SESSION['license_sites']; ?>" disabled>
                         </label>
                       </section>
                     </div>
@@ -167,13 +167,13 @@
                       <section class="col col-4">
                         <label class="label">Auth User</label>
                         <label class="input state-disabled">
-                          <input type ="text" name="auth_user" value="<?php echo $username_ikiosk; ?>">
+                          <input type ="text" name="auth_user" value="<?php echo $username_ikiosk; ?>" disabled>
                         </label>
                       </section>
                       <section class="col col-4">
                         <label class="label">Auth Key</label>
                         <label class="input state-disabled">
-                          <input type ="text" name="auth_key" value="<?php echo $password_ikiosk; ?>">
+                          <input type ="text" name="auth_key" value="<?php echo $password_ikiosk; ?>" disabled>
                         </label>
                       </section>
                     </div>

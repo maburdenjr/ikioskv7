@@ -162,6 +162,37 @@ if (isset($_GET['ajaxAction'])) {
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+	//Users : Edit -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysUsers")) {
+		$updateSQL = sprintf("UPDATE sys_users SET login_password=%s, login_password_hash=%s, display_name=%s, first_name=%s, last_name=%s, is_admin=%s, user_type=%s, user_timezone=%s, user_dateformat=%s, user_cms_level=%s, user_homepage=%s, user_status=%s, date_modified=%s, modified_by=%s WHERE user_id=%s",
+        GetSQLValueString($_POST['login_password'], "text"),
+        GetSQLValueString(md5($_POST['login_password']), "text"),
+        GetSQLValueString($_POST['display_name'], "text"),
+        GetSQLValueString($_POST['first_name'], "text"),
+        GetSQLValueString($_POST['last_name'], "text"),
+        GetSQLValueString($_POST['is_admin'], "text"),
+        GetSQLValueString($_POST['user_type'], "text"),
+        GetSQLValueString($_POST['user_timezone'], "text"),
+        GetSQLValueString($_POST['user_dateformat'], "text"),
+        GetSQLValueString($_POST['user_cms_level'], "text"),
+        GetSQLValueString($_POST['user_homepage'], "text"),
+        GetSQLValueString($_POST['user_status'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($_POST['user_id'], "text"));
+
+				mysql_select_db($database_ikiosk, $ikiosk);
+				$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+				sqlQueryLog($updateSQL);
+				
+				$updateJS = "$('.page-title').html('".$_POST['display_name']."');\r\n";
+				$updateJS .= "$('#editUser-tabs li:first-child a').click();\r\n";
+				insertJS($updateJS);
+				displayAlert("success", "Changes saved.");
+				exit;
+		
+	}
+	
 	// Teams: Add Member -------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-AddUserToTeam")) {
 		$generateID = create_guid();
@@ -250,6 +281,49 @@ $insertSQL = sprintf("INSERT INTO sys_teams (team_id, title, description, date_c
 	}
 	
 	include('ajaxCodeGen.php'); // Code Generator
+	
+	//SysConfig : Edit -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysConfig")) {
+	
+	$updateSQL = sprintf("UPDATE sys_config SET ikiosk_license_key=%s, system_name=%s, system_url=%s, ikiosk_theme=%s, sys_message_status=%s, sys_message=%s, facebook_app_url=%s, facebook_key=%s, facebook_secret=%s, facebook_app_id=%s, twitter_api=%s, twitter_consumer_key=%s, twitter_consumer_secret=%s, flickr_api_key=%s, flickr_api_secret=%s, flickr_api_permissions=%s, google_site_verification=%s, google_consumer_key=%s, google_consumer_secret=%s, google_analytics_key=%s, google_analytics_profile=%s, youtube_app_url=%s, youtube_client_id=%s, youtube_developer_key=%s, photobucket_key=%s, photobucket_secret=%s, instagram_key=%s, instagram_secret=%s WHERE ikiosk_id=%s",
+        GetSQLValueString($_POST['ikiosk_license_key'], "text"),
+        GetSQLValueString($_POST['system_name'], "text"),
+        GetSQLValueString($_POST['system_url'], "text"),
+		GetSQLValueString($_POST['ikiosk_theme'], "text"),
+		GetSQLValueString($_POST['sys_message_status'], "text"),
+		GetSQLValueString($_POST['sys_message'], "text"),
+		GetSQLValueString($_POST['facebook_app_url'], "text"),
+        GetSQLValueString($_POST['facebook_key'], "text"),
+        GetSQLValueString($_POST['facebook_secret'], "text"),
+        GetSQLValueString($_POST['facebook_app_id'], "text"),
+        GetSQLValueString($_POST['twitter_api'], "text"),
+        GetSQLValueString($_POST['twitter_consumer_key'], "text"),
+        GetSQLValueString($_POST['twitter_consumer_secret'], "text"),
+        GetSQLValueString($_POST['flickr_api_key'], "text"),
+        GetSQLValueString($_POST['flickr_api_secret'], "text"),
+        GetSQLValueString($_POST['flickr_api_permissions'], "text"),
+        GetSQLValueString($_POST['google_site_verification'], "text"),
+        GetSQLValueString($_POST['google_consumer_key'], "text"),
+        GetSQLValueString($_POST['google_consumer_secret'], "text"),
+        GetSQLValueString($_POST['google_analytics_key'], "text"),
+        GetSQLValueString($_POST['google_analytics_profile'], "text"),
+        GetSQLValueString($_POST['youtube_app_url'], "text"),
+        GetSQLValueString($_POST['youtube_client_id'], "text"),
+        GetSQLValueString($_POST['youtube_developer_key'], "text"),
+		GetSQLValueString($_POST['photobucket_key'], "text"),
+        GetSQLValueString($_POST['photobucket_secret'], "text"),
+        GetSQLValueString($_POST['instagram_key'], "text"),
+        GetSQLValueString($_POST['instagram_secret'], "text"),		
+        GetSQLValueString($_POST['ikiosk_id'], "text"));
+				
+				mysql_select_db($database_ikiosk, $ikiosk);
+				$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+				sqlQueryLog($updateSQL);
+				
+				displayAlert("success", "Changes saved.");
+				exit;
+		
+	}
 	
 	// Sites : Edit -------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysSites")) {

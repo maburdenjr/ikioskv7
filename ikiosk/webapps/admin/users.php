@@ -262,10 +262,12 @@
                 <li> <a data-toggle="tab" href="#advanced">Preferences</a> </li>
                 <li> <a data-toggle="tab" href="#password">Password</a> </li>
               </ul>
+                                <fieldset>
+
+               <div class="form-response"></div>
+
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="general">
-                  <fieldset>
-                    <div class="form-response"></div>
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Login Email</label>
@@ -294,10 +296,8 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
                 </div>
                 <div class="tab-pane fade in" id="security">
-                  <fieldset>
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">User Type</label>
@@ -335,10 +335,8 @@
                           <i></i> </label>
                       </section>
                     </div>
-                  </fieldset>
                 </div>
                 <div class="tab-pane fade in" id="advanced">
-                  <fieldset>
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Date Format</label>
@@ -364,15 +362,13 @@
                       </section>
                       <section class="col col-6"> </section>
                     </div>
-                  </fieldset>
                 </div>
                 <div class="tab-pane fade in" id="password">
-                  <fieldset>
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Password</label>
                         <label class="input">
-                          <input type="password" name="login_password" value="<?php echo $row_getRecord['login_password']; ?>">
+                          <input type="password" name="login_password" value="<?php echo $row_getRecord['login_password']; ?>" id="login_password">
                         </label>
                       </section>
                       <section class="col col-6">
@@ -382,9 +378,10 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
                 </div>
               </div>
+                                </fieldset>
+
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-SysUsers"> <i class="fa fa-check"></i> Save </button>
                 <button type="button" class="btn btn-default ajaxLink" href="index.php#webapps/admin/users.php"><i class="fa fa-times"></i> Cancel </button>
