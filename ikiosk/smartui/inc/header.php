@@ -59,7 +59,7 @@
 		<link rel="apple-touch-startup-image" href="<?php echo ASSETS_URL; ?>/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<link rel="apple-touch-startup-image" href="<?php echo ASSETS_URL; ?>/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
 	</head>
-	<body <?php echo implode(' ', array_map(function($prop, $value) {
+	<body class="fixed-header fixed-navigation menu-on-top" <?php echo implode(' ', array_map(function($prop, $value) {
 			return $prop.'="'.$value.'"';
 		}, array_keys($page_body_prop), $page_body_prop)) ;?>>
 		<!-- POSSIBLE CLASSES: minified, fixed-ribbon, fixed-header, fixed-width
