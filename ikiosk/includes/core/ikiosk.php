@@ -293,9 +293,7 @@ if ($SITE['force_ssl'] == "Yes") {
 }
 
 //Access Log
-if ($PAGE['enable_tracking'] == "Yes") {
 	accessLog("System");	
-}
 
 //Inline Debugging
 if ($USER['user_type'] == "iKiosk Admin") {
