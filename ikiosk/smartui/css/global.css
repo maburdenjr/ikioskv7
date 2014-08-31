@@ -70,6 +70,8 @@ pre.html {
 
 #header {
 	background:#000;
+	border-top: 2px solid #3276b1;
+	height:51px;
 }
 
 .btn-header>:first-child>a {
@@ -158,9 +160,8 @@ nav ul .active>a {
 }
 
 #ribbon {
-	border-bottom: 1px solid #e5e5e5;
-	border-top: 1px solid #E6E6E6;
-	background: #F5F5F5;
+	border-bottom: 1px dotted #CFCFCF;
+	background-color: #E3E3E3;
 }
 
 #ribbon .breadcrumb, #ribbon .breadcrumb a {
@@ -169,3 +170,17 @@ nav ul .active>a {
 #ribbon .breadcrumb li:last-child, #ribbon .breadcrumb>.active {
 	color: #333!important;	
 }
+
+.smart-form .label {
+	font-weight:600;	
+}
+
+ .modal-title {
+	font-weight:400;	
+	letter-spacing: -1px;
+	color:#333;	 
+ }
+ 
+ .smart-form .input input, .smart-form .select select, .smart-form .textarea textarea {
+	 border-radius: 3px;	 
+ }
