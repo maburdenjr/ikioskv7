@@ -72,9 +72,7 @@
 				<header id="header">
 					<div id="logo-group">
 
-						<!-- PLACE YOUR LOGO HERE -->
-						<span id="logo"> <img src="<?php echo ASSETS_URL; ?>/img/logo.png" alt="SmartAdmin"> </span>
-						<!-- END LOGO PLACEHOLDER -->						
+						<span><?php echo $SYSTEM['system_name']; ?></span>				
 
 					</div>
 

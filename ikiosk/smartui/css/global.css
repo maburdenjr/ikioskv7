@@ -67,3 +67,105 @@ pre.html {
 .modal .smart-form .btn {
 	padding: 6px 12px;
 }
+
+#header {
+	background:#000;
+}
+
+.btn-header>:first-child>a {
+	border-radius: 0px;
+	background: #171717;
+	border: 1px solid #343434;
+	color: #343434;
+}
+
+.btn-header>:first-child>a:hover {
+	background: #171717;	
+	color:#FFF;
+}
+
+.header-search>input[type=text] { 
+	background: #171717;
+	border: 1px solid #343434;
+	color:#FFF;
+}
+
+.menu-on-top #mobile-profile-img a.userdropdown img {
+	border-radius:0px;
+	border: 1px solid #343434;
+}
+
+#logo-group span {
+	display:inline-block;
+	color: rgba(255,255,255,0.50);
+	text-transform:uppercase;
+	font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+	font-weight:300;	
+	padding:15px;
+	font-size:14px;
+}
+
+.fixed-header #header {
+	box-shadow:none;
+}
+
+.menu-on-top aside#left-panel {
+	background: #f1f1f1;
+	border-bottom: 1px solid #CFCFCF;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.menu-on-top aside#left-panel.floating {
+	-webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+}
+
+.menu-on-top aside#left-panel nav>ul>li {
+	border:none;
+}
+
+.menu-on-top aside#left-panel nav>ul>li {
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+	background-color: transparent;
+	background-image: linear-gradient(top,#f5f5f5,#f1f1f1);
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));
+	background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+	border: 1px solid rgba(0,0,0,0.1);
+	color: #444;
+	margin-top: 5px;
+	margin-left: 5px !important;
+	margin-bottom: 5px;
+}
+
+
+.menu-on-top aside#left-panel nav>ul>li>a { 
+	color: #444;
+}
+nav ul .active>a {
+	color:#000000 !important;
+}
+
+.menu-on-top nav ul ul, .menu-on-top nav ul ul ul {
+	border-bottom: 1px solid #3276b1;	
+}
+
+@media (max-width:979px) {
+	.menu-on-top aside#left-panel nav>ul>li {
+		margin:0px !important;
+	}
+}
+
+#ribbon {
+	border-bottom: 1px solid #e5e5e5;
+	border-top: 1px solid #E6E6E6;
+	background: #F5F5F5;
+}
+
+#ribbon .breadcrumb, #ribbon .breadcrumb a {
+	color: #6D6C6C!important;	
+}
+#ribbon .breadcrumb li:last-child, #ribbon .breadcrumb>.active {
+	color: #333!important;	
+}
