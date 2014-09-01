@@ -1,6 +1,10 @@
 // JavaScript Document
 function iKioskUI() {
 	
+	//Large Inputs
+	$('.smart-form input, .smart-form select').addClass('input-lg');
+	
+	//Fixed Header
 	$(window).on('scroll', function() {
 		docPos = $(document).scrollTop();
 		if (docPos > 25) {

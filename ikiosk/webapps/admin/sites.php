@@ -50,17 +50,19 @@
                 </section>
                 <section>
                   <label class="label">Domain Name / URL</label>
+                  <div class="note">This is the URL or domain name for this site (i.e. http://www.example.com). Do not include the trailing slash.</div>
                   <label class="input">
-                  <label class="input"> <i class="icon-append fa fa-question-circle"></i>
+                  <label class="input"> 
                     <input type="text" name="site_url" value="<?php echo $row_getRecord['site_url']; ?>">
-                    <b class="tooltip tooltip-top-right">This is the URL or domain name for this site (i.e. http://www.example.com). Do not include the trailing slash.</b> </label>
+                  </label>
                 </section>
                 <section>
                   <label class="label">Shortname</label>
+                  <div class="note">The shortname is used to identify your site within the IntelliKiosk system.</div>
                   <label class="input">
-                  <label class="input"> <i class="icon-append fa fa-question-circle"></i>
+                  <label class="input"> 
                     <input type="text" name="site_root" value="<?php echo $row_getRecord['site_root']; ?>">
-                    <b class="tooltip tooltip-top-right">The shortname is used to identify your site within the IntelliKiosk system.</b> </label>
+                   </label>
                 </section>
     
                 <section>
@@ -268,19 +270,51 @@
                   <fieldset>
                     <div class="form-response"></div>
                     <div class="row">
-                      <section class="col col-4">
-                        <label class="label">Site Name</label>
+                    <section class="col col-6">
+                     <label class="label">Site Name</label>
                         <label class="input">
                           <input type="text" name="site_name" value="<?php echo $row_getRecord['site_name']; ?>">
                         </label>
-                      </section>
-                      <section class="col col-4">
-                        <label class="label">Site URL</label>
+                    </section>
+                    <section class="col col-6">
+                    <label class="label">Site URL</label>
                         <label class="input">
                           <input type="text" name="site_url" value="<?php echo $row_getRecord['site_url']; ?>">
                         </label>
+                    </section>
+                    </div>
+                    <div class="row">
+                      
+                      <section class="col col-6">
+                        <label class="label">Public Home Page</label>
+                        <label class="input">
+                          <input type="text" name="public_home" value="<?php echo $row_getRecord['public_home']; ?>">
+                        </label>
                       </section>
-                      <section class="col col-4">
+                      <section class="col col-6">
+                        <label class="label">iKiosk Home Page</label>
+                        <label class="input">
+                          <input type="text" name="ikiosk_home" value="<?php echo $row_getRecord['ikiosk_home']; ?>">
+                        </label>
+                      </section>
+                    </div>
+                    
+                    <div class="row">
+                      <section class="col col-6">
+                        <label class="label">Default Timezone</label>
+                        <label class="select">
+                          <select name="site_timezone">
+                            <?php selectTimeZone($row_getRecord['site_timezone']); ?>
+                          </select>
+                          <i></i> </label>
+                      </section>
+                      <section class="col col-3">
+                        <label class="label">Date Format</label>
+                        <label class="input">
+                          <input type="text" name="site_dateformat" value="<?php echo $row_getRecord['site_dateformat']; ?>">
+                        </label>
+                      </section>
+                      <section class="col col-3">
                         <label class="label">Force SSL</label>
                         <label class="select">
                           <select name="force_ssl">
@@ -289,43 +323,20 @@
                           </select>
                           <i></i> </label>
                       </section>
+                      
+                      
                     </div>
                     <div class="row">
-                      <section class="col col-4">
-                        <label class="label">Public Home Page</label>
-                        <label class="input">
-                          <input type="text" name="public_home" value="<?php echo $row_getRecord['public_home']; ?>">
-                        </label>
-                      </section>
-                      <section class="col col-4">
-                        <label class="label">iKiosk Home Page</label>
-                        <label class="input">
-                          <input type="text" name="ikiosk_home" value="<?php echo $row_getRecord['ikiosk_home']; ?>">
-                        </label>
-                      </section>
-                      <section class="col col-4">
+                      
+                      
+                      <section class="col col-6">
                         <label class="label">Support Email</label>
                         <label class="input">
                           <input type="text" name="support_email" value="<?php echo $row_getRecord['support_email']; ?>">
                         </label>
                       </section>
-                    </div>
-                    <div class="row">
-                      <section class="col col-4">
-                        <label class="label">Default Timezone</label>
-                        <label class="select">
-                          <select name="site_timezone">
-                            <?php selectTimeZone($row_getRecord['site_timezone']); ?>
-                          </select>
-                          <i></i> </label>
-                      </section>
-                      <section class="col col-4">
-                        <label class="label">Date Format</label>
-                        <label class="input">
-                          <input type="text" name="site_dateformat" value="<?php echo $row_getRecord['site_dateformat']; ?>">
-                        </label>
-                      </section>
-                      <section class="col col-4">
+                      
+                      <section class="col col-6">
                         <label class="label">Status</label>
                         <label class="select">
                           <select name="site_status">
@@ -414,9 +425,10 @@
                     <div class="row">
                       <section class="col col-12">
                         <label class="label">Facebook Permissions</label>
+                        <div class="note">Enter a comma-separated list of permissions to be requested during the Facebook authentication process. (ie. 'email, publish_stream')</div>
                         <label class="textarea">
                         <textarea name="facebook_permissions"><?php echo $row_getRecord['facebook_permissions']; ?></textarea>
-                        <div class="note">Enter a comma-separated list of permissions to be requested during the Facebook authentication process. (ie. 'email, publish_stream')</div>
+                        
                         </label>
                       </section>
                     </div>

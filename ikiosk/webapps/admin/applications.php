@@ -83,9 +83,10 @@ $totalRows_listView = mysql_num_rows($listView);
                   </section>
                   <section class="col col-9">
                     <label class="label">System Location</label>
-                    <label class="input"> <i class="icon-append fa fa-question-circle"></i>
+                    <div class="note">Application root should be relative to the IntelliKiosk root directory (<?php echo $SYSTEM['ikiosk_root']; ?>)</div>
+                    <label class="input">
                       <input name="application_root" type="text" />
-                      <b class="tooltip tooltip-top-right"> <i class="fa fa-warning txt-color-teal"></i> Application root should be relative to the IntelliKiosk root directory (<?php echo $SYSTEM['ikiosk_root']; ?>)</b> </label>
+                    </label>
                   </section>
                 </div>
                 <div class="row">
@@ -110,7 +111,6 @@ $totalRows_listView = mysql_num_rows($listView);
                       </select>
                       <i></i> </label>
                   </section>
-            
                   <section class="col col-4">
                     <label class="label">Status</label>
                     <label class="select">
@@ -127,8 +127,10 @@ $totalRows_listView = mysql_num_rows($listView);
                     <textarea name="application_description" rows="3" class="custom-scroll"></textarea>
                   </label>
                 </section>
-                      <section>
+                <div class="row">
+                  <section class="col col-6">
                     <label class="label">Default Access Level</label>
+                    <div class="note">All existing and future users will be granted this access level when this application is created.</div>
                     <label class="select">
                       <select name="default_application_clearance">
                         <option value="000">No Access</option>
@@ -137,8 +139,8 @@ $totalRows_listView = mysql_num_rows($listView);
                         <option value="999">Super Admin</option>
                       </select>
                       <i></i> </label>
-                      <div class="note">All existing and future users will be granted this access level when this application is created.</div>
                   </section>
+                </div>
               </fieldset>
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="createApplication"> <i class="fa fa-check"></i> Save </button>
@@ -203,7 +205,7 @@ $totalRows_listView = mysql_num_rows($listView);
 <script type="text/javascript">
 		var listView = $('#dt_applications').dataTable();
 		$('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add" data-open="createApp" data-close="appList"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Application</span></button>');
-</script>
+</script> 
 <script type="text/javascript">
 	runAllForms();
 
@@ -327,9 +329,10 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
                 </div>
                 <section>
                   <label class="label">System Location</label>
-                  <label class="input"> <i class="icon-append fa fa-question-circle"></i>
+                  <div class="note">Application root should be relative to the IntelliKiosk root directory (<?php echo $SYSTEM['ikiosk_root']; ?>)</div>
+                  <label class="input">
                     <input name="application_root" type="text" value="<?php echo $row_getRecord['application_root']; ?>" />
-                    <b class="tooltip tooltip-top-right"> <i class="fa fa-warning txt-color-teal"></i> Application root should be relative to the IntelliKiosk root directory (<?php echo $SYSTEM['ikiosk_root']; ?>)</b> </label>
+                  </label>
                 </section>
                 <div class="row">
                   <section class="col col-4">

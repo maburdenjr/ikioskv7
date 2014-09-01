@@ -184,3 +184,13 @@ nav ul .active>a {
  .smart-form .input input, .smart-form .select select, .smart-form .textarea textarea {
 	 border-radius: 3px;	 
  }
+ 
+ .smart-form input.input-lg,  .smart-form select.input-lg  {
+	 font-weight:300;	
+	 padding-left:16px;
+ }
+ 
+  .smart-form .note {
+	  margin-bottom:6px;
+	  margin-top:-4px;  
+  }

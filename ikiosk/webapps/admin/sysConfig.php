@@ -59,19 +59,43 @@
                 <div class="tab-pane fade in active" id="site">
                   
                     <div class="row">
-                      <section class="col col-4">
+                      <section class="col col-6">
                         <label class="label">System Name</label>
                         <label class="input">
                           <input type="text" name="system_name" value="<?php echo $row_getRecord['system_name']; ?>">
                         </label>
                       </section>
-                      <section class="col col-4">
+                      <section class="col col-6">
                         <label class="label">System URL</label>
                         <label class="input">
                           <input type="text" name="system_url" value="<?php echo $row_getRecord['system_url']; ?>">
                         </label>
                       </section>
-                      <section class="col col-4">
+              
+                    </div>
+                    <div class="row">
+                      <section class="col col-6">
+                        <label class="label">iKiosk ID</label>
+                        <label class="input state-disabled">
+                          <input type="text" name="ikiosk_id" value="<?php echo $row_getRecord['ikiosk_id']; ?>" disabled="disabled">
+                        </label>
+                      </section>
+                      <section class="col col-6">
+                        <label class="label">Ikiosk License Key</label>
+                        <label class="input">
+                          <input type="text" name="ikiosk_license_key" value="<?php echo $row_getRecord['ikiosk_license_key']; ?>">
+                        </label>
+                      </section>
+                      
+                    </div>
+                    <div class="row">
+                    <section class="col col-9">
+                        <label class="label">iKiosk Filesystem Root</label>
+                        <label class="input">
+                          <input type="text" name="ikiosk_filesystem_root" value="<?php echo $row_getRecord['ikiosk_filesystem_root']; ?>">
+                        </label>
+                      </section>
+                            <section class="col col-3">
                         <label class="label">System Status</label>
                         <label class="select">
                           <select name="sys_message_status">
@@ -80,27 +104,7 @@
                           </select>
                           <i></i> </label>
                       </section>
-                    </div>
-                    <div class="row">
-                      <section class="col col-4">
-                        <label class="label">iKiosk ID</label>
-                        <label class="input state-disabled">
-                          <input type="text" name="ikiosk_id" value="<?php echo $row_getRecord['ikiosk_id']; ?>" disabled="disabled">
-                        </label>
-                      </section>
-                      <section class="col col-4">
-                        <label class="label">Ikiosk License Key</label>
-                        <label class="input">
-                          <input type="text" name="ikiosk_license_key" value="<?php echo $row_getRecord['ikiosk_license_key']; ?>">
-                        </label>
-                      </section>
-                      <section class="col col-4">
-                        <label class="label">iKiosk Filesystem Root</label>
-                        <label class="input">
-                          <input type="text" name="ikiosk_filesystem_root" value="<?php echo $row_getRecord['ikiosk_filesystem_root']; ?>">
-                        </label>
-                      </section>
-                    </div>
+                      </div>
               
                 </div>
                 <div class="tab-pane fade in" id="license">
