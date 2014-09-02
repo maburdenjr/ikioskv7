@@ -37,7 +37,7 @@
     <div class="modal-content">
       <form id = "create-SysUsers" class="smart-form" method="post">
         <div class="modal-header">
-          <h4 class="modal-title">Create New User</h4>
+          <h4 class="modal-title">Create User</h4>
         </div>
         <div class="modal-body">
           <div class="form-response"></div>
@@ -50,7 +50,7 @@
           <section>
             <label class="label">Password</label>
             <label class="input">
-              <input type="text" name="login_password" value="<?php echo $row_getRecord['login_password']; ?>">
+              <input type="password" name="login_password" value="<?php echo $row_getRecord['login_password']; ?>">
             </label>
           </section>
           <section>

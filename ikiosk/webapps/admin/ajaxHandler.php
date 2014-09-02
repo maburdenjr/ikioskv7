@@ -177,6 +177,10 @@ if (isset($_GET['ajaxAction'])) {
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+	//Users : Create -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-SysUsers")) {
+	}
+	
 	//Users : Edit -------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysUsers")) {
 		$updateSQL = sprintf("UPDATE sys_users SET login_password=%s, login_password_hash=%s, display_name=%s, first_name=%s, last_name=%s, is_admin=%s, user_type=%s, user_timezone=%s, user_dateformat=%s, user_cms_level=%s, user_homepage=%s, user_status=%s, date_modified=%s, modified_by=%s WHERE user_id=%s",
