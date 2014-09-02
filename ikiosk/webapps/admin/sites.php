@@ -33,71 +33,65 @@
 <section id="widget-grid">
 <!-- Begin Create Record -->
 <div class="modal fade" id="createSite">
-	  <div class="modal-dialog">
-    	<div class="modal-content">
-              <form id = "create-SysSites" class="smart-form" method="post">
-
-      	<div class="modal-header">
-        	<h4 class="modal-title">Create New Site</h4>
-        </div>
-        <div class="modal-body">
-              <div class="form-response"></div>
-                <section>
-                  <label class="label">Site Name</label>
-                  <label class="input">
-                    <input type="text" name="site_name" value="<?php echo $row_getRecord['site_name']; ?>">
-                  </label>
-                </section>
-                <section>
-                  <label class="label">Domain Name / URL</label>
-                  <div class="note">This is the URL or domain name for this site (i.e. http://www.example.com). Do not include the trailing slash.</div>
-                  <label class="input">
-                  <label class="input"> 
-                    <input type="text" name="site_url" value="<?php echo $row_getRecord['site_url']; ?>">
-                  </label>
-                </section>
-                <section>
-                  <label class="label">Shortname</label>
-                  <div class="note">The shortname is used to identify your site within the IntelliKiosk system.</div>
-                  <label class="input">
-                  <label class="input"> 
-                    <input type="text" name="site_root" value="<?php echo $row_getRecord['site_root']; ?>">
-                   </label>
-                </section>
-    
-                <section>
-                  <label class="label">Force SSL?</label>
-                  <label class="select">
-                    <select name="force_ssl">
-                      <option value="No" <?php if (!(strcmp("No", $row_getRecord['force_ssl']))) {echo "selected=\"selected\"";} ?>>No</option>
-                      <option value="Yes" <?php if (!(strcmp("Yes", $row_getRecord['force_ssl']))) {echo "selected=\"selected\"";} ?>>Yes</option>
-                    </select>
-                    <i></i> </label>
-                </section>
-                <section>
-                  <label class="label">Default Timezone</label>
-                  <label class="select">
-                    <select name="site_timezone">
-                      <?php selectTimeZone($_POST['site_timezone']); ?>
-                    </select>
-                    <i></i> </label>
-                </section>
-          
-              <input type="hidden" name="formID" value="create-SysSites">
-              <input type="hidden" name="iKioskForm" value="Yes">
-              <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
-         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-SysSites"> <i class="fa fa-check"></i> Save </button>
-              
-        </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form id = "create-SysSites" class="smart-form" method="post">
+      <div class="modal-header">
+        <h4 class="modal-title">Create New Site</h4>
       </div>
-                </form>
-
-		</div>
+      <div class="modal-body">
+        <div class="form-response"></div>
+        <section>
+          <label class="label">Site Name</label>
+          <label class="input">
+            <input type="text" name="site_name" value="<?php echo $row_getRecord['site_name']; ?>">
+          </label>
+        </section>
+        <section>
+          <label class="label">Domain Name / URL</label>
+          <div class="note">This is the URL or domain name for this site (i.e. http://www.example.com). Do not include the trailing slash.</div>
+          <label class="input">
+          <label class="input">
+            <input type="text" name="site_url" value="<?php echo $row_getRecord['site_url']; ?>">
+          </label>
+        </section>
+        <section>
+          <label class="label">Shortname</label>
+          <div class="note">The shortname is used to identify your site within the IntelliKiosk system.</div>
+          <label class="input">
+          <label class="input">
+            <input type="text" name="site_root" value="<?php echo $row_getRecord['site_root']; ?>">
+          </label>
+        </section>
+        <section>
+          <label class="label">Force SSL?</label>
+          <label class="select">
+            <select name="force_ssl">
+              <option value="No" <?php if (!(strcmp("No", $row_getRecord['force_ssl']))) {echo "selected=\"selected\"";} ?>>No</option>
+              <option value="Yes" <?php if (!(strcmp("Yes", $row_getRecord['force_ssl']))) {echo "selected=\"selected\"";} ?>>Yes</option>
+            </select>
+            <i></i> </label>
+        </section>
+        <section>
+          <label class="label">Default Timezone</label>
+          <label class="select">
+            <select name="site_timezone">
+              <?php selectTimeZone($_POST['site_timezone']); ?>
+            </select>
+            <i></i> </label>
+        </section>
+        <input type="hidden" name="formID" value="create-SysSites">
+        <input type="hidden" name="iKioskForm" value="Yes">
+        <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+        <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-SysSites"> <i class="fa fa-check"></i> Save </button>
+      </div>
+      </div>
+    </form>
+  </div>
 </div>
-
 <div id="createCtn-SysSites" class="row hidden-panel">
   <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="jarviswidget" id="add-SysSites" data-widget-editbutton="false" data-widget-deletebutton="false">
@@ -108,9 +102,7 @@
         <div class="jarviswidget-editbox">
           <input class="form-control" type="text">
         </div>
-        <div class="widget-body no-padding">
-          
-        </div>
+        <div class="widget-body no-padding"> </div>
       </div>
     </div>
   </article>
@@ -265,26 +257,25 @@
                   </ul>
                 </li>
               </ul>
-              <div class="tab-content">
-                <div class="tab-pane fade in active" id="general">
-                  <fieldset>
-                    <div class="form-response"></div>
+              <fieldset>
+                <div class="form-response"></div>
+                <div class="tab-content">
+                  <div class="tab-pane fade in active" id="general">
                     <div class="row">
-                    <section class="col col-6">
-                     <label class="label">Site Name</label>
+                      <section class="col col-6">
+                        <label class="label">Site Name</label>
                         <label class="input">
                           <input type="text" name="site_name" value="<?php echo $row_getRecord['site_name']; ?>">
                         </label>
-                    </section>
-                    <section class="col col-6">
-                    <label class="label">Site URL</label>
+                      </section>
+                      <section class="col col-6">
+                        <label class="label">Site URL</label>
                         <label class="input">
                           <input type="text" name="site_url" value="<?php echo $row_getRecord['site_url']; ?>">
                         </label>
-                    </section>
+                      </section>
                     </div>
                     <div class="row">
-                      
                       <section class="col col-6">
                         <label class="label">Public Home Page</label>
                         <label class="input">
@@ -298,7 +289,6 @@
                         </label>
                       </section>
                     </div>
-                    
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Default Timezone</label>
@@ -323,19 +313,14 @@
                           </select>
                           <i></i> </label>
                       </section>
-                      
-                      
                     </div>
                     <div class="row">
-                      
-                      
                       <section class="col col-6">
                         <label class="label">Support Email</label>
                         <label class="input">
                           <input type="text" name="support_email" value="<?php echo $row_getRecord['support_email']; ?>">
                         </label>
                       </section>
-                      
                       <section class="col col-6">
                         <label class="label">Status</label>
                         <label class="select">
@@ -346,10 +331,8 @@
                           <i></i> </label>
                       </section>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="tab-pane fade in" id="images">
-                  <fieldset>
+                  </div>
+                  <div class="tab-pane fade in" id="images">
                     <div class="row">
                       <section class="col col-3">
                         <label class="label">Mini-Thumbnail Width</label>
@@ -390,10 +373,8 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="tab-pane fade in" id="facebook">
-                  <fieldset>
+                  </div>
+                  <div class="tab-pane fade in" id="facebook">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Facebook App ID</label>
@@ -427,15 +408,12 @@
                         <label class="label">Facebook Permissions</label>
                         <div class="note">Enter a comma-separated list of permissions to be requested during the Facebook authentication process. (ie. 'email, publish_stream')</div>
                         <label class="textarea">
-                        <textarea name="facebook_permissions"><?php echo $row_getRecord['facebook_permissions']; ?></textarea>
-                        
+                          <textarea name="facebook_permissions"><?php echo $row_getRecord['facebook_permissions']; ?></textarea>
                         </label>
                       </section>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="tab-pane fade in" id="instagram">
-                  <fieldset>
+                  </div>
+                  <div class="tab-pane fade in" id="instagram">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Instagram Client ID</label>
@@ -450,10 +428,8 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="tab-pane fade in" id="twitter">
-                  <fieldset>
+                  </div>
+                  <div class="tab-pane fade in" id="twitter">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Twitter API Key</label>
@@ -476,10 +452,8 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="tab-pane fade in" id="photobucket">
-                  <fieldset>
+                  </div>
+                  <div class="tab-pane fade in" id="photobucket">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Photobucket Key</label>
@@ -494,10 +468,8 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="tab-pane fade in" id="youtube">
-                  <fieldset>
+                  </div>
+                  <div class="tab-pane fade in" id="youtube">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Youtube App Url</label>
@@ -520,10 +492,8 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="tab-pane fade in" id="flickr">
-                  <fieldset>
+                  </div>
+                  <div class="tab-pane fade in" id="flickr">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Flickr API Key</label>
@@ -546,10 +516,8 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="tab-pane fade in" id="g-apps">
-                  <fieldset>
+                  </div>
+                  <div class="tab-pane fade in" id="g-apps">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Google Site Verification</label>
@@ -572,10 +540,8 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="tab-pane fade in" id="g-api">
-                  <fieldset>
+                  </div>
+                  <div class="tab-pane fade in" id="g-api">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Google Api Client Id</label>
@@ -604,10 +570,8 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="tab-pane fade in" id="g-analytics">
-                  <fieldset>
+                  </div>
+                  <div class="tab-pane fade in" id="g-analytics">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Analytics Account ID</label>
@@ -622,9 +586,9 @@
                         </label>
                       </section>
                     </div>
-                  </fieldset>
+                  </div>
                 </div>
-              </div>
+              </fieldset>
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-SysSites"> <i class="fa fa-check"></i> Save </button>
                 <button type="button" class="btn btn-default ajaxLink" href="index.php#webapps/admin/sites.php"><i class="fa fa-times"></i> Cancel </button>

@@ -138,11 +138,26 @@ if (isset($_GET['ajaxAction'])) {
 		}
 	}
 	
-	// AppCode Check --------------------------------------------------------------------------------	
+	// Site Root Check --------------------------------------------------------------------------------	
 	
 	if($_GET['ajaxAction'] == "siteRootCheck") {
 		mysql_select_db($database_ikiosk, $ikiosk);
 		$query_listView = "SELECT * FROM sys_sites WHERE deleted = '0' AND site_root = '/".$_GET['site_root']."'";
+		$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
+		$row_listView = mysql_fetch_assoc($listView);
+		$totalRows_listView = mysql_num_rows($listView);
+		
+		if($totalRows_listView == 0) {
+			echo "true";
+		} else {
+			echo "false";
+		}
+	}
+	
+	// User Exists Check
+	if($_GET['ajaxAction'] == "userCheck") {
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$query_listView = "SELECT * FROM sys_users WHERE deleted = '0' AND login_email = '".$_GET['login_email']."'";
 		$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
 		$row_listView = mysql_fetch_assoc($listView);
 		$totalRows_listView = mysql_num_rows($listView);

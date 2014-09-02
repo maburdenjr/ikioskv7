@@ -37,88 +37,87 @@
     <div class="modal-content">
       <form id = "create-SysUsers" class="smart-form" method="post">
         <div class="modal-header">
-          <h4 class="modal-title">Create Users</h4>
+          <h4 class="modal-title">Create New User</h4>
         </div>
         <div class="modal-body">
           <div class="form-response"></div>
+          <section>
+            <label class="label">Login Email</label>
+            <label class="input">
+              <input type="text" name="login_email" value="<?php echo $row_getRecord['login_email']; ?>">
+            </label>
+          </section>
+          <section>
+            <label class="label">Password</label>
+            <label class="input">
+              <input type="text" name="login_password" value="<?php echo $row_getRecord['login_password']; ?>">
+            </label>
+          </section>
+          <section>
+            <label class="label">Display Name</label>
+            <label class="input">
+              <input type="text" name="display_name" value="<?php echo $row_getRecord['display_name']; ?>">
+            </label>
+          </section>
           <div class="row">
-            <section class="col col-6">
-              <label class="label">Login Email</label>
-              <label class="input">
-                <input type="text" name="login_email" value="<?php echo $row_getRecord['login_email']; ?>">
-              </label>
-            </section>
-            <section class="col col-6">
-              <label class="label">Login Password</label>
-              <label class="input">
-                <input type="text" name="login_password" value="<?php echo $row_getRecord['login_password']; ?>">
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-6">
-              <label class="label">Display Name</label>
-              <label class="input">
-                <input type="text" name="display_name" value="<?php echo $row_getRecord['display_name']; ?>">
-              </label>
-            </section>
             <section class="col col-6">
               <label class="label">First Name</label>
               <label class="input">
                 <input type="text" name="first_name" value="<?php echo $row_getRecord['first_name']; ?>">
               </label>
             </section>
-          </div>
-          <div class="row">
             <section class="col col-6">
               <label class="label">Last Name</label>
               <label class="input">
                 <input type="text" name="last_name" value="<?php echo $row_getRecord['last_name']; ?>">
               </label>
             </section>
+          </div>
+          <div class="row">
             <section class="col col-6">
-              <label class="label">Is Admin</label>
+              <label class="label">Timezone</label>
               <label class="select">
-                <select name="is_admin">
-                  <option value="value1" <?php if (!(strcmp("value1", $row_getRecord['is_admin']))) {echo "selected=\"selected\"";} ?>>value1</option>
-                  <option value="value2" <?php if (!(strcmp("value2", $row_getRecord['is_admin']))) {echo "selected=\"selected\"";} ?>>value2</option>
+                <select name="user_timezone">
+                  <?php selectTimeZone($row_getRecord['user_timezone']); ?>
                 </select>
                 <i></i> </label>
             </section>
+            <section class="col col-6">
+              <label class="label">Date Format</label>
+              <label class="input">
+                <input type="text" name="user_dateformat" value="m/d/y g:i a">
+              </label>
+            </section>
           </div>
           <div class="row">
+            <section class="col col-6">
+              <label class="label">Administrator?</label>
+              <label class="select">
+                <select name="is_admin">
+                                   <option value="Yes" <?php if (!(strcmp("Yes", $row_getRecord['is_admin']))) {echo "selected=\"selected\"";} ?>>Yes</option>
+                            <option value="No" <?php if (!(strcmp("No", $row_getRecord['is_admin']))) {echo "selected=\"selected\"";} ?>>No</option>
+                </select>
+                <i></i> </label>
+            </section>
             <section class="col col-6">
               <label class="label">User Type</label>
               <label class="select">
                 <select name="user_type">
-                  <option value="value1" <?php if (!(strcmp("value1", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>value1</option>
-                  <option value="value2" <?php if (!(strcmp("value2", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>value2</option>
+                   <option value="Web Portal User" <?php if (!(strcmp("Web Portal User", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Web Portal User</option>
+                            <option value="Standard" <?php if (!(strcmp("Standard", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Standard</option>
+                            <option value="Internal" <?php if (!(strcmp("Internal", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Internal</option>
+                            <option value="Administrator" <?php if (!(strcmp("Administrator", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Administrator</option>
+                            <option value="Super Admin" <?php if (!(strcmp("Super Admin", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Super Admin</option>
+                            <?php if ($USER['user_type'] == "iKiosk Admin") { ?>
+                            <option value="iKiosk Admin" <?php if (!(strcmp("iKiosk Admin", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>iKiosk Admin</option>
+                            <?php } ?>
                 </select>
                 <i></i> </label>
             </section>
-            <section class="col col-6">
-              <label class="label">User Timezone</label>
-              <label class="input">
-                <input type="text" name="user_timezone" value="<?php echo $row_getRecord['user_timezone']; ?>">
-              </label>
-            </section>
+
           </div>
-          <div class="row">
-            <section class="col col-6">
-              <label class="label">User Dateformat</label>
-              <label class="input">
-                <input type="text" name="user_dateformat" value="<?php echo $row_getRecord['user_dateformat']; ?>">
-              </label>
-            </section>
-            <section class="col col-6">
-              <label class="label">User Homepage</label>
-              <label class="input">
-                <input type="text" name="user_homepage" value="<?php echo $row_getRecord['user_homepage']; ?>">
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-6">
+
+            <section>
               <label class="label">Account Status</label>
               <label class="select">
                 <select name="user_status">
@@ -127,7 +126,6 @@
                 </select>
                 <i></i> </label>
             </section>
-          </div>
           <input type="hidden" name="formID" value="create-SysUsers">
           <input type="hidden" name="iKioskForm" value="Yes">
           <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
@@ -199,7 +197,10 @@
        
            rules : {
                 		login_email : {
-			required : true
+			required : true,
+			remote: "includes/core/formProcessor.php?appCode=SYS&ajaxAction=userCheck",
+			email: true
+
 		},
 		login_password : {
 			required : true
@@ -212,6 +213,12 @@
 		},
 
             },
+						
+			messages : {
+				login_email : {
+					remote : 'A user with this email address already exists'
+				}
+			},
            
            // Do not change code below
            errorPlacement : function(error, element) {
@@ -262,12 +269,10 @@
                 <li> <a data-toggle="tab" href="#advanced">Preferences</a> </li>
                 <li> <a data-toggle="tab" href="#password">Password</a> </li>
               </ul>
-                                <fieldset>
-
-               <div class="form-response"></div>
-
-              <div class="tab-content">
-                <div class="tab-pane fade in active" id="general">
+              <fieldset>
+                <div class="form-response"></div>
+                <div class="tab-content">
+                  <div class="tab-pane fade in active" id="general">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Login Email</label>
@@ -296,8 +301,8 @@
                         </label>
                       </section>
                     </div>
-                </div>
-                <div class="tab-pane fade in" id="security">
+                  </div>
+                  <div class="tab-pane fade in" id="security">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">User Type</label>
@@ -335,8 +340,8 @@
                           <i></i> </label>
                       </section>
                     </div>
-                </div>
-                <div class="tab-pane fade in" id="advanced">
+                  </div>
+                  <div class="tab-pane fade in" id="advanced">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Date Format</label>
@@ -362,8 +367,8 @@
                       </section>
                       <section class="col col-6"> </section>
                     </div>
-                </div>
-                <div class="tab-pane fade in" id="password">
+                  </div>
+                  <div class="tab-pane fade in" id="password">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Password</label>
@@ -378,10 +383,9 @@
                         </label>
                       </section>
                     </div>
+                  </div>
                 </div>
-              </div>
-                                </fieldset>
-
+              </fieldset>
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-SysUsers"> <i class="fa fa-check"></i> Save </button>
                 <button type="button" class="btn btn-default ajaxLink" href="index.php#webapps/admin/users.php"><i class="fa fa-times"></i> Cancel </button>
