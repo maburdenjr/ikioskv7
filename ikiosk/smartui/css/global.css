@@ -113,7 +113,7 @@ pre.html {
 
 .menu-on-top aside#left-panel {
 	background: #f1f1f1;
-	border-bottom: 1px solid #CFCFCF;
+	border-bottom: 1px solid #C5C5C5;
 	box-shadow: none;
 	-webkit-box-shadow: none;
 }
@@ -160,7 +160,7 @@ nav ul .active>a {
 }
 
 #ribbon {
-	border-bottom: 1px dotted #CFCFCF;
+	border-bottom: 1px solid #C3C3C3;
 	background-color: #E3E3E3;
 }
 
@@ -182,7 +182,7 @@ nav ul .active>a {
  }
  
  .smart-form .input input, .smart-form .select select, .smart-form .textarea textarea {
-	 border-radius: 3px;	 
+	 border-radius: 3px !important;	 
  }
  
  .smart-form input.input-lg,  .smart-form select.input-lg  {
@@ -194,3 +194,23 @@ nav ul .active>a {
 	  margin-bottom:6px;
 	  margin-top:-4px;  
   }
+	
+.ui-sortable .jarviswidget-sortable>header {
+		box-shadow: none;
+}
+
+.jarviswidget>div {
+	border-bottom: 1px solid;
+}
+
+.smart-form fieldset {
+	background-color:#F7F7F7;
+}
+
+body, html {
+	background-color: #E8E8E8;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover {
+		background-color:#F7F7F7;	
+}

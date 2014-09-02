@@ -13476,7 +13476,7 @@ textarea.clone {
 	margin-top: 5px
 }
 .smart-form .checkbox i, .smart-form .icon-append, .smart-form .icon-prepend, .smart-form .input input, .smart-form .radio i, .smart-form .select select, .smart-form .textarea textarea, .smart-form .toggle i {
-	border-color: #BDBDBD;
+	border-color: #CCCCCC;
 	transition: border-color .3s;
 	-o-transition: border-color .3s;
 	-ms-transition: border-color .3s;
