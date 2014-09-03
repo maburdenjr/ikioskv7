@@ -150,7 +150,7 @@ if (isset($_GET['ajaxAction'])) {
 		
 		$response = "<form id = \"edit-userPermissions\" class=\"smart-form\" method=\"post\">";
 		$response .= "<table id=\"dt-userPermissions\" class=\"table table-striped table-hover table-bordered no-border\" width=\"100%\">";
-		$response .="<thead><tr><th>Application</th><th>Required Permissions</th><th>Set User Permissions</th></tr></thead>";
+		$response .="<thead><tr><th>Application</th><th>Required</th><th>Set User Permissions</th></tr></thead>";
 		$response .= "<tbody>";
 		
 		do {
@@ -407,7 +407,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-addSite2Team")) {
 	$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
 	sqlQueryLog($insertSQL);
 	
-	$js = "$('#editCtn-SysUsers-sys-admin-sites .jarviswidget-refresh-btn').click();\r\n";
+	$js = "$('#editCtn-SysUsers-sites .jarviswidget-refresh-btn').click();\r\n";
 	insertJS($js);
 	exit;	
 }
@@ -426,7 +426,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-addSite2Team")) {
 		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
 		sqlQueryLog($insertSQL);
 		
-		$js = "$('#editCtn-SysUsers-sys-admin-teams .jarviswidget-refresh-btn').click();\r\n";
+		$js = "$('#editCtn-SysUsers-teams .jarviswidget-refresh-btn').click();\r\n";
 		insertJS($js);
 		exit;	
 	}

@@ -401,7 +401,7 @@
     </article>
   </div>
   <div class="row">
-  	<article class="col-sm-12 col-md-8 col-lg-8">
+  	<article class="col-sm-12 col-md-6 col-lg-6">
     	<div class="jarviswidget" id="editCtn-SysUsers-<?php echo $row_getRecord['user_id']; ?>-permissions" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userPermissions&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-cubes"></i> </span>
           <h2>Application Permissions</h2>
@@ -415,8 +415,8 @@
         </div>
       </div>
     </article>
-    <article class="col-sm-12 col-md-4 col-lg-4">
-    <div class="jarviswidget" id="editCtn-SysUsers-<?php echo $row_getRecord['user_id']; ?>-teams" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userTeams&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
+    <article class="col-sm-12 col-md-3 col-lg-3">
+    <div class="jarviswidget" id="editCtn-SysUsers-teams" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userTeams&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-group"></i> </span>
           <h2>Team Membership</h2>
         </header>
@@ -428,7 +428,10 @@
           <div class="widget-body no-padding"> </div>
         </div>
       </div>
-      <div class="jarviswidget" id="editCtn-SysUsers-<?php echo $row_getRecord['user_id']; ?>-sites" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userSites&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
+      
+    </article>
+        <article class="col-sm-12 col-md-3 col-lg-3">
+<div class="jarviswidget" id="editCtn-SysUsers-sites" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userSites&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
           <h2>Site Access List</h2>
         </header>
@@ -440,7 +443,7 @@
           <div class="widget-body no-padding"> </div>
         </div>
       </div>
-    </article>
+</article>
   </div>
 </section>
 <script type="text/javascript">
