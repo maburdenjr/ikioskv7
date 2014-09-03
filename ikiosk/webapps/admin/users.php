@@ -94,8 +94,8 @@
               <label class="label">Administrator?</label>
               <label class="select">
                 <select name="is_admin">
-                                   <option value="Yes" <?php if (!(strcmp("Yes", $row_getRecord['is_admin']))) {echo "selected=\"selected\"";} ?>>Yes</option>
-                            <option value="No" <?php if (!(strcmp("No", $row_getRecord['is_admin']))) {echo "selected=\"selected\"";} ?>>No</option>
+                  <option value="Yes" <?php if (!(strcmp("Yes", $row_getRecord['is_admin']))) {echo "selected=\"selected\"";} ?>>Yes</option>
+                  <option value="No" <?php if (!(strcmp("No", $row_getRecord['is_admin']))) {echo "selected=\"selected\"";} ?>>No</option>
                 </select>
                 <i></i> </label>
             </section>
@@ -103,29 +103,27 @@
               <label class="label">User Type</label>
               <label class="select">
                 <select name="user_type">
-                   <option value="Web Portal User" <?php if (!(strcmp("Web Portal User", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Web Portal User</option>
-                            <option value="Standard" <?php if (!(strcmp("Standard", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Standard</option>
-                            <option value="Internal" <?php if (!(strcmp("Internal", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Internal</option>
-                            <option value="Administrator" <?php if (!(strcmp("Administrator", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Administrator</option>
-                            <option value="Super Admin" <?php if (!(strcmp("Super Admin", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Super Admin</option>
-                            <?php if ($USER['user_type'] == "iKiosk Admin") { ?>
-                            <option value="iKiosk Admin" <?php if (!(strcmp("iKiosk Admin", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>iKiosk Admin</option>
-                            <?php } ?>
+                  <option value="Web Portal User" <?php if (!(strcmp("Web Portal User", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Web Portal User</option>
+                  <option value="Standard" <?php if (!(strcmp("Standard", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Standard</option>
+                  <option value="Internal" <?php if (!(strcmp("Internal", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Internal</option>
+                  <option value="Administrator" <?php if (!(strcmp("Administrator", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Administrator</option>
+                  <option value="Super Admin" <?php if (!(strcmp("Super Admin", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>Super Admin</option>
+                  <?php if ($USER['user_type'] == "iKiosk Admin") { ?>
+                  <option value="iKiosk Admin" <?php if (!(strcmp("iKiosk Admin", $row_getRecord['user_type']))) {echo "selected=\"selected\"";} ?>>iKiosk Admin</option>
+                  <?php } ?>
                 </select>
                 <i></i> </label>
             </section>
-
           </div>
-
-            <section>
-              <label class="label">Account Status</label>
-              <label class="select">
-                <select name="user_status">
-                  <option value="Active" <?php if (!(strcmp("Active", $row_getRecord['user_status']))) {echo "selected=\"selected\"";} ?>>Active</option>
-                  <option value="Inactive" <?php if (!(strcmp("Inactive", $row_getRecord['user_status']))) {echo "selected=\"selected\"";} ?>>Inactive</option>
-                </select>
-                <i></i> </label>
-            </section>
+          <section>
+            <label class="label">Account Status</label>
+            <label class="select">
+              <select name="user_status">
+                <option value="Active" <?php if (!(strcmp("Active", $row_getRecord['user_status']))) {echo "selected=\"selected\"";} ?>>Active</option>
+                <option value="Inactive" <?php if (!(strcmp("Inactive", $row_getRecord['user_status']))) {echo "selected=\"selected\"";} ?>>Inactive</option>
+              </select>
+              <i></i> </label>
+          </section>
           <input type="hidden" name="formID" value="create-SysUsers">
           <input type="hidden" name="iKioskForm" value="Yes">
           <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
@@ -401,8 +399,8 @@
     </article>
   </div>
   <div class="row">
-  	<article class="col-sm-12 col-md-6 col-lg-6">
-    	<div class="jarviswidget" id="editCtn-SysUsers-<?php echo $row_getRecord['user_id']; ?>-permissions" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userPermissions&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
+    <article class="col-sm-12 col-md-6 col-lg-6">
+      <div class="jarviswidget" id="editCtn-SysUsers-<?php echo $row_getRecord['user_id']; ?>-permissions" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userPermissions&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-cubes"></i> </span>
           <h2>Application Permissions</h2>
         </header>
@@ -414,24 +412,7 @@
           <div class="widget-body no-padding"> </div>
         </div>
       </div>
-    </article>
-    <article class="col-sm-12 col-md-3 col-lg-3">
-    <div class="jarviswidget" id="editCtn-SysUsers-teams" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userTeams&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
-        <header> <span class="widget-icon"> <i class="fa fa-group"></i> </span>
-          <h2>Team Membership</h2>
-        </header>
-        <div>
-          <div class="jarviswidget-editbox"> 
-            <!-- This area used as dropdown edit box -->
-            <input class="form-control" type="text">
-          </div>
-          <div class="widget-body no-padding"> </div>
-        </div>
-      </div>
-      
-    </article>
-        <article class="col-sm-12 col-md-3 col-lg-3">
-<div class="jarviswidget" id="editCtn-SysUsers-sites" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userSites&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
+      <div class="jarviswidget" id="editCtn-SysUsers-sites" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userSites&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
           <h2>Site Access List</h2>
         </header>
@@ -443,7 +424,21 @@
           <div class="widget-body no-padding"> </div>
         </div>
       </div>
-</article>
+    </article>
+    <article class="col-sm-12 col-md-6 col-lg-6">
+      <div class="jarviswidget" id="editCtn-SysUsers-teams" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userTeams&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
+        <header> <span class="widget-icon"> <i class="fa fa-group"></i> </span>
+          <h2>Team Membership</h2>
+        </header>
+        <div>
+          <div class="jarviswidget-editbox"> 
+            <!-- This area used as dropdown edit box -->
+            <input class="form-control" type="text">
+          </div>
+          <div class="widget-body no-padding"> </div>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 <script type="text/javascript">
