@@ -3,6 +3,109 @@
 
 if (isset($_GET['ajaxAction'])) {
 	
+	// Select Site for Specific User 
+	if ($_GET['ajaxAction'] == "userSites") {
+		
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$query_listView = "SELECT * FROM sys_users2sites WHERE user_id='".$_GET['recordID']."' AND deleted='0'";
+			$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
+			$row_listView = mysql_fetch_assoc($listView);
+			$totalRows_listView = mysql_num_rows($listView);
+			
+			if ($totalRows_listView != 0) {
+			$response .= "<section class=\"stacked-set\"><table id=\"dt-SysUsers-Sites\" class=\"table table-striped table-hover table-bordered no-margin no-border\" width=\"100%\">";
+			$response .= "<tbody>";
+			
+			do {
+				$siteTitle = "";
+				$siteTitle = crossReference("sys_sites", "site_id", $row_listView['site_id'], $subQuery, $teamFilter, $siteFilter, "site_name", "return");
+				if ($siteTitle != "") {
+				$response .="<tr class=\"".$row_listView['join_id']."\">";
+				$response .="<td><a href=\"index.php?action=edit&recordID=".$row_listView['site_id']."#webapps/admin/sites.php\" class=\"ajaxLink\">".$siteTitle."</a></td>";
+
+				$response .="<td class=\"icon\"><a class=\"delete-record\" data-table=\"sys_users2sites\" data-record=\"".$row_listView['join_id']."\" data-code=\"".$APPLICATION['application_code']."\" data-field=\"join_id\"><i class=\"fa fa-trash-o\"></i></a></td>";
+				$response .= "</tr>";
+				}
+				} while ($row_listView = mysql_fetch_assoc($listView));		
+			$response .= "</tbody>";	
+			$response .= "</table></section>";
+						}
+
+			
+			echo $response;
+			exit;
+	}
+	
+	// Select Team for Specific User 
+	if ($_GET['ajaxAction'] == "userTeams") {
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$query_listView = "SELECT * FROM sys_users2teams WHERE user_id='".$_GET['recordID']."' AND deleted='0'";
+		$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
+		$row_listView = mysql_fetch_assoc($listView);
+		$totalRows_listView = mysql_num_rows($listView);
+		
+		$response = "<section class=\"stacked-set\"><table id=\"dt-SysUsers-Teams\" class=\"table table-striped table-hover table-bordered no-margin no-border\" width=\"100%\">";
+		$response .= "<tbody>";
+		
+		if ($totalRows_listView != 0) {
+			do {
+			$teamTitle = "";
+			$teamTitle = crossReference("sys_teams", "team_id", $row_listView['team_id'], $subQuery, $teamFilter, $siteFilter, "title", "return");
+			if ($teamTitle != "") {	
+				$response .="<tr class=\"".$row_listView['join_id']."\">";
+				$response .="<td><a href=\"index.php?action=edit&recordID=".$row_listView['team_id']."#webapps/admin/teams.php\" class=\"ajaxLink\">";
+				$response .= $teamTitle;
+				$response .= "</a></td>";
+				$response .="<td class=\"icon\"><a class=\"delete-record\" data-table=\"sys_users2teams\" data-record=\"".$row_listView['join_id']."\" data-code=\"".$APPLICATION['application_code']."\" data-field=\"join_id\"><i class=\"fa fa-trash-o\"></i></a></td>";
+				$response .= "</tr>";
+			}
+			
+			} while ($row_listView = mysql_fetch_assoc($listView));		
+		}
+		
+		$response .= "</tbody>";	
+		$response .= "</table></section>";
+		$response .= "<form id = \"edit-addTeam2User\" class=\"smart-form\" method=\"post\">
+              <fieldset>
+              <div class=\"form-response\"></div>
+                <section>
+                  <label class=\"select\">
+                    <select name=\"team_id\">
+                      <option value=\"\">Select Team</option>
+                      ".addTeam2User($_GET['recordID'])."</select><i></i>
+                  </label>
+                </section>
+              </fieldset>";
+							
+    $response .= "<footer>
+                <button type=\"submit\" class=\"btn btn-primary btn-ajax-submit\" data-form=\"edit-AddUserToTeam\"> <i class=\"fa fa-plus\"></i> Add Team</button>
+                <input type=\"hidden\" name=\"user_id\" value=\"".$_GET['recordID']."\" />
+                <input type=\"hidden\" name=\"formID\" value=\"edit-addTeam2User\">
+                <input type=\"hidden\" name=\"iKioskForm\" value=\"Yes\" />
+                <input type=\"hidden\" name=\"appCode\" value=\"".$APPLICATION['application_code']."\" />
+              </footer>
+            </form>";
+						
+						$response .= "<script type=\"text/javascript\">
+						$(\"#edit-addTeam2User\").validate({
+           errorPlacement : function(error, element) {
+               error.insertAfter(element.parent());
+           },
+           submitHandler: function(form) {
+               var targetForm = $(this.currentForm).attr(\"id\");
+               submitAjaxForm(targetForm);
+           }
+			 });
+			 </script>\r\n";
+			 
+
+	
+	
+		echo $response;
+		exit;
+	}
+	
 	// Application Permissions for Specific User
 	if($_GET['ajaxAction'] == "userPermissions") {
 		
@@ -13,7 +116,7 @@ if (isset($_GET['ajaxAction'])) {
 		 $totalRows_sysAppsList = mysql_num_rows($sysAppsList);
 		
 		$response = "<form id = \"edit-userPermissions\" class=\"smart-form\" method=\"post\">";
-		$response .= "<table id=\"dt-userPermissions\" class=\"table table-striped table-hover\" width=\"100%\">";
+		$response .= "<table id=\"dt-userPermissions\" class=\"table table-striped table-hover table-bordered no-border\" width=\"100%\">";
 		$response .="<thead><tr><th>Application</th><th>Required Permissions</th><th>Set User Permissions</th></tr></thead>";
 		$response .= "<tbody>";
 		
@@ -26,7 +129,7 @@ if (isset($_GET['ajaxAction'])) {
 		 $totalRows_myGPSCode = mysql_num_rows($myGPSCode);
 		 $activeGPSCode = $row_myGPSCode[$row_sysAppsList['application_code']];
 		 
-		 $response .= "<tr><td>".$row_sysAppsList['application_title']."</td>";
+		 $response .= "<tr><td><a href=\"index.php?action=edit&recordID=".$row_sysAppsList['application_id']."#webapps/admin/applications.php\" class=\"ajaxLink\">".$row_sysAppsList['application_title']."</a></td>";
 		 $response .= "<td>".$row_sysAppsList['application_clearance']."</td>";
 		 $response .= "<td><label class=\"select\">";
 		 $response .= "<select name=\"gpsCode[]\">";
@@ -255,6 +358,26 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
+
+	//User : Add Team to User  -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-addTeam2User")) {
+		
+		$insertSQL = sprintf("INSERT INTO sys_users2teams (team_id, user_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+				GetSQLValueString($_POST['team_id'], "text"),
+				GetSQLValueString($_POST['user_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"));
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+		
+		$js = "$('.jarviswidget-refresh-btn').click();\r\n";
+		insertJS($js);
+		exit;	
+	}
 	
 	//User : Update Permissions -------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-userPermissions")) {

@@ -218,3 +218,16 @@ body, html {
 .modal-header, .modal-footer {
 		background-color:#F7F7F7;		
 }
+
+.stacked-set {
+		border-bottom: 1px solid #CCC;	
+}
+
+.table>thead>tr>th {
+		border-bottom: 	1px solid #ddd; 
+
+}
+
+td.icon {
+	width:35px;
+}
