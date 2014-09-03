@@ -30,6 +30,39 @@ if (isset($_GET['ajaxAction'])) {
 			$response .= "</tbody>";	
 			$response .= "</table></section>";
 						}
+						
+			$response .= "<form id = \"edit-addSite2Team\" class=\"smart-form\" method=\"post\">
+              <fieldset>
+              <div class=\"form-response\"></div>
+                <section>
+                  <label class=\"select\">
+                    <select name=\"site_id\">
+                      <option value=\"\">Select Site</option>
+                      ".addSite2User($_GET['recordID'])."</select><i></i>
+                  </label>
+                </section>
+              </fieldset>";
+							
+    $response .= "<footer>
+                <button type=\"submit\" class=\"btn btn-primary btn-ajax-submit\" data-form=\"edit-AddUserToTeam\"> <i class=\"fa fa-plus\"></i> Add Site</button>
+                <input type=\"hidden\" name=\"user_id\" value=\"".$_GET['recordID']."\" />
+                <input type=\"hidden\" name=\"formID\" value=\"edit-addSite2Team\">
+                <input type=\"hidden\" name=\"iKioskForm\" value=\"Yes\" />
+                <input type=\"hidden\" name=\"appCode\" value=\"".$APPLICATION['application_code']."\" />
+              </footer>
+            </form>";
+						
+						$response .= "<script type=\"text/javascript\">
+						$(\"#edit-addSite2Team\").validate({
+           errorPlacement : function(error, element) {
+               error.insertAfter(element.parent());
+           },
+           submitHandler: function(form) {
+               var targetForm = $(this.currentForm).attr(\"id\");
+               submitAjaxForm(targetForm);
+           }
+			 });
+			 </script>\r\n";			
 
 			
 			echo $response;
@@ -358,7 +391,26 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
-
+	
+	//User :  Add Site to User  -------------------------------------------
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-addSite2Team")) {
+	
+	$insertSQL = sprintf("INSERT INTO sys_users2sites (site_id, user_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+				GetSQLValueString($_POST['site_id'], "text"),
+				GetSQLValueString($_POST['user_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"));
+		
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+	sqlQueryLog($insertSQL);
+	
+	$js = "$('#editCtn-SysUsers-sys-admin-sites .jarviswidget-refresh-btn').click();\r\n";
+	insertJS($js);
+	exit;	
+}
 	//User : Add Team to User  -------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-addTeam2User")) {
 		
@@ -374,7 +426,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
 		sqlQueryLog($insertSQL);
 		
-		$js = "$('.jarviswidget-refresh-btn').click();\r\n";
+		$js = "$('#editCtn-SysUsers-sys-admin-teams .jarviswidget-refresh-btn').click();\r\n";
 		insertJS($js);
 		exit;	
 	}
@@ -389,7 +441,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 			sqlQueryLog($updateSQL);
 		}
 		
-		$js = "$('.jarviswidget-refresh-btn').click();\r\n";
+		$js = "$('#editCtn-SysUsers-sys-admin-permissions .jarviswidget-refresh-btn').click();\r\n";
 		insertJS($js);
 		exit;
 		
