@@ -400,7 +400,7 @@
   </div>
   <div class="row">
     <article class="col-sm-12 col-md-6 col-lg-6">
-      <div class="jarviswidget" id="editCtn-SysUsers-<?php echo $row_getRecord['user_id']; ?>-permissions" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userPermissions&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
+      <div class="jarviswidget" id="editCtn-SysUsers-permissions" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userPermissions&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-cubes"></i> </span>
           <h2>Application Permissions</h2>
         </header>

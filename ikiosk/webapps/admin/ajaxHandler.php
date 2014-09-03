@@ -441,7 +441,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-addSite2Team")) {
 			sqlQueryLog($updateSQL);
 		}
 		
-		$js = "$('#editCtn-SysUsers-sys-admin-permissions .jarviswidget-refresh-btn').click();\r\n";
+		$js = "$('#editCtn-SysUsers-permissions .jarviswidget-refresh-btn').click();\r\n";
 		insertJS($js);
 		exit;
 		
