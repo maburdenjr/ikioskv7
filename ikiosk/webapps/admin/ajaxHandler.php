@@ -3,6 +3,85 @@
 
 if (isset($_GET['ajaxAction'])) {
 	
+	// Application Permissions for Specific User
+	if($_GET['ajaxAction'] == "userPermissions") {
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		 $query_sysAppsList = "SELECT * FROM sys_applications WHERE deleted = '0' ORDER BY application_title ASC";
+		 $sysAppsList = mysql_query($query_sysAppsList, $ikiosk) or sqlError(mysql_error());
+		 $row_sysAppsList = mysql_fetch_assoc($sysAppsList);
+		 $totalRows_sysAppsList = mysql_num_rows($sysAppsList);
+		
+		$response = "<form id = \"edit-userPermissions\" class=\"smart-form\" method=\"post\">";
+		$response .= "<table id=\"dt-userPermissions\" class=\"table table-striped table-hover\" width=\"100%\">";
+		$response .="<thead><tr><th>Application</th><th>Required Permissions</th><th>Set User Permissions</th></tr></thead>";
+		$response .= "<tbody>";
+		
+		do {
+			
+			mysql_select_db($database_ikiosk, $ikiosk);
+		 $query_myGPSCode = "SELECT * FROM sys_permissions WHERE user_id = '".$_GET['recordID']."'";
+		 $myGPSCode = mysql_query($query_myGPSCode, $ikiosk) or sqlError(mysql_error());
+		 $row_myGPSCode = mysql_fetch_assoc($myGPSCode);
+		 $totalRows_myGPSCode = mysql_num_rows($myGPSCode);
+		 $activeGPSCode = $row_myGPSCode[$row_sysAppsList['application_code']];
+		 
+		 $response .= "<tr><td>".$row_sysAppsList['application_title']."</td>";
+		 $response .= "<td>".$row_sysAppsList['application_clearance']."</td>";
+		 $response .= "<td><label class=\"select\">";
+		 $response .= "<select name=\"gpsCode[]\">";
+		 
+		 $response .= "<option value=\"000\" ";
+		 if ($activeGPSCode == "000") { $response .= "selected" ; }
+		 $response .= ">000 - No Access</option>";
+		 
+		 $response .= "<option value=\"111\" ";
+		 if ($activeGPSCode == "111") { $response .= "selected" ; }
+		 $response .= ">111 - Standard</option>";
+		 
+		 $response .= "<option value=\"112\" ";
+		 if ($activeGPSCode == "112") { $response .= "selected" ; }
+		 $response .= ">112 - Administrative</option>";
+		 
+		  $response .= "<option value=\"999\" ";
+		 if ($activeGPSCode == "999") { $response .= "selected" ; }
+		 $response .= ">999 - Super Administrator</option>";
+		 
+		 $response .= "</select><i></i>";
+		 $response .= "<input name=\"appCodes[]\" type=\"hidden\" value=\"".$row_sysAppsList['application_code']."\" />";
+		 $response .= "</label></td></tr>";
+			
+		} while ($row_sysAppsList = mysql_fetch_assoc($sysAppsList));
+		
+		$response .= "</tbody>";
+		$response .= "</table>";
+		$response .= "<footer><div class=\"form-response\"></div>";
+		$response .= "<button type=\"submit\" class=\"btn btn-primary btn-ajax-submit\" data-form=\"edit-userPermissions\"> <i class=\"fa fa-check\"></i> Update Permissions </button>";
+		$response .= "<input type=\"hidden\" name=\"user_id\" value=\"".$_GET['recordID']."\" />";
+		$response .= "<input type=\"hidden\" name=\"formID\" value=\"edit-userPermissions\">";
+
+		$response .= "<input type=\"hidden\" name=\"iKioskForm\" value=\"Yes\" />";
+		$response .= "<input type=\"hidden\" name=\"appCode\" value=\"".$APPLICATION['application_code']."\" />";
+
+		$response .= "</footer>";
+		$response .= "</form>";
+		
+		$response .= "<script type=\"text/javascript\">
+						$(\"#edit-userPermissions\").validate({
+           errorPlacement : function(error, element) {
+               error.insertAfter(element.parent());
+           },
+           submitHandler: function(form) {
+               var targetForm = $(this.currentForm).attr(\"id\");
+               submitAjaxForm(targetForm);
+           }
+			 });
+			 </script>";
+			 
+		echo $response;
+		exit;
+	}
+	
 	// List of Team Members for a Specific Team
 	if($_GET['ajaxAction'] == "teamMemberSelect") {
 
@@ -177,8 +256,87 @@ if (isset($_GET['ajaxAction'])) {
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+	//User : Update Permissions -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-userPermissions")) {
+		
+		foreach ($_POST['appCodes'] as $var => $value) {
+			$updateSQL = "UPDATE sys_permissions SET ".$_POST['appCodes'][$var]." = '".$_POST['gpsCode'][$var]."' WHERE user_id = '".$_POST['user_id']."'";
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($updateSQL);
+		}
+		
+		$js = "$('.jarviswidget-refresh-btn').click();\r\n";
+		insertJS($js);
+		exit;
+		
+	}
+	
 	//Users : Create -------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-SysUsers")) {
+		$generateID = create_guid();
+
+$insertSQL = sprintf("INSERT INTO sys_users (user_id, login_email, login_password, login_password_hash, display_name, first_name, last_name, is_admin, user_type, user_timezone, user_dateformat, user_cms_level, user_homepage, user_status, user_photo_id, facebook_id, youtube_id, twitter_id, flickr_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+        GetSQLValueString($generateID, "text"),
+        GetSQLValueString($_POST['login_email'], "text"),
+        GetSQLValueString($_POST['login_password'], "text"),
+        GetSQLValueString(md5($_POST['login_password']), "text"),
+        GetSQLValueString($_POST['display_name'], "text"),
+        GetSQLValueString($_POST['first_name'], "text"),
+        GetSQLValueString($_POST['last_name'], "text"),
+        GetSQLValueString($_POST['is_admin'], "text"),
+        GetSQLValueString($_POST['user_type'], "text"),
+        GetSQLValueString($_POST['user_timezone'], "text"),
+        GetSQLValueString($_POST['user_dateformat'], "text"),
+        GetSQLValueString($_POST['user_cms_level'], "text"),
+        GetSQLValueString($_POST['user_homepage'], "text"),
+        GetSQLValueString($_POST['user_status'], "text"),
+        GetSQLValueString('profile-default', "text"),
+        GetSQLValueString($_POST['facebook_id'], "text"),
+        GetSQLValueString($_POST['youtube_id'], "text"),
+        GetSQLValueString($_POST['twitter_id'], "text"),
+        GetSQLValueString($_POST['flickr_id'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"));
+
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+		
+		//Create Team Link
+		$insertSQL = sprintf("INSERT INTO sys_users2teams (team_id, user_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+        GetSQLValueString("1", "text"),
+        GetSQLValueString($generateID, "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"));
+
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+
+		//Create App Permissions
+		$insertSQL = sprintf("INSERT INTO sys_permissions (user_id, SYS, IKIOSK, USER, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+        GetSQLValueString($generateID, "text"),
+        GetSQLValueString("000", "text"),
+        GetSQLValueString("111", "text"),
+        GetSQLValueString("111", "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"));
+
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+		
+		$hideModal= "$('.modal-backdrop').remove(); \r\n";
+		insertJS($hideModal." ".$refresh);
+		exit;	
+		
 	}
 	
 	//Users : Edit -------------------------------------------

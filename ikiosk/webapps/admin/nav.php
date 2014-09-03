@@ -29,7 +29,7 @@ $page_nav["admin"] = array(
 	"sub" => array(
 		"applications" => array(
 			"title" => "Applications",
-			"url" => "webapps/admin/applications.php"
+			"url" => "webapps/admin/applications.php",
 		),
 		"error" => array(
 			"title" => "Error Codes",
