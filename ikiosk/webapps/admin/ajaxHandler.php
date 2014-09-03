@@ -273,7 +273,7 @@ if (isset($_GET['ajaxAction'])) {
 				$userCheck = getUserData($row_listView['user_id'], 'display_name');
 				if ($userCheck != "") {
 					$response .="<tr class=\"".$row_listView['join_id']."\">";
-					$response .="<td>".getUserData($row_listView['user_id'], 'display_name')."</td>";
+					$response .="<td><a href=\"index.php?action=edit&recordID=".$row_listView['user_id']."#webapps/admin/users.php\" class=\"ajaxLink\">".getUserData($row_listView['user_id'], 'display_name')."</a></td>";
 					$response .="<td>".getUserData($row_listView['user_id'], 'user_status')."</td>";
 					$response .="<td class=\"icon\"><a class=\"delete-record\" data-table=\"sys_users2teams\" data-record=\"".$row_listView['join_id']."\" data-code=\"".$APPLICATION['application_code']."\" data-field=\"join_id\"><i class=\"fa fa-trash-o\"></i></a></td>";
 					$response .= "</tr>";

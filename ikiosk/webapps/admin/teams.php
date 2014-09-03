@@ -201,7 +201,7 @@
     </article>
   </div>
   <div class="row">
-  		    <article class="col-sm-12 col-md-7 col-lg-7">
+  		    <article class="col-sm-12 col-md-6 col-lg-6">
           <div class="jarviswidget" id="editCtn-SysTeams-<?php echo $row_getRecord['team_id']; ?>-members" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMembers&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-user"></i> </span>
           <h2>Team Members</h2>
@@ -215,7 +215,7 @@
         </div>
       </div>
 					</article>
-          <article class="col-sm-12 col-md-5 col-lg-5">
+          <article class="col-sm-12 col-md-6 col-lg-6">
           <div class="jarviswidget" id="editCtn-SysTeams-Add" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMemberSelect&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-user"></i> </span>
           <h2>Add User</h2>
