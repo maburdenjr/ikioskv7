@@ -33,6 +33,7 @@ $totalRows_listView = mysql_num_rows($listView);
             <tr>
               <th>Backup File</th>
               <th>Date Created</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -40,6 +41,7 @@ $totalRows_listView = mysql_num_rows($listView);
 			<tr>
             <td><a href="/backups/<?php echo $row_listView['backup_file']; ?>" target="_blank"><?php echo $row_listView['backup_file']; ?></a></td>
             <td><?php timezoneProcess($row_listView['date_created'], "print"); ?></td>
+            <td></td>
             </tr>
 		<?php } while ($row_listView = mysql_fetch_assoc($listView)); } ?>
         </tbody>
