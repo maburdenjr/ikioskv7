@@ -400,18 +400,7 @@
   </div>
   <div class="row">
     <article class="col-sm-12 col-md-6 col-lg-6">
-      <div class="jarviswidget" id="editCtn-SysUsers-permissions" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userPermissions&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
-        <header> <span class="widget-icon"> <i class="fa fa-cubes"></i> </span>
-          <h2>Application Permissions</h2>
-        </header>
-        <div>
-          <div class="jarviswidget-editbox"> 
-            <!-- This area used as dropdown edit box -->
-            <input class="form-control" type="text">
-          </div>
-          <div class="widget-body no-padding"> </div>
-        </div>
-      </div>
+      
       <div class="jarviswidget" id="editCtn-SysUsers-sites" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userSites&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
           <h2>Site Access List</h2>
@@ -424,8 +413,6 @@
           <div class="widget-body no-padding"> </div>
         </div>
       </div>
-    </article>
-    <article class="col-sm-12 col-md-6 col-lg-6">
       <div class="jarviswidget" id="editCtn-SysUsers-teams" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userTeams&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-group"></i> </span>
           <h2>Team Membership</h2>
@@ -438,6 +425,21 @@
           <div class="widget-body no-padding"> </div>
         </div>
       </div>
+    </article>
+    <article class="col-sm-12 col-md-6 col-lg-6">
+    <div class="jarviswidget" id="editCtn-SysUsers-permissions" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=userPermissions&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
+        <header> <span class="widget-icon"> <i class="fa fa-cubes"></i> </span>
+          <h2>Application Permissions</h2>
+        </header>
+        <div>
+          <div class="jarviswidget-editbox"> 
+            <!-- This area used as dropdown edit box -->
+            <input class="form-control" type="text">
+          </div>
+          <div class="widget-body no-padding"> </div>
+        </div>
+      </div>
+      
     </article>
   </div>
 </section>

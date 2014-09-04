@@ -124,10 +124,6 @@ pre.html {
 }
 
 .menu-on-top aside#left-panel nav>ul>li {
-	border:none;
-}
-
-.menu-on-top aside#left-panel nav>ul>li {
 	border-radius: 2px;
 	-webkit-border-radius: 2px;
 	background-color: transparent;
@@ -140,7 +136,6 @@ pre.html {
 	margin-left: 5px !important;
 	margin-bottom: 5px;
 }
-
 
 .menu-on-top aside#left-panel nav>ul>li>a { 
 	color: #444;
@@ -160,8 +155,8 @@ nav ul .active>a {
 }
 
 #ribbon {
-	border-bottom: 1px solid #C3C3C3;
-	background-color: #E3E3E3;
+	border-bottom: 1px solid #D5D5D5;
+	background-color: #EBEBEB;
 }
 
 #ribbon .breadcrumb, #ribbon .breadcrumb a {
@@ -204,15 +199,15 @@ nav ul .active>a {
 }
 
 .smart-form fieldset {
-	background-color:#F7F7F7;
+	background-color: #FDFDFD;
 }
 
 body, html {
-	background-color: #E8E8E8;
+	background: #E9EAED;
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover {
-		background-color:#F7F7F7;	
+		background-color:#FDFDFD;	
 }
 
 .modal-header, .modal-footer {
@@ -229,5 +224,6 @@ body, html {
 }
 
 td.icon {
-	width:35px;
+	width:50px;
 }
+
