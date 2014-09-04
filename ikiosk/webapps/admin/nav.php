@@ -71,15 +71,12 @@ $page_nav["admin"] = array(
 		),
 		"advanced" => array(
 			"title" => "Advanced Tools",
+			"url" => "webapps/admin/softwareUpdates.php",
 			"sub" => array (
 				"phpmyadmin" => array(
 						"title" => "phpMyAdmin",
 						"url" => $SYSTEM['html_root']."/ikiosk/webapps/phpmyadmin/index.php",
 						"url_target"=> "_blank"
-				),
-				"quickquery" => array(
-					"title" => "mySQL Quick Query",
-					"url" => "webapps/admin/quickQuery.php"
 				),
 				"querybuilder" => array(
 					"title" => "Code Generator",
