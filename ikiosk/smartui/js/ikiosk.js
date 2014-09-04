@@ -5,16 +5,7 @@ function iKioskUI() {
 	//$('.smart-form input, .smart-form select').addClass('input-lg');
 	//$('.modal .smart-form input, .modal .smart-form select').removeClass('input-lg');
 	
-	//Fixed Header
-	$(window).on('scroll', function() {
-		docPos = $(document).scrollTop();
-		if (docPos > 25) {
-			$('#left-panel').addClass('floating');	
-		} else {
-			$('#left-panel').removeClass('floating');	
-		}
-	});
-	
+
 	//Delete Records
 	$('.widget-body').on('click', '.delete-record', function(){
 		event.stopPropagation();
