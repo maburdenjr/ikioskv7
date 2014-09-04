@@ -10,12 +10,12 @@
 .icon {
 	text-align:center;
 }
-.delete-record {
+.delete-record, .icon-action {
 	cursor:pointer;
 	color:rgba(0,0,0,0.75);
 }
 
-.delete-record i {
+.delete-record i, icon-action i {
 		font-size:16px;
 		text-align:center;
 }

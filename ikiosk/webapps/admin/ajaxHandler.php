@@ -3,6 +3,16 @@
 
 if (isset($_GET['ajaxAction'])) {
 	
+	// Delete Backup File
+	if ($_GET['ajaxAction'] == "deleteBackup") {
+		$status = deleteRecordv7("sys_backups", "backup_id", $_GET['record']);
+		displayAlert($status[0], $status[1]);
+		if ($status[0] == "success") {
+			insertJS("$('.".$_GET['record']."').fadeOut();");
+			unlink($SYSTEM['ikiosk_filesystem_root']."/backups/".$_GET['file']);
+		}
+	}
+	
 	// Select Site for Specific User 
 	if ($_GET['ajaxAction'] == "userSites") {
 		

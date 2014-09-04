@@ -19,6 +19,7 @@ $totalRows_listView = mysql_num_rows($listView);
 <section id="widget-grid">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    	<div class="system-message"></div>
       <div class="jarviswidget" id="sys-dbBackups" data-widget-editbutton="false" data-widget-deletebutton="false">
         <header> <span class="widget-icon"> <i class="fa fa-database"></i> </span>
           <h2>Backups</h2>
@@ -38,10 +39,10 @@ $totalRows_listView = mysql_num_rows($listView);
           </thead>
           <tbody>
         <?php if ($totalRows_listView != "0") { do { ?>
-			<tr>
+			<tr class="<?php echo $row_listView['backup_id']; ?>">
             <td><a href="/backups/<?php echo $row_listView['backup_file']; ?>" target="_blank"><?php echo $row_listView['backup_file']; ?></a></td>
             <td><?php timezoneProcess($row_listView['date_created'], "print"); ?></td>
-            <td></td>
+            <td class="icon"><a class="icon-action" data-type="backup-delete" data-record="<?php echo $row_listView['backup_id']; ?>" data-code="<?php echo $APPLICATION['application_code']; ?>" data-file="<?php echo $row_listView['backup_file']; ?>"><i class="fa fa-trash-o"></i></a></td>
             </tr>
 		<?php } while ($row_listView = mysql_fetch_assoc($listView)); } ?>
         </tbody>

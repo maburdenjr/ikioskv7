@@ -5,7 +5,36 @@ function iKioskUI() {
 	//$('.smart-form input, .smart-form select').addClass('input-lg');
 	//$('.modal .smart-form input, .modal .smart-form select').removeClass('input-lg');
 	
-
+	//Custom Actions
+	$('.widget-body').on('click', '.icon-action', function(){
+			event.stopPropagation();
+			var iconAction = $(this).data('type');
+			var code = $(this).data("code");
+			
+			//Delete Backups
+			if (iconAction == "backup-delete") {
+				var deleteBackup = confirm("Are you sure you want to delete this backup?");	
+				if (deleteBackup == true) {
+						var backupID = $(this).data('record');
+						var backupFile = $(this).data('file');
+						$.ajax({
+								url: "includes/core/formProcessor.php",	
+								data: {record: backupID, appCode: code, ajaxAction: "deleteBackup", file: backupFile},
+								timeout: 3000,
+							error: function(data) {
+									var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+									$('.system-message').html(error).fadeIn('slow');
+							},
+							success: function(data) {
+									$('.system-message').html(data).fadeIn('slow');
+									$('.jarviswidget-refresh-btn').click();
+							}
+						});
+				}
+			}
+	
+	});
+	
 	//Delete Records
 	$('.widget-body').on('click', '.delete-record', function(){
 		event.stopPropagation();
