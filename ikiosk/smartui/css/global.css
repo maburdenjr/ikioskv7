@@ -111,6 +111,10 @@ pre.html {
 	box-shadow:none;
 }
 
+.menu-on-top nav ul ul, .menu-on-top nav ul ul ul {
+	border-bottom: 1px solid #3276b1;	
+}
+
 #ribbon {
 	border-bottom: 1px solid #D5D5D5;
 	background-color: #EBEBEB;
