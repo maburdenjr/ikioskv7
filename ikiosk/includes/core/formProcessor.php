@@ -1,4 +1,5 @@
 <?php
+$PAGE['track'] = "No";
 $PAGE['application_code'] = isset($_POST['appCode']) ? $_POST['appCode'] : $_GET['appCode'];
 require('../../includes/core/ikiosk.php');
 

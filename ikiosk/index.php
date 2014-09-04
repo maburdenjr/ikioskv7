@@ -1,5 +1,6 @@
 <?php
 /* iKiosk 7.0 Tiger */
+$PAGE['track'] = "No";
 $PAGE['application_code'] = "USER";
 require('includes/core/ikiosk.php');
 require($SYSTEM['ikiosk_docroot'].'/smartui/inc/init.php');

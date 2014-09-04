@@ -1,6 +1,6 @@
 <?php
  /* iKiosk 7.0 Tiger */
-   
+   $PAGE['track'] = "No";
    $PAGE['application_code'] = "SYS";
    require('../../includes/core/ikiosk.php');
    
@@ -17,6 +17,14 @@
    }
 	 
  if ($panelAction == "list") { // List View - Default 
+ 
+ //Get and Parse Access Logs
+$accessFile = $SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/logs/queries.log";
+$fh = fopen($accessFile, 'r');
+$accessLogs = fread($fh, filesize($accessFile));
+fclose($fh);
+$accessLogData = explode("[iKioskLog]", $accessLogs);
+krsort($accessLogData);
 
  ?>
 
@@ -41,24 +49,49 @@
             <table id="dt-mysqlLogs" class="table table-striped table-bordered table-hover" width="100%">
               <thead>
                 <tr>
-                  <th>Date</th>
+                  <th nowrap>Date</th>
                   <th>User</th>
-                  <th>GPS</th>
-                  <th>IP Address</th>
-                  <th>Server</th>
+                  <th>IP </th>
                   <th>Site</th>
                   <th>Application</th>
-                  <th>URL</th>
+                  <th>Query</th>
                 </tr>
               </thead>
-              <tbody>
-              </tbody>
+               <tbody>
+<?php 
+foreach ($accessLogData  as $key => $value) { 
+	$accessLogRow = explode("|", $value);
+	$userName = getUserData($accessLogRow[6], "display_name");
+	$siteName = getSiteData(trim($accessLogRow[0]), "site_name");
+	$applicationName = crossReference("sys_applications", "application_code", $accessLogRow[1], $subQuery, $teamFilter, $siteFilter, "application_title", "return");
+	$applicationID = crossReference("sys_applications", "application_code", $accessLogRow[1], $subQuery, $teamFilter, $siteFilter, "application_id", "return");
+	$urlFilter = substr($accessLogRow[4], -4);
+		if ($urlFilter == "?v=0") {
+			$accessLogRow[4] = str_replace($urlFilter, "", $accessLogRow[4]);	
+		}
+	if (!empty($accessLogRow[6])) {
+	?>
+		<tr>
+            <td nowrap><?php timezoneProcess($accessLogRow[2], "print") ?></td>
+            <td><a href="index.php?action=edit&recordID=<?php echo $accessLogRow[7]; ?>#webapps/admin/users.php" class="ajaxLink"><?php echo $userName; ?></a></td>
+            <td><?php echo $accessLogRow[3]; ?></td>
+            <td><a href="index.php?action=edit&recordID=<?php echo trim($accessLogRow[0]); ?>#webapps/admin/sites.php" class="ajaxLink"><?php echo $siteName; ?></a></td>
+            <td><a href="index.php?action=edit&recordID=<?php echo $applicationID; ?>#webapps/admin/applications.php" class="ajaxLink"><?php echo $applicationName; ?></a><br><?php echo $accessLogRow[4]; ?></td>
+            <td><?php echo $accessLogRow[5]; ?></td>
+        </tr>
+<?php } } ?>
+	</tbody>
             </table>
           </div>
         </div>
       </div>
     </article>
   </div>
+  <script type="text/javascript">
+   var listView = $('#dt-mysqlLogs').dataTable({
+	 		"order": [[ 0, "desc" ]]
+	 });
+	</script> 
 </section>
 <?php } ?>
 <script type="text/javascript">

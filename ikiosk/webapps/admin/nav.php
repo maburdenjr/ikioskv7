@@ -53,6 +53,7 @@ $page_nav["admin"] = array(
 		),
 		"logs" => array(
 			"title" => "Logging",
+			"url" => "webapps/admin/accessLogs.php",
 			"sub" => array (
 				"access" => array(
 					"title" => "Access Logs",

@@ -1,6 +1,6 @@
 <?php
  /* iKiosk 7.0 Tiger */
-   
+   $PAGE['track'] = "No";
    $PAGE['application_code'] = "SYS";
    require('../../includes/core/ikiosk.php');
    
@@ -67,6 +67,10 @@ foreach ($accessLogData  as $key => $value) {
 		$siteName = getSiteData(trim($accessLogRow[0]), "site_name");
 		$applicationName = crossReference("sys_applications", "application_code", $accessLogRow[1], $subQuery, $teamFilter, $siteFilter, "application_title", "return");
 		$applicationID = crossReference("sys_applications", "application_code", $accessLogRow[1], $subQuery, $teamFilter, $siteFilter, "application_id", "return");
+		$urlFilter = substr($accessLogRow[5], -4);
+		if ($urlFilter == "?v=0") {
+			$accessLogRow[5] = str_replace($urlFilter, "", $accessLogRow[5]);	
+		}
 		if (!empty($accessLogRow[5])) {
 
 ?>
@@ -78,7 +82,7 @@ foreach ($accessLogData  as $key => $value) {
             <td><?php echo $accessLogRow[4]; ?></td>
             <td><a href="index.php?action=edit&recordID=<?php echo trim($accessLogRow[0]); ?>#webapps/admin/sites.php" class="ajaxLink"><?php echo $siteName; ?></a></td>
             <td><a href="index.php?action=edit&recordID=<?php echo $applicationID; ?>#webapps/admin/applications.php" class="ajaxLink"><?php echo $applicationName; ?></a></td>
-            <td><a href="<?php echo $accessLogRow[5]; ?>" target="_blank"><?php echo $accessLogRow[5]; ?></a></td>
+            <td><?php echo $accessLogRow[5]; ?></td>
       </tr>
 <?php }} ?>
               </tbody>
