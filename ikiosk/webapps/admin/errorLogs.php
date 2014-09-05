@@ -54,8 +54,7 @@ krsort($accessLogData);
                   <th>User</th>
                   <th>IP </th>
                   <th>Site</th>
-                  <th>Application</th>
-                  <th>Error</th>
+                  <th>Error Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -78,10 +77,8 @@ foreach ($accessLogData  as $key => $value) {
                   <td><a href="index.php?action=edit&recordID=<?php echo $accessLogRow[7]; ?>#webapps/admin/users.php" class="ajaxLink"><?php echo $userName; ?></a></td>
                   <td><?php echo $accessLogRow[4]; ?></td>
                   <td><a href="index.php?action=edit&recordID=<?php echo trim($accessLogRow[0]); ?>#webapps/admin/sites.php" class="ajaxLink"><?php echo $siteName; ?></a></td>
-                  <td><a href="index.php?action=edit&recordID=<?php echo $applicationID; ?>#webapps/admin/applications.php" class="ajaxLink"><?php echo $applicationName; ?></a><br><?php echo $accessLogRow[5]; ?></td>
-                  <td>
+                  <td><a href="index.php?action=edit&recordID=<?php echo $applicationID; ?>#webapps/admin/applications.php" class="ajaxLink"><?php echo $applicationName; ?></a><br><?php echo $accessLogRow[5]; ?><br><br><?php echo $accessLogRow[6]; ?></td>
                   
-                    <?php echo $accessLogRow[6]; ?></td>
                 </tr>
                 <?php } } ?>
               </tbody>
