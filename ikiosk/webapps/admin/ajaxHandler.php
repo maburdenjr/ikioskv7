@@ -3,6 +3,14 @@
 
 if (isset($_GET['ajaxAction'])) {
 	
+	// Create Backup
+	if ($_GET['ajaxAction'] == "createBackup") {
+		ikiosk_backup(); 
+		displayAlert("success", "Backup successfully created...");
+		insertJS($refresh);
+		exit;
+	}
+	
 	// Delete Backup File
 	if ($_GET['ajaxAction'] == "deleteBackup") {
 		$status = deleteRecordv7("sys_backups", "backup_id", $_GET['record']);
@@ -11,6 +19,7 @@ if (isset($_GET['ajaxAction'])) {
 			insertJS("$('.".$_GET['record']."').fadeOut();");
 			unlink($SYSTEM['ikiosk_filesystem_root']."/backups/".$_GET['file']);
 		}
+		exit;
 	}
 	
 	// Select Site for Specific User 

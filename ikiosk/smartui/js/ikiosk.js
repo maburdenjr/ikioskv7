@@ -5,11 +5,44 @@ function iKioskUI() {
 	//$('.smart-form input, .smart-form select').addClass('input-lg');
 	//$('.modal .smart-form input, .modal .smart-form select').removeClass('input-lg');
 	
+	
+	//Display Progress Bar
+	function progressBar() {
+		var progressBar = "<div class='progress progress-sm progress-striped active'><div class='progress-bar bg-color-blue' style='width: 0px'></div></div>";		
+		$('.system-message').html(progressBar).fadeIn();
+		$('.system-message .progress-bar').animate({
+				width: "100%"
+				}, 
+				{duration: 500,
+				complete: function () {
+					setTimeout(function(){
+					}, 600);
+				}
+			});
+	}
+	
 	//Custom Actions
 	$('.widget-body').on('click', '.icon-action', function(){
 			event.stopPropagation();
 			var iconAction = $(this).data('type');
 			var code = $(this).data("code");
+			
+			//Create Backup
+			if (iconAction == "backup-create") {
+				progressBar();
+				$.ajax({
+							url: "includes/core/formProcessor.php",	
+							data: {appCode: code, ajaxAction: "createBackup"},
+							timeout: 10000,
+						error: function(data) {
+								var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+								$('.system-message').html(error).fadeIn('slow');
+						},
+						success: function(data) {
+								$('.system-message').html(data).fadeIn('slow');
+						}
+					});
+			}
 			
 			//Delete Backups
 			if (iconAction == "backup-delete") {
@@ -33,7 +66,7 @@ function iKioskUI() {
 				}
 			}
 	
-	});
+	}); // End Custom Actions
 	
 	//Delete Records
 	$('.widget-body').on('click', '.delete-record', function(){
