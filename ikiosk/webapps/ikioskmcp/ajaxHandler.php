@@ -10,6 +10,41 @@ if (isset($_GET['ajaxAction'])) {
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+// Software Packages: Edit -------------------------------------------
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudSoftware")) {
+	
+	$_POST['local_folder'] = trim(str_replace("/", "", $_POST['local_folder']));
+	$_POST['local_folder'] = str_replace(" ", "", $_POST['local_folder']);
+	
+	$updateSQL = sprintf("UPDATE ikioskcloud_software SET software_title=%s, description=%s, version=%s, app_code=%s, software_type=%s, software_scope=%s, local_folder=%s, setup_file=%s, status=%s, folder_map=%s, date_modified=%s, modified_by=%s WHERE software_id=%s",
+					GetSQLValueString($_POST['software_title'], "text"),
+					GetSQLValueString($_POST['description'], "text"),
+					GetSQLValueString($_POST['version'], "text"),
+					GetSQLValueString($_POST['app_code'], "text"),
+					GetSQLValueString($_POST['software_type'], "text"),
+					GetSQLValueString($_POST['software_scope'], "text"),
+					GetSQLValueString($_POST['local_folder'], "text"),
+					GetSQLValueString($_POST['setup_file'], "text"),		
+					GetSQLValueString($_POST['status'], "text"),
+					GetSQLValueString($_POST['folder_map'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($_POST['software_id'], "text"));
+	
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+	sqlQueryLog($updateSQL);
+	
+	//Create Dir
+	$softwareDIR = $SYSTEM['ikiosk_filesystem_root']."/system32/software_apps/".$_POST['local_folder'];
+	createDIR($softwareDIR);
+	
+	$updateJS = "$('.page-title').html('".$_POST['software_title']."');\r\n";
+	insertJS($updateJS);
+	displayAlert("success", "Changes saved.");
+	exit;
+}
+	
 // Database Updates: Edit -------------------------------------------
 if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudDbUpdate")) {
     $updateSQL = sprintf("UPDATE ikioskcloud_db_update SET 
@@ -30,6 +65,42 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudDbUpdate"
     displayAlert("success", "Changes saved.");
 		exit;
 }	
+
+// Software Packages: Create -------------------------------------------
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudSoftware")) {
+	
+	$generateID = create_guid();
+	$_POST['local_folder'] = trim(str_replace("/", "", $_POST['local_folder']));
+	$_POST['local_folder'] = str_replace(" ", "", $_POST['local_folder']);
+	
+	$insertSQL = sprintf("INSERT INTO ikioskcloud_software (software_id, software_title, description, version, app_code, software_type, software_scope, local_folder, setup_file, status, folder_map, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+					GetSQLValueString($generateID , "text"),
+					GetSQLValueString($_POST['software_title'], "text"),
+					GetSQLValueString($_POST['description'], "text"),
+					GetSQLValueString($_POST['version'], "text"),
+					GetSQLValueString($_POST['app_code'], "text"),
+					GetSQLValueString($_POST['software_type'], "text"),
+					GetSQLValueString($_POST['software_scope'], "text"),
+					GetSQLValueString($_POST['local_folder'], "text"),
+			GetSQLValueString($_POST['setup_file'], "text"),
+					GetSQLValueString($_POST['status'], "text"),
+					GetSQLValueString($_POST['folder_map'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"));
+	
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+	sqlQueryLog($insertSQL);
+	
+	//Create Dir
+	$softwareDIR = $SYSTEM['ikiosk_filesystem_root']."/system32/software_apps/".$_POST['local_folder'];
+	createDIR($softwareDIR);
+		$hideModal= "$('.modal-backdrop').remove(); \r\n";
+		insertJS($hideModal." ".$refresh);
+  exit;
+}
 
 //Create DB Update	
 if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudDbUpdate")) {
