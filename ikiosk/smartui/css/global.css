@@ -192,3 +192,16 @@ td.icon {
 	width:50px;
 }
 
+
+.modal .smart-form header {
+	margin-left:0px;
+	margin-right:0px;
+	margin-top:0px;
+	margin-bottom:10px;
+	
+}
+
+.modal .datepicker {
+	z-index:3000;
+}
+
