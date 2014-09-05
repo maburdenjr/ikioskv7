@@ -10,6 +10,75 @@ if (isset($_GET['ajaxAction'])) {
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+// Database Updates: Edit -------------------------------------------
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudDbUpdate")) {
+    $updateSQL = sprintf("UPDATE ikioskcloud_db_update SET 
+`title`=%s, `status`=%s, `sql_query`=%s, `date_modified`=%s, `modified_by`=%s WHERE update_id=%s",
+        GetSQLValueString($_POST['title'], "text"),
+        GetSQLValueString($_POST['status'], "text"),
+        GetSQLValueString($_POST['sql_query'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($_POST['update_id'], "text"));
+
+    mysql_select_db($database_ikiosk, $ikiosk);
+    $Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+    sqlQueryLog($updateSQL);
+		
+		$updateJS = "$('.page-title').html('".$_POST['title']."');\r\n";
+		insertJS($updateJS);
+    displayAlert("success", "Changes saved.");
+		exit;
+}	
+
+//Create DB Update	
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudDbUpdate")) {
+	
+	$generateID = create_guid();
+	$insertSQL = sprintf("INSERT INTO ikioskcloud_db_update (update_id, title, sql_query, status, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+			GetSQLValueString($generateID, "text"),
+			GetSQLValueString($_POST['title'], "text"),
+			GetSQLValueString($_POST['sql_query'], "text"),
+			GetSQLValueString($_POST['status'], "text"),
+			GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+			GetSQLValueString($_SESSION['user_id'], "text"),
+			GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+			GetSQLValueString($_SESSION['user_id'], "text"));
+	
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($insertSQL);
+			
+			$hideModal= "$('.modal-backdrop').remove(); \r\n";
+			insertJS($hideModal." ".$refresh);
+			exit;
+	}
+	
+
+//Edit iKioskCloudSite  -------------------------------------------
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudSites")) {
+	
+	$updateSQL = sprintf("UPDATE ikioskcloud_sites SET system_name=%s, db_host=%s, db_name=%s, db_user=%s, db_password=%s, date_modified=%s, modified_by=%s WHERE site_id=%s",
+        GetSQLValueString($_POST['system_name'], "text"),
+        GetSQLValueString($_POST['db_host'], "text"),
+        GetSQLValueString($_POST['db_name'], "text"),
+        GetSQLValueString($_POST['db_user'], "text"),
+        GetSQLValueString($_POST['db_password'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($_POST['site_id'], "text"));
+
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+	sqlQueryLog($updateSQL);
+	
+	$updateJS = "$('.page-title').html('".$_POST['system_name']."');\r\n";
+	insertJS($updateJS);
+	displayAlert("success", "Changes saved.");
+	exit;
+	
+}
+
 //Create New iKioskCloudSite  -------------------------------------------
 if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudSites")) {
 	

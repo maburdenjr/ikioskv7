@@ -205,3 +205,11 @@ td.icon {
 	z-index:3000;
 }
 
+
+.smart-form fieldset header {
+	margin-bottom:25px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-top:0px;
+	background-color:transparent;
+}

@@ -337,7 +337,7 @@
    ?>
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">iKioskCloud Sites</h1>
+    <h1 class="page-title"><?php echo $row_getRecord['system_name']; ?></h1>
   </div>
 </div>
 <section id="widget-grid">
@@ -345,7 +345,7 @@
     <article class="col-sm-12 col-md-12 col-lg-12">
       <div class="jarviswidget" id="editCtn-IkioskcloudSites" data-widget-editbutton="false" data-widget-deletebutton="false">
         <header> <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-          <h2>Edit iKioskCloud Sites</h2>
+          <h2>Edit iKioskCloud Site</h2>
         </header>
         <div>
           <div class="jarviswidget-editbox"> 
@@ -354,98 +354,71 @@
           </div>
           <div class="widget-body no-padding">
             <form id= "edit-IkioskcloudSites" class="smart-form" method="post">
-              <header> <?php echo $row_getRecord['site_id']; ?> </header>
               <fieldset>
                 <div class="form-response"></div>
+                 <header> System Configuration </header>
                 <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Ikiosk Id</label>
-                    <label class="input">
-                      <input type="text" name="ikiosk_id" value="<?php echo $row_getRecord['ikiosk_id']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Cloud Id</label>
-                    <label class="input">
-                      <input type="text" name="cloud_id" value="<?php echo $row_getRecord['cloud_id']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-12">
+                  <section class="col col-6">
                     <label class="label">System Name</label>
                     <label class="input">
                       <input type="text" name="system_name" value="<?php echo $row_getRecord['system_name']; ?>">
                     </label>
                   </section>
-                </div>
-                <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Ikiosk Cloud Root</label>
-                    <label class="input">
-                      <input type="text" name="ikiosk_cloud_root" value="<?php echo $row_getRecord['ikiosk_cloud_root']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-12">
+                   <section class="col col-6">
                     <label class="label">Local Folder</label>
-                    <label class="input">
-                      <input type="text" name="local_folder" value="<?php echo $row_getRecord['local_folder']; ?>">
+                    <label class="input state-disabled">
+                      <input type="text" name="local_folder" value="<?php echo $row_getRecord['local_folder']; ?>" disabled>
                     </label>
                   </section>
                 </div>
                 <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Ikiosk Filesystem Root</label>
-                    <label class="input">
-                      <input type="text" name="ikiosk_filesystem_root" value="<?php echo $row_getRecord['ikiosk_filesystem_root']; ?>">
+                <section class="col col-6">
+                    <label class="label">iKiosk Cloud Root</label>
+                    <label class="input state-disabled">
+                      <input type="text" name="ikiosk_cloud_root" value="<?php echo $row_getRecord['ikiosk_cloud_root']; ?>" disabled>
+                    </label>
+                  </section>
+                   <section class="col col-6">
+                    <label class="label">iKiosk FileSystem Root</label>
+                    <label class="input state-disabled">
+                      <input type="text" name="ikiosk_filesystem_root" value="<?php echo $row_getRecord['ikiosk_filesystem_root']; ?>" disabled>
                     </label>
                   </section>
                 </div>
+                </fieldset>
+                <fieldset>
+                 <header> Database Configuration </header>
+
                 <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Ikiosk Root</label>
+                  <section class="col col-6">
+                    <label class="label">Database Host</label>
                     <label class="input">
-                      <input type="text" name="ikiosk_root" value="<?php echo $row_getRecord['ikiosk_root']; ?>">
+                      <input type="text" name="db_host" value="<?php echo $row_getRecord['db_host']; ?>" >
+                    </label>
+                  </section>
+                  <section class="col col-6">
+                    <label class="label ">Database Name</label>
+                    <label class="input">
+                      <input type="text" name="db_name" value="<?php echo $row_getRecord['db_name']; ?>" >
                     </label>
                   </section>
                 </div>
+
                 <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Db Host</label>
+                  <section class="col col-6">
+                    <label class="label">Database User</label>
                     <label class="input">
-                      <input type="text" name="db_host" value="<?php echo $row_getRecord['db_host']; ?>">
+                      <input type="text" name="db_user" value="<?php echo $row_getRecord['db_user']; ?>" >
+                    </label>
+                  </section>
+                  <section class="col col-6">
+                    <label class="label">Database Password</label>
+                    <label class="input">
+                      <input type="text" name="db_password" value="<?php echo $row_getRecord['db_password']; ?>" >
                     </label>
                   </section>
                 </div>
-                <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Db Name</label>
-                    <label class="input">
-                      <input type="text" name="db_name" value="<?php echo $row_getRecord['db_name']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Db User</label>
-                    <label class="input">
-                      <input type="text" name="db_user" value="<?php echo $row_getRecord['db_user']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Db Password</label>
-                    <label class="input">
-                      <input type="text" name="db_password" value="<?php echo $row_getRecord['db_password']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row"> </div>
+
               </fieldset>
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-IkioskcloudSites"> <i class="fa fa-check"></i> Save </button>
@@ -472,18 +445,6 @@
                 		system_name : {
 			required : true
 		},
-		ikiosk_cloud_root : {
-			required : true
-		},
-		local_folder : {
-			required : true
-		},
-		ikiosk_filesystem_root : {
-			required : true
-		},
-		ikiosk_root : {
-			required : true
-		},
 		db_host : {
 			required : true
 		},
@@ -495,7 +456,7 @@
 		},
 		db_password : {
 			required : true
-		},
+		}
 
             },
            
