@@ -412,7 +412,7 @@
     </article>
   </div>
   <div class="row">
-    <article class="col-sm-12 col-md-12 col-lg-12">
+    <article class="col-sm-12 col-md-6 col-lg-12">
       <div class="jarviswidget" id="editCtn-IkioskcloudSoftware-fileBrowser" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=softwareFileBrowser&appCode=IKMCP&recordID=<?php echo $row_getRecord['software_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-folder"></i> </span>
           <h2>Add Files to Package</h2>

@@ -221,3 +221,7 @@ td.icon {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.browserLink {
+	cursor:pointer;
+}

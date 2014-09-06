@@ -6,6 +6,25 @@ function iKioskUI() {
 	//$('.modal .smart-form input, .modal .smart-form select').removeClass('input-lg');
 	
 	
+	//Dynamic File Browser
+	$('.widget-body').on('click', '.browserLink', function(){
+		var directory = $(this).data('directory');
+		var record = $(this).data('record');
+		$.ajax({
+					url: "includes/core/formProcessor.php",	
+					data: {appCode: "IKMCP", ajaxAction: "softwareFileBrowser", directory: directory},
+					timeout: 10000,
+				error: function(data) {
+						var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+						$('.form-response').html(error).fadeIn('slow');
+				},
+				success: function(data) {
+						$('#editCtn-IkioskcloudSoftware-fileBrowser .widget-body').html(data).fadeIn('slow');
+				}
+			});
+		
+	});
+	
 	//Display Progress Bar
 	function progressBar() {
 		var progressBar = "<div class='progress progress-sm progress-striped active'><div class='progress-bar bg-color-blue' style='width: 0px'></div></div>";		

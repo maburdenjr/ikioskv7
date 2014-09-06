@@ -4,7 +4,92 @@ if (isset($_GET['ajaxAction'])) {
 	  
 		//Add Files to Package
 		if ($_GET['ajaxAction'] == "softwareFileBrowser") {
+			if (empty($_GET['directory'])) {
+				$activeDir = "/";
+				$activeSystemDir = $SYSTEM['ikiosk_filesystem_root'];
+				$activeLocalDir = "/";
+			} else {
+				$activeDir = "/".$_GET['directory'];
+				$activeSystemDir = $SYSTEM['ikiosk_filesystem_root']."/".$_GET['directory'];
+				$activeLocalDir = "/".$_GET['directory'];
+				$activeLocalDir = str_replace("//", "/", $activeLocalDir);
+				$activeFolder = "/".substr(strrchr($activeDir, "/"), 1);
+				$parentFolder = str_replace($activeFolder, "", $activeDir);
+				$parentFolder = substr($parentFolder, "1");
+			}
 			
+			$dh  = opendir($activeSystemDir);
+			while (false !== ($filename = readdir($dh))) {
+					$fileArray[] = $filename;
+			}
+			
+			$response = "<section>";
+			$response .= "<form id = \"softwareFileSelection\" class=\"smart-form\" method=\"post\">";
+			$response .= "<table class=\"table table-striped table-hover table-bordered no-margin no-border\" width=\"100%\">";
+			$response .="<thead><th width=\"20\"><label class=\"checkbox\"><input type=\"checkbox\" class=\"checkall\"><i></i></label></th><th>Name</th><th width=\"50\">Size</th><th>Last Modified</th></thead>";
+			$response .="<tbody>";
+			
+			if ($activeDir != "/") {
+					$response .="<tr><td></td><td><i class=\"fa fa-arrow-up\"></i> <a data-directory=\"".$parentFolder."\" data-record=\"".$_GET['recordID']."\" class=\"browserLink\"> Up One Folder</a> - Browsing: ".$activeLocalDir." </td><td></td><td></td></tr>";	
+			}
+			
+			foreach ($fileArray as $key => $value) { 
+				if (($value != ".") && ($value != "..") && ($value != ".svn") && ($value != "_notes")) { 
+				$activeFile = $activeSystemDir."/".$value;
+				$modDate = (filemtime($activeFile));
+				$modDate = date("m/d/Y g:i:s a", $modDate);
+				
+				if(is_dir($activeFile)) {
+					$fileCheckBox = "";
+					$iconLink = "<i class=\"fa fa-folder\"></i>&nbsp;&nbsp;";
+					$fileSize = "";
+					$fileName = "<a data-directory=\"".$_GET['directory']."/".$value."\" data-record=\"".$_GET['recordID']."\" class=\"browserLink\">".$value."</a>";
+				} else {
+					$fileCheckBox = "<label class=\"checkbox\"><input type=\"checkbox\" name=\"fileID[]\" value=\"".$activeFile."\" class=\"checktag\"><i></i></label>";
+						$iconLink = "<i class=\"fa fa-file\"></i>&nbsp;&nbsp;";
+						$fileSize = filesize($activeFile);
+						$fileName = $value;
+		
+				}
+				$response .= "<tr>";
+				$response .= "<td>".$fileCheckBox."</td>";
+				$response .= "<td width=\"100%\">".$iconLink.$fileName."</td>";
+				$response .= "<td align=\"right\">".$fileSize."</td>";
+				$response .= "<td nowrap>".$modDate."</td>";
+				$response .="</tr>";
+				
+				}} 
+ 
+			$response .= "</tbody>";
+			$response .="</table>";
+			$response .= "<footer><div class=\"form-response\"></div>
+                <button type=\"submit\" class=\"btn btn-primary btn-ajax-submit\" data-form=\"softwareFileSelection\"> <i class=\"fa fa-plus\"></i> Add Files</button>
+                <input type=\"hidden\" name=\"software_id\" value=\"".$_GET['recordID']."\" />
+                <input type=\"hidden\" name=\"formID\" value=\"softwareFileSelection\">
+                <input type=\"hidden\" name=\"iKioskForm\" value=\"Yes\" />
+                <input type=\"hidden\" name=\"appCode\" value=\"".$APPLICATION['application_code']."\" />
+              </footer>
+            </form>";
+						
+						$response .= "<script type=\"text/javascript\">
+						$(\"#softwareFileSelection\").validate({
+           errorPlacement : function(error, element) {
+               error.insertAfter(element.parent());
+           },
+           submitHandler: function(form) {
+               var targetForm = $(this.currentForm).attr(\"id\");
+               submitAjaxForm(targetForm);
+           }
+			 });
+			 
+			 $('.checkall').on(\"click\", function () {
+					var checkBoxes = $('.checktag');
+					checkBoxes.prop(\"checked\", !checkBoxes.prop(\"checked\"));
+				});
+			 </script>\r\n";			
+			$response .= "</form>";
+			$response .= "<section>";
+
 			
 			echo $response;
 			exit;
