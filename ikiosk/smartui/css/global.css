@@ -213,3 +213,11 @@ td.icon {
 	margin-top:0px;
 	background-color:transparent;
 }
+
+
+.truncate {
+	  max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

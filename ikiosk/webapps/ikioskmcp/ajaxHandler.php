@@ -1,6 +1,44 @@
 <?php
 //Begin AJAX Get Wrapper ###############################################################################
 if (isset($_GET['ajaxAction'])) {
+	  
+		//Add Files to Package
+		if ($_GET['ajaxAction'] == "softwareFileBrowser") {
+			
+			
+			echo $response;
+			exit;
+		}
+		 
+		//Manage Package Files
+		if ($_GET['ajaxAction'] == "managePackageFiles") {
+			
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$query_listView = "SELECT * FROM ikioskcloud_software_map WHERE software_id = '".$_GET['recordID']."' AND deleted = '0' ORDER BY destination_file ASC";
+			$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
+			$row_listView = mysql_fetch_assoc($listView);
+			$totalRows_listView = mysql_num_rows($listView);
+			
+			$response = "<section><table id=\"dt-SoftwareMap\" class=\"table table-striped table-hover table-bordered no-margin no-border\" width=\"100%\">";
+			$response .= "<thead><tr><th>Source File</th><th></th></tr></thead>";
+			$response .= "<tbody>";
+			if ($totalRows_listView != 0) {
+			do {
+				$response .="<tr class=\"".$row_listView['filemap_id']."\">";
+				$response .="<td class=\"truncate\">".$row_listView['destination_file']."</td>";
+				$response .="<td class=\"icon\"><a class=\"delete-record\" data-table=\"ikioskcloud_software_map\" data-record=\"".$row_listView['filemap_id']."\" data-code=\"".$APPLICATION['application_code']."\" data-field=\"filemap_id\"><i class=\"fa fa-trash-o\"></i></a></td>";
+				$response .="</tr>";
+				} while ($row_listView = mysql_fetch_assoc($listView));		
+			}
+			$response .= "</tbody>";
+			$response .= "</table></section>";
+			$response .="<script type=\"text/javascript\">\r\n";
+			$response .="var listView = $('#dt-SoftwareMap').dataTable({\"iDisplayLength\": 5});\r\n";
+			$response .="$('.dataTables_length').before('<button class=\"btn btn-default btn-add delete-record\" data-table=\"ikioskcloud_software_map\" data-record=\"".$_GET['recordID']."\" data-code=\"".$APPLICATION['application_code']."\" data-field=\"software_id\"><i class=\"fa fa-trash-o\"></i> Delete All</span></button>');";
+			$response .="</script>";
+			echo $response;
+			exit;
+		}
 	
 } // End AJAX Get Wrapper
 
@@ -10,6 +48,33 @@ if (isset($_GET['ajaxAction'])) {
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+//Add Folder to Package	  -------------------------------------------
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudSoftware-AddFolder")) {
+	
+	$sourceFolder = $_POST['ikiosk_folder'];
+	$fileList = getFileList($sourceFolder);
+	
+	foreach($fileList as $k2 => $v2) {
+		$file_id = create_guid();
+		$insertSQL = sprintf("INSERT INTO ikioskcloud_software_map (filemap_id, software_id, source_file, package_file, destination_file) VALUES (%s, %s, %s, %s, %s)",
+				GetSQLValueString($file_id, "text"),
+				GetSQLValueString($_POST['software_id'], "text"),
+				GetSQLValueString($fileList[$k2]['source'], "text"),
+				GetSQLValueString($fileList[$k2]['package'], "text"),
+				GetSQLValueString($fileList[$k2]['destination'], "text"));
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+	}
+	
+	displayAlert("success", "All files and subdirectories successfully added to package.");
+	$js = "$('#editCtn-IkioskcloudSoftware-manageFiles .jarviswidget-refresh-btn').click();\r\n";
+	insertJS($js);
+	exit;
+
+}
+
 // Software Packages: Edit -------------------------------------------
 if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudSoftware")) {
 	

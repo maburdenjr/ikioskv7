@@ -373,15 +373,17 @@
 									 foreach ($dirList as $k => $v) { 
 										$displayDir = str_replace($SYSTEM['ikiosk_filesystem_root'], "", $v);
 										$displayDir = str_replace("//", "/", $displayDir); 
+										$pos = strpos($displayDir, "smartui/js/plugin");
+										if ($pos === false) {
 										?>
                       <option value="<?php echo $v; ?>"><?php echo $displayDir; ?></option>
-                      <?php } ?>
-                    </select><i></i>
-                  </label>
+                      <?php } } ?>
+                    </select>
+                    <i></i> </label>
                 </section>
               </fieldset>
               <footer>
-                <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-IkioskcloudSoftware"> <i class="fa fa-plus"></i> Add </button>
+                <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-IkioskcloudSoftware-AddFolder"> <i class="fa fa-plus"></i> Add </button>
                 <input type="hidden" name="software_id" value="<?php echo $row_getRecord['software_id']; ?>" />
                 <input type="hidden" name="formID" value="edit-IkioskcloudSoftware-AddFolder">
                 <input type="hidden" name="iKioskForm" value="Yes" />
@@ -398,6 +400,22 @@
       <div class="jarviswidget" id="editCtn-IkioskcloudSoftware-manageFiles" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=managePackageFiles&appCode=IKMCP&recordID=<?php echo $row_getRecord['software_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-folder"></i> </span>
           <h2>Manage Package Files</h2>
+        </header>
+        <div>
+          <div class="jarviswidget-editbox"> 
+            <!-- This area used as dropdown edit box -->
+            <input class="form-control" type="text">
+          </div>
+          <div class="widget-body no-padding"> </div>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="row">
+    <article class="col-sm-12 col-md-12 col-lg-12">
+      <div class="jarviswidget" id="editCtn-IkioskcloudSoftware-fileBrowser" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=softwareFileBrowser&appCode=IKMCP&recordID=<?php echo $row_getRecord['software_id']; ?>">
+        <header> <span class="widget-icon"> <i class="fa fa-folder"></i> </span>
+          <h2>Add Files to Package</h2>
         </header>
         <div>
           <div class="jarviswidget-editbox"> 
@@ -434,6 +452,18 @@
 
             },
            
+           // Do not change code below
+           errorPlacement : function(error, element) {
+               error.insertAfter(element.parent());
+           },
+           //Handler
+           submitHandler: function(form) {
+               var targetForm = $(this.currentForm).attr("id");
+               submitAjaxForm(targetForm);
+           }
+       });
+			 
+			 $("#edit-IkioskcloudSoftware-AddFolder").validate({           
            // Do not change code below
            errorPlacement : function(error, element) {
                error.insertAfter(element.parent());
