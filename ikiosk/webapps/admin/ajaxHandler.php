@@ -13,7 +13,7 @@ if (isset($_GET['ajaxAction'])) {
 	
 	// Delete Backup File
 	if ($_GET['ajaxAction'] == "deleteBackup") {
-		$status = deleteRecordv7("sys_backups", "backup_id", $_GET['record']);
+		$status = deleteRecordv7("sys_backups", "backup_id", $_GET['recordID']);
 		displayAlert($status[0], $status[1]);
 		if ($status[0] == "success") {
 			insertJS("$('.".$_GET['record']."').fadeOut();");

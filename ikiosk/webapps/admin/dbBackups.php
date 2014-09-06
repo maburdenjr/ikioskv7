@@ -42,7 +42,7 @@ $totalRows_listView = mysql_num_rows($listView);
 			<tr class="<?php echo $row_listView['backup_id']; ?>">
             <td><a href="/backups/<?php echo $row_listView['backup_file']; ?>" target="_blank"><?php echo $row_listView['backup_file']; ?></a></td>
             <td><?php timezoneProcess($row_listView['date_created'], "print"); ?></td>
-            <td class="icon"><a class="icon-action" data-type="backup-delete" data-record="<?php echo $row_listView['backup_id']; ?>" data-code="<?php echo $APPLICATION['application_code']; ?>" data-file="<?php echo $row_listView['backup_file']; ?>"><i class="fa fa-trash-o"></i></a></td>
+            <td class="icon"><a class="icon-action" data-type="deleteBackup" data-record="<?php echo $row_listView['backup_id']; ?>" data-code="<?php echo $APPLICATION['application_code']; ?>" data-file="<?php echo $row_listView['backup_file']; ?>"><i class="fa fa-trash-o"></i></a></td>
             </tr>
 		<?php } while ($row_listView = mysql_fetch_assoc($listView)); } ?>
         </tbody>
@@ -57,7 +57,7 @@ $totalRows_listView = mysql_num_rows($listView);
 	 var listView = $('#dt-dbBackups').dataTable({
 	 		"order": [[ 1, "desc" ]]
 	 });
-	  $('.dataTables_length').before('<button class="btn btn-primary icon-action btn-add" data-type="backup-create" data-code="<?php echo $APPLICATION['application_code']; ?>"><i class="fa fa-plus"></i> Create <span class="hidden-mobile">Backup</span></button>');
+	  $('.dataTables_length').before('<button class="btn btn-primary icon-action btn-add" data-type="createBackup" data-code="<?php echo $APPLICATION['application_code']; ?>"><i class="fa fa-plus"></i> Create <span class="hidden-mobile">Backup</span></button>');
    pageSetUp();
 
 </script>

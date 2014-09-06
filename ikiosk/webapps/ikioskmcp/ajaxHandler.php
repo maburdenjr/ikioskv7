@@ -1,6 +1,47 @@
 <?php
 //Begin AJAX Get Wrapper ###############################################################################
 if (isset($_GET['ajaxAction'])) {
+	
+		//Build Software Package
+		if ($_GET['ajaxAction'] == "buildPackage") {
+			
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$query_ikioskcloud_software = "SELECT * FROM ikioskcloud_software WHERE software_id = '".$_GET['recordID']."' AND deleted = '0' AND ".$_SESSION['team_filter']."";
+			$ikioskcloud_software = mysql_query($query_ikioskcloud_software, $ikiosk) or sqlError(mysql_error());
+			$row_ikioskcloud_software = mysql_fetch_assoc($ikioskcloud_software);
+			$totalRows_ikioskcloud_software = mysql_num_rows($ikioskcloud_software);
+			
+			
+			$fileBase = $SYSTEM['ikiosk_filesystem_root']."/system/software_apps/".$row_ikioskcloud_software['local_folder']."/";
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$query_listView = "SELECT * FROM ikioskcloud_software_map WHERE software_id = '".$_GET['recordID']."' AND deleted = '0' ORDER BY destination_file ASC";
+			$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
+			$row_listView = mysql_fetch_assoc($listView);
+			$totalRows_listView = mysql_num_rows($listView);
+			
+			//Copy Files in List
+			if ($totalRows_listView != "0") {
+				do {
+					$destinationFile = $fileBase.$row_listView['package_file'];
+					copy($row_listView['source_file'], $destinationFile);
+				} while ($row_listView = mysql_fetch_assoc($listView));
+			}
+			
+			$buildVersion = $row_ikioskcloud_software['build'] + 10;
+			
+			//Update Build Version
+			$insertSQL = sprintf("UPDATE ikioskcloud_software SET build=%s, date_modified=%s WHERE software_id=%s",
+				GetSQLValueString($buildVersion, "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+						GetSQLValueString($row_ikioskcloud_software['software_id'], "text"));
+		
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($insertSQL);
+
+			displayAlert("success", "Package build complete.");
+			exit;
+		}
 	  
 		//Add Files to Package
 		if ($_GET['ajaxAction'] == "softwareFileBrowser") {

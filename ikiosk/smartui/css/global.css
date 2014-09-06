@@ -15,6 +15,10 @@
 	color:rgba(0,0,0,0.75);
 }
 
+.btn-primary.icon-action {
+	color:#FFF;
+}
+
 .delete-record i, icon-action i {
 		font-size:16px;
 		text-align:center;
@@ -229,4 +233,10 @@ td.icon {
 .form-response.inline .alert, .form-response.inline .progress-bar, .form-response.inline .progress {
 	margin:0px;
 	
+}
+
+.header-actions {
+	text-align:right;
+	margin-bottom:10px;
+	margin-top:12px;
 }

@@ -16,7 +16,7 @@ function downloadTemplate($site_id, $site_root, $template_id) {
 	$_POST['include_defaults'] = "No";
 	
 	//Create Template Directories
-	$templateDetail = urlFetch($SYSTEM['ikiosk_cloud']."/system32/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateDetail");
+	$templateDetail = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateDetail");
 	$templateDetail = explode("|", $templateDetail);
 	
 	$templateRoot = $SYSTEM['ikiosk_filesystem_root']."/sites".$site_root."/static/templates";
@@ -38,13 +38,13 @@ function downloadTemplate($site_id, $site_root, $template_id) {
 	
 	
 	//Copy Template Files
-	$templateFiles = urlFetch($SYSTEM['ikiosk_cloud']."/system32/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateFiles");
+	$templateFiles = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateFiles");
 	$templateFiles = explode("[iKiosk]", $templateFiles);
 		
 	foreach ($templateFiles as $key => $value) { 
 		$fileProperties = explode("|", $value);
 		$remoteFile = "/".$templateDetail[7]."/".$fileProperties[1];
-		$remoteFileURL = $SYSTEM['ikiosk_cloud']."/system32/cms_templates".$remoteFile;
+		$remoteFileURL = $SYSTEM['ikiosk_cloud']."/system/cms_templates".$remoteFile;
 		$destinationFile = "/sites".$site_root.$fileProperties[2];
 		$destinationFileURL = $SYSTEM['ikiosk_filesystem_root'].str_replace('/ikiosk', $SYSTEM['ikiosk_root'], $destinationFile);
 		
@@ -62,7 +62,7 @@ function downloadTemplate($site_id, $site_root, $template_id) {
 	}
 	
 	//Create Layout Files
-	$templateLayout = urlFetch($SYSTEM['ikiosk_cloud']."/system32/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateLayouts");
+	$templateLayout = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateLayouts");
 	$templateLayout = explode("[iKiosk]", $templateLayout);
 	
 	foreach ($templateLayout as $key => $value) { 
@@ -135,7 +135,7 @@ function downloadTemplate($site_id, $site_root, $template_id) {
 	if ($_POST['include_defaults'] == "Yes") {
 		
 		//Create Pages
-		$templatePages = urlFetch($SYSTEM['ikiosk_cloud']."/system32/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templatePages");
+		$templatePages = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templatePages");
 		
 		$templatePages = explode("[iKiosk]", $templatePages);
 		foreach ($templatePages as $key => $value) {
@@ -213,7 +213,7 @@ function downloadTemplate($site_id, $site_root, $template_id) {
 	}
 		
 		//Template Snippets
-		$templateSnippets = urlFetch($SYSTEM['ikiosk_cloud']."/system32/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateSnippets");
+		$templateSnippets = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateSnippets");
 			
 		$templateSnippets = explode("[iKiosk]", $templateSnippets);
 		foreach ($templateSnippets as $key => $value) {
@@ -2000,7 +2000,7 @@ function displayDirBrowser($select_name, $selected) {
 	$dirOutput = "<select name=\"".$select_name."\">\r\n";
 	foreach ($dirList as $key => $value) {
 		$keypair = explode("|", $value);
-		if (($keypair[0] != "/api/") && ($keypair[0] != "/blog/") && ($keypair[0] != "/calendar/") && ($keypair[0] != "/store/") && ($keypair[0] != "/socialnet/") && ($keypair[0] != "/static/") && ($keypair[0] != "/static/resources/") && ($keypair[0] != "/static/resources/userphotos/") && ($keypair[0] != "/static/resources/userfiles/") && ($keypair[0] != "/library/") && ($keypair[0] != "/ishare/") && ($keypair[0] != "/system32/")) {
+		if (($keypair[0] != "/api/") && ($keypair[0] != "/blog/") && ($keypair[0] != "/calendar/") && ($keypair[0] != "/store/") && ($keypair[0] != "/socialnet/") && ($keypair[0] != "/static/") && ($keypair[0] != "/static/resources/") && ($keypair[0] != "/static/resources/userphotos/") && ($keypair[0] != "/static/resources/userfiles/") && ($keypair[0] != "/library/") && ($keypair[0] != "/ishare/") && ($keypair[0] != "/system/")) {
  		$dirOutput .=  "<option value=\"".$keypair[0]."\" ";
 		if ($keypair[0] == $selected) {$dirOutput .= " selected=\"selected\" ";}
 		$dirOutput .=  ">".$keypair[1]."</option>\r\n";
@@ -2988,7 +2988,7 @@ function directoryToArray($directory, $recursive) {
   		while (false !== ($file = readdir($handle))) {
   			if ($file != "." && $file != "..") {
  				if (is_dir($directory. "/" . $file)) {
-					if ($file != "_notes" && $file != "fckeditor" && $file != "dir_browser" && $file != "phpmyadmin" && $file != "logs" && $file != ".svn" && $file != "backups" && $file != "system32"  && $file != "sites" && $file != ".git"  && $file != "ishare"  && $file != "static"  && $file != "blog"&& $file != "library") {
+					if ($file != "_notes" && $file != "fckeditor" && $file != "dir_browser" && $file != "phpmyadmin" && $file != "logs" && $file != ".svn" && $file != "backups" && $file != "system"  && $file != "sites" && $file != ".git"  && $file != "ishare"  && $file != "static"  && $file != "blog"&& $file != "library") {
 						$array_items = array_merge($array_items, directoryToArray($directory. "/" . $file, $recursive));
 						$file = $directory . "/" . $file;
 						$array_items[] = preg_replace("/\/\//si", "/", $file);

@@ -41,50 +41,29 @@ function iKioskUI() {
 	}
 	
 	//Custom Actions
-	$('.widget-body').on('click', '.icon-action', function(){
+	$('#content').on('click', '.icon-action', function(){
 			event.stopPropagation();
 			var iconAction = $(this).data('type');
 			var code = $(this).data("code");
-			
-			//Create Backup
-			if (iconAction == "backup-create") {
+			var record = $(this).data("record");
+			var file = $(this).data('file');
+
+
+			//Build Package
 				progressBar();
 				$.ajax({
 							url: "includes/core/formProcessor.php",	
-							data: {appCode: code, ajaxAction: "createBackup"},
+							data: {appCode: code, ajaxAction: iconAction, recordID: record, file: file},
 							timeout: 10000,
-						error: function(data) {
-								var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
-								$('.system-message').html(error).fadeIn('slow');
-						},
-						success: function(data) {
-								$('.system-message').html(data).fadeIn('slow');
-						}
-					});
-			}
-			
-			//Delete Backups
-			if (iconAction == "backup-delete") {
-				var deleteBackup = confirm("Are you sure you want to delete this backup?");	
-				if (deleteBackup == true) {
-						var backupID = $(this).data('record');
-						var backupFile = $(this).data('file');
-						$.ajax({
-								url: "includes/core/formProcessor.php",	
-								data: {record: backupID, appCode: code, ajaxAction: "deleteBackup", file: backupFile},
-								timeout: 3000,
 							error: function(data) {
 									var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
 									$('.system-message').html(error).fadeIn('slow');
 							},
 							success: function(data) {
 									$('.system-message').html(data).fadeIn('slow');
-									$('.jarviswidget-refresh-btn').click();
-							}
-						});
-				}
-			}
 	
+							}
+					});
 	}); // End Custom Actions
 	
 	//Delete Records

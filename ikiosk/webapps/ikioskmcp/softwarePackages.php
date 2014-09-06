@@ -29,6 +29,7 @@
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
     <h1 class="page-title">Software Packages</h1>
   </div>
+  
 </div>
 <section id="widget-grid">
 <!-- Begin Create Record -->
@@ -97,7 +98,7 @@
           <div class="row">
             <section class="col col-12">
               <label class="label">Local Folder</label>
-              <div class="note">This should be a unique folder name. All package files will be stored in this folder relative to '<?php echo $SYSTEM['ikiosk_filesystem_root']; ?>/system32/software_apps'. Do not include the trailing slash.</div>
+              <div class="note">This should be a unique folder name. All package files will be stored in this folder relative to '<?php echo $SYSTEM['ikiosk_filesystem_root']; ?>/system/software_apps'. Do not include the trailing slash.</div>
               <label class="input">
                 <input type="text" name="local_folder" value="<?php echo $row_getRecord['local_folder']; ?>">
               </label>
@@ -179,7 +180,7 @@
     </div>
   </div>
 </article>
-<div>
+</div>
 <!--  End List View -->
 </section>
 <script type="text/javascript">
@@ -239,7 +240,12 @@
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
     <h1 class="page-title"><?php echo $row_getRecord['software_title']; ?></h1>
   </div>
+  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 header-actions">
+    <a class="btn btn-primary icon-action" data-code="IKMCP" data-type="buildPackage" data-record="<?php echo $row_getRecord['software_id']; ?>"><i class="fa fa-cog"></i> Build Package</a>
+  </div>
 </div>
+  <div class="system-message"></div>
+
 <section id="widget-grid">
   <div class="row">
     <article class="col-sm-12 col-md-6 col-lg-6">
@@ -310,7 +316,7 @@
                 <div class="row">
                   <section class="col col-12">
                     <label class="label">Local Folder</label>
-                    <div class="note">This should be a unique folder name. All package files will be stored in this folder relative to '<?php echo $SYSTEM['ikiosk_filesystem_root']; ?>/system32/software_apps'. Do not include the trailing slash.</div>
+                    <div class="note">This should be a unique folder name. All package files will be stored in this folder relative to '<?php echo $SYSTEM['ikiosk_filesystem_root']; ?>/system/software_apps'. Do not include the trailing slash.</div>
                     <label class="input">
                       <input type="text" name="local_folder" value="<?php echo $row_getRecord['local_folder']; ?>">
                     </label>

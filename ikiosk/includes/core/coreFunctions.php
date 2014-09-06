@@ -237,7 +237,7 @@ function cmscloud_createAccount($signupData) {
 function ikiosk_db_update() {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
 	
-	$updateList = urlFetch($SYSTEM['ikiosk_cloud']."/system32/api/dbUpdates.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."");
+	$updateList = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/dbUpdates.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."");
 	$updateList = explode("[iKiosk]", $updateList);
 	
 	foreach($updateList as $key => $value) {
@@ -371,7 +371,7 @@ function codeSyncDirCreate($directory, $recursive) {
 			while (false !== ($file = readdir($handle))) {
 				if ($file != "." && $file != "..") {
 					if (is_dir($directory. "/" . $file)) {
-						if ($file != "system32" && $file != "sandbox" && $file != "app_template" && $file != "crm" && $file != "dropbox" && $file != "ikioskmcp" && $file != "itrac"  && $file != "cms_templates" && $file != "store" && $file != "cms" && $file != "clientportal") {
+						if ($file != "system" && $file != "sandbox" && $file != "app_template" && $file != "crm" && $file != "dropbox" && $file != "ikioskmcp" && $file != "itrac"  && $file != "cms_templates" && $file != "store" && $file != "cms" && $file != "clientportal") {
 							$array_items = array_merge($array_items, codeSyncDirCreate($directory. "/" . $file, $recursive));
 							$file = $directory . "/" . $file;
 							$array_items[] = preg_replace("/\/\//si", "/", $file);
@@ -475,7 +475,7 @@ function checkDBField($table, $field, $query) {
           "lastmod" => filemtime("$dir$entry")
         );*/
         if($recurse && is_readable("$dir$entry/")) {
-			if ($entry != "_notes" && $entry != "fckeditor" && $entry != "dir_browser" && $entry != "phpmyadmin" && $entry != "logs" && $entry != "backups" && $entry != "system32" && $entry != "sites") {
+			if ($entry != "_notes" && $entry != "fckeditor" && $entry != "dir_browser" && $entry != "phpmyadmin" && $entry != "logs" && $entry != "backups" && $entry != "system" && $entry != "sites") {
 			  $retval = array_merge($retval, getFileList("$dir$entry/", true));
 			}
         }
@@ -842,7 +842,7 @@ function userCount() {
 //Get License Information 
 function getLicense() {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
-	$licenseData = urlFetch($SYSTEM['ikiosk_cloud']."/system32/api/license.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."");
+	$licenseData = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/license.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."");
 	$licenseData = explode("|", $licenseData);
 	$_SESSION['license_cloud_id'] = $licenseData[0];
 	$_SESSION['license_type'] = $licenseData[6];
