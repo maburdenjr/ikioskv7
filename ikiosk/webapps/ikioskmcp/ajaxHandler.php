@@ -13,6 +13,8 @@ if (isset($_GET['ajaxAction'])) {
 			
 			
 			$fileBase = $SYSTEM['ikiosk_filesystem_root']."/system/software_apps/".$row_ikioskcloud_software['local_folder']."/";
+			createDir($fileBase);
+			
 			mysql_select_db($database_ikiosk, $ikiosk);
 			$query_listView = "SELECT * FROM ikioskcloud_software_map WHERE software_id = '".$_GET['recordID']."' AND deleted = '0' ORDER BY destination_file ASC";
 			$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
