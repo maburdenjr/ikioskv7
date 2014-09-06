@@ -160,7 +160,7 @@ if (isset($_GET['ajaxAction'])) {
 			$response .= "</table></section>";
 			$response .="<script type=\"text/javascript\">\r\n";
 			$response .="var listView = $('#dt-SoftwareMap').dataTable({\"iDisplayLength\": 5});\r\n";
-			$response .="$('.dataTables_length').before('<button class=\"btn btn-default btn-add delete-record\" data-table=\"ikioskcloud_software_map\" data-record=\"".$_GET['recordID']."\" data-code=\"".$APPLICATION['application_code']."\" data-field=\"software_id\"><i class=\"fa fa-trash-o\"></i> Delete All</span></button>');";
+			$response .="$('.dataTables_length').before('<a class=\"btn btn-primary btn-add icon-action\" data-code=\"IKMCP\" data-type=\"buildPackage\" data-record=\"".$_GET['recordID']."\"><i class=\"fa fa-cog\"></i> Build Package</a> <button class=\"btn btn-default btn-add delete-record\" data-table=\"ikioskcloud_software_map\" data-record=\"".$_GET['recordID']."\" data-code=\"".$APPLICATION['application_code']."\" data-field=\"software_id\"><i class=\"fa fa-trash-o\"></i> Delete All</span></button> ');";
 			$response .="</script>";
 			echo $response;
 			exit;

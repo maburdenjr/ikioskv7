@@ -240,9 +240,6 @@
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
     <h1 class="page-title"><?php echo $row_getRecord['software_title']; ?></h1>
   </div>
-  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 header-actions">
-    <a class="btn btn-primary icon-action" data-code="IKMCP" data-type="buildPackage" data-record="<?php echo $row_getRecord['software_id']; ?>"><i class="fa fa-cog"></i> Build Package</a>
-  </div>
 </div>
   <div class="system-message"></div>
 

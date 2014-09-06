@@ -41,15 +41,13 @@ function iKioskUI() {
 	}
 	
 	//Custom Actions
-	$('#content').on('click', '.icon-action', function(){
+	$('.widget-body').on('click', '.icon-action', function(){
 			event.stopPropagation();
 			var iconAction = $(this).data('type');
 			var code = $(this).data("code");
 			var record = $(this).data("record");
 			var file = $(this).data('file');
 
-
-			//Build Package
 				progressBar();
 				$.ajax({
 							url: "includes/core/formProcessor.php",	
