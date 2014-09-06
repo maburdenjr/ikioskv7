@@ -171,7 +171,7 @@ body, html {
 	background: #E9EAED;
 }
 
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover {
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs.bordered+.tab-content {
 		background-color:#FDFDFD;	
 }
 
@@ -224,4 +224,9 @@ td.icon {
 
 .browserLink {
 	cursor:pointer;
+}
+
+.form-response.inline .alert, .form-response.inline .progress-bar, .form-response.inline .progress {
+	margin:0px;
+	
 }

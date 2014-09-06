@@ -12,7 +12,7 @@ function iKioskUI() {
 		var record = $(this).data('record');
 		$.ajax({
 					url: "includes/core/formProcessor.php",	
-					data: {appCode: "IKMCP", ajaxAction: "softwareFileBrowser", directory: directory},
+					data: {appCode: "IKMCP", ajaxAction: "softwareFileBrowser", directory: directory, recordID: record},
 					timeout: 10000,
 				error: function(data) {
 						var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";

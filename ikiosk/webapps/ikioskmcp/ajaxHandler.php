@@ -24,7 +24,7 @@ if (isset($_GET['ajaxAction'])) {
 			}
 			
 			$response = "<section>";
-			$response .= "<form id = \"softwareFileSelection\" class=\"smart-form\" method=\"post\">";
+			$response .= "<form id = \"softwareFileSelection\" class=\"smart-form\" method=\"post\"><div class=\"form-response inline\"></div>";
 			$response .= "<table class=\"table table-striped table-hover table-bordered no-margin no-border\" width=\"100%\">";
 			$response .="<thead><th width=\"20\"><label class=\"checkbox\"><input type=\"checkbox\" class=\"checkall\"><i></i></label></th><th>Name</th><th width=\"50\">Size</th><th>Last Modified</th></thead>";
 			$response .="<tbody>";
@@ -62,7 +62,7 @@ if (isset($_GET['ajaxAction'])) {
  
 			$response .= "</tbody>";
 			$response .="</table>";
-			$response .= "<footer><div class=\"form-response\"></div>
+			$response .= "<footer>
                 <button type=\"submit\" class=\"btn btn-primary btn-ajax-submit\" data-form=\"softwareFileSelection\"> <i class=\"fa fa-plus\"></i> Add Files</button>
                 <input type=\"hidden\" name=\"software_id\" value=\"".$_GET['recordID']."\" />
                 <input type=\"hidden\" name=\"formID\" value=\"softwareFileSelection\">
@@ -132,7 +132,43 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
+
+//Add Files to Package	  -------------------------------------------
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "softwareFileSelection")) {
 	
+	if (!empty($_POST['fileID'])) {
+		foreach ($_POST['fileID'] as $key => $value) {
+			
+			$sourceFile = $value;
+			$destinationFile = str_replace($SYSTEM['ikiosk_filesystem_root'], "", $sourceFile);
+			$destinationFile = str_replace("//", "/", $destinationFile);
+			
+			$dirPointer = strrchr($sourceFile, "/");
+			
+			$file_id = create_guid();
+			$packageFile = $file_id.".txt";
+			$packageFile = str_replace("-", "", $packageFile);
+			$insertSQL = sprintf("INSERT INTO ikioskcloud_software_map (filemap_id, software_id, source_file, package_file, destination_file) VALUES (%s, %s, %s, %s, %s)",
+			GetSQLValueString($file_id, "text"),
+			GetSQLValueString($_POST['software_id'], "text"),
+			GetSQLValueString($sourceFile, "text"),
+			GetSQLValueString($packageFile, "text"),
+			GetSQLValueString($destinationFile, "text"));
+	
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($insertSQL);			
+		}
+
+	
+		displayAlert("success", "Files successfully added to package.");
+		$js = "$('#editCtn-IkioskcloudSoftware-manageFiles .jarviswidget-refresh-btn').click();\r\n";
+		insertJS($js);
+		exit;
+	}
+}
+
+
 //Add Folder to Package	  -------------------------------------------
 if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudSoftware-AddFolder")) {
 	
