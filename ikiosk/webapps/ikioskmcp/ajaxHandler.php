@@ -173,6 +173,69 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
+	
+	// Software Licenses: Create -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudLicenses")) {
+		
+	$transformTime = smartDates($_POST['expiration_date']);
+	$generateID = create_guid();
+	$license = create_guid();
+	
+	$insertSQL = sprintf("INSERT INTO ikioskcloud_licenses (cloud_id, customer_id, ikiosk_id, ikiosk_license_key, site_name, site_url, license_type, expiration_date, max_users, max_sites, status, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+			GetSQLValueString($generateID, "text"),
+			GetSQLValueString($_POST['customer_id'], "text"),
+			GetSQLValueString($_POST['ikiosk_id'], "text"),
+			GetSQLValueString($license, "text"),
+			GetSQLValueString($_POST['site_name'], "text"),
+			GetSQLValueString($_POST['site_url'], "text"),
+			GetSQLValueString($_POST['license_type'], "text"),
+			GetSQLValueString($transformTime, "text"),
+			GetSQLValueString($_POST['max_users'], "text"),
+			GetSQLValueString($_POST['max_sites'], "text"),
+			GetSQLValueString($_POST['status'], "text"),
+			GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+			GetSQLValueString($_SESSION['user_id'], "text"),
+			GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+			GetSQLValueString($_SESSION['user_id'], "text"));
+	
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($insertSQL);
+			
+			$hideModal= "$('.modal-backdrop').remove(); \r\n";
+			insertJS($hideModal." ".$refresh);
+		
+		exit;
+	}
+	
+	// Software Licenses: Edit -------------------------------------------
+
+if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudLicenses")) {
+	$transformTime = smartDates($_POST['expiration_date']);
+	$updateSQL = sprintf("UPDATE ikioskcloud_licenses SET ikiosk_id=%s, site_name=%s, site_url=%s, license_type=%s, expiration_date=%s, max_users=%s, max_sites=%s, status=%s, date_modified=%s, modified_by=%s WHERE cloud_id=%s",
+					GetSQLValueString($_POST['ikiosk_id'], "text"),
+					GetSQLValueString($_POST['site_name'], "text"),
+					GetSQLValueString($_POST['site_url'], "text"),
+					GetSQLValueString($_POST['license_type'], "text"),
+					GetSQLValueString($transformTime, "text"),
+					GetSQLValueString($_POST['max_users'], "text"),
+					GetSQLValueString($_POST['max_sites'], "text"),
+					GetSQLValueString($_POST['status'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($_POST['cloud_id'], "text"));
+	
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+	sqlQueryLog($updateSQL);
+	
+	$updateJS = "$('.page-title').html('".$_POST['site_name']."');\r\n";
+	insertJS($updateJS);
+	displayAlert("success", "Changes saved.");
+	exit;
+
+	
+}
 
 //Add Files to Package	  -------------------------------------------
 if ((isset($_POST["formID"])) && ($_POST["formID"] == "softwareFileSelection")) {
