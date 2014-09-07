@@ -52,7 +52,7 @@ function iKioskUI() {
 				$.ajax({
 							url: "includes/core/formProcessor.php",	
 							data: {appCode: code, ajaxAction: iconAction, recordID: record, file: file},
-							timeout: 100000,
+							timeout: 600000,
 							error: function(data) {
 									var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
 									$('.system-message').html(error).fadeIn('slow');
