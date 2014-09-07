@@ -3,7 +3,7 @@
 $iKioskPos = strpos($_SERVER['PHP_SELF'], "/ikiosk/");
 $iKioskAssetRoot = substr($_SERVER['PHP_SELF'], 0, $iKioskPos); 
 $SYSTEM['html_root'] = $iKioskAssetRoot;
-
+ini_set('memory_limit','16M');
 
 function tab($count) {
 	$response = "";
