@@ -9,7 +9,7 @@ if (isset($_GET['ajaxAction'])) {
 			$sourceDIR = substr($_SERVER['DOCUMENT_ROOT'], 0, $rootPos)."apps/intellikiosk/v7dev/ikioskv7";
 			$sourceRootExt = "/apps/intellikiosk/v7dev/ikioskv7";
 			
-			$fileList = codeSyncDir($sourceDIR, "");
+			//$fileList = codeSyncDir($sourceDIR, "");
 			$dirList = codeSyncDirCreate($sourceDIR, true);
 			asort($dirList);
 			
