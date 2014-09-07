@@ -3,7 +3,6 @@
 $iKioskPos = strpos($_SERVER['PHP_SELF'], "/ikiosk/");
 $iKioskAssetRoot = substr($_SERVER['PHP_SELF'], 0, $iKioskPos); 
 $SYSTEM['html_root'] = $iKioskAssetRoot;
-ini_set('memory_limit','16M');
 
 function tab($count) {
 	$response = "";
@@ -346,7 +345,7 @@ function checkApp($appCode) {
 
 //Search Entire Codebase
 function codeSyncDir($dir, $prefix = '') {
-  ini_set('memory_limit','16M');
+  ini_set('memory_limit','24M');
   $dir = rtrim($dir, '\\/');
   $result = array();
 
