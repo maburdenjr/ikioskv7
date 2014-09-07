@@ -257,15 +257,12 @@ td.icon {
 	.dt-toolbar .btn-add {
 		display:block;
 		float:left;
+		width:160px;
+		margin-left:0px;
 	}
 	
 	.dt-toolbar>:last-child .dataTables_length {
 		float:left;
-		margin-left:5px;
-		
-	}
-	
-	.dt-toolbar .btn-add {
-		margin-left:0px;
+		margin-left:5px;		
 	}
 }
