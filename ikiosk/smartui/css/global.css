@@ -265,4 +265,11 @@ td.icon {
 		float:left;
 		margin-left:5px;		
 	}
+	
+	div.dataTables_paginate {
+		float:left;
+	}
+	.dt-toolbar-footer>:last-child, .dt-toolbar>:last-child {
+		padding-left:0px;
+	}
 }
