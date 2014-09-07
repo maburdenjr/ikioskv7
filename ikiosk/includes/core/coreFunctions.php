@@ -351,7 +351,7 @@ function codeSyncDir($dir, $prefix = '') {
 
     $h = opendir($dir);
     while (($f = readdir($h)) !== false) {
-      if ($f !== '.' and $f !== '..' and $f !== 'backups' and $f != 'logs' and $f != 'templates' and $f != 'db_conn.php' and $f != 'sql' and $f != 'sandbox'and $f != 'software_apps'and $f != 'cms_templates' and $f != 'sites') {
+      if ($f !== '.' and $f !== '..' and $f !== 'backups' and $f != 'logs' and $f != 'templates' and $f != 'db_conn.php' and $f != 'sql' and $f != 'sandbox'and $f != 'software_apps'and $f != 'cms_templates' and $f != 'sites' and $f != '.git') {
         if (is_dir("$dir/$f")) {
           $result = array_merge($result, codeSyncDir("$dir/$f", "$prefix$f/"));
         } else {
@@ -370,7 +370,7 @@ function codeSyncDirCreate($directory, $recursive) {
 			while (false !== ($file = readdir($handle))) {
 				if ($file != "." && $file != "..") {
 					if (is_dir($directory. "/" . $file)) {
-						if ($file != "system" && $file != "sandbox" && $file != "app_template" && $file != "crm" && $file != "dropbox" && $file != "ikioskmcp" && $file != "itrac"  && $file != "cms_templates" && $file != "store" && $file != "cms" && $file != "clientportal") {
+						if ($file != "system" && $file != "sandbox" && $file != "app_template" && $file != "crm" && $file != "dropbox" && $file != "ikioskmcp" && $file != "itrac"  && $file != "cms_templates" && $file != "store" && $file != "cms" && $file != "clientportal" && $file != ".git") {
 							$array_items = array_merge($array_items, codeSyncDirCreate($directory. "/" . $file, $recursive));
 							$file = $directory . "/" . $file;
 							$array_items[] = preg_replace("/\/\//si", "/", $file);

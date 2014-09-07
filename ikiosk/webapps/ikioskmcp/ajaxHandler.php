@@ -20,10 +20,10 @@ if (isset($_GET['ajaxAction'])) {
 				if (!is_dir($targetDIR)) { 
 					mkdir($targetDIR, 0777);
 				}
-				//Create Sandbox Folders
-				$sandboxDIR = str_replace($sourceRootExt, '/apps/intellikiosk/v7/ikioskv7', $value);
-				if (!is_dir($sandboxDIR)) { 
-					mkdir($sandboxDIR, 0777);
+				//Create Production Folders
+				$productionDir = str_replace($sourceRootExt, '/apps/intellikiosk/v7/ikioskv7', $value);
+				if (!is_dir($productionDir)) { 
+					mkdir($productionDir, 0777);
 				}
 			}
 			$response = "<table class=\"table table-striped\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
