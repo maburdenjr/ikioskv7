@@ -12,6 +12,7 @@ if (isset($_GET['ajaxAction'])) {
 			//$fileList = codeSyncDir($sourceDIR, "");
 			$dirList = codeSyncDirCreate($sourceDIR, true);
 			asort($dirList);
+			print_r($dirList);
 			
 			foreach($dirList as $key => $value) { 
 				//Create Package Folders
