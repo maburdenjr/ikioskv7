@@ -345,7 +345,7 @@ function checkApp($appCode) {
 
 //Search Entire Codebase
 function codeSyncDir($dir, $prefix = '') {
-  ini_set('memory_limit','40M');
+  ini_set('memory_limit','500M');
   $dir = rtrim($dir, '\\/');
   $result = array();
 
