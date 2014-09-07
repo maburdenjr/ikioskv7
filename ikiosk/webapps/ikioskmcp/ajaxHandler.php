@@ -2,6 +2,54 @@
 //Begin AJAX Get Wrapper ###############################################################################
 if (isset($_GET['ajaxAction'])) {
 	
+		//Update Codebase
+		if ($_GET['ajaxAction'] == "updateCodebase") {
+			
+			$rootPos = strpos($_SERVER['DOCUMENT_ROOT'], "apps");
+			$sourceDIR = substr($_SERVER['DOCUMENT_ROOT'], 0, $rootPos)."apps/intellikiosk/v7dev/ikioskv7";
+			$sourceRootExt = "/apps/intellikiosk/v7dev/ikioskv7";
+			
+			$fileList = codeSyncDir($sourceDIR, "");
+			$dirList = codeSyncDirCreate($sourceDIR, true);
+			asort($dirList);
+			
+			foreach($dirList as $key => $value) { 
+				//Create Package Folders
+				$targetDIR = str_replace($sourceRootExt, '/packages/ikioskv7', $value);
+				if (!is_dir($targetDIR)) { 
+					mkdir($targetDIR, 0777);
+				}
+				//Create Sandbox Folders
+				$sandboxDIR = str_replace($sourceRootExt, '/apps/intellikiosk/v7/ikioskv7', $value);
+				if (!is_dir($sandboxDIR)) { 
+					mkdir($sandboxDIR, 0777);
+				}
+			}
+			$response = "<table class=\"table table-striped\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
+			
+			foreach($fileList as $key => $value) { 
+			  $sourceFile = $sourceDIR."/".$value;
+			  $destinationFile = str_replace($sourceRootExt, '/apps/intellikiosk/v7/ikioskv7', $sourceDIR)."/".$value;
+			  $packageFile = str_replace($sourceRootExt, '/packages/ikioskv7', $sourceDIR)."/".$value;
+				if (!copy($sourceFile, $destinationFile)) {
+					errorLog("Unable to copy ".$sourceFile." to ".$destinationFile, "System Error", $redirect);
+				}
+				$productionList .= "<tr><td>".$sourceFile."</td><td>".$destinationFile."</td></tr>";
+				if (!copy($sourceFile, $destinationFile)) {
+					errorLog("Unable to copy ".$sourceFile." to ".$packageFile, "System Error", $redirect);
+				}
+				$packageList .= "<tr><td>".$sourceFile."</td><td>".$packageFile."</td></tr>";
+			}
+			
+			$response .= $productionList.$packageList;
+			$response .="</tbody></table>";
+
+		
+			displayAlert("success", "Production branch and installation package updated.");
+			echo $response;
+			exit;
+
+		}
 		//Build Software Package
 		if ($_GET['ajaxAction'] == "buildPackage") {
 			
