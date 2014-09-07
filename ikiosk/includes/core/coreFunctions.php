@@ -351,7 +351,7 @@ function codeSyncDir($dir, $prefix = '') {
 
     $h = opendir($dir);
     while (($f = readdir($h)) !== false) {
-      if ($f !== '.' and $f !== '..' and $f !== 'backups' and $f != 'logs' and $f != 'templates' and $f != 'db_conn.php' and $f != 'sql' and $f != 'sandbox'and $f != 'software_apps'and $f != 'cms_templates' and $f != 'sites' and $f != 'smartui') {
+      if ($f !== '.' and $f !== '..' and $f !== 'backups' and $f != 'logs' and $f != 'templates' and $f != 'db_conn.php' and $f != 'sql' and $f != 'sandbox'and $f != 'software_apps'and $f != 'cms_templates' and $f != 'sites') {
         if (is_dir("$dir/$f")) {
           $result = array_merge($result, codeSyncDir("$dir/$f", "$prefix$f/"));
         } else {
