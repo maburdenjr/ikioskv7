@@ -240,3 +240,13 @@ td.icon {
 	margin-bottom:10px;
 	margin-top:12px;
 }
+
+@media (max-width:640px) {
+	.dataTable tr th, .dataTable tr td {
+		display:none;
+	}
+	
+	.dataTable tr th:first-child, .dataTable tr td:first-child, .dataTable tr th:last-child, .dataTable tr td:last-child  {
+		display:table-cell;
+	}
+}
