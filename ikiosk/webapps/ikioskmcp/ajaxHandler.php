@@ -5,8 +5,7 @@ if (isset($_GET['ajaxAction'])) {
 		//Update Codebase
 		if ($_GET['ajaxAction'] == "updateCodebase") {
 			
-			$rootPos = strpos($_SERVER['DOCUMENT_ROOT'], "apps");
-			$sourceDIR = substr($_SERVER['DOCUMENT_ROOT'], 0, $rootPos)."apps/intellikiosk/v7dev/ikioskv7";
+			$sourceDIR = $systemFileRoot;
 			$sourceRootExt = "/apps/intellikiosk/v7dev/ikioskv7";
 			
 			echo $sourceDIR;
