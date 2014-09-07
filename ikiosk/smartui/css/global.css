@@ -226,6 +226,13 @@ td.icon {
     white-space: nowrap;
 }
 
+.truncate-list {
+		width: 45%;
+		overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .browserLink {
 	cursor:pointer;
 }
