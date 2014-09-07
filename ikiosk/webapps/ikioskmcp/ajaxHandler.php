@@ -512,7 +512,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudSites")
 		
 		//Copy Package Files
 		$packageSource = $_SERVER['DOCUMENT_ROOT'];
-		$packageSource = str_replace("apps/intellikiosk/v7", "packages/ikioskv7", $packageSource);
+		$packageSource = str_replace("apps/intellikiosk/v7/ikioskv7", "packages/ikioskv7", $packageSource);
 		copyr($packageSource, $siteDirectory);
 		
 		if (!$icloud) { 

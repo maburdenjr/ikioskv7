@@ -26,7 +26,7 @@
 	 
 	 //Set Defaults
 	$fileSystemRoot = $_SERVER['DOCUMENT_ROOT'];
-	$fileSystemRoot = str_replace("apps/intellikiosk/v7", "sites", $fileSystemRoot);
+	$fileSystemRoot = str_replace("apps/intellikiosk/v7/ikioskv7", "sites", $fileSystemRoot);
 	$systemRoot = "/ikiosk";
    ?>
 
