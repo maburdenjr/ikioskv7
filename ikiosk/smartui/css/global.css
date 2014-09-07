@@ -249,4 +249,23 @@ td.icon {
 	.dataTable tr th:first-child, .dataTable tr td:first-child, .dataTable tr th:last-child, .dataTable tr td:last-child  {
 		display:table-cell;
 	}
+	
+	.dt-toolbar div:last-child {
+		padding-left:0px;
+	}
+	
+	.dt-toolbar .btn-add {
+		display:block;
+		float:left;
+	}
+	
+	.dt-toolbar>:last-child .dataTables_length {
+		float:left;
+		margin-left:5px;
+		
+	}
+	
+	.dt-toolbar .btn-add {
+		margin-left:0px;
+	}
 }
