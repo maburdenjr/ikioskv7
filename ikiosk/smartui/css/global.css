@@ -77,37 +77,42 @@ pre.html {
 }
 
 #header {
-	background:#000;
-	border-top: 2px solid #3276b1;
-	height:51px;
+	background: #275C85;
+	border-top: 2px solid #000;
+	height: 51px;
 }
 
 .btn-header>:first-child>a {
 	border-radius: 0px;
-	background: #171717;
-	border: 1px solid #343434;
-	color: #343434;
+	background: #1F4A6C;
+	border: 1px solid #1B415E;
+	color: #3073A8;
+	cursor: pointer;
 }
 
 .btn-header>:first-child>a:hover {
-	background: #171717;	
+	background: #1F4A6C;	
 	color:#FFF;
 }
 
 .header-search>input[type=text] { 
-	background: #171717;
-	border: 1px solid #343434;
+	background: #1F4A6C;
+	border: 1px solid #1B415E;
 	color:#FFF;
 }
 
 .menu-on-top #mobile-profile-img a.userdropdown img {
 	border-radius:0px;
-	border: 1px solid #343434;
+	border: 1px solid #1B415E !important;
+}
+
+.header-search>button {
+		color: #3073A8;	
 }
 
 #logo-group span {
 	display:inline-block;
-	color: rgba(255,255,255,0.75);
+	color: #FFF;
 	text-transform:uppercase;
 	font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
 	font-weight:300;	
@@ -116,7 +121,6 @@ pre.html {
 }
 
 .fixed-header #header {
-	box-shadow:none;
 }
 
 .menu-on-top nav ul ul, .menu-on-top nav ul ul ul {

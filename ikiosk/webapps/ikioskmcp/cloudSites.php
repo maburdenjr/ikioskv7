@@ -354,71 +354,77 @@
           </div>
           <div class="widget-body no-padding">
             <form id= "edit-IkioskcloudSites" class="smart-form" method="post">
+              <ul id="editCloud-tabs" class="nav nav-tabs">
+                <li class="active"> <a data-toggle="tab" href="#system">System</a> </li>
+                <li> <a data-toggle="tab" href="#database">Database</a> </li>
+              </ul>
               <fieldset>
                 <div class="form-response"></div>
-                 <header> System Configuration </header>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">System Name</label>
-                    <label class="input">
-                      <input type="text" name="system_name" value="<?php echo $row_getRecord['system_name']; ?>">
-                    </label>
-                  </section>
-                   <section class="col col-6">
-                    <label class="label">Local Folder</label>
-                    <label class="input state-disabled">
-                      <input type="text" name="local_folder" value="<?php echo $row_getRecord['local_folder']; ?>" disabled>
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                <section class="col col-6">
-                    <label class="label">iKiosk Cloud Root</label>
-                    <label class="input state-disabled">
-                      <input type="text" name="ikiosk_cloud_root" value="<?php echo $row_getRecord['ikiosk_cloud_root']; ?>" disabled>
-                    </label>
-                  </section>
-                   <section class="col col-6">
-                    <label class="label">iKiosk FileSystem Root</label>
-                    <label class="input state-disabled">
-                      <input type="text" name="ikiosk_filesystem_root" value="<?php echo $row_getRecord['ikiosk_filesystem_root']; ?>" disabled>
-                    </label>
-                  </section>
-                </div>
-                </fieldset>
-                <fieldset>
-                 <header> Database Configuration </header>
+                <div class="tab-content">
+                  <div class="tab-pane fade in active" id="system">
+                                  <header> System Configuration </header>
 
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Database Host</label>
-                    <label class="input">
-                      <input type="text" name="db_host" value="<?php echo $row_getRecord['db_host']; ?>" >
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label ">Database Name</label>
-                    <label class="input">
-                      <input type="text" name="db_name" value="<?php echo $row_getRecord['db_name']; ?>" >
-                    </label>
-                  </section>
+                    <div class="row">
+                      <section class="col col-6">
+                        <label class="label">System Name</label>
+                        <label class="input">
+                          <input type="text" name="system_name" value="<?php echo $row_getRecord['system_name']; ?>">
+                        </label>
+                      </section>
+                      <section class="col col-6">
+                        <label class="label">Local Folder</label>
+                        <label class="input state-disabled">
+                          <input type="text" name="local_folder" value="<?php echo $row_getRecord['local_folder']; ?>" disabled>
+                        </label>
+                      </section>
+                    </div>
+                    <div class="row">
+                      <section class="col col-6">
+                        <label class="label">iKiosk Cloud Root</label>
+                        <label class="input state-disabled">
+                          <input type="text" name="ikiosk_cloud_root" value="<?php echo $row_getRecord['ikiosk_cloud_root']; ?>" disabled>
+                        </label>
+                      </section>
+                      <section class="col col-6">
+                        <label class="label">iKiosk FileSystem Root</label>
+                        <label class="input state-disabled">
+                          <input type="text" name="ikiosk_filesystem_root" value="<?php echo $row_getRecord['ikiosk_filesystem_root']; ?>" disabled>
+                        </label>
+                      </section>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade in" id="database">
+                     <header> Database Configuration </header>
+                    <div class="row">
+                      <section class="col col-6">
+                        <label class="label">Database Host</label>
+                        <label class="input">
+                          <input type="text" name="db_host" value="<?php echo $row_getRecord['db_host']; ?>" >
+                        </label>
+                      </section>
+                      <section class="col col-6">
+                        <label class="label ">Database Name</label>
+                        <label class="input">
+                          <input type="text" name="db_name" value="<?php echo $row_getRecord['db_name']; ?>" >
+                        </label>
+                      </section>
+                    </div>
+                    <div class="row">
+                      <section class="col col-6">
+                        <label class="label">Database User</label>
+                        <label class="input">
+                          <input type="text" name="db_user" value="<?php echo $row_getRecord['db_user']; ?>" >
+                        </label>
+                      </section>
+                      <section class="col col-6">
+                        <label class="label">Database Password</label>
+                        <label class="input">
+                          <input type="text" name="db_password" value="<?php echo $row_getRecord['db_password']; ?>" >
+                        </label>
+                      </section>
+                    </div>
+                  </div>
                 </div>
-
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Database User</label>
-                    <label class="input">
-                      <input type="text" name="db_user" value="<?php echo $row_getRecord['db_user']; ?>" >
-                    </label>
-                  </section>
-                  <section class="col col-6">
-                    <label class="label">Database Password</label>
-                    <label class="input">
-                      <input type="text" name="db_password" value="<?php echo $row_getRecord['db_password']; ?>" >
-                    </label>
-                  </section>
-                </div>
-
               </fieldset>
               <footer>
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-IkioskcloudSites"> <i class="fa fa-check"></i> Save </button>

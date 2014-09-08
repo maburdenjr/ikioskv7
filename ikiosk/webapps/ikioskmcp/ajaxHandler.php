@@ -26,7 +26,7 @@ if (isset($_GET['ajaxAction'])) {
 			}
 			$response = "";
 			$productionList = "<p>Production Branch</p><table id=\"dt-updateCodebase\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
-			$packageList = "<p>Installation Package</p><table id=\"dt-updateCodebase2\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
+			$packageList = "<p><br>Installation Package</p><table id=\"dt-updateCodebase2\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
 			
 			foreach($fileList as $key => $value) { 
 			  $sourceFile = $sourceDIR."/".$value;
