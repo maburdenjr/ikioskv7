@@ -24,7 +24,9 @@ if (isset($_GET['ajaxAction'])) {
 					mkdir($productionDir, 0777);
 				}
 			}
-			$response = "<table id=\"dt-updateCodebase\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Branch</th><th>Source</th><th>Destination</th></tr></thead><tbody>";
+			$response = "";
+			$productionList = "<h3>Production Branch</h3><table id=\"dt-updateCodebase\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
+			$packageList = "<h3>Installation Package</h3><table id=\"dt-updateCodebase2\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
 			
 			foreach($fileList as $key => $value) { 
 			  $sourceFile = $sourceDIR."/".$value;
@@ -32,25 +34,29 @@ if (isset($_GET['ajaxAction'])) {
 			  $packageFile = str_replace($sourceRootExt, '/packages/ikioskv7', $sourceDIR)."/".$value;
 				if (!copy($sourceFile, $destinationFile)) {
 					errorLog("Unable to copy ".$sourceFile." to ".$destinationFile, "System Error", $redirect);
-					$productionList .= "<tr><td>Production</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">Error: Unable to Copy File</td></tr>";
+					$productionList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">Error: Unable to Copy File</td></tr>";
 
 				} else {
-				$productionList .= "<tr><td>Production</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($_SERVER['DOCUMENT_ROOT'], "", $destinationFile)."</td></tr>";
+				$productionList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($_SERVER['DOCUMENT_ROOT'], "", $destinationFile)."</td></tr>";
 				}
 				if (!copy($sourceFile, $destinationFile)) {
 					errorLog("Unable to copy ".$sourceFile." to ".$packageFile, "System Error", $redirect);
-					$packageList .= "<tr><td>Install Package</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">Error: Unable to Copy File</td></tr>";
+					$packageList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">Error: Unable to Copy File</td></tr>";
 
 				} else {
-				$packageList .= "<tr><td>Install Package</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($_SERVER['DOCUMENT_ROOT'], "", $packageFile)."</td></tr>";
+				$packageList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($_SERVER['DOCUMENT_ROOT'], "", $packageFile)."</td></tr>";
 				}
 			}
-			
+			$productionList .= "</tbody></table>";
+			$productionList .= "<script type=\"text/javascript\">\r\n";
+			$productionList .= "var listView = $('#dt-updateCodebase').dataTable({\"iDisplayLength\": 5});\r\n";
+			$productionList .= "</script>";
+			$packageList .= "</tbody></table>";
+			$packageList .= "<script type=\"text/javascript\">\r\n";
+			$packageList .= "var listView = $('#dt-updateCodebase2').dataTable({\"iDisplayLength\": 5});\r\n";
+			$packageList .= "</script>";
 			$response .= $productionList.$packageList;
-			$response .="</tbody></table>";
-			$response .="<script type=\"text/javascript\">\r\n";
-			$response .="var listView = $('#dt-updateCodebase').dataTable({\"iDisplayLength\": 5});\r\n";
-			$response .= "</script>";
+	
 
 		
 			displayAlert("success", "Deployment complete.  File transfer details are listed below.");
