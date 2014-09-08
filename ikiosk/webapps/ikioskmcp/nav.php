@@ -43,10 +43,6 @@ $page_nav["ikioskmcp"] = array(
 			"licenses" => array(
 				"title" => "License Management",
 				"url" => "webapps/ikioskmcp/licenses.php"
-			),
-			"codebase" => array(
-				"title" => "Update Codebase",
-				"url" => "webapps/ikioskmcp/updateCodebase.php"
 			)
 		)
 )

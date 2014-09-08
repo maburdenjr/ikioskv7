@@ -41,7 +41,7 @@ function iKioskUI() {
 	}
 	
 	//Custom Actions
-	$('.widget-body').on('click', '.icon-action', function(){
+	$('.widget-body, .widget-toolbar').on('click', '.icon-action', function(){
 			event.stopPropagation();
 			var iconAction = $(this).data('type');
 			var code = $(this).data("code");

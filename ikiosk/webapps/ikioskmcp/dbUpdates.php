@@ -123,7 +123,7 @@
          </div>
       </div>
    </article>
-   <div>
+   </div>
   <!--  End List View -->
 </section>
 <script type="text/javascript">

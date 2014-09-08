@@ -24,7 +24,7 @@ if (isset($_GET['ajaxAction'])) {
 					mkdir($productionDir, 0777);
 				}
 			}
-			$response = "<table class=\"table table-striped\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
+			$response = "<table id=\"dt-updateCodebase\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
 			
 			foreach($fileList as $key => $value) { 
 			  $sourceFile = $sourceDIR."/".$value;
@@ -33,15 +33,18 @@ if (isset($_GET['ajaxAction'])) {
 				if (!copy($sourceFile, $destinationFile)) {
 					errorLog("Unable to copy ".$sourceFile." to ".$destinationFile, "System Error", $redirect);
 				}
-				$productionList .= "<tr><td class=\"truncate-list\">".$sourceFile."</td><td class=\"truncate-list\">".$destinationFile."</td></tr>";
+				$productionList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $destinationFile)."</td></tr>";
 				if (!copy($sourceFile, $destinationFile)) {
 					errorLog("Unable to copy ".$sourceFile." to ".$packageFile, "System Error", $redirect);
 				}
-				$packageList .= "<tr><td class=\"truncate-list\">".$sourceFile."</td><td class=\"truncate-list\">".$packageFile."</td></tr>";
+				$packageList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $packageFile)."</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td></tr>";
 			}
 			
 			$response .= $productionList.$packageList;
 			$response .="</tbody></table>";
+			$response .="<script type=\"text/javascript\">\r\n";
+			$response .="var listView = $('#dt-updateCodebase').dataTable({\"iDisplayLength\": 5});\r\n";
+			$response .= "</script>";
 
 		
 			displayAlert("success", "Production branch and installation package updated.");
