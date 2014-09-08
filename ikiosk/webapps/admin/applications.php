@@ -30,27 +30,18 @@ $totalRows_listView = mysql_num_rows($listView);
     <h1 class="page-title">Application Management</h1>
   </div>
 </div>
-<section id="widget-grid">
-  <div id="createApp" class="row hidden-panel">
-    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="jarviswidget" id="add-application" data-widget-editbutton="false" data-widget-deletebutton="false">
-        <header> <span class="widget-icon"> <i class="fa fa-plus"></i> </span>
-          <h2>New Application</h2>
-        </header>
-        <div> 
-          <!-- widget edit box -->
-          <div class="jarviswidget-editbox"> 
-            <!-- This area used as dropdown edit box -->
-            <input class="form-control" type="text">
+<section id="widget-grid"> 
+  <!-- Begin Create Record -->
+  <div class="modal fade" id="createCtn-Applications">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id = "createApplication" class="smart-form" method="post">
+          <div class="modal-header">
+            <h4 class="modal-title">Create Application</h4>
           </div>
-          <!-- end widget edit box --> 
-          
-          <!-- widget content -->
-          <div class="widget-body no-padding">
-            <form id= "createApplication" class="smart-form" method="post" data-type="create" data-container="createApp" data-toggle="appList">
-              <fieldset>
-                <div class="form-response"></div>
-                <div class="row">
+          <div class="modal-body">
+            <div class="form-response"></div>
+            <div class="row">
                   <section class="col col-6">
                     <label class="label">Title</label>
                     <label class="input">
@@ -141,21 +132,20 @@ $totalRows_listView = mysql_num_rows($listView);
                       <i></i> </label>
                   </section>
                 </div>
-              </fieldset>
-              <footer>
-                <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="createApplication"> <i class="fa fa-check"></i> Save </button>
-                <button type="button" class="btn btn-default btn-toggle" data-close="createApp" data-open="appList"><i class="fa fa-times"></i> Cancel </button>
-                <input type="hidden" name="application_id" value="<?php echo $row_getRecord['application_id']; ?>" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+            <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-createApplication"> <i class="fa fa-check"></i> Save </button>
+          </div>
+          <input type="hidden" name="application_id" value="<?php echo $row_getRecord['application_id']; ?>" />
                 <input type="hidden" name="formID" value="createApplication">
                 <input type="hidden" name="iKioskForm" value="Yes" />
                 <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>" />
-              </footer>
-            </form>
-          </div>
-        </div>
+        </form>
       </div>
-    </article>
+    </div>
   </div>
+  
   <div id="appList" class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="system-message"></div>
@@ -204,7 +194,7 @@ $totalRows_listView = mysql_num_rows($listView);
 </section>
 <script type="text/javascript">
 		var listView = $('#dt_applications').dataTable();
-		$('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add" data-open="createApp" data-close="appList"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Application</span></button>');
+		$('.dataTables_length').before('<button class="btn btn-primary btn-add btn-toggle" data-toggle="modal" data-target="#createCtn-Applications"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Application</span></button>');
 </script> 
 <script type="text/javascript">
 	runAllForms();
