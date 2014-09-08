@@ -232,7 +232,7 @@ td.icon {
 }
 
 .truncate-list {
-		max-width: 300px;
+		max-width: 250px;
 		overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -306,4 +306,12 @@ td.icon {
 #systemDebug .tab-content {
 	height:400px;
 	overflow-y:scroll;
+}
+
+.embedded-response {
+			border-top: 1px solid #CCC;	
+}
+
+.embedded-response .alert {
+	margin:5px !important;
 }

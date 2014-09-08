@@ -3,7 +3,86 @@
 
 if (isset($_GET['ajaxAction'])) {
 	
-	// Create Backup
+	// Software Download Archive ---------------------------------------------
+	if($_GET['ajaxAction'] == "softwareHistory") {
+		$response =  htmlWidget($_GET['appCode'], "admin", "softwareHistory", $_GET['recordID']);
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$query_listView = "SELECT * FROM sys_updates WHERE deleted = '0' GROUP BY(title) ORDER BY date_modified DESC";
+		$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
+		$row_listView = mysql_fetch_assoc($listView);
+		$totalRows_listView = mysql_num_rows($listView);
+		do {
+			$dateCreated = timezoneProcess($row_listView['date_created'], "return");
+			$tableContent .= "<tr><td>".$row_listView['title']."</td><td>".$row_listView['version']."</td><td>".$row_listView['type']."</td><td>".$dateCreated."</td><td class=\"icon\"><a class=\"delete-record\" data-table=\"sys_updates\" data-record=\"".$row_listView['update_id']."\" data-code=\"SYS\" data-field=\"update_id\"><i class=\"fa fa-trash-o\"></i></a></td></tr>";
+		} while ($row_listView = mysql_fetch_assoc($listView));
+		$response = str_replace("[table-body]", $tableContent, $response);	
+		echo $response;
+		exit;	
+	}
+	
+	// Software Download ---------------------------------------------
+	if($_GET['ajaxAction'] == "downloadSoftware") {
+		
+		//File List
+		$fileList = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadSoftware.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&software_id=".$_GET['recordID']);
+		$fileList = explode("[iKiosk]", $fileList);
+		
+		//Software Summary
+		$softwareSummary = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadSoftware.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&software_id=".$_GET['recordID']."&option=summary");
+		$softwareSummary = explode("|", $softwareSummary);
+		
+		//Create Folders
+		$folderList = $softwareSummary[12];
+		$folderList = explode("[iKiosk]", $folderList);
+		foreach ($folderList as $key => $value) {
+			if ($value != "") {
+			$folderList = $SYSTEM['ikiosk_filesystem_root'].str_replace('/ikiosk', $SYSTEM['ikiosk_root'], $value);
+			createDIR($folderList);
+			}
+		}
+		
+		//Copy Files
+		foreach ($fileList as $key => $value) { 
+			$fileProperties = explode("|", $value);
+			$remoteFile = "/".$softwareSummary[10]."/".$fileProperties[1];
+			$remoteFileURL = $SYSTEM['ikiosk_cloud']."/system32/software_apps".$remoteFile;
+			$destinationFile = $fileProperties[2];
+			$destinationFileURL = $SYSTEM['ikiosk_filesystem_root'].str_replace('/ikiosk', $SYSTEM['ikiosk_root'], $destinationFile);
+			
+			/*$fileContents = urlFetch($remoteFileURL);
+			$fh = fopen($destinationFileURL, 'w') or errorLog("Unable to create create: ".$destinationFile, "System Error", $redirect);	
+			fwrite($fh, $fileContents);
+			fclose($fh);*/
+			
+			$downloadResult .= "<tr><td class=\"truncate-list\">".$remoteFile."</td><td class=\"truncate-list\">".$destinationFile."</td></tr>";
+		}
+		$response =  htmlWidget($_GET['appCode'], "admin", "downloadSoftware", $_GET['recordID']);
+		$response = str_replace("[table-body]", $downloadResult, $response);
+		displayAlert("success", "Software Download Complete");
+		
+		//Add Record to History
+		$generateID = create_guid();
+			$insertSQL = sprintf("INSERT INTO sys_updates (update_id, title, version, type, notes, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+							GetSQLValueString($generateID, "text"),
+							GetSQLValueString($softwareSummary[1], "text"),
+							GetSQLValueString($softwareSummary[3], "text"),
+							GetSQLValueString($softwareSummary[6], "text"),
+							GetSQLValueString($softwareSummary[4], "text"),
+							GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+							GetSQLValueString($_SESSION['user_id'], "text"),
+							GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+							GetSQLValueString($_SESSION['user_id'], "text"));
+			
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($insertSQL);
+			
+		echo $response;
+		exit;	
+	}
+	
+	// Create Backup ---------------------------------------------
 	if ($_GET['ajaxAction'] == "createBackup") {
 		ikiosk_backup(); 
 		displayAlert("success", "Backup successfully created...");
