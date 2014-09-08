@@ -234,7 +234,7 @@
     <article class="col-sm-12 col-md-6 col-lg-6">
       <div class="jarviswidget" id="editCtn-IkioskcloudLicenses" data-widget-editbutton="false" data-widget-deletebutton="false">
         <header> <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-          <h2>Edit Software Licens</h2>
+          <h2>Edit Software License</h2>
         </header>
         <div>
           <div class="jarviswidget-editbox"> 
@@ -291,7 +291,7 @@
                   <section class="col col-6">
                     <label class="label">Expiration Date</label>
                     <div class="input-group">
-                      <input name="expiration_date" type="text" class="form-control datepicker" data-dateformat="mm/dd/yy" value="<?php timezoneProcessDate($row_getRecord['expiration_date'], "print"); ?>">
+                      <input name="expiration_date" type="text" class="form-control datepicker" data-dateformat="mm/dd/yy" value="<?php echo date("m/d/y", strtotime($row_getRecord['expiration_date'])); ?>">
                       <span class="input-group-addon"><i class="fa fa-calendar"></i></span> </div>
                   </section>
                 </div>
@@ -333,6 +333,21 @@
           </div>
         </div>
       </div>
+    </article>
+    <article class="col-sm-12 col-md-6 col-lg-6">
+    <div class="jarviswidget" id="editCtn-Licenses-Software" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=softwareUpdates&appCode=IKMCP&recordID=<?php echo $row_getRecord['cloud_id']; ?>">
+        <header> <span class="widget-icon"> <i class="fa fa-cubes"></i> </span>
+          <h2>Software Subscriptions</h2>
+        </header>
+        <div>
+          <div class="jarviswidget-editbox"> 
+            <!-- This area used as dropdown edit box -->
+            <input class="form-control" type="text">
+          </div>
+          <div class="widget-body no-padding"> </div>
+        </div>
+      </div>
+      
     </article>
   </div>
 </section>

@@ -48,9 +48,12 @@
           <div class="form-response"></div>
           <ul id="createCloudSite-tabs" class="nav nav-tabs bordered">
             <li class="active"> <a data-toggle="tab" href="#system">System</a> </li>
-            <li> <a data-toggle="tab" href="#database">Database</a> </li>
-            <li> <a data-toggle="tab" href="#license">License</a> </li>
-            <li> <a data-toggle="tab" href="#site">Default Site</a> </li>
+            <li> <a data-toggle="tab" href="#session">Session</a> </li>
+            <li> <a data-toggle="tab" href="#user">User</a> </li>
+            <li> <a data-toggle="tab" href="#site">Site</a> </li>
+            <li> <a data-toggle="tab" href="#cms">CMS</a> </li>
+            <li> <a data-toggle="tab" href="#admin">Admin</a> </li>
+            <li> <a data-toggle="tab" href="#server">Server</a> </li>
           </ul>
           <div class="tab-content padding-10">
             <div class="tab-pane fade in active" id="system">
@@ -362,8 +365,6 @@
                 <div class="form-response"></div>
                 <div class="tab-content">
                   <div class="tab-pane fade in active" id="system">
-                                  <header> System Configuration </header>
-
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">System Name</label>
@@ -394,7 +395,6 @@
                     </div>
                   </div>
                   <div class="tab-pane fade in" id="database">
-                     <header> Database Configuration </header>
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Database Host</label>

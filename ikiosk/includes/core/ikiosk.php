@@ -54,10 +54,11 @@ $SYSTEM['active_users'] = userCount();
 $SYSTEM['active_sites'] = siteCount();
 
 //Testing
-if (($_SERVER['HTTP_HOST'] == "http://10.33.66.213:81") || ($_SERVER['HTTP_HOST'] == "testsite")) {
-$SYSTEM['ikiosk_cloud'] = "http://10.33.66.213:81";	
-$SYSTEM['ikiosk_resource_cloud']  = "http://10.33.66.213:81/ikiosk/library";
+if ($_SERVER['HTTP_HOST'] != "http://admin.ikioskcloudapps.com") {
+	$SYSTEM['ikiosk_cloud'] = $_SERVER['HTTP_HOST'];
+	$SYSTEM['ikiosk_resource_cloud']  = $_SERVER['HTTP_HOST']."/ikiosk/library";	
 }
+
 
 //User Login Handling
 if ((isset($_POST["ikioskSubmit"])) && ($_POST["ikioskSubmit"] == "MasterLogin")) {

@@ -4,6 +4,14 @@ $iKioskPos = strpos($_SERVER['PHP_SELF'], "/ikiosk/");
 $iKioskAssetRoot = substr($_SERVER['PHP_SELF'], 0, $iKioskPos); 
 $SYSTEM['html_root'] = $iKioskAssetRoot;
 
+//Get Widget Template
+function htmlWidget($app, $dir, $templateID, $recordID) {
+	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+	$response = urlFetch($SYSTEM['system_url']."/ikiosk/webapps/".$dir."/widgetTemplates.php?templateID=".$templateID."&code=".$app."&recordID=".$recordID);
+	return $response;
+	exit;
+}
+
 function tab($count) {
 	$response = "";
 	$x = 1;

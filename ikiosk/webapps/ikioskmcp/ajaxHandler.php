@@ -2,6 +2,27 @@
 //Begin AJAX Get Wrapper ###############################################################################
 if (isset($_GET['ajaxAction'])) {
 	
+		//Get Software Updates
+		if ($_GET['ajaxAction'] == "softwareUpdates") {
+			$response =  htmlWidget($_GET['appCode'], "ikioskmcp", "softwareUpdates", $_GET['recordID']);
+			$response = str_replace("[select-list]", addSoftware2License($_GET['recordID']), $response); 
+			$response = str_replace("[cloud-id]", $_GET['recordID'], $response); 
+			
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$query_listView = "SELECT * FROM ikioskcloud_license2software WHERE cloud_id='".$_GET['recordID']."' AND deleted='0'";
+			$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
+			$row_listView = mysql_fetch_assoc($listView);
+			$totalRows_listView = mysql_num_rows($listView);
+			
+			do {
+				$softwareTitle = crossReference("ikioskcloud_software", "software_id", $row_listView['software_id'], $subQuery, $teamFilter, $siteFilter, "software_title", "return");
+				$tableContent .= "<tr class=\"".$_GET['recordID']."\"><td><a href=\"webapps/ikioskmcp/softwarePackages.php?action=edit&recordID=".$row_listView['software_id']."\" class=\"ajaxLink\">".$softwareTitle."</a></td><td class=\"icon\"><a class=\"delete-record\" data-table=\"ikioskcloud_license2software\" data-record=\"".$row_listView['join_id']."\" data-code=\"IKMCP\" data-field=\"join_id\"><i class=\"fa fa-trash-o\"></i></a></td></tr>";	
+			} while ($row_listView = mysql_fetch_assoc($listView));
+			$response = str_replace("[table-body]", $tableContent, $response); 
+			echo $response;
+			exit;
+		}
+	
 		//Update Codebase
 		if ($_GET['ajaxAction'] == "updateCodebase") {
 			
@@ -237,6 +258,26 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
+	
+	// Software Licenses: Create Link -------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-addSoftware2License")) {
+		$insertSQL = sprintf("INSERT INTO ikioskcloud_license2software (cloud_id, software_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+				GetSQLValueString($_POST['cloud_id'], "text"),
+				GetSQLValueString($_POST['software_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"));
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+		
+		$js = "$('#editCtn-Licenses-Software .jarviswidget-refresh-btn').click();\r\n";
+		insertJS($js);
+		exit;
+	}
+	
 	
 	// Software Licenses: Create -------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudLicenses")) {

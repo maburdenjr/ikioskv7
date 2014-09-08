@@ -142,7 +142,12 @@
 						<div id="fullscreen" class="btn-header transparent pull-right">
 							<span> <a href="javascript:void(0);" title="Full Screen" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i></a> </span>
 						</div>
-						<!-- end fullscreen button -->
+            	<!-- end fullscreen button -->
+            <?php if ($SYSTEM['debug'] == "Yes") { ?>
+            <div id="debug" class="btn-header transparent pull-right">
+            		<span> <a title="Debug Console" data-toggle="modal" data-target="#systemDebug"><i class="fa fa-cogs"></i></a> </span>	
+            </div>
+            <?php } ?>
 
 
 					</div>

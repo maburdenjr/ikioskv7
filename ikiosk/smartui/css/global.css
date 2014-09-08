@@ -93,6 +93,7 @@ pre.html {
 .btn-header>:first-child>a:hover {
 	background: #1F4A6C;	
 	color:#FFF;
+	cursor:pointer !important;
 }
 
 .header-search>input[type=text] { 
@@ -289,4 +290,20 @@ td.icon {
 	.page-title {
 		display: block
 	}
+}
+
+#systemDebug .debug-variable {
+	font-weight:600;
+}
+
+#systemDebug .debug-value {
+		max-width: 300px;
+		overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;	
+}
+
+#systemDebug .tab-content {
+	height:400px;
+	overflow-y:scroll;
 }
