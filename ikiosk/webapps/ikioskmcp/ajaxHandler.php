@@ -32,12 +32,18 @@ if (isset($_GET['ajaxAction'])) {
 			  $packageFile = str_replace($sourceRootExt, '/packages/ikioskv7', $sourceDIR)."/".$value;
 				if (!copy($sourceFile, $destinationFile)) {
 					errorLog("Unable to copy ".$sourceFile." to ".$destinationFile, "System Error", $redirect);
-				}
+					$productionList .= "<tr><td>Production</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">Error: Unable to Copy File</td></tr>";
+
+				} else {
 				$productionList .= "<tr><td>Production</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($_SERVER['DOCUMENT_ROOT'], "", $destinationFile)."</td></tr>";
+				}
 				if (!copy($sourceFile, $destinationFile)) {
 					errorLog("Unable to copy ".$sourceFile." to ".$packageFile, "System Error", $redirect);
-				}
+					$packageList .= "<tr><td>Install Package</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">Error: Unable to Copy File</td></tr>";
+
+				} else {
 				$packageList .= "<tr><td>Install Package</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($_SERVER['DOCUMENT_ROOT'], "", $packageFile)."</td></tr>";
+				}
 			}
 			
 			$response .= $productionList.$packageList;
@@ -47,7 +53,7 @@ if (isset($_GET['ajaxAction'])) {
 			$response .= "</script>";
 
 		
-			displayAlert("success", "Production branch and installation package updated.");
+			displayAlert("success", "Deployment complete.  File transfer details are listed below.");
 			echo $response;
 			exit;
 
