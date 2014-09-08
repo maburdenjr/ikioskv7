@@ -33,11 +33,11 @@ if (isset($_GET['ajaxAction'])) {
 				if (!copy($sourceFile, $destinationFile)) {
 					errorLog("Unable to copy ".$sourceFile." to ".$destinationFile, "System Error", $redirect);
 				}
-				$productionList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $destinationFile)."</td></tr>";
+				$productionList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($_SERVER['DOCUMENT_ROOT'], "", $destinationFile)."</td></tr>";
 				if (!copy($sourceFile, $destinationFile)) {
 					errorLog("Unable to copy ".$sourceFile." to ".$packageFile, "System Error", $redirect);
 				}
-				$packageList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $packageFile)."</td><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td></tr>";
+				$packageList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($_SERVER['DOCUMENT_ROOT'], "", $packageFile)."</td></tr>";
 			}
 			
 			$response .= $productionList.$packageList;

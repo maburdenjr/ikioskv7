@@ -11,7 +11,7 @@ require('../../includes/core/ikiosk.php');
 </div>
 <section id="widget-grid">
   <div class="row">
-    <article class="col-sm-12 col-md-6 col-lg-6">
+    <article class="col-sm-12 col-md-12 col-lg-12">
     <div class="jarviswidget" id="updateCodebase" data-widget-editbutton="false" data-widget-deletebutton="false">
     <header> <span class="widget-icon"> <i class="fa fa-cog"></i> </span>
       <h2>Deploy Codebase</h2>
