@@ -25,8 +25,8 @@ if (isset($_GET['ajaxAction'])) {
 				}
 			}
 			$response = "";
-			$productionList = "<h3>Production Branch</h3><table id=\"dt-updateCodebase\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
-			$packageList = "<h3>Installation Package</h3><table id=\"dt-updateCodebase2\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
+			$productionList = "<p>Production Branch</p><table id=\"dt-updateCodebase\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
+			$packageList = "<p>Installation Package</p><table id=\"dt-updateCodebase2\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Source</th><th>Destination</th></tr></thead><tbody>";
 			
 			foreach($fileList as $key => $value) { 
 			  $sourceFile = $sourceDIR."/".$value;
@@ -37,14 +37,14 @@ if (isset($_GET['ajaxAction'])) {
 					$productionList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">Error: Unable to Copy File</td></tr>";
 
 				} else {
-				$productionList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($_SERVER['DOCUMENT_ROOT'], "", $destinationFile)."</td></tr>";
+				$productionList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace("/homepages/25/d516885721/htdocs", "", $destinationFile)."</td></tr>";
 				}
 				if (!copy($sourceFile, $destinationFile)) {
 					errorLog("Unable to copy ".$sourceFile." to ".$packageFile, "System Error", $redirect);
 					$packageList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">Error: Unable to Copy File</td></tr>";
 
 				} else {
-				$packageList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace($_SERVER['DOCUMENT_ROOT'], "", $packageFile)."</td></tr>";
+				$packageList .= "<tr><td class=\"truncate-list\">".str_replace($systemFileRoot, "", $sourceFile)."</td><td class=\"truncate-list\">".str_replace("/homepages/25/d516885721/htdocs", "", $packageFile)."</td></tr>";
 				}
 			}
 			$productionList .= "</tbody></table>";
