@@ -24,7 +24,7 @@ if (isset($_GET['ajaxAction'])) {
 					mkdir($productionDir, 0777);
 				}
 			}
-			$response = "<table id=\"dt-updateCodebase\" class=\"table table-striped table-bordered table-hover\"><thead><tr<th>Branch</th>><th>Source</th><th>Destination</th></tr></thead><tbody>";
+			$response = "<table id=\"dt-updateCodebase\" class=\"table table-striped table-bordered table-hover\"><thead><tr><th>Branch</th><th>Source</th><th>Destination</th></tr></thead><tbody>";
 			
 			foreach($fileList as $key => $value) { 
 			  $sourceFile = $sourceDIR."/".$value;
