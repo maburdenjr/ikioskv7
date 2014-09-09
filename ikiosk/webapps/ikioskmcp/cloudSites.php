@@ -32,7 +32,7 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">iKioskCloud Sites</h1>
+    <h1 class="page-title"><i class="fa fa-sitemap fa-fw "></i> iKioskCloud Sites</h1>
   </div>
 </div>
 <section id="widget-grid">
@@ -44,16 +44,12 @@
         <div class="modal-header">
           <h4 class="modal-title">Create iKioskCloud Site</h4>
         </div>
-        <div class="modal-body">
           <div class="form-response"></div>
-          <ul id="createCloudSite-tabs" class="nav nav-tabs bordered">
+          <ul id="createCloudSite-tabs" class="nav nav-tabs">
             <li class="active"> <a data-toggle="tab" href="#system">System</a> </li>
-            <li> <a data-toggle="tab" href="#session">Session</a> </li>
-            <li> <a data-toggle="tab" href="#user">User</a> </li>
-            <li> <a data-toggle="tab" href="#site">Site</a> </li>
-            <li> <a data-toggle="tab" href="#cms">CMS</a> </li>
-            <li> <a data-toggle="tab" href="#admin">Admin</a> </li>
-            <li> <a data-toggle="tab" href="#server">Server</a> </li>
+            <li> <a data-toggle="tab" href="#database">Database</a> </li>
+            <li> <a data-toggle="tab" href="#license">License</a> </li>
+            <li> <a data-toggle="tab" href="#site">Default Site</a> </li>
           </ul>
           <div class="tab-content padding-10">
             <div class="tab-pane fade in active" id="system">
@@ -192,8 +188,7 @@
           <input type="hidden" name="formID" value="create-IkioskcloudSites">
           <input type="hidden" name="iKioskForm" value="Yes">
           <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
-        </div>
-        <div class="modal-footer">
+        <div class="modal-footer no-margin">
           <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
           <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-IkioskcloudSites"> <i class="fa fa-check"></i> Save </button>
         </div>
@@ -209,7 +204,7 @@
   <div class="system-message"></div>
   <div class="jarviswidget" id="list-IkioskcloudSites" data-widget-editbutton="false" data-widget-deletebutton="false">
     <header> <span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
-      <h2>iKioskCloud Sites</h2>
+      <h2>Site List</h2>
     </header>
     <div>
       <div class="jarviswidget-editbox">
@@ -231,7 +226,7 @@
           <tbody>
             <?php do { ?>
               <tr class="<?php echo $row_listView['site_id']; ?>">
-                <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['site_id']; ?>#webapps/ikioskmcp/cloudSites.php" class="ajaxLink"><?php echo $row_listView['system_name']; ?></a></td>
+                <td><a href="webapps/ikioskmcp/cloudSites.php?action=edit&recordID=<?php echo $row_listView['site_id']; ?>" class="dynamicModal" data-toggle="modal" data-target="#dynamicModal"><?php echo $row_listView['system_name']; ?></a></td>
                 <td><?php echo $row_listView['local_folder']; ?></td>
                 <td><?php echo $row_listView['db_host']; ?></td>
                 <td><?php echo $row_listView['db_name']; ?></td>
@@ -338,33 +333,19 @@
    $totalRows_getRecord = mysql_num_rows($getRecord);
    
    ?>
-<div class="row">
-  <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title"><?php echo $row_getRecord['system_name']; ?></h1>
-  </div>
-</div>
-<section id="widget-grid">
-  <div class="row">
-    <article class="col-sm-12 col-md-12 col-lg-12">
-      <div class="jarviswidget" id="editCtn-IkioskcloudSites" data-widget-editbutton="false" data-widget-deletebutton="false">
-        <header> <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-          <h2>Edit iKioskCloud Site</h2>
-        </header>
-        <div>
-          <div class="jarviswidget-editbox"> 
-            <!-- This area used as dropdown edit box -->
-            <input class="form-control" type="text">
-          </div>
-          <div class="widget-body no-padding">
+
             <form id= "edit-IkioskcloudSites" class="smart-form" method="post">
+            <div class="modal-header">
+    <h4 class="modal-title"><?php echo $row_getRecord['system_name']; ?></h4>
+  </div>
               <ul id="editCloud-tabs" class="nav nav-tabs">
-                <li class="active"> <a data-toggle="tab" href="#system">System</a> </li>
-                <li> <a data-toggle="tab" href="#database">Database</a> </li>
+                <li class="active"> <a data-toggle="tab" href="#cloud-system">System</a> </li>
+                <li> <a data-toggle="tab" href="#cloud-database">Database</a> </li>
               </ul>
               <fieldset>
                 <div class="form-response"></div>
                 <div class="tab-content">
-                  <div class="tab-pane fade in active" id="system">
+                  <div class="tab-pane fade in active" id="cloud-system">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">System Name</label>
@@ -394,7 +375,7 @@
                       </section>
                     </div>
                   </div>
-                  <div class="tab-pane fade in" id="database">
+                  <div class="tab-pane fade in" id="cloud-database">
                     <div class="row">
                       <section class="col col-6">
                         <label class="label">Database Host</label>
@@ -426,21 +407,17 @@
                   </div>
                 </div>
               </fieldset>
-              <footer>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-IkioskcloudSites"> <i class="fa fa-check"></i> Save </button>
-                <button type="button" class="btn btn-default ajaxLink" href="index.php#webapps/ikioskmcp/cloudSites.php"><i class="fa fa-times"></i> Cancel </button>
                 <input type="hidden" name="site_id" value="<?php echo $row_getRecord['site_id']; ?>" />
                 <input type="hidden" name="formID" value="edit-IkioskcloudSites">
                 <input type="hidden" name="iKioskForm" value="Yes" />
                 <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>" />
-              </footer>
+              </div>
             </form>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
-</section>
+
 <script type="text/javascript">
    runAllForms();
    

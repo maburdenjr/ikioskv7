@@ -9,14 +9,14 @@ $softwareList = explode("[iKiosk]", $softwareList);
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-lg-12">
-    <h1 class="page-title">Software Downloads and Updates</h1>
+    <h1 class="page-title"><i class="fa fa-cloud-download fa-fw "></i> Software Downloads and Updates</h1>
   </div>
 </div>
 <section id="widget-grid">
   <div class="row">
     <article class="col-sm-12 col-md-6 col-lg-6">
       <div class="jarviswidget" id="cloud-softwareDownloads" data-widget-editbutton="false">
-        <header> <span class="widget-icon"> <i class="fa fa-cubes"></i> </span>
+        <header> <span class="widget-icon"> <i class="fa fa-cloud-download"></i> </span>
           <h2>Available Downloads</h2>
         </header>
         <!-- widget div-->
@@ -65,7 +65,7 @@ $softwareList = explode("[iKiosk]", $softwareList);
     </article>
     <article class="col-sm-12 col-md-6 col-lg-6">
       <div class="jarviswidget" id="sys-softwareDownloadArchive" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=softwareHistory&appCode=SYS&recordID=<?php echo $row_getRecord['user_id']; ?>">
-        <header> <span class="widget-icon"> <i class="fa fa-cubes"></i> </span>
+        <header> <span class="widget-icon"> <i class="fa fa-cloud-download"></i> </span>
           <h2>Download History</h2>
         </header>
         <div>

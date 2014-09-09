@@ -20,7 +20,7 @@ $totalRows_getApps = mysql_num_rows($getApps);
 
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">Code Generator</h1>
+    <h1 class="page-title"><i class="fa fa-code-fork fa-fw "></i> Code Generator</h1>
   </div>
 </div>
 <section id="widget-grid">

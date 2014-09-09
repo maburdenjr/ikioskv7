@@ -41,7 +41,8 @@ $page_nav["admin"] = array(
 		),
 		"config" => array(
 			"title" => "System Configuration",
-			"url" => "webapps/admin/sysConfig.php"
+			"url" => "webapps/admin/sysConfig.php",
+			"url_target"=> "modal"
 		),
 		"teams" => array(
 			"title" => "Teams",

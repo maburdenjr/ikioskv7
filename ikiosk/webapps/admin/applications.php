@@ -27,7 +27,7 @@ $totalRows_listView = mysql_num_rows($listView);
 
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">Application Management</h1>
+    <h1 class="page-title"><i class="fa fa-cubes fa-fw "></i> Application Management</h1>
   </div>
 </div>
 <section id="widget-grid"> 

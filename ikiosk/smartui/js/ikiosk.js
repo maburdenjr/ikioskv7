@@ -6,9 +6,7 @@ function iKioskUI() {
 	//$('.modal .smart-form input, .modal .smart-form select').removeClass('input-lg');
 	
 	//Dynamic Modal
-	$('.widget-body').on('click', '.dynamicModal', function(e){
-		e.preventDefault();
-		var targetURL = $(this).attr("href");
+	function dynamicModal(targetURL) {
 		$.ajax({
 			url: targetURL,
 			timeout: 10000,	
@@ -20,8 +18,22 @@ function iKioskUI() {
 				$('#dynamicModal .modal-content').html(data).fadeIn('slow');
 				$('#dynamicModal .page-title').appendTo('#dynamicModal .modal-title');
 			}
-		});
+		});	
+	}
+	
+	
+	$('.widget-body').on('click', '.dynamicModal', function(e){
+		e.preventDefault();
+		var targetURL = $(this).attr("href");
+		dynamicModal(targetURL);
 	});
+	
+	$(document).on("click", 'nav a[target="modal"]', function (a) {
+		a.preventDefault();
+		var targetURL = $(this).attr("href");
+		dynamicModal(targetURL);
+		$('#dynamicModal').modal('show');
+	}),
 	
 	//Dynamic File Browser
 	$('.widget-body').on('click', '.browserLink', function(){

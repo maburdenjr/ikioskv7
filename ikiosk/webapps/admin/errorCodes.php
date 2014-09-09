@@ -27,7 +27,7 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">Error Codes</h1>
+    <h1 class="page-title"><i class="fa fa-warning fa-fw "></i> Error Codes</h1>
   </div>
 </div>
 <section id="widget-grid"> 
@@ -35,12 +35,28 @@
   <div class="modal fade" id="createCtn-SysErrors">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form id = "createApplication" class="smart-form" method="post">
+        <form id = "create-SysErrors" class="smart-form" method="post">
           <div class="modal-header">
             <h4 class="modal-title">Create Error Code</h4>
           </div>
           <div class="modal-body">
             <div class="form-response"></div>
+            <div class="row">
+              <section class="col col-12">
+                <label class="label">Error Title</label>
+                <label class="input">
+                  <input type="text" name="error_title" value="<?php echo $row_getRecord['error_title']; ?>">
+                </label>
+              </section>
+            </div>
+            <div class="row">
+              <section class="col col-12">
+                <label class="label">Error Description</label>
+                <label class="textarea">
+                  <textarea rows="3" class="custom-scroll" name="error_description"><?php echo $row_getRecord['error_description']; ?></textarea>
+                </label>
+              </section>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
@@ -80,7 +96,7 @@
                 <?php do { ?>
                   <tr class="<?php echo $row_listView['error_id']; ?>">
                     <td><?php echo $row_listView['error_id']; ?></td>
-                    <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['error_id']; ?>#webapps/admin/errorCodes.php" class="ajaxLink"><?php echo $row_listView['error_title']; ?></a></td>
+                    <td><a href="webapps/admin/errorCodes.php?action=edit&recordID=<?php echo $row_listView['error_id']; ?>" class="dynamicModal" data-toggle="modal" data-target="#dynamicModal"><?php echo $row_listView['error_title']; ?></a></td>
                     <td><?php echo $row_listView['error_description']; ?></td>
                     <td class="icon"><a class="delete-record" data-table="sys_errors" data-record="<?php echo $row_listView['error_id']; ?>" data-code="<?php echo $APPLICATION['application_code']; ?>" data-field="error_id"><i class="fa fa-trash-o"></i></a></td>
                   </tr>
@@ -96,7 +112,7 @@
 </section>
 <script type="text/javascript">
    var listView = $('#dt-SysErrors').dataTable();
-   $('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add" data-open="createCtn-SysErrors" data-close="listCtn-SysErrors"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Error Code</span></button>');
+   $('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add" data-toggle="modal" data-target="#createCtn-SysErrors"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Error Code</span></button>');
 </script> 
 <script type="text/javascript">
    runAllForms();
@@ -136,59 +152,38 @@
    $totalRows_getRecord = mysql_num_rows($getRecord);
    
    ?>
-<div class="row">
-  <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title"><?php echo $row_getRecord['error_title']; ?></h1>
+<form id= "edit-SysErrors" class="smart-form" method="post">
+  <div class="modal-header">
+    <h4 class="modal-title"><?php echo $row_getRecord['error_title']; ?></h4>
   </div>
-</div>
-<section id="widget-grid">
-  <div class="row">
-    <article class="col-sm-12 col-md-12 col-lg-12">
-      <div class="jarviswidget" id="editCtn-SysErrors" data-widget-editbutton="false" data-widget-deletebutton="false">
-        <header> <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-          <h2>Edit Error Code</h2>
-        </header>
-        <div>
-          <div class="jarviswidget-editbox"> 
-            <!-- This area used as dropdown edit box -->
-            <input class="form-control" type="text">
-          </div>
-          <div class="widget-body no-padding">
-            <form id= "edit-SysErrors" class="smart-form" method="post">
-              <fieldset>
-                <div class="form-response"></div>
-                <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Error Title</label>
-                    <label class="input">
-                      <input type="text" name="error_title" value="<?php echo $row_getRecord['error_title']; ?>">
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-12">
-                    <label class="label">Error Description</label>
-                    <label class="textarea">
-                      <textarea rows="3" class="custom-scroll" name="error_description"><?php echo $row_getRecord['error_description']; ?></textarea>
-                    </label>
-                  </section>
-                </div>
-              </fieldset>
-              <footer>
-                <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-SysErrors"> <i class="fa fa-check"></i> Save </button>
-                <button type="button" class="btn btn-default ajaxLink" href="index.php#webapps/admin/errorCodes.php"><i class="fa fa-times"></i> Cancel </button>
-                <input type="hidden" name="error_id" value="<?php echo $row_getRecord['error_id']; ?>" />
-                <input type="hidden" name="formID" value="edit-SysErrors">
-                <input type="hidden" name="iKioskForm" value="Yes" />
-                <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>" />
-              </footer>
-            </form>
-          </div>
-        </div>
-      </div>
-    </article>
+  <fieldset>
+    <div class="form-response"></div>
+    <div class="row">
+      <section class="col col-12">
+        <label class="label">Error Title</label>
+        <label class="input">
+          <input type="text" name="error_title" value="<?php echo $row_getRecord['error_title']; ?>">
+        </label>
+      </section>
+    </div>
+    <div class="row">
+      <section class="col col-12">
+        <label class="label">Error Description</label>
+        <label class="textarea">
+          <textarea rows="3" class="custom-scroll" name="error_description"><?php echo $row_getRecord['error_description']; ?></textarea>
+        </label>
+      </section>
+    </div>
+  </fieldset>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+    <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-SysErrors"> <i class="fa fa-check"></i> Save </button>
+    <input type="hidden" name="error_id" value="<?php echo $row_getRecord['error_id']; ?>" />
+    <input type="hidden" name="formID" value="edit-SysErrors">
+    <input type="hidden" name="iKioskForm" value="Yes" />
+    <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>" />
   </div>
-</section>
+</form>
 <script type="text/javascript">
    runAllForms();
    

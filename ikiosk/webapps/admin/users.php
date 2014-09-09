@@ -27,7 +27,7 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">User Management</h1>
+    <h1 class="page-title"><i class="fa fa-user fa-fw "></i> User Management</h1>
   </div>
 </div>
 <section id="widget-grid">
@@ -244,7 +244,7 @@
    ?>
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title"><?php echo $row_getRecord['display_name']; ?></h1>
+    <h1 class="page-title"><i class="fa fa-user fa-fw "></i> <?php echo $row_getRecord['display_name']; ?></h1>
   </div>
 </div>
 <section id="widget-grid">

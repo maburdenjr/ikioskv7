@@ -30,7 +30,7 @@ krsort($accessLogData);
 
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">Error Logs</h1>
+    <h1 class="page-title"><i class="fa fa-warning fa-fw "></i> Error Logs</h1>
   </div>
 </div>
 <section id="widget-grid">

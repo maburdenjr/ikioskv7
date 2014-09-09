@@ -27,82 +27,82 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">Team Management</h1>
+    <h1 class="page-title"><i class="fa fa-group fa-fw "></i> Team Management</h1>
   </div>
 </div>
-<section id="widget-grid">
-<!-- Begin Create Record -->
-<div class="modal fade" id="createTeam">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form id = "create-SysTeams" class="smart-form" method="post">
-        <div class="modal-header">
-          <h4 class="modal-title">Create Team</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-response"></div>
-          <section>
-            <label class="label">Title</label>
-            <label class="input">
-              <input type="text" name="title" value="<?php echo $row_getRecord['title']; ?>">
-            </label>
-          </section>
-          <section>
-            <label class="label">Description</label>
-            <label class="textarea">
-              <textarea rows="3" class="custom-scroll" name="description"><?php echo $row_getRecord['description']; ?></textarea>
-            </label>
-          </section>
-          <input type="hidden" name="formID" value="create-SysTeams">
-          <input type="hidden" name="iKioskForm" value="Yes">
-          <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
-          <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-SysTeams"> <i class="fa fa-check"></i> Save </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<!-- End Create Record --> 
-<!-- Start List View -->
-<div id="listCtn-SysTeams" class="row">
-<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  <div class="system-message"></div>
-  <div class="jarviswidget" id="list-SysTeams" data-widget-editbutton="false" data-widget-deletebutton="false">
-    <header> <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-      <h2>Teams</h2>
-    </header>
-    <div>
-      <div class="jarviswidget-editbox">
-        <input class="form-control" type="text">
-      </div>
-      <div class="widget-body no-padding">
-        <table id="dt-SysTeams" class="table table-striped table-bordered table-hover" width="100%">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php do { ?>
-              <tr class="<?php echo $row_listView['team_id']; ?>">
-                <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['team_id']; ?>#webapps/admin/teams.php" class="ajaxLink"><?php echo $row_listView['title']; ?></a></td>
-                <td><?php echo $row_listView['description']; ?></td>
-                <td class="icon"><a class="delete-record" data-table="sys_teams" data-record="<?php echo $row_listView['team_id']; ?>" data-code="<?php echo $APPLICATION['application_code']; ?>" data-field="team_id"><i class="fa fa-trash-o"></i></a></td>
-              </tr>
-              <?php } while ($row_listView = mysql_fetch_assoc($listView)); ?>
-          </tbody>
-        </table>
+<section id="widget-grid"> 
+  <!-- Begin Create Record -->
+  <div class="modal fade" id="createTeam">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id = "create-SysTeams" class="smart-form" method="post">
+          <div class="modal-header">
+            <h4 class="modal-title">Create Team</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-response"></div>
+            <section>
+              <label class="label">Title</label>
+              <label class="input">
+                <input type="text" name="title" value="<?php echo $row_getRecord['title']; ?>">
+              </label>
+            </section>
+            <section>
+              <label class="label">Description</label>
+              <label class="textarea">
+                <textarea rows="3" class="custom-scroll" name="description"><?php echo $row_getRecord['description']; ?></textarea>
+              </label>
+            </section>
+            <input type="hidden" name="formID" value="create-SysTeams">
+            <input type="hidden" name="iKioskForm" value="Yes">
+            <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+            <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-SysTeams"> <i class="fa fa-check"></i> Save </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-</article>
-</div>
-<!--  End List View -->
+  <!-- End Create Record --> 
+  <!-- Start List View -->
+  <div id="listCtn-SysTeams" class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="system-message"></div>
+      <div class="jarviswidget" id="list-SysTeams" data-widget-editbutton="false" data-widget-deletebutton="false">
+        <header> <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+          <h2>Teams</h2>
+        </header>
+        <div>
+          <div class="jarviswidget-editbox">
+            <input class="form-control" type="text">
+          </div>
+          <div class="widget-body no-padding">
+            <table id="dt-SysTeams" class="table table-striped table-bordered table-hover" width="100%">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php do { ?>
+                  <tr class="<?php echo $row_listView['team_id']; ?>">
+                    <td><a href="index.php#webapps/admin/teams.php?action=edit&recordID=<?php echo $row_listView['team_id']; ?>" class="ajaxLink"><?php echo $row_listView['title']; ?></a></td>
+                    <td><?php echo $row_listView['description']; ?></td>
+                    <td class="icon"><a class="delete-record" data-table="sys_teams" data-record="<?php echo $row_listView['team_id']; ?>" data-code="<?php echo $APPLICATION['application_code']; ?>" data-field="team_id"><i class="fa fa-trash-o"></i></a></td>
+                  </tr>
+                  <?php } while ($row_listView = mysql_fetch_assoc($listView)); ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+  <!--  End List View --> 
 </section>
 <script type="text/javascript">
    var listView = $('#dt-SysTeams').dataTable();
@@ -148,13 +148,13 @@
    ?>
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title"><?php echo $row_getRecord['title']; ?></h1>
+    <h1 class="page-title"><i class="fa fa-group fa-fw "></i> <?php echo $row_getRecord['title']; ?></h1>
   </div>
 </div>
 <section id="widget-grid">
   <div class="system-message"></div>
   <div class="row">
-    <article class="col-sm-12 col-md-12 col-lg-12">
+    <article class="col-sm-12 col-md-6 col-lg-6">
       <div class="jarviswidget" id="editCtn-SysTeams-<?php echo $row_getRecord['team_id']; ?>" data-widget-editbutton="false" data-widget-deletebutton="false">
         <header> <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
           <h2>Edit Team</h2>
@@ -197,12 +197,9 @@
           </div>
         </div>
       </div>
-      
     </article>
-  </div>
-  <div class="row">
-  		    <article class="col-sm-12 col-md-6 col-lg-6">
-          <div class="jarviswidget" id="editCtn-SysTeams-<?php echo $row_getRecord['team_id']; ?>-members" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMembers&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
+    <article class="col-sm-12 col-md-6 col-lg-6">
+      <div class="jarviswidget" id="editCtn-SysTeams-<?php echo $row_getRecord['team_id']; ?>-members" data-widget-editbutton="false" data-widget-deletebutton="false"  data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMembers&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-user"></i> </span>
           <h2>Team Members</h2>
         </header>
@@ -214,9 +211,11 @@
           <div class="widget-body no-padding"> </div>
         </div>
       </div>
-					</article>
-          <article class="col-sm-12 col-md-6 col-lg-6">
-          <div class="jarviswidget" id="editCtn-SysTeams-Add" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMemberSelect&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
+    </article>
+  </div>
+  <div class="row">
+    <article class="col-sm-12 col-md-6 col-lg-6">
+      <div class="jarviswidget" id="editCtn-SysTeams-Add" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-togglebutton="false"  data-widget-fullscreenbutton="false" data-widget-load="includes/core/formProcessor.php?ajaxAction=teamMemberSelect&appCode=SYS&recordID=<?php echo $row_getRecord['team_id']; ?>">
         <header> <span class="widget-icon"> <i class="fa fa-user"></i> </span>
           <h2>Add User</h2>
         </header>
@@ -225,12 +224,10 @@
             <!-- This area used as dropdown edit box -->
             <input class="form-control" type="text">
           </div>
-          <div class="widget-body no-padding">
-            
-          </div>
+          <div class="widget-body no-padding"> </div>
         </div>
       </div>
-					</article>
+    </article>
   </div>
 </section>
 <script type="text/javascript">

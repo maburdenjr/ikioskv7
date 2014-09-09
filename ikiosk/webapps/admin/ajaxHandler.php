@@ -771,6 +771,7 @@ $insertSQL = sprintf("INSERT INTO sys_teams (team_id, title, description, date_c
 				sqlQueryLog($updateSQL);
 				
 				displayAlert("success", "Changes saved.");
+				insertJS($ajaxRefresh);
 				exit;
 		
 	}
@@ -830,10 +831,9 @@ $insertSQL = sprintf("INSERT INTO sys_teams (team_id, title, description, date_c
 				mysql_select_db($database_ikiosk, $ikiosk);
 				$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
 				sqlQueryLog($updateSQL);
-				
-				$updateJS = "$('.page-title').html('".$_POST['site_name']."');\r\n";
-				insertJS($updateJS);
+			
 				displayAlert("success", "Changes saved.");
+				insertJS($ajaxRefresh);
 				exit;
 
 		
@@ -902,8 +902,7 @@ $insertSQL = sprintf("INSERT INTO sys_teams (team_id, title, description, date_c
 				sqlQueryLog($insertSQL);
 				}
 					
-				$hideModal= "$('.modal-backdrop').remove(); \r\n";
-				insertJS($hideModal." ".$refresh);
+				insertJS($ajaxRefresh);
    			exit;
 			} else {
 				displayAlert("danger", "It appears that this site already exists.  Please try again.");	
@@ -921,7 +920,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-SysErrors")) {
     mysql_select_db($database_ikiosk, $ikiosk);
     $Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
     sqlQueryLog($insertSQL);
-    insertJS($refresh);
+    insertJS($ajaxRefresh);
     exit;
 }
 
@@ -938,10 +937,9 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysErrors")) {
     $Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
     sqlQueryLog($updateSQL);
 
-		$updateJS = "$('.page-title').html('".$_POST['error_title']."');\r\n";
-		insertJS($updateJS);
-    displayAlert("success", "Changes saved.");
-		exit;
+	displayAlert("success", "Changes saved.");
+	insertJS($ajaxRefresh);
+	exit;
 }
 	
 // Applications: Edit --------------------------------------------------------------------------------
