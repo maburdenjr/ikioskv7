@@ -7,6 +7,12 @@ $refresh = 'var iLocation = location.hash.replace(/^#/, ""); ';
 $refresh .= 'var iContainer = $("#content"); ';
 $refresh .= 'loadURL(iLocation, iContainer); ';
 
+$ajaxRefresh = "var a = location.hash.replace(/^#/, \"\");\r\n";
+$ajaxRefresh .= "loadURL(a, $('#content'));\r\n";
+$ajaxRefresh .= "$('.modal').modal('hide');\r\n";
+$ajaxRefresh .= "$('.modal-backdrop').remove(); \r\n";
+
+
 $app_ajax = array();
 //Get All Master Applications
 mysql_select_db($database_ikiosk, $ikiosk);

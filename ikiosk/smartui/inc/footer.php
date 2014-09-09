@@ -1,5 +1,11 @@
 <?php if ($SYSTEM['debug'] == "Yes") { include ($systemFileRoot."/ikiosk/webapps/admin/systemDebug.php"); } ?>
-
+<!-- Remote Modal -->
+<div class="modal fade" id="dynamicModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
 <!-- PAGE FOOTER -->
 <div class="page-footer">
   <div class="row">

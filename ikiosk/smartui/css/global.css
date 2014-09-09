@@ -77,7 +77,7 @@ pre.html {
 }
 
 #header {
-	background: #275C85;
+	background: #225074;
 	border-top: 2px solid #000;
 	height: 51px;
 }
@@ -314,4 +314,8 @@ td.icon {
 
 .embedded-response .alert {
 	margin:5px !important;
+}
+
+#dynamicModal .modal-footer {
+	margin-top:0px;	
 }

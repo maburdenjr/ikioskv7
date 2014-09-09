@@ -15073,7 +15073,7 @@ aside {
 	top: 0;
 	border-bottom: 2px solid #999;
 	border-bottom: 1px solid rgba(0,0,0,.3);
-	box-shadow: -11px 12px 23px rgba(0,0,0,.1)
+	box-shadow: -11px 12px 23px rgba(0,0,0,.3)
 }
 .fixed-header.fixed-ribbon #header {
 	border-bottom: none;

@@ -963,10 +963,8 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysErrors")) {
 			$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
 			sqlQueryLog($updateSQL);
 			
-			$updateJS = "$('.page-title').html('".$_POST['application_title']."');\r\n";
-	
-			insertJS("$('.".$_POST['application_id']." a').hide().text('".$_POST['application_title']."').fadeIn();\r\n"." ".$updateJS);
 			displayAlert("success", "Changes saved.");
+			insertJS($ajaxRefresh);
 			exit;
 	}
 	// Applications: Create --------------------------------------------------------------------------------
@@ -999,7 +997,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-SysErrors")) {
 		mysql_select_db($database_ikiosk, $ikiosk);
 		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
 		sqlQueryLog($insertSQL);
-		insertJS($refresh);
+		insertJS($ajaxRefresh);
 		exit;
 	}
 	

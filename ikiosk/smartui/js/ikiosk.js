@@ -5,6 +5,23 @@ function iKioskUI() {
 	//$('.smart-form input, .smart-form select').addClass('input-lg');
 	//$('.modal .smart-form input, .modal .smart-form select').removeClass('input-lg');
 	
+	//Dynamic Modal
+	$('.widget-body').on('click', '.dynamicModal', function(e){
+		e.preventDefault();
+		var targetURL = $(this).attr("href");
+		$.ajax({
+			url: targetURL,
+			timeout: 10000,	
+			error: function(data) {
+				var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+				$('#dynamicModal .modal-body').html(error).fadeIn('slow');
+			},	
+			success: function(data) {
+				$('#dynamicModal .modal-content').html(data).fadeIn('slow');
+				$('#dynamicModal .page-title').appendTo('#dynamicModal .modal-title');
+			}
+		});
+	});
 	
 	//Dynamic File Browser
 	$('.widget-body').on('click', '.browserLink', function(){

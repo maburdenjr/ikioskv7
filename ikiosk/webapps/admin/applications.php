@@ -42,110 +42,109 @@ $totalRows_listView = mysql_num_rows($listView);
           <div class="modal-body">
             <div class="form-response"></div>
             <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Title</label>
-                    <label class="input">
-                      <input name="application_title" type="text"/>
-                    </label>
-                  </section>
-                  <section class="col col-3">
-                    <label class="label">System Code</label>
-                    <label class="input">
-                      <input name="application_code" type="text" />
-                    </label>
-                  </section>
-                  <section class="col col-3">
-                    <label class="label">Type</label>
-                    <label class="select">
-                      <select name="application_type">
-                        <option value="Application">Application</option>
-                        <option value="Module">Module</option>
-                        <option value="Widget">Widget</option>
-                      </select>
-                      <i></i> </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-3">
-                    <label class="label">Version</label>
-                    <label class="input">
-                      <input name="application_version" type="text"/>
-                    </label>
-                  </section>
-                  <section class="col col-9">
-                    <label class="label">System Location</label>
-                    <div class="note">Application root should be relative to the IntelliKiosk root directory (<?php echo $SYSTEM['ikiosk_root']; ?>)</div>
-                    <label class="input">
-                      <input name="application_root" type="text" />
-                    </label>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-4">
-                    <label class="label">User Level</label>
-                    <label class="select">
-                      <select name="application_security">
-                        <option value="public">Public</option>
-                        <option value="registered">Registered</option>
-                        <option value="admin">Admin</option>
-                      </select>
-                      <i></i> </label>
-                  </section>
-                  <section class="col col-4">
-                    <label class="label">Access Level</label>
-                    <label class="select">
-                      <select name="application_clearance">
-                        <option value="000">No Access</option>
-                        <option value="111">Standard</option>
-                        <option value="112">Admin</option>
-                        <option value="999">Super Admin</option>
-                      </select>
-                      <i></i> </label>
-                  </section>
-                  <section class="col col-4">
-                    <label class="label">Status</label>
-                    <label class="select">
-                      <select name="application_status">
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                      </select>
-                      <i></i> </label>
-                  </section>
-                </div>
-                <section>
-                  <label class="label">Description</label>
-                  <label class="textarea">
-                    <textarea name="application_description" rows="3" class="custom-scroll"></textarea>
-                  </label>
-                </section>
-                <div class="row">
-                  <section class="col col-6">
-                    <label class="label">Default Access Level</label>
-                    <div class="note">All existing and future users will be granted this access level when this application is created.</div>
-                    <label class="select">
-                      <select name="default_application_clearance">
-                        <option value="000">No Access</option>
-                        <option value="111">Standard</option>
-                        <option value="112">Admin</option>
-                        <option value="999">Super Admin</option>
-                      </select>
-                      <i></i> </label>
-                  </section>
-                </div>
+              <section class="col col-6">
+                <label class="label">Title</label>
+                <label class="input">
+                  <input name="application_title" type="text"/>
+                </label>
+              </section>
+              <section class="col col-3">
+                <label class="label">System Code</label>
+                <label class="input">
+                  <input name="application_code" type="text" />
+                </label>
+              </section>
+              <section class="col col-3">
+                <label class="label">Type</label>
+                <label class="select">
+                  <select name="application_type">
+                    <option value="Application">Application</option>
+                    <option value="Module">Module</option>
+                    <option value="Widget">Widget</option>
+                  </select>
+                  <i></i> </label>
+              </section>
+            </div>
+            <div class="row">
+              <section class="col col-3">
+                <label class="label">Version</label>
+                <label class="input">
+                  <input name="application_version" type="text"/>
+                </label>
+              </section>
+              <section class="col col-9">
+                <label class="label">System Location</label>
+                <div class="note">Application root should be relative to the IntelliKiosk root directory (<?php echo $SYSTEM['ikiosk_root']; ?>)</div>
+                <label class="input">
+                  <input name="application_root" type="text" />
+                </label>
+              </section>
+            </div>
+            <div class="row">
+              <section class="col col-4">
+                <label class="label">User Level</label>
+                <label class="select">
+                  <select name="application_security">
+                    <option value="public">Public</option>
+                    <option value="registered">Registered</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                  <i></i> </label>
+              </section>
+              <section class="col col-4">
+                <label class="label">Access Level</label>
+                <label class="select">
+                  <select name="application_clearance">
+                    <option value="000">No Access</option>
+                    <option value="111">Standard</option>
+                    <option value="112">Admin</option>
+                    <option value="999">Super Admin</option>
+                  </select>
+                  <i></i> </label>
+              </section>
+              <section class="col col-4">
+                <label class="label">Status</label>
+                <label class="select">
+                  <select name="application_status">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                  <i></i> </label>
+              </section>
+            </div>
+            <section>
+              <label class="label">Description</label>
+              <label class="textarea">
+                <textarea name="application_description" rows="3" class="custom-scroll"></textarea>
+              </label>
+            </section>
+            <div class="row">
+              <section class="col col-6">
+                <label class="label">Default Access Level</label>
+                <div class="note">All existing and future users will be granted this access level when this application is created.</div>
+                <label class="select">
+                  <select name="default_application_clearance">
+                    <option value="000">No Access</option>
+                    <option value="111">Standard</option>
+                    <option value="112">Admin</option>
+                    <option value="999">Super Admin</option>
+                  </select>
+                  <i></i> </label>
+              </section>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
             <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="create-createApplication"> <i class="fa fa-check"></i> Save </button>
           </div>
           <input type="hidden" name="application_id" value="<?php echo $row_getRecord['application_id']; ?>" />
-                <input type="hidden" name="formID" value="createApplication">
-                <input type="hidden" name="iKioskForm" value="Yes" />
-                <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>" />
+          <input type="hidden" name="formID" value="createApplication">
+          <input type="hidden" name="iKioskForm" value="Yes" />
+          <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>" />
         </form>
       </div>
     </div>
   </div>
-  
   <div id="appList" class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="system-message"></div>
@@ -177,7 +176,7 @@ $totalRows_listView = mysql_num_rows($listView);
               <tbody>
                 <?php do { ?>
                   <tr class="<?php echo $row_listView['application_id']; ?>">
-                    <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['application_id']; ?>#webapps/admin/applications.php" class="ajaxLink"><?php echo $row_listView['application_title']; ?></a></td>
+                    <td><a href="webapps/admin/applications.php?recordID=<?php echo $row_listView['application_id']; ?>&action=edit" class="dynamicModal" data-toggle="modal" data-target="#dynamicModal"><?php echo $row_listView['application_title']; ?></a></td>
                     <td><?php echo $row_listView['application_code']; ?></td>
                     <td><?php echo $row_listView['application_security']; ?></td>
                     <td><?php echo $row_listView['application_status']; ?></td>
@@ -261,30 +260,11 @@ $getRecord = mysql_query($query_getRecord, $ikiosk) or sqlError(mysql_error());
 $row_getRecord = mysql_fetch_assoc($getRecord);
 $totalRows_getRecord = mysql_num_rows($getRecord);
 ?>
-<div class="row">
-  <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title"><?php echo $row_getRecord['application_title']; ?></h1>
-  </div>
+
+<form id= "editApplication" class="smart-form" method="post">
+<div class="modal-header">
+  <h4 class="modal-title"><?php echo $row_getRecord['application_title']; ?></h4>
 </div>
-<section id="widget-grid">
-  <div class="row">
-    <article class="col-sm-12 col-md-12 col-lg-9">
-      <div class="jarviswidget" id="edit-application" data-widget-editbutton="false" data-widget-deletebutton="false">
-        <header> <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-          <h2>Edit Application</h2>
-        </header>
-        <!-- widget div-->
-        <div> 
-          <!-- widget edit box -->
-          <div class="jarviswidget-editbox"> 
-            <!-- This area used as dropdown edit box -->
-            <input class="form-control" type="text">
-          </div>
-          <!-- end widget edit box --> 
-          
-          <!-- widget content -->
-          <div class="widget-body no-padding">
-            <form id= "editApplication" class="smart-form" method="post">
               <fieldset>
                 <div class="form-response"></div>
                 <section>
@@ -363,49 +343,17 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
                   </label>
                 </section>
               </fieldset>
-              <footer>
+              <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+
                 <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="editApplication"> <i class="fa fa-check"></i> Save </button>
-                <button type="button" class="btn btn-default ajaxLink" href="index.php#webapps/admin/applications.php"><i class="fa fa-times"></i> Cancel </button>
                 <input type="hidden" name="application_id" value="<?php echo $row_getRecord['application_id']; ?>" />
                 <input type="hidden" name="formID" value="editApplication">
                 <input type="hidden" name="iKioskForm" value="Yes" />
                 <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>" />
-              </footer>
+              </div>
             </form>
-          </div>
-        </div>
-      </div>
-    </article>
-    <article class="col-sm-12 col-md-12 col-lg-3">
-      <div class="jarviswidget" id="sys-applications-widget" data-widget-editbutton="false" data-widget-deletebutton="false">
-        <header> <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-          <h2>Applications</h2>
-        </header>
-        <!-- widget div-->
-        <div> 
-          <!-- widget edit box -->
-          <div class="jarviswidget-editbox"> 
-            <!-- This area used as dropdown edit box -->
-            <input class="form-control" type="text">
-          </div>
-          <!-- end widget edit box --> 
-          
-          <!-- widget content -->
-          <div class="widget-body no-padding">
-            <table id="dt_applications" class="table table-striped table-bordered table-hover" width="100%">
-              <tbody>
-                <?php do { ?>
-                  <tr>
-                    <td class="<?php echo $row_listView['application_id']; ?>"><a href="index.php?action=edit&recordID=<?php echo $row_listView['application_id']; ?>#webapps/admin/applications.php" class="ajaxLink"><?php echo $row_listView['application_title']; ?></a></td>
-                    <?php } while ($row_listView = mysql_fetch_assoc($listView)); ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
-</section>
+
 <script type="text/javascript">
 	runAllForms();
 
