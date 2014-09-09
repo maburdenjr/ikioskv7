@@ -7,6 +7,7 @@ function iKioskUI() {
 	
 	//Dynamic Modal
 	function dynamicModal(targetURL) {
+		$('#dynamicModal .modal-content').html("<div class='modal-body'><i class='fa fa-cog fa-spin'></i> Loading..</div>").fadeIn('slow');	
 		$.ajax({
 			url: targetURL,
 			timeout: 10000,	
