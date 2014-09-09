@@ -144,7 +144,7 @@
 						</div>
             	<!-- end fullscreen button -->
             <?php if ($SYSTEM['debug'] == "Yes") { ?>
-            <div id="debug" class="btn-header transparent pull-right">
+            <div id="debug" class="btn-header transparent pull-right hidden-mobile">
             		<span> <a title="Debug Console" data-toggle="modal" data-target="#systemDebug"><i class="fa fa-cogs"></i></a> </span>	
             </div>
             <?php } ?>
