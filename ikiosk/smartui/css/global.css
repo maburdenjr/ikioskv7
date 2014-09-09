@@ -102,6 +102,10 @@ pre.html {
 	color:#FFF;
 }
 
+#hide-menu i {
+	color: #3073A8 !important;
+}
+
 .menu-on-top #mobile-profile-img a.userdropdown img {
 	border-radius:0px;
 	border: 1px solid #1B415E !important;
