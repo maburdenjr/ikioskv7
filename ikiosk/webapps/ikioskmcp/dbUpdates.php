@@ -26,7 +26,7 @@
    ?>
 <div class="row">
    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-      <h1 class="page-title">Database Updates</h1>
+      <h1 class="page-title"><i class="fa fa-database fa-fw "></i> Database Updates</h1>
    </div>
 </div>
 <section id="widget-grid">
@@ -110,7 +110,7 @@
                     <tbody>
                         <?php do { ?>
                         <tr class="<?php echo $row_listView['update_id']; ?>">
-                            <td><a href="index.php?action=edit&recordID=<?php echo $row_listView['update_id']; ?>#webapps/ikioskmcp/dbUpdates.php" class="ajaxLink"><?php echo $row_listView['title']; ?></a></td>
+                            <td><a href="webapps/ikioskmcp/dbUpdates.php?action=edit&recordID=<?php echo $row_listView['update_id']; ?>" class="dynamicModal" data-toggle="modal" data-target="#dynamicModal"><?php echo $row_listView['title']; ?></a></td>
                             <td><?php echo $row_listView['sql_query']; ?></td>
                              <td><?php echo $row_listView['status']; ?></td>
                             <td class="icon"><a class="delete-record" data-table="ikioskcloud_db_update" data-record="<?php echo $row_listView['update_id']; ?>" data-code="<?php echo $APPLICATION['application_code']; ?>" data-field="update_id"><i class="fa fa-trash-o"></i></a></td>
@@ -171,26 +171,11 @@
    $totalRows_getRecord = mysql_num_rows($getRecord);
    
    ?>
-<div class="row">
-   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-      <h1 class="page-title"><?php echo $row_getRecord['title']; ?></h1>
-   </div>
-</div>
-<section id="widget-grid">
-   <div class="row">
-      <article class="col-sm-12 col-md-12 col-lg-12">
-         <div class="jarviswidget" id="editCtn-IkioskcloudDbUpdate" data-widget-editbutton="false" data-widget-deletebutton="false">
-            <header>
-               <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-               <h2>Edit Database Query</h2>
-            </header>
-            <div>
-               <div class="jarviswidget-editbox">
-                  <!-- This area used as dropdown edit box -->
-                  <input class="form-control" type="text">
-               </div>
-               <div class="widget-body no-padding">
+
                   <form id= "edit-IkioskcloudDbUpdate" class="smart-form" method="post">
+                    <div class="modal-header">
+          <h4 class="modal-title"><?php echo $row_getRecord['title']; ?></h4>
+        </div>
                      <fieldset>
                         <div class="form-response"></div>
                                                     <div class="row">
@@ -222,22 +207,17 @@
                             </div>
                            
                      </fieldset>
-                     <footer>
+                     <div class="modal-footer">
+                                       <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+
                         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="edit-IkioskcloudDbUpdate"> <i class="fa fa-check"></i> Save </button>
-                        <button type="button" class="btn btn-default ajaxLink" href="index.php#webapps/ikioskmcp/dbUpdates.php"><i class="fa fa-times"></i> Cancel </button>
                         <input type="hidden" name="update_id" value="<?php echo $row_getRecord['update_id']; ?>" />
                         <input type="hidden" name="formID" value="edit-IkioskcloudDbUpdate">
                         <input type="hidden" name="iKioskForm" value="Yes" />
                         <input type="hidden" name="appCode" value="<?php echo $APPLICATION['application_code']; ?>" />
-                     </footer>
+                     </div>
                   </form>
-               </div>
-            </div>
-         </div>
-      </article>
-   </div>
-</section>
-<script type="text/javascript">
+               <script type="text/javascript">
    runAllForms();
    
    $(function() {

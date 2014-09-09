@@ -27,7 +27,7 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">Software Packages</h1>
+    <h1 class="page-title"><i class="fa fa-cubes fa-fw "></i> Software Packages</h1>
   </div>
   
 </div>
@@ -238,7 +238,7 @@
    ?>
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title"><?php echo $row_getRecord['software_title']; ?></h1>
+    <h1 class="page-title"><i class="fa fa-cubes fa-fw "></i> <?php echo $row_getRecord['software_title']; ?></h1>
   </div>
 </div>
   <div class="system-message"></div>

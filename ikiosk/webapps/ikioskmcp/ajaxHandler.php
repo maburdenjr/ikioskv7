@@ -433,10 +433,8 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudSoftware"
 	//Create Dir
 	$softwareDIR = $SYSTEM['ikiosk_filesystem_root']."/system32/software_apps/".$_POST['local_folder'];
 	createDIR($softwareDIR);
-	
-	$updateJS = "$('.page-title').html('".$_POST['software_title']."');\r\n";
-	insertJS($updateJS);
 	displayAlert("success", "Changes saved.");
+	insertJS($ajaxRefresh);
 	exit;
 }
 	
@@ -455,9 +453,8 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudDbUpdate"
     $Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
     sqlQueryLog($updateSQL);
 		
-		$updateJS = "$('.page-title').html('".$_POST['title']."');\r\n";
-		insertJS($updateJS);
-    displayAlert("success", "Changes saved.");
+		displayAlert("success", "Changes saved.");
+		insertJS($ajaxRefresh);
 		exit;
 }	
 
@@ -515,8 +512,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudDbUpdat
 			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
 			sqlQueryLog($insertSQL);
 			
-			$hideModal= "$('.modal-backdrop').remove(); \r\n";
-			insertJS($hideModal." ".$refresh);
+			insertJS($ajaxRefresh);
 			exit;
 	}
 	
@@ -538,9 +534,8 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudSites")) 
 	$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
 	sqlQueryLog($updateSQL);
 	
-	$updateJS = "$('.page-title').html('".$_POST['system_name']."');\r\n";
-	insertJS($updateJS);
 	displayAlert("success", "Changes saved.");
+	insertJS($ajaxRefresh);
 	exit;
 	
 }
@@ -662,8 +657,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudSites")
 			fwrite($fh, $dbConnFile);
 			fclose($fh);
 			
-			$hideModal= "$('.modal-backdrop').remove(); \r\n";
-			insertJS($hideModal." ".$refresh);
+			insertJS($ajaxRefresh);
 			
 			} // End DB Creations
 				

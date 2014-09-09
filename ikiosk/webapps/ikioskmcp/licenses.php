@@ -27,7 +27,7 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title">Software Licenses</h1>
+    <h1 class="page-title"><i class="fa fa-key fa-fw "></i> License Management</h1>
   </div>
 </div>
 <section id="widget-grid"> 
@@ -170,7 +170,7 @@
 </section>
 <script type="text/javascript">
    var listView = $('#dt-IkioskcloudLicenses').dataTable();
-   $('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add"   data-toggle="modal" data-target="#createCtn-IkioskcloudLicenses"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Software Licenses</span></button>');
+   $('.dataTables_length').before('<button class="btn btn-primary btn-toggle btn-add"   data-toggle="modal" data-target="#createCtn-IkioskcloudLicenses"><i class="fa fa-plus"></i> New <span class="hidden-mobile">Software License</span></button>');
 </script> 
 <script type="text/javascript">
    runAllForms();
@@ -226,7 +226,7 @@
    ?>
 <div class="row">
   <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-    <h1 class="page-title"><?php echo $row_getRecord['site_name']; ?> </h1>
+    <h1 class="page-title"><i class="fa fa-key fa-fw "></i> <?php echo $row_getRecord['site_name']; ?> </h1>
   </div>
 </div>
 <section id="widget-grid">
