@@ -95,7 +95,7 @@ function v7InitSite($site_id) {
 						$htaccess .= "ErrorDocument 404 ".$row_getRecord['site_url']."/404.htm\r\n";
 						$htaccess .= "ErrorDocument 500 ".$row_getRecord['site_url']."/500.htm\r\n";
 						
-						$htaccessFile = $SYSTEM['ikiosk_filesystem_root']."/sites/".$row_getSite['site_root']."/.htaccess";
+						$htaccessFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/.htaccess";
 						$fh = fopen($htaccessFile, 'w') or errorLog("Unable to create .htaccess file");
 						fwrite($fh, $htaccess);
 						fclose($fh);
