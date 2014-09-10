@@ -89,7 +89,7 @@ function v7InitSite($site_id) {
 					
 					//Create .htaccess file in Site Root
 					if(!file_exists($SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/.htaccess")) {
-						$htaccess = "AddHandler x-mapp-php5 .html .htm\r\n";
+						$htaccess = "AddType application/x-httpd-php .html .htm\r\n";
 						$htaccess .= "ErrorDocument 400 ".$row_getRecord['site_url']."/400.htm\r\n";
 						$htaccess .= "ErrorDocument 403 ".$row_getRecord['site_url']."/403.htm\r\n";
 						$htaccess .= "ErrorDocument 404 ".$row_getRecord['site_url']."/404.htm\r\n";
