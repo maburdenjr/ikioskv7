@@ -346,7 +346,6 @@ body.mobile-view-activated #ribbon {
 #iKioskMMWrapper {
 	background:#E9EAED;
 	position:relative;
-	z-index:20;
 }
 
 .animating.mobile-view-activated #iKioskUiWrapper header, .animating.mobile-view-activated #iKioskMMWrapper {
@@ -390,7 +389,7 @@ body.mobile-view-activated.fixed-header {
 	left:auto !important;
 	display:block;
 	padding-top:0px !important;
-	z-index:10!important;
+	z-index:-10!important;
 }
 
 .mobile-view-activated, .mobile-view-activated body {
