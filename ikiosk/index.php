@@ -12,6 +12,7 @@ $page_css[] = "prettify.css";
 include($SYSTEM['ikiosk_docroot'].'/smartui/inc/header.php');
 include($SYSTEM['ikiosk_docroot'].'/smartui/inc/nav.php');
 ?>
+<div id="iKioskMMWrapper">
 <div id="main" role="main">
 <?php include($SYSTEM['ikiosk_docroot']."/smartui/inc/ribbon.php"); ?>
 <div id="content"></div>
@@ -19,6 +20,7 @@ include($SYSTEM['ikiosk_docroot'].'/smartui/inc/nav.php');
 <?php 
 include($SYSTEM['ikiosk_docroot'].'/smartui/inc/footer.php');
 ?>
+</div>
 <?php 
 include($SYSTEM['ikiosk_docroot']."/smartui/inc/scripts.php"); 
 include($SYSTEM['ikiosk_docroot']."/smartui/inc/google-analytics.php"); 

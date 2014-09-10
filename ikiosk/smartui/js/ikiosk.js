@@ -5,6 +5,44 @@ function iKioskUI() {
 	//$('.smart-form input, .smart-form select').addClass('input-lg');
 	//$('.modal .smart-form input, .modal .smart-form select').removeClass('input-lg');
 	
+	updateUI();
+	
+	//Window Resize Controls
+	$(window).on('resize', function() {
+		updateUI();	
+	});
+	
+	function updateUI() {
+		var windowHeight = $(this).height();
+		$('#iKioskMMWrapper').css('min-height', windowHeight);		
+		$('body.mobile-view-activated aside#left-panel, .animating aside#left-panel').css('max-height', windowHeight);	
+	}
+	
+	//Mobile Menu Toggle
+	var isTouch = !!('ontouchstart' in window)
+	TorC = isTouch ? 'touchstart' : 'click';
+
+	$( '#hide-menu a' ).on(TorC, function(e) {
+			var $html = $('html');
+			var $body = $('body');
+			var $page = $('#iKioskUiWrapper');
+			transitionEnd = 'transitionend webkitTransitionEnd otransitionend MSTransitionEnd';
+			
+			$body.addClass('animating');
+			
+			if ($html.hasClass( 'hidden-menu-mobile-lock' ) ) {
+				 $body.addClass('right');
+				} else {
+				 $body.addClass('left');
+			 }
+								 
+			$page.on(transitionEnd, function() {
+				 $body.removeClass('animating left right');
+				 $html.toggleClass('hidden-menu-mobile-lock');	
+				 $('#left-panel').toggleClass('menu-visible');
+				 $page.off( transitionEnd );
+			});
+	});	
 	//Dynamic Modal
 	function dynamicModal(targetURL) {
 		$('#dynamicModal .modal-content').html("<div class='modal-body'><i class='fa fa-cog fa-spin'></i> Loading..</div>").fadeIn('slow');	

@@ -62,6 +62,7 @@
 	<body class="fixed-header fixed-navigation menu-on-top" <?php echo implode(' ', array_map(function($prop, $value) {
 			return $prop.'="'.$value.'"';
 		}, array_keys($page_body_prop), $page_body_prop)) ;?>>
+    <div id="iKioskUiWrapper">
 		<!-- POSSIBLE CLASSES: minified, fixed-ribbon, fixed-header, fixed-width
 			 You can also add different skin classes such as "smart-skin-1", "smart-skin-2" etc...-->
 		<?php
