@@ -22,7 +22,7 @@ function iKioskUI() {
 	var isTouch = !!('ontouchstart' in window)
 	TorC = isTouch ? 'touchstart' : 'click';
 
-	$('header').on("click", '#hide-menu a', function(e) {
+	$('header').on("touchstart click", '#hide-menu a', function(e) {
 			e.preventDefault();
 			e.stopPropagation();
 			var $html = $('html');
