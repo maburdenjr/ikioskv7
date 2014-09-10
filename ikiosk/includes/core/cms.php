@@ -1,6 +1,42 @@
 <?php
 /* IntelliKiosk 7.0 Tiger */
 
+//Smart Content Processor
+function v7ContentProcessor($content) {
+	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER, $row_getPage, $row_getTemplate, $row_getCMS;	
+	
+	$dynamicTable = array("cms_page_versions", "cms_template_versions", "sys_sites");
+	foreach ($dynamicTable as $key=>$value) {
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$query_showColumns = "SHOW COLUMNS FROM ".$value."";
+			$showColumns = mysql_query($query_showColumns, $ikiosk) or sqlError(mysql_error());
+			$row_showColumns = mysql_fetch_assoc($showColumns);
+			$totalRows_showColumns = mysql_num_rows($showColumns);
+			
+			switch($value) {
+				case "cms_page_versions":
+					$prefix = "page";
+					$activeRecord = $row_getPage;
+					break;
+				case "cms_template_versions":
+					$prefix = "template";
+					$activeRecord = $row_getTemplate;
+					break;
+				case "sys_sites":
+					$prefix = "site";
+					$activeRecord = $row_getCMS;
+					break;
+			}
+			
+			do {
+				$search = $prefix.":".$row_showColumns['Field'];
+				$replace = $activeRecord[$row_showColumns['Field']];
+				$content = str_replace($search, $replace, $content);
+			} while ($row_showColumns = mysql_fetch_assoc($showColumns));	
+		}	
+		echo $content;
+}
+
 //Create Defaults 
 function v7InitSite($site_id) {
 		global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;	
