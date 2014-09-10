@@ -133,7 +133,7 @@
             </tr>
           </thead>
           <tbody>
-            <?php do { ?>
+            <?php do { 	v7InitSite($row_listView['site_id']); ?>
               <tr class="<?php echo $row_listView['site_id']; ?>">
                 <td><a href="webapps/admin/sites.php?action=edit&recordID=<?php echo $row_listView['site_id']; ?>" class="dynamicModal" data-toggle="modal" data-target="#dynamicModal"><?php echo $row_listView['site_name']; ?></a></td>
                 <td><a href="<?php echo $row_listView['site_url']; ?>" target="_blank"><?php echo $row_listView['site_url']; ?></a></td>

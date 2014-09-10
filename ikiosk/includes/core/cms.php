@@ -1,295 +1,149 @@
 <?php
-/* 
-IntelliKiosk 6.x Core Initialization
-Copyright (C) 2011 Interactive Remix, LLC.
-cms.php
+/* IntelliKiosk 7.0 Tiger */
 
-Contains all core functions required for the CMS core features.  
-
-*/
-
-//Download Template
-function downloadTemplate($site_id, $site_root, $template_id) {
-	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+//Create Defaults 
+function v7InitSite($site_id) {
+		global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;	
 	
-	$_POST['update_existing'] = "Yes";
-	$_POST['include_defaults'] = "No";
-	
-	//Create Template Directories
-	$templateDetail = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateDetail");
-	$templateDetail = explode("|", $templateDetail);
-	
-	$templateRoot = $SYSTEM['ikiosk_filesystem_root']."/sites".$site_root."/static/templates";
-	$templateFolder = $templateRoot."/".$templateDetail[7];
-		
-	createDIR($templateRoot);
-	createDIR($templateFolder);
-	createDIR($templateFolder."/img");
-	createDIR($templateFolder."/fonts");
-	createDIR($templateFolder."/css");
-	createDIR($templateFolder."/js");
-	createDIR($templateFolder."/scripts");
-	createDIR($templateFolder."/docs");	
-	
-	$folderMapExt = explode("[iKiosk]", $templateDetail[9]);
-	foreach ($folderMapExt as $key => $value) {
-		createDir($templateFolder.$value);	
-	}
-	
-	
-	//Copy Template Files
-	$templateFiles = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateFiles");
-	$templateFiles = explode("[iKiosk]", $templateFiles);
-		
-	foreach ($templateFiles as $key => $value) { 
-		$fileProperties = explode("|", $value);
-		$remoteFile = "/".$templateDetail[7]."/".$fileProperties[1];
-		$remoteFileURL = $SYSTEM['ikiosk_cloud']."/system/cms_templates".$remoteFile;
-		$destinationFile = "/sites".$site_root.$fileProperties[2];
-		$destinationFileURL = $SYSTEM['ikiosk_filesystem_root'].str_replace('/ikiosk', $SYSTEM['ikiosk_root'], $destinationFile);
-		
-		// Copy File
-		$fileContents = urlFetch($remoteFileURL);
-		$fh = fopen($destinationFileURL, 'w') or errorLog("Unable to create create: ".$destinationFile, "System Error", $redirect);	
-		fwrite($fh, $fileContents);
-		fclose($fh); 
-	}
-	
-	//Create Folder Map
-	$folderMap = explode("[iKiosk]", $templateDetail[8]);
-	foreach ($folderMap as $key => $value) {
-		createDir($SYSTEM['ikiosk_filesystem_root']."/sites".$site_root.$value);	
-	}
-	
-	//Create Layout Files
-	$templateLayout = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateLayouts");
-	$templateLayout = explode("[iKiosk]", $templateLayout);
-	
-	foreach ($templateLayout as $key => $value) { 
-	
-		$templateProperties = explode("|template|", $value);
-		$templateTitle = $templateDetail[1].": ".$templateProperties[1];
-		$templateDescription = $templateProperties[2];
-		$templateHeader = html_entity_decode($templateProperties[3]);
-		$templateBodyHeader = html_entity_decode($templateProperties[4]);
-		$templateBodyFooter = html_entity_decode($templateProperties[5]);
-		$templateType = $templateProperties[6];
+		 mysql_select_db($database_ikiosk, $ikiosk);
+		 $query_getSite = "SELECT * FROM sys_sites WHERE deleted = '0' AND site_id = '".$site_id."' ";
+		 $getSite = mysql_query($query_getSite, $ikiosk) or sqlError(mysql_error());
+		 $row_getSite = mysql_fetch_assoc($getSite);
+		 $totalRows_getSite = mysql_num_rows($getSite);
+		 
+		 $rootFolder = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root'];
+			if (!file_exists($rootFolder)) {
+					createDIR($rootFolder);	
+					createDIR($rootFolder."/blog");
+					createDIR($rootFolder."/static");
+					createDIR($rootFolder."/cms");
+					createDIR($rootFolder."/static/resources");
+					createDIR($rootFolder."/static/resources/userfiles");
+					createDIR($rootFolder."/static/resources/userphotos");
 				
-		
-		//Add to Database
-		$generateID = create_guid();
-		$insertSQL = sprintf("INSERT INTO cms_templates (`template_id`, `site_id`, `date_created`, `created_by`, `date_modified`, `modified_by`) VALUES (%s, %s, %s, %s, %s, %s)",
-				GetSQLValueString($generateID, "text"),
-				GetSQLValueString($site_id, "text"),
-				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-				GetSQLValueString($_SESSION['user_id'], "text"),
-				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-				GetSQLValueString($_SESSION['user_id'], "text"));
-		
-		mysql_select_db($database_ikiosk, $ikiosk);
-		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
-		sqlQueryLog($insertSQL);
-		
-		
-		$versionID = create_guid();
-		$insertSQL = sprintf("INSERT INTO cms_template_versions (`template_version_id`, `site_id`, `template_id`, `version`, `title`, `description`, `header_code`, `body_header_code`, `body_footer_code`, `status`, `date_created`, `created_by`, `date_modified`, `modified_by`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-				GetSQLValueString($versionID , "text"),
-				GetSQLValueString($site_id, "text"),
-				GetSQLValueString($generateID, "text"),
-				GetSQLValueString("1.0", "text"),
-				GetSQLValueString($templateTitle, "text"),
-				GetSQLValueString($templateDescription, "text"),
-				GetSQLValueString($templateHeader, "text"),
-				GetSQLValueString($templateBodyHeader, "text"),
-				GetSQLValueString($templateBodyFooter, "text"),
-				GetSQLValueString("Published", "text"),
-				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-				GetSQLValueString($_SESSION['user_id'], "text"),
-				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-				GetSQLValueString($_SESSION['user_id'], "text"));
-		
-		mysql_select_db($database_ikiosk, $ikiosk);
-		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
-		sqlQueryLog($insertSQL);
-		
-		if ($templateType == "Main") {
-			$masterTemplateID = $generateID;
-		}
-		
-		//Check Blog
-		if ($templateType == "Blog" && $_POST['update_existing'] == "Yes") {
-				$updateSQL = sprintf("UPDATE cms_config SET blog_home_template=%s, blog_article_template=%s, date_modified=%s, modified_by=%s WHERE site_id=%s",
-	
-				GetSQLValueString($generateID, "text"),
-				GetSQLValueString($generateID, "text"),
-				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-				GetSQLValueString($_SESSION['user_id'], "text"),
-				GetSQLValueString($site_id, "text"));
-		
-				mysql_select_db($database_ikiosk, $ikiosk);
-				$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
-				sqlQueryLog($updateSQL);
-		}
-	}
-	
-	if ($_POST['include_defaults'] == "Yes") {
-		
-		//Create Pages
-		$templatePages = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templatePages");
-		
-		$templatePages = explode("[iKiosk]", $templatePages);
-		foreach ($templatePages as $key => $value) {
-			$pageProperties = explode("|template|", $value);
-			$pageTitle = $pageProperties[0];
-			$pageContentID = $pageProperties[1];
-			$pageContent = html_entity_decode($pageProperties[2]);
-			$pageFolder = $pageProperties[3];
-			$pageFile = $pageProperties[4];
-			$pageMenu = $pageProperties[5];
-			$pageMenuDisplay =  $pageProperties[6];
-			
-			mysql_select_db($database_ikiosk, $ikiosk);
-			$query_getPages = "SELECT * FROM cms_page_versions WHERE deleted = '0' AND  site_id = '".$site_id."' AND static_folder = '".$pageFolder."' AND static_file = '".$pageFile."'";
-			$getPages = mysql_query($query_getPages, $ikiosk) or sqlError(mysql_error());
-			$row_getPages = mysql_fetch_assoc($getPages);
-			$totalRows_getPages = mysql_num_rows($getPages);
-			
-			if ($totalRows_getPages != 0) {
-				do {
-						
-					$smartDel = deleteRecord("cms_pages", "page_id", $row_getPages['page_id']);
-					$smartDel = deleteRecord("cms_page_versions", "page_id", $row_getPages['page_id']);
+					//Create Index.html
+					$pageID = "ikiosk-".create_guid();
+					$insertSQL = sprintf("INSERT INTO cms_pages (page_id, site_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+							GetSQLValueString($pageID, "text"),
+							GetSQLValueString($site_id, "text"),
+							GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+							GetSQLValueString($_SESSION['user_id'], "text"),
+							GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+							GetSQLValueString($_SESSION['user_id'], "text"));
 					
-				} while ($row_getPages = mysql_fetch_assoc($getPages));
+					mysql_select_db($database_ikiosk, $ikiosk);
+					$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+					sqlQueryLog($insertSQL);
+	
+					//Create Page Version
+					$pageVersionID = create_guid();
+					$insertSQL = sprintf("INSERT INTO cms_page_versions (page_version_id, page_id, site_id, title, version, status, auto_expire, menu_display_order, static_folder, static_file, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+								GetSQLValueString($pageVersionID, "text"),
+								GetSQLValueString($pageID, "text"),
+								GetSQLValueString($site_id, "text"),
+								GetSQLValueString("Home", "text"),
+								GetSQLValueString("0.0", "text"),
+								GetSQLValueString("Published", "text"),
+								GetSQLValueString("No", "text"),
+								GetSQLValueString("0.00", "text"),
+								GetSQLValueString("/", "text"),
+								GetSQLValueString("index.html", "text"),
+								GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"),
+								GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"));
+						
+					mysql_select_db($database_ikiosk, $ikiosk);
+					$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+					sqlQueryLog($insertSQL);
+					
+					v7quickPublish($site_id, $pageID, "/", "index.html");
+					
+					//Create System Album
+					mysql_select_db($database_ikiosk, $ikiosk);
+					$query_getRecord = "SELECT * FROM sys_photo_albums WHERE deleted = '0' AND site_id = '".$site_id."' AND album_id = '".$site_id."'";
+					$getRecord = mysql_query($query_getRecord, $ikiosk) or sqlError(mysql_error());
+					$row_getRecord = mysql_fetch_assoc($getRecord);
+					$totalRows_getRecord = mysql_num_rows($getRecord);
+				
+					if ($totalRows_getRecord == 0) {
+						$generateID = create_guid();
+						$insertSQL = sprintf("INSERT INTO sys_photo_albums (`album_id`, `site_id`, `album_cover_id`, `title`, `description`, `parent_id`, `date_created`, `created_by`, `date_modified`, `modified_by`, `status`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+								GetSQLValueString($site_id, "text"),
+								GetSQLValueString($site_id, "text"),
+								GetSQLValueString($_POST['album_cover_id'], "text"),
+								GetSQLValueString("Image Uploads", "text"),
+								GetSQLValueString($_POST['description'], "text"),
+								GetSQLValueString($_POST['parent_id'], "text"),
+								GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"),
+								GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"),
+								GetSQLValueString("Active", "text"));
+						
+						mysql_select_db($database_ikiosk, $ikiosk);
+						$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+						sqlQueryLog($insertSQL);
+					}
+					
+					
+					//Create .htaccess file in Site Root
+					if(!file_exists($SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/.htaccess")) {
+						$htaccess = "AddHandler x-mapp-php5 .html .htm\r\n";
+						$htaccess .= "ErrorDocument 400 ".$row_getRecord['site_url']."/400.htm\r\n";
+						$htaccess .= "ErrorDocument 403 ".$row_getRecord['site_url']."/403.htm\r\n";
+						$htaccess .= "ErrorDocument 404 ".$row_getRecord['site_url']."/404.htm\r\n";
+						$htaccess .= "ErrorDocument 500 ".$row_getRecord['site_url']."/500.htm\r\n";
+						
+						$htaccessFile = $SYSTEM['ikiosk_filesystem_root']."/sites/".$row_getSite['site_root']."/.htaccess";
+						$fh = fopen($htaccessFile, 'w') or errorLog("Unable to create .htaccess file");
+						fwrite($fh, $htaccess);
+						fclose($fh);
+					}
+					
 			}
 			
-			
-			//Insert Into DB
-			$pageID = create_guid();
-			$insertSQL = sprintf("INSERT INTO cms_pages (page_id, site_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
-					GetSQLValueString($pageID, "text"),
-					GetSQLValueString($site_id, "text"),
-					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-					GetSQLValueString($_SESSION['user_id'], "text"),
-					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-					GetSQLValueString($_SESSION['user_id'], "text"));
-			
-			mysql_select_db($database_ikiosk, $ikiosk);
-			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
-			sqlQueryLog($insertSQL);
-			
-			//Create Page Version
-			$pageVersionID = create_guid();
-			$insertSQL = sprintf("INSERT INTO cms_page_versions (page_version_id, page_id, site_id, title, content_id, content, static_folder, static_file, version, status, auto_expire, menu_display, menu_display_order, template_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-						GetSQLValueString($pageVersionID, "text"),
-						GetSQLValueString($pageID, "text"),
-						GetSQLValueString($site_id, "text"),
-						GetSQLValueString($pageTitle, "text"),
-						GetSQLValueString($pageContentID, "text"),
-						GetSQLValueString($pageContent, "text"),
-						GetSQLValueString($pageFolder, "text"),
-						GetSQLValueString($pageFile, "text"),
-						GetSQLValueString("1.0", "text"),
-						GetSQLValueString("Published", "text"),
-						GetSQLValueString("No", "text"),
-						GetSQLValueString($pageMenu, "text"),
-						GetSQLValueString($pageMenuDisplay, "text"),
-						GetSQLValueString($masterTemplateID, "text"),
-						GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-						GetSQLValueString($_SESSION['user_id'], "text"),
-						GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-						GetSQLValueString($_SESSION['user_id'], "text"));
-				
-			mysql_select_db($database_ikiosk, $ikiosk);
-			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
-			sqlQueryLog($insertSQL);
-			
-			//Unlink Existing Pages
-			unlink($SYSTEM['ikiosk_filesystem_root']."/sites".$site_root.$pageFolder.$pageFile);
-			
-			//PublishPage
-			quickPublish($site_id, $pageID, $pageFolder, $pageFile);	
-		}
-	}
-		
-		//Template Snippets
-		$templateSnippets = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/downloadTemplate.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."&template_id=".$template_id."&option=templateSnippets");
-			
-		$templateSnippets = explode("[iKiosk]", $templateSnippets);
-		foreach ($templateSnippets as $key => $value) {
-			$snippetProperties = explode("|", $value);
-			$snippetTitle = $snippetProperties[0];
-			$snippetDescription = $snippetProperties[1];
-			$snippetContent = html_entity_decode($snippetProperties[2]);
-			$snippetScreenshot = $snippetProperties[3];
-			$snippetType = $snippetProperties[4];
-			
-			$snippetID = create_guid();
-			
-			$insertSQL = sprintf("INSERT INTO cms_snippets (`snippet_id`, `site_id`, `template_id`, `title`, `content`, `description`, `screenshot`, `type`, `date_created`, `created_by`, `date_modified`, `modified_by`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-				GetSQLValueString($snippetID, "text"),
-				GetSQLValueString($site_id, "text"),
-				GetSQLValueString($masterTemplateID, "text"),
-				GetSQLValueString($snippetTitle, "text"),
-				GetSQLValueString($snippetContent, "text"),
-				GetSQLValueString($snippetDescription, "text"),
-				GetSQLValueString($snippetScreenshot, "text"),
-				GetSQLValueString($snippetType, "text"),
-				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-				GetSQLValueString($_SESSION['user_id'], "text"),
-				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
-				GetSQLValueString($_SESSION['user_id'], "text"));
-				
-			mysql_select_db($database_ikiosk, $ikiosk);
-			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
-			sqlQueryLog($insertSQL);	
-			
-		}
-
-		
-	if ($_POST['update_existing'] == "Yes") {
-		
-		$updateSQL = "UPDATE cms_page_versions SET template_id = '".$masterTemplateID."' WHERE site_id = '".$site_id."' AND status = 'Published' AND deleted = '0'";
-		mysql_select_db($database_ikiosk, $ikiosk);
-		$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
-		sqlQueryLog($updateSQL);
-		
-	}
-	
+			//Copy CMS Admin Files
+			$cmsAdmin = array("editorTemplate.php", "displayTemplate.php");
+			foreach ($cmsAdmin as $key => $value) {
+					$fileContent = 	urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/".$value);
+					$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
+					$fileContent = str_replace("ikiosk-tmp-core", $ikioskCore, $fileContent);
+					
+					$adminFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/cms/".$value;
+					$fh = fopen($adminFile, 'w') or errorLog("Unable to create ".$adminFile);
+					fwrite($fh, $fileContent);
+					fclose($fh);
+			}
 }
 
-
-//Replace Template Defaults
-function templateHelper($content) {
+//Quickly Creates Blank Page
+function v7quickPublish($site_id, $page_id, $page_folder, $page_file) {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
 	
-	if (empty($SITE['org_logo'])) {
-		$SITE['org_logo'] = "http://shared.ikioskcloudapps.com/images/ui/defaultlogo.png";	
-	}
+	//Get Site Properties
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$query_getSiteInfo = "SELECT * FROM sys_sites WHERE site_id = '".$site_id."' AND deleted = '0'";
+	$getSiteInfo = mysql_query($query_getSiteInfo, $ikiosk) or sqlError(mysql_error());
+	$row_getSiteInfo = mysql_fetch_assoc($getSiteInfo);
+	$totalRows_getSiteInfo = mysql_num_rows($getSiteInfo);
 	
-	foreach($SITE as $key => $value) {
-		$content = str_replace("[".$key."]", $value, $content);	
-	}
+	$physicalFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSiteInfo['site_root'].$page_folder.$page_file;
+	$pageContent = urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/pageTemplate.php");
 	
-	//Address Format
-	$address = $SITE['org_address_1'];
-	if (!empty($SITE['org_address_2'])) { $address .= ", ".$SITE['org_address_2']; }
-	if (!empty($SITE['org_city'])) { $address .= ", ".$SITE['org_city']; }
-	if (!empty($SITE['org_state'])) { $address .= ", ".$SITE['org_state']; }
-	if (!empty($SITE['org_zip'])) { $address .= " ".$SITE['org_zip']; }
-	if (!empty($SITE['org_country'])) { $address .= ", ".$SITE['org_country']; }
+	//Page Specific Replace
+	$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
+	$page_id = $page_id;
 	
-	$content = str_replace("[org_address]", $address, $content);	
-	
-	return $content;
-	
+	$pageContent = str_replace("ikiosk-tmp-core", $ikioskCore, $pageContent);
+	$pageContent = str_replace("ikiosk-tmp-page", $page_id, $pageContent);
+
+	//Write File
+	$fh = fopen($physicalFile, 'w+');
+	fwrite($fh, $pageContent);
+	fclose($fh);
 }
 
-
-//Create Dummy Pages
-function cmsCloudDefaults($site_id) {
-	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
-}
 
 //Create 404 and Index.html
 function cmsCreateDefaults($site_id) {
@@ -479,47 +333,6 @@ $blog[7]['source'] = $SYSTEM['ikiosk_docroot']."/webapps/cms/cms_async.tpl.php";
 	}
 		
 	}
-}
-
-//Quickly Creates Blank Page
-function quickPublish($site_id, $page_id, $page_folder, $page_file) {
-	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
-	
-	//Get Site Properties
-	mysql_select_db($database_ikiosk, $ikiosk);
-	$query_getSiteInfo = "SELECT * FROM sys_sites WHERE site_id = '".$site_id."' AND deleted = '0'";
-	$getSiteInfo = mysql_query($query_getSiteInfo, $ikiosk) or sqlError(mysql_error());
-	$row_getSiteInfo = mysql_fetch_assoc($getSiteInfo);
-	$totalRows_getSiteInfo = mysql_num_rows($getSiteInfo);
-	
-	$physicalFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSiteInfo['site_root'].$page_folder.$page_file;
-	$pageContent = urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/page_template.php");
-	
-	//Page Specific Replace
-	$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
-	$page_id = $page_id;
-	$page_compile = $SYSTEM['ikiosk_docroot']."/webapps/cms/page_base.php";
-	
-	$pageContent = str_replace("ikiosk-tmp-core", $ikioskCore, $pageContent);
-	$pageContent = str_replace("ikiosk-tmp-page", $page_id, $pageContent);
-	$pageContent = str_replace("ikiosk-tmp-compiler", $page_compile, $pageContent);
-
-	//Write File
-	$fh = fopen($physicalFile, 'w+');
-	fwrite($fh, $pageContent);
-	fclose($fh);
-}
-
-
-//Check Site Builder
-function siteBuilderCheck() {
-	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
-	$enabled = "No";
-	if((!file_exists($SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root']."/ikiosk-sitebuilder.txt")) || ($_GET['option'] == "override")) {
-	$enabled = "Yes";
-	}
-	return $enabled;
-	
 }
 
 //Absolute URL
