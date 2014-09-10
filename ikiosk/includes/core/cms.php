@@ -104,7 +104,7 @@ function v7InitSite($site_id) {
 			}
 			
 			//Copy CMS Admin Files
-			$cmsAdmin = array("editorTemplate.php", "displayTemplate.php");
+			$cmsAdmin = array("editPage.php", "displayPage.php");
 			foreach ($cmsAdmin as $key => $value) {
 					$fileContent = 	urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/".$value);
 					$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";

@@ -50,9 +50,11 @@ $totalRows_getCMS = mysql_num_rows($getCMS);
 $inlineEdit = cmsInlineCheck();
 
 if ($inlineEdit == "Yes") {	
-	include('admin/editPage.php');
+	include($SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root']."/cms/editPage.php");
 } else {
-	include('admin/displayPage.php');
+	include($SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root']."/cms/displayPage.php");
 }
 accessLog("Page");	
 ?>
+
+
