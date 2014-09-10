@@ -461,4 +461,8 @@ body.mobile-view-activated.fixed-header {
 	.menu-on-top nav ul ul li a:hover, .menu-on-top nav ul ul li:hover > a, .menu-on-top nav ul ul ul li a:hover {
 		background:#000 !important;
 	}
+	
+	body.mobile-view-activated aside#left-panel, .animating aside#left-panel {
+			background:#000000 !important;	
+	}
 }
