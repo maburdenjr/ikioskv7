@@ -19,7 +19,6 @@ if ((empty($_GET['page'])) && (!empty($row_getPage['expiration_date'])) && ($row
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php v7ContentProcessor("page:title"); ?></title>
 <?php if (!empty($row_getPage['meta_author'])) { ?>
 <meta name="author" content="<?php echo $row_getPage['meta_author']; ?>">
@@ -38,7 +37,7 @@ if ((empty($_GET['page'])) && (!empty($row_getPage['expiration_date'])) && ($row
 <?php v7ContentProcessor($row_getTemplate['header_code']); ?>
 <?php } ?>
 </head>
-<body class="<?php v7ContentProcessor("page:content_id"); ?>">
+<body<?php if (!empty($row_getPage['content_id'])) { echo " id=\"".v7ContentProcessor("page:content_id")."\"";} ?>>
 <?php if ($SITE['site_status'] == "Active") { //Site is Active ?>
 
 		<!--  Template Body Header -->

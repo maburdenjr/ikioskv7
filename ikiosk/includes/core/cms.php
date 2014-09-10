@@ -140,11 +140,12 @@ function v7InitSite($site_id) {
 			}
 			
 			//Copy CMS Admin Files
-			$cmsAdmin = array("editPage.php", "displayPage.php");
+			$cmsAdmin = array("editPage.php", "displayPage.php", "index.php", "login.php");
 			foreach ($cmsAdmin as $key => $value) {
 					$fileContent = 	urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/".$value);
 					$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
 					$fileContent = str_replace("ikiosk-tmp-core", $ikioskCore, $fileContent);
+					$fileContent = str_replace("ikiosk_tmp_site", $site_id, $fileContent);
 					
 					$adminFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/cms/".$value;
 					$fh = fopen($adminFile, 'w') or errorLog("Unable to create ".$adminFile);

@@ -25,7 +25,7 @@ $app_shortcuts["cms"] = array(
 
 $page_nav["cms"] = array(
 	"title" => "CMS",
-	"url" => "webapps/cms/index.php",
+	"url" => "webapps/cms/dashboard.php",
 	"icon" => "fa-desktop",
 		"sub" => array(
 			"blog" => array(
