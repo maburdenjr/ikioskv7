@@ -22,7 +22,9 @@ function iKioskUI() {
 	var isTouch = !!('ontouchstart' in window)
 	TorC = isTouch ? 'touchstart' : 'click';
 
-	$( '#hide-menu a' ).on(TorC, function(e) {
+	$('header').on("click", '#hide-menu a', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
 			var $html = $('html');
 			var $body = $('body');
 			var $page = $('#iKioskUiWrapper');
@@ -38,7 +40,7 @@ function iKioskUI() {
 								 
 			$page.on(transitionEnd, function() {
 				 $body.removeClass('animating left right');
-				 $html.toggleClass('hidden-menu-mobile-lock');	
+				 $html.toggleClass('hidden-menu-mobile-lock');
 				 $('#left-panel').toggleClass('menu-visible');
 				 $page.off( transitionEnd );
 			});
