@@ -124,7 +124,6 @@ function v7InitSite($site_id) {
 					
 					
 					//Create .htaccess file in Site Root
-					if(!file_exists($SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/.htaccess")) {
 						$htaccess = "AddType application/x-httpd-php .html .htm\r\n";
 						$htaccess .= "ErrorDocument 400 ".$row_getRecord['site_url']."/400.htm\r\n";
 						$htaccess .= "ErrorDocument 403 ".$row_getRecord['site_url']."/403.htm\r\n";
@@ -135,9 +134,6 @@ function v7InitSite($site_id) {
 						$fh = fopen($htaccessFile, 'w') or errorLog("Unable to create .htaccess file");
 						fwrite($fh, $htaccess);
 						fclose($fh);
-					} else {
-						echo $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/.htaccess";
-					}
 					
 			}
 			
