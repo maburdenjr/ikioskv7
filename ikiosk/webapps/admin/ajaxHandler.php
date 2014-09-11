@@ -843,14 +843,6 @@ $insertSQL = sprintf("INSERT INTO sys_teams (team_id, title, description, date_c
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-SysSites")) {
 			$rootFolder = $SYSTEM['ikiosk_filesystem_root']."/sites/".$_POST['site_root'];
 			if (!file_exists($rootFolder)) {
-					createDIR($rootFolder);	
-					createDIR($rootFolder."/blog");
-					createDIR($rootFolder."/static");
-					createDIR($rootFolder."/admin");
-					createDIR($rootFolder."/static/resources");
-					createDIR($rootFolder."/static/resources/userfiles");
-					createDIR($rootFolder."/static/resources/userphotos");
-					
 					$generateID = create_guid();
 					
 					$insertSQL = sprintf("INSERT INTO sys_sites (site_id, site_name, site_url, site_status, public_home, ikiosk_home, site_root, support_email, site_timezone, force_ssl, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
