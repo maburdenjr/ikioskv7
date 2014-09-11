@@ -124,18 +124,21 @@ function v7InitSite($site_id) {
 					
 					
 					//Create .htaccess file in Site Root
+					$siteHost = strpos("kunden", $_SERVER['DOCUMENT_ROOT']);
+					if ($siteHost === false) {
 						$htaccess = "AddType application/x-httpd-php .html .htm\r\n";
-						$htaccess .= "ErrorDocument 400 ".$row_getRecord['site_url']."/400.htm\r\n";
-						$htaccess .= "ErrorDocument 403 ".$row_getRecord['site_url']."/403.htm\r\n";
-						$htaccess .= "ErrorDocument 404 ".$row_getRecord['site_url']."/404.htm\r\n";
-						$htaccess .= "ErrorDocument 500 ".$row_getRecord['site_url']."/500.htm\r\n";
-						
-						$htaccessFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/.htaccess";
-						$fh = fopen($htaccessFile, 'w') or errorLog("Unable to create .htaccess file");
-						fwrite($fh, $htaccess);
-						fclose($fh);
-						
-						echo $htaccessFile;
+					} else {
+						$htaccess = "AddHandler x-mapp-php5 .html .htm\r\n";
+					}
+					$htaccess .= "ErrorDocument 400 ".$row_getRecord['site_url']."/400.htm\r\n";
+					$htaccess .= "ErrorDocument 403 ".$row_getRecord['site_url']."/403.htm\r\n";
+					$htaccess .= "ErrorDocument 404 ".$row_getRecord['site_url']."/404.htm\r\n";
+					$htaccess .= "ErrorDocument 500 ".$row_getRecord['site_url']."/500.htm\r\n";
+					
+					$htaccessFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/.htaccess";
+					$fh = fopen($htaccessFile, 'w') or errorLog("Unable to create .htaccess file");
+					fwrite($fh, $htaccess);
+					fclose($fh);
 					
 			}
 			
