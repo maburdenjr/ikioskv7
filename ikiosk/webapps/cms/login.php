@@ -26,6 +26,7 @@ $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/smartadmin-production.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/lockscreen.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/cms/iKioskUI.css">
 <link rel="shortcut icon" href="<?php echo $assetUrl; ?>img/favicon/favicon.ico" type="image/x-icon">
 <link rel="icon" href="<?php echo $assetUrl; ?>img/favicon/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
@@ -35,32 +36,33 @@ $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
   
   <!-- MAIN CONTENT -->
   
-  <form id="cmsUILogin" class="lockscreen animated flipInY" method="post">
+  <form id="cmsUILogin" class="lockscreen animated flipInY smart-form" method="post">
     <div class="logo">
       <h1 class="semi-bold"><img src="<?php echo $assetUrl; ?>img/logo-o.png" alt="" /> iKioskCMS</h1>
     </div>
     <div> <img src="<?php echo $assetUrl; ?>img/avatars/sunny-big.png" alt="" width="120" height="120" />
       <div>
-        <h1><i class="fa fa-user fa-3x text-muted air air-top-right hidden-mobile"></i><?php echo $SITE['site_name']; ?><small><i class="fa fa-lock text-muted"></i> &nbsp;Locked</small></h1>
+        <h1 style="padding-bottom:10px;"><i class="fa fa-user fa-3x text-muted air air-top-right hidden-mobile"></i><?php echo $SITE['site_name']; ?><small><i class="fa fa-lock text-muted"></i> &nbsp;Locked</small></h1>
         <div class="form-response"></div>
-        <div class="input-group" style="margin-bottom:5px;">
-          <input name= "login_email" class="form-control" type="text" placeholder="Email Address" style="background:#FFF;">
-          <div class="input-group-btn">
-            <button class="btn"> <i class="fa fa-send"></i> </button>
-          </div>
-        </div>
-        <div class="input-group">
+        <section>
+        <label class="input" style="margin-bottom:5px;">
+          <input name= "login_email" class="form-control" type="text" placeholder="Email Address">
+        </label>
+        </section>
+        <section>
+        <label class="input">
           <input name="password" class="form-control" type="password" placeholder="Password">
-          <div class="input-group-btn">
-            <button class="btn"> <i class="fa fa-key"></i> </button>
-          </div>
+        </label>
+        </section>
+        <div class="pull-right">
+          <button class="btn btn-primary btn-ajax-submit" data-form="cmsUILogin">Login </button>
         </div>
-        <footer class="pull-right" style="padding-top:10px;">
-          <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cmsUILogin">Login </button>
-        </footer>
       </div>
     </div>
     <p class="font-xs margin-top-5"> Powered By IntelliKiosk</p>
+    <input type="hidden" name="formID" value="cmsUILogin">
+    <input type="hidden" name="iKioskForm" value="Yes" />
+    <input type="hidden" name="appCode" value="IKIOSK" />
   </form>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> 
@@ -79,10 +81,41 @@ $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
 <script src="<?php echo $assetUrl; ?>js/plugin/msie-fix/jquery.mb.browser.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/plugin/fastclick/fastclick.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/app.min.js"></script>
-<script src="<?php echo $assetUrl; ?>js/ikiosk.js"></script>
-<script src="<?php echo $assetUrl; ?>js/iKioskCMS.js"></script>
+<script src="/cms/iKioskCMS.js"></script>
 <script type="text/javascript">
    pageSetUp();
+	 
+	  runAllForms();
+   
+   $(function() {
+       $("#cmsUILogin").validate({
+           rules : {
+          	login_email : {
+							required : true
+						},
+						password : {
+							required : true
+						}
+					},
+					
+					messages : {
+						login_email : {
+							required : 'Please enter your login email'
+						},
+						password : {
+							required : 'Please enter your password'	
+						}
+					},
+					
+          errorPlacement : function(error, element) {
+          	error.insertAfter(element.parent());
+          },
+          submitHandler: function(form) {
+          	var targetForm = $(this.currentForm).attr("id");
+             submitAjaxForm(targetForm);
+           }
+       });
+   });
 </script>
 </body>
 </html>
