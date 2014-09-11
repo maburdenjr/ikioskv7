@@ -149,6 +149,8 @@ function v7InitSite($site_id) {
 			fwrite($fh, $fileContents);
 			fclose($fh);
 			
+			echo $fileContents;
+			
 			//Copy CMS Admin Files
 			$cmsAdmin = array("editPage.php", "displayPage.php", "index.php", "login.php", "iKioskCMS.js", "ajaxHandler.php");
 			foreach ($cmsAdmin as $key => $value) {
