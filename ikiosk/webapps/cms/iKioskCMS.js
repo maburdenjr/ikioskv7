@@ -25,10 +25,13 @@ function submitAjaxForm(formID) {
 										var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
 										$(targetForm+' .form-response').html(error);
 										$(targetForm+' button').removeAttr("disabled");
+										$(targetForm+ ' section').css("opacity", 1);
+
 								},
 								success: function(data) {
 										$(targetForm+' .form-response').html(data);
 										$(targetForm+' button').removeAttr("disabled");
+										$(targetForm+ ' section').css("opacity", 1);
 								}
 					});
 					}, 1200);
