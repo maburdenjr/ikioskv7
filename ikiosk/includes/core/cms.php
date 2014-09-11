@@ -124,7 +124,7 @@ function v7InitSite($site_id) {
 					
 					
 					//Create .htaccess file in Site Root
-					$siteHost = strpos("kunden", $_SERVER['DOCUMENT_ROOT']);
+					$siteHost = strpos($_SERVER['DOCUMENT_ROOT'], "kunden");
 					if ($siteHost === false) {
 						$htaccess = "AddType application/x-httpd-php .html .htm\r\n";
 					} else {
