@@ -144,13 +144,13 @@ function v7InitSite($site_id) {
 			
 			//Grab Compile CSS UI Css File
 			$fileContents = urlFetch($SYSTEM['ikiosk_filesystem_root']."/ikiosk/smartui/css/iKioskUI.css");
-			$destinationFile = $SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/iKioskUI.css";
+			$destinationFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/cms/iKioskUI.css";
 			$fh = fopen($destinationFile, 'w') or errorLog("Unable to create create: ".$destinationFile, "System Error", $redirect);	
 			fwrite($fh, $fileContents);
 			fclose($fh);
 			
 			//Copy CMS Admin Files
-			$cmsAdmin = array("editPage.php", "displayPage.php", "index.php", "login.php", "iKioskCMS.js", "ajaxHandler.php", "iKioskUI.css");
+			$cmsAdmin = array("editPage.php", "displayPage.php", "index.php", "login.php", "iKioskCMS.js", "ajaxHandler.php");
 			foreach ($cmsAdmin as $key => $value) {
 					$fileContent = 	urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/".$value);
 					$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
