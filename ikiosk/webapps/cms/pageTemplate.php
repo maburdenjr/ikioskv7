@@ -44,7 +44,7 @@ $totalRows_getTemplate = mysql_num_rows($getTemplate);
 mysql_select_db($database_ikiosk, $ikiosk);
 $query_getCMS = "SELECT * FROM cms_config WHERE site_id = '".$row_getPage['site_id']."' AND deleted = '0'";
 $getCMS = mysql_query($query_getCMS, $ikiosk) or sqlError(mysql_error());
-$row_getCMS = mysql_fetch_assoc($getCMS);
+$CMS = mysql_fetch_assoc($getCMS);
 $totalRows_getCMS = mysql_num_rows($getCMS);
 
 $inlineEdit = cmsInlineCheck();

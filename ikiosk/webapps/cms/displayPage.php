@@ -34,6 +34,7 @@ if ((empty($_GET['page'])) && (!empty($row_getPage['expiration_date'])) && ($row
 <?php } ?>
 <?php if (!empty($row_getPage['meta_robots'])) { ?>
 <meta name="robots" content="<?php echo  $row_getPage['meta_robots']; ?>">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <?php v7ContentProcessor($row_getTemplate['header_code']); ?>
 <?php } ?>
 </head>
@@ -48,6 +49,7 @@ if ((empty($_GET['page'])) && (!empty($row_getPage['expiration_date'])) && ($row
     <?php v7ContentProcessor($row_getTemplate['body_footer_code']); ?>
     
 <?php } else { echo $SITE['site_status_message']; }  // Site is Active ?>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
 </html>
 <?php } ?>

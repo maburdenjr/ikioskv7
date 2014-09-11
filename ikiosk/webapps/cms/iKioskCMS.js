@@ -1,5 +1,15 @@
 // JavaScript Document
 function iKioskUI() {
+	
+	//Edit Page Toggle
+	$('#iKioskCMSheader').on("click", '#editPage a', function(e) {
+		e.preventDefault();
+		$('#iKioskCMSheader a').removeClass('active');
+		$(this).toggleClass('active');
+		$('#iKioskCMSwrapper').hide();
+		$('#iKioskCMSeditor').show();
+	});
+	
 }
 
 //AJAX Form Processing

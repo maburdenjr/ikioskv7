@@ -5,3 +5,68 @@
   padding-left: 10px;
   background: #FFF;
 }
+
+#iKioskCMSheader {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 30;
+}
+#iKioskCMSheader #header {
+  background: #225074;
+  border-top: 2px solid #000;
+  box-shadow: -11px 12px 23px rgba(0, 0, 0, 0.3);
+}
+#iKioskCMSheader #header .btn-header > :first-child > a {
+  border-radius: 0px;
+  background: #1F4A6C;
+  border: 1px solid #1B415E !important;
+  color: #CCC;
+  cursor: pointer;
+}
+#iKioskCMSheader #header .btn-header > :first-child > a:hover {
+  background: #1F4A6C;
+  color: #FFF;
+  cursor: pointer !important;
+}
+#iKioskCMSheader #header .header-search > input[type=text] {
+  background: #1F4A6C;
+  border: 1px solid #1B415E;
+  color: #FFF;
+}
+#iKioskCMSheader #header #logo-group span {
+  display: inline-block;
+  color: #FFF;
+  text-transform: uppercase;
+  font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+  font-weight: 300;
+  padding: 15px;
+  font-size: 14px;
+}
+#iKioskCMSheader #header #logo-group {
+  width: auto;
+}
+#iKioskCMSheader #header .btn-header a.active {
+  background-color: #000000 !important;
+  color: #FFF;
+  border: 1px solid #FFF !important;
+}
+
+#iKioskCMSwrapper {
+  position: relative;
+  margin-top: 51px;
+}
+
+#systemDebug .debug-variable {
+  font-weight: 600;
+}
+#systemDebug .debug-value {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#systemDebug .tab-content {
+  height: 400px;
+  overflow-y: scroll;
+}

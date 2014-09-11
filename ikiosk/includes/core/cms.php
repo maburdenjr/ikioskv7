@@ -122,6 +122,29 @@ function v7InitSite($site_id) {
 						sqlQueryLog($insertSQL);
 					}
 					
+					//Create System Album
+					mysql_select_db($database_ikiosk, $ikiosk);
+					$query_getRecord = "SELECT * FROM cms_config WHERE deleted = '0' AND site_id = '".$site_id."'";
+					$getRecord = mysql_query($query_getRecord, $ikiosk) or sqlError(mysql_error());
+					$row_getRecord = mysql_fetch_assoc($getRecord);
+					$totalRows_getRecord = mysql_num_rows($getRecord);
+				
+					if ($totalRows_getRecord == 0) {
+						$generateID = create_guid();
+
+						$insertSQL = sprintf("INSERT INTO cms_config (config_id, site_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+								GetSQLValueString($generateID, "text"),
+								GetSQLValueString($site_id, "text"),
+								GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"),
+								GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+								GetSQLValueString($_SESSION['user_id'], "text"));
+						
+						mysql_select_db($database_ikiosk, $ikiosk);
+						$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+						sqlQueryLog($insertSQL);
+					}
+					
 					
 					//Create .htaccess file in Site Root
 					$siteHost = strpos($_SERVER['DOCUMENT_ROOT'], "kunden");
@@ -150,7 +173,7 @@ function v7InitSite($site_id) {
 			fclose($fh);
 						
 			//Copy CMS Admin Files
-			$cmsAdmin = array("editPage.php", "displayPage.php", "index.php", "login.php", "iKioskCMS.js", "ajaxHandler.php");
+			$cmsAdmin = array("editPage.php", "displayPage.php", "index.php", "login.php", "iKioskCMS.js", "ajaxHandler.php", "logout.php");
 			foreach ($cmsAdmin as $key => $value) {
 					$fileContent = 	urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/".$value);
 					$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";

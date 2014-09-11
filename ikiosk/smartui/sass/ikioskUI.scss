@@ -7,3 +7,79 @@
 		background: #FFF;
 	}
 }
+
+#iKioskCMSheader {
+	position:fixed;
+	width:100%;
+	top:0px;
+	z-index:30;
+
+	
+	#header {
+		background: #225074;
+		border-top: 2px solid #000;
+		box-shadow: -11px 12px 23px rgba(0,0,0,.3);
+
+		.btn-header>:first-child>a {
+			border-radius: 0px;
+			background: #1F4A6C;
+			border: 1px solid #1B415E !important;
+			color: #CCC;
+			cursor: pointer;
+			
+		}
+
+		.btn-header>:first-child>a:hover {
+			background: #1F4A6C;	
+			color:#FFF;
+			cursor:pointer !important;
+		}
+		
+		.header-search>input[type=text] { 
+			background: #1F4A6C;
+			border: 1px solid #1B415E;
+			color:#FFF;
+		}
+		
+		#logo-group span {
+			display:inline-block;
+			color: #FFF;
+			text-transform:uppercase;
+			font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+			font-weight:300;	
+			padding:15px;
+			font-size:14px;
+		}
+		
+		#logo-group {
+			width: auto;
+		}
+		
+		.btn-header a.active {
+			background-color:#000000 !important;
+			color:#FFF;
+			border: 1px solid #FFF !important;
+		}
+	}
+}
+
+#iKioskCMSwrapper {
+	position:relative;
+	margin-top:51px;
+}
+
+#systemDebug {
+	.debug-variable {
+		font-weight:600;
+	}
+	.debug-value {
+		max-width: 300px;
+		overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;	
+	}
+	.tab-content {
+		height:400px;
+		overflow-y:scroll;
+	}
+}
