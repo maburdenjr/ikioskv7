@@ -134,6 +134,8 @@ function v7InitSite($site_id) {
 						$fh = fopen($htaccessFile, 'w') or errorLog("Unable to create .htaccess file");
 						fwrite($fh, $htaccess);
 						fclose($fh);
+						
+						echo $htaccessFile;
 					
 			}
 			
