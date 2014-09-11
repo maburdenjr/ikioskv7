@@ -14,7 +14,7 @@ function iKioskUI() {
 	
 	function updateUI() {
 		var windowHeight = $(this).height();
-		$('#iKioskMMWrapper').css('min-height', windowHeight);		
+		$('#iKioskMMWrapper').css('min-height', windowHeight-119);		
 		$('body.mobile-view-activated aside#left-panel, .animating aside#left-panel').css('max-height', windowHeight);	
 	}
 	

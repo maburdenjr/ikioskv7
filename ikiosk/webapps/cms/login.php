@@ -20,7 +20,7 @@ $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login -<?php echo $SYSTEM['system-name']; ?></title>
+<title>Login - <?php echo $SITE['site_name']; ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/font-awesome.min.css">
@@ -67,7 +67,7 @@ $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
 <script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script 
 ><script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> 
 <script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script> 
-<script src="<?php echo $assetUrl; ?><?php echo $assetUrl; ?>js/bootstrap/bootstrap.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/bootstrap/bootstrap.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/notification/SmartNotification.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/smartwidgets/jarvis.widget.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script> 
@@ -79,5 +79,10 @@ $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
 <script src="<?php echo $assetUrl; ?>js/plugin/msie-fix/jquery.mb.browser.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/plugin/fastclick/fastclick.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/app.min.js"></script>
+<script src="<?php echo $assetUrl; ?>js/ikiosk.js"></script>
+<script src="<?php echo $assetUrl; ?>js/iKioskCMS.js"></script>
+<script type="text/javascript">
+   pageSetUp();
+</script>
 </body>
 </html>
