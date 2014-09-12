@@ -6,6 +6,7 @@ function iKioskUI() {
 	//Dynamic Modal
 	$('.ikiosk-cms-editor').on("touchstart click", 'a.dynamicModal', function(e) {
 			e.preventDefault();
+			e.stopPropagation();
 			var targetURL = $(this).attr('href');
 			dynamicModal(targetURL);
 	});
