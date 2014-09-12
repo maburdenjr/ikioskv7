@@ -24,8 +24,18 @@ if (isset($_GET['ajaxAction'])) {
 		case "createPage":
 			$actionFile = "admin-createPage.php";
 			break;
+		case "pageVersions":
+			$actionFile = "admin-pageVersions.php";
+			break;	
 	}
 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
+	
+	if($_GET['ajaxAction'] == "deleteRecord") {
+		$status = deleteRecordv7($_GET['table'], $_GET['field'], $_GET['record']);
+		if ($status[0] == "success") {
+			insertJS("$('.".$_GET['record']."').fadeOut();");
+		}
+	}
 }
 
 // Begin AJAX Post Wrapper ###########################################################################

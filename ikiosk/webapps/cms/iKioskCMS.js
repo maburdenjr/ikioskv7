@@ -3,6 +3,32 @@ function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
+	//Delete Records
+	$(document).on('click', '.delete-record', function(){
+		event.stopPropagation();
+		var deleteRecord = confirm("Are you sure you want to delete this item?");
+		if (deleteRecord == true) {
+			$('.system-message').hide();
+			var table = $(this).data("table");
+			var record = $(this).data("record");
+			var code = $(this).data("code");
+			var field = $(this).data("field");
+			$.ajax({
+							url: "/cms/ajaxHandler.php",
+							data: {table: table, record: record, appCode: code, ajaxAction: "deleteRecord", field: field},
+							timeout: 3000,
+							error: function(data) {
+									var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+									$('.system-message').html(error).fadeIn('slow');
+							},
+							success: function(data) {
+									$('.system-message').html(data).fadeIn('slow');
+									$('.jarviswidget-refresh-btn').click();
+							}
+				});
+		}
+	});
+	
 	//Dynamic Modal
 	$('.ikiosk-cms-editor').on("touchstart click", 'a.dynamicModal', function(e) {
 		e.preventDefault();
@@ -25,7 +51,10 @@ function iKioskUI() {
 				$('#dynamicModal .modal-content').html(data).fadeIn('slow');
 			}
 		});
-		$('#dynamicModal').modal('show');
+		$('#dynamicModal').modal({
+			 show: true,  
+			 backdrop: 'static'
+		});
 	}
 
 	//Edit Page Toggle

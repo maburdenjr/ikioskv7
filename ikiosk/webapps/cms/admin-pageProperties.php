@@ -14,7 +14,7 @@ $totalRows_pageIndex = mysql_num_rows($pageIndex);
 
 <form id = "cms-editPageProperties" class="smart-form">
   <div class="modal-header">
-    <h4 class="modal-title"><i class="fa fa-wrench"></i> Edit Page Properties</h4>
+    <h4 class="modal-title">Edit Page Properties</h4>
   </div>
   <ul id="pageProperties-tabs" class="nav nav-tabs">
     <li class="active"> <a data-toggle="tab" href="#general"> General</a> </li>

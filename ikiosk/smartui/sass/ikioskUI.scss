@@ -275,3 +275,34 @@ td.icon {
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
 	background:#FDFDFD;
 }
+
+.icon {
+	text-align:center;
+}
+.delete-record, .icon-action {
+	cursor:pointer;
+	color:rgba(0,0,0,0.75);
+}
+
+.btn-primary.icon-action {
+	color:#FFF;
+}
+
+.delete-record i, icon-action i {
+		font-size:16px;
+		text-align:center;
+}
+
+button.icon-action {
+	color:#FFF;
+}
+
+@media (max-width:640px) {
+	.dataTable tr th, .dataTable tr td {
+		display:none;
+	}
+	
+	.dataTable tr th:first-child, .dataTable tr td:first-child, .dataTable tr th:last-child, .dataTable tr td:last-child  {
+		display:table-cell;
+	}
+}
