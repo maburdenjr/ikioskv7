@@ -25,34 +25,37 @@ $totalRows_pageIndex = mysql_num_rows($pageIndex);
     <div class="tab-content">
       <div class="form-response"></div>
       <div class="tab-pane fade in active" id="general">
-        <section>
+      <div class="row">
+        <section class="col col-6">
           <label class="label">Title</label>
           <label class="input">
             <input type="text" name="title" value="<?php echo $row_getRecord['title']; ?>">
           </label>
         </section>
-        <div class="row">
-          <section class = "col col-4">
-            <label class="label">Folder</label>
-            <label class="select">
-              <?php displayDirBrowser("static_folder", $row_getRecord['static_folder']); ?>
-              <i></i> </label>
-          </section>
-          <section class = "col col-4">
-            <label class="label">Filename</label>
-            <label class="input">
-              <input type="text" name="static_file" value="<?php echo $row_getRecord['static_file']; ?>">
-            </label>
-          </section>
-          <section class = "col col-4">
+         <section class = "col col-6">
             <label class="label">Template</label>
             <label class="select">
               <?php templateList("template_id", $row_getRecord['template_id']); ?>
               <i></i> </label>
           </section>
-        </div>
+       </div>
         <div class="row">
           <section class = "col col-6">
+            <label class="label">Folder</label>
+            <label class="select">
+              <?php displayDirBrowser("static_folder", $row_getRecord['static_folder']); ?>
+              <i></i> </label>
+          </section>
+          <section class = "col col-6">
+            <label class="label">Filename</label>
+            <label class="input">
+              <input type="text" name="static_file" value="<?php echo $row_getRecord['static_file']; ?>">
+            </label>
+          </section>
+          </div>
+          <div class="row">
+         
+           <section class = "col col-6">
             <label class="label">Parent Page</label>
             <label class="select">
               <?php selectParentPage($row_getRecord['page_id'], "parent_id", $row_getRecord['parent_id']); ?>
@@ -104,19 +107,21 @@ $totalRows_pageIndex = mysql_num_rows($pageIndex);
       </div>
       <div class="tab-pane fade in" id="seo">
       	<div class="row">
-        	<section class="col col-4">
+        	<section class="col col-6">
             	<label class="label">Author</label>
             <label class="input">
               <input name="meta_author" type="text" value="<?php echo $row_getRecord['meta_author']; ?>" />
             </label>
             </section>
-            <section class="col col-4">
+            <section class="col col-6">
             <label class="label">Robots</label>
             <label class="input">
               <input name="meta_robots" type="text" value="<?php echo $row_getRecord['meta_robots']; ?>" />
             </label>
             </section>
-            <section class="col col-4">
+            </div>
+            <div class="row">
+            <section class="col col-6">
             <label class="label">Cache-Control</label>
             <label class="select">
               <select name="meta_cache_control">
@@ -156,6 +161,7 @@ $totalRows_pageIndex = mysql_num_rows($pageIndex);
   <input type="hidden" name="formID" value="cms-editPageProperties">
   <input type="hidden" name="iKioskForm" value="Yes" />
   <input type="hidden" name="appCode" value="CMS" />
+  <input type="hidden" name="content" value="<?php echo htmlentities($row_getRecord['content']); ?>" />
   </div>
 </form>
 <script type="text/javascript">

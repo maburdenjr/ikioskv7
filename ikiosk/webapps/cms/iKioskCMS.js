@@ -1,5 +1,6 @@
 // JavaScript Document
 function iKioskUI() {
+	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
 	//Dynamic Modal

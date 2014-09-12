@@ -1,6 +1,6 @@
 <?php
 $pageRefresh = "location.reload();\r\n";
-$hideModal = "$('.modal').modal('hide');";
+$hideModal = "$('.modal').modal('hide');\r\n";
 
 //Load Site Properties
 mysql_select_db($database_ikiosk, $ikiosk);
@@ -32,13 +32,82 @@ if (isset($_GET['ajaxAction'])) {
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
 	
-	//Edit Page Properties
+	//Edit Page Properties-----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editPageProperties")) {
-		insertJS($hideModal);
-		exit;
+		
+		$generateID = create_guid();
+		if ($_POST['status'] == "Published") {
+			//Update Page Status
+			$updateSQL = sprintf("UPDATE cms_page_versions SET status = 'Draft' WHERE page_id=%s",
+				GetSQLValueString($_POST['page_id'], "text"));
+		
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($updateSQL);
+		}
+		
+		//Update Page Parent
+		$updateSQL = sprintf("UPDATE cms_pages SET parent_id=%s, date_modified=%s, modified_by=%s WHERE page_id=%s",
+        GetSQLValueString($_POST['parent_id'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($_POST['page_id'], "text"));
+
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($updateSQL);
+		
+		if ($_POST['version'] != 0.00) {
+			$version = $_POST['version'] + 0.05;
+		} else {
+			$version = $_POST['version'] + 1.00;	
+		}
+		
+		//Create New Version
+		$publishDate = smartDates($_POST['publish_date']);
+		$expirationDate = smartDates($_POST['expire_date']);
+		
+		$insertSQL = sprintf("INSERT INTO cms_page_versions (page_version_id, site_id, page_id, template_id, version, title, content_id, content, static_folder, static_file, menu_display, menu_display_order, menu_custom_class, mobile_enabled, mobile_template_id, meta_author, meta_cache_control, meta_description, meta_keywords, meta_robots, publish_date, auto_expire, expiration_date, status, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+        GetSQLValueString($generateID, "text"),
+        GetSQLValueString($_SESSION['site_id'], "text"),
+        GetSQLValueString($_POST['page_id'], "text"),
+        GetSQLValueString($_POST['template_id'], "text"),
+        GetSQLValueString($version, "text"),
+        GetSQLValueString($_POST['title'], "text"),
+        GetSQLValueString($_POST['content_id'], "text"),
+        GetSQLValueString($_POST['content'], "text"),
+        GetSQLValueString($_POST['static_folder'], "text"),
+        GetSQLValueString($_POST['static_file'], "text"),
+        GetSQLValueString($_POST['menu_display'], "text"),
+        GetSQLValueString($_POST['menu_display_order'], "text"),
+        GetSQLValueString($_POST['menu_custom_class'], "text"),
+        GetSQLValueString($_POST['mobile_enabled'], "text"),
+        GetSQLValueString($_POST['mobile_template_id'], "text"),
+        GetSQLValueString($_POST['meta_author'], "text"),
+        GetSQLValueString($_POST['meta_cache_control'], "text"),
+        GetSQLValueString($_POST['meta_description'], "text"),
+        GetSQLValueString($_POST['meta_keywords'], "text"),
+        GetSQLValueString($_POST['meta_robots'], "text"),
+        GetSQLValueString($publishDate, "text"),
+        GetSQLValueString($_POST['auto_expire'], "text"),
+        GetSQLValueString($expirationDate, "text"),
+				GetSQLValueString($_POST['status'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"));
+				
+				mysql_select_db($database_ikiosk, $ikiosk);
+				$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+				sqlQueryLog($insertSQL);
+				
+				v7publishPage($_POST['page_id']);	
+				$js = "window.location=\"".$_POST['static_folder'].$_POST['static_file']."\"\r\n";
+				insertJS($hideModal.$js);
+				exit;
 	}
 	
-	//Save Page Edits
+	//Save Page Edits-----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "iKioskCMS-editContent")) {
 		
 		//Grab Existing Page Details

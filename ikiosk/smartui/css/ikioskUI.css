@@ -251,3 +251,7 @@ td.icon {
 #dynamicModal .modal-footer {
   margin-top: 0px;
 }
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+  background: #FDFDFD;
+}
