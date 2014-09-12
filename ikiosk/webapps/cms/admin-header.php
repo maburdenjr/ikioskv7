@@ -1,5 +1,5 @@
 <header id="header">
-  <div id="logo-group"> <span><?php echo $SITE['site_name']; ?></span> </div>
+  <div id="logo-group" class="hidden-mobile"> <span><?php echo $SITE['site_name']; ?></span> </div>
   <div class="pull-left">
   		
       <!-- Edit Page Properties -->
