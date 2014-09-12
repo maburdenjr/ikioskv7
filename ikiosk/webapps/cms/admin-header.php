@@ -24,7 +24,7 @@
     <!-- fullscreen button -->
     <div id="fullscreen" class="btn-header transparent pull-right"> <span> <a href="javascript:void(0);" title="Full Screen" data-action="launchFullscreen" rel="tooltip" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-arrows-alt"></i></a> </span> </div>
     <!-- end fullscreen button -->
-    <div id="cmsAdmin" class="btn-header transparent pull-right"><span><a title="CMS Admin" rel="tooltip" data-placement="bottom"><i class="fa fa-cog"></i></a> </span> </div>
+    <div id="cmsAdmin" class="btn-header transparent pull-right"><span><a href="/cms/ajaxHandler.php?ajaxAction=cmsAdmin&appCode=CMS" class="dynamicModal" title="CMS Admin" rel="tooltip" data-placement="bottom"><i class="fa fa-cog"></i></a> </span> </div>
     
     <!-- New Page -->
       <div id="createPage" class="btn-header transparent pull-right"> <span> <a href="/cms/ajaxHandler.php?ajaxAction=createPage&recordID=<?php echo $row_getPage['page_version_id']; ?>&appCode=CMS" title="Create New Page" class="dynamicModal" rel="tooltip" data-placement="bottom"><i class="fa fa-plus"></i></a> </span> </div>

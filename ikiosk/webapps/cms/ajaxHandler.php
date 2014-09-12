@@ -27,6 +27,9 @@ if (isset($_GET['ajaxAction'])) {
 		case "pageVersions":
 			$actionFile = "admin-pageVersions.php";
 			break;	
+		case "cmsAdmin":
+			$actionFile = "admin-cmsConfig.php";
+			break;		
 	}
 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
 	

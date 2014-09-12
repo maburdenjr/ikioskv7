@@ -3,6 +3,25 @@ function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
+	//Admin Modal Ajax
+	$(document).on('touchstart click', '.modalDynLink', function(e) {
+		e.preventDefault();
+		e.stopPropagation();	
+		var targetURL = $(this).attr('href');
+		$('#dynModalContent').html("<div class='modal-body'><i class='fa fa-cog fa-spin'></i> Loading..</div>").fadeIn('slow');	
+		$.ajax({
+			url: targetURL,
+			timeout: 10000,	
+			error: function(data) {
+				var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+				$('#dynModalContent').html(error).fadeIn('slow');
+			},	
+			success: function(data) {
+				$('#dynModalContent').html(data).fadeIn('slow');
+			}
+		});
+	});
+	
 	//Delete Records
 	$(document).on('click', '.delete-record', function(){
 		event.stopPropagation();

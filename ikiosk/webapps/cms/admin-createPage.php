@@ -1,6 +1,6 @@
 <form id = "cms-createPage" class="smart-form">
   <div class="modal-header">
-    <h4 class="modal-title"><i class="fa fa-file-code-o"></i> Create New Page</h4>
+    <h4 class="modal-title">Create New Page</h4>
   </div>
   <fieldset>
     <div class="form-response"></div>
