@@ -1,5 +1,6 @@
 <?php
 $pageRefresh = "location.reload();\r\n";
+$hideModal = "$('.modal').modal('hide');";
 
 //Load Site Properties
 mysql_select_db($database_ikiosk, $ikiosk);
@@ -29,6 +30,13 @@ if (isset($_GET['ajaxAction'])) {
 
 // Begin AJAX Post Wrapper ###########################################################################
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
+	
+	
+	//Edit Page Properties
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editPageProperties")) {
+		insertJS($hideModal);
+		exit;
+	}
 	
 	//Save Page Edits
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "iKioskCMS-editContent")) {

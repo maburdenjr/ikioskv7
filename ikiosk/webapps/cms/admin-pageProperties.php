@@ -41,7 +41,7 @@ $totalRows_pageIndex = mysql_num_rows($pageIndex);
           <section class = "col col-4">
             <label class="label">Filename</label>
             <label class="input">
-              <input type="text" name="title" value="<?php echo $row_getRecord['static_file']; ?>">
+              <input type="text" name="static_file" value="<?php echo $row_getRecord['static_file']; ?>">
             </label>
           </section>
           <section class = "col col-4">
@@ -168,17 +168,17 @@ $totalRows_pageIndex = mysql_num_rows($pageIndex);
 					title : {
 						required : true
 					},
-					password : {
+					static_file : {
 						required : true
 					}
 				},
 				
 				messages : {
-					login_email : {
-						required : 'Please enter your login email'
+					title : {
+						required : 'Please enter a title for this content page'
 					},
-					password : {
-						required : 'Please enter your password'	
+					static_file : {
+						required : 'Please enter a filename for this content page'	
 					}
 				},
 				
