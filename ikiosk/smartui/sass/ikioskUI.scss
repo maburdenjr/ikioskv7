@@ -118,6 +118,9 @@
 		letter-spacing: -1px;
 		color:#333;	 
 	}
+	.datepicker {
+		z-index:3000;
+	}
 }
 
 @media only screen and (max-width : 480px) {
@@ -262,4 +265,9 @@ td.icon {
 
 .smart-form .label {
 	font-weight:600;	
+}
+#dynamicModal {
+	.modal-footer {
+		margin-top:0px;	
+	}
 }

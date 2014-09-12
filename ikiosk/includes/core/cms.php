@@ -1926,21 +1926,21 @@ function templateListiCloud($select_name, $selected) {
 function displayDirBrowser($select_name, $selected) {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
 	compileDirList();
-	$dirFile = $SYSTEM['ikiosk_docroot']."/webapps/cms/dir_browser/".$SITE['site_id'].".txt";
+	$dirFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root']."/cms/dirMap.txt";
 	$dirList = urlFetch($dirFile);
 	$dirList = explode("[iKiosk]", $dirList);
 	
 	$dirOutput = "<select name=\"".$select_name."\">\r\n";
 	foreach ($dirList as $key => $value) {
 		$keypair = explode("|", $value);
-		if (($keypair[0] != "/api/") && ($keypair[0] != "/blog/") && ($keypair[0] != "/calendar/") && ($keypair[0] != "/store/") && ($keypair[0] != "/socialnet/") && ($keypair[0] != "/static/") && ($keypair[0] != "/static/resources/") && ($keypair[0] != "/static/resources/userphotos/") && ($keypair[0] != "/static/resources/userfiles/") && ($keypair[0] != "/library/") && ($keypair[0] != "/ishare/") && ($keypair[0] != "/system/")) {
+		if (($keypair[0] != "/api/") && ($keypair[0] != "/blog/") && ($keypair[0] != "/calendar/") && ($keypair[0] != "/store/") && ($keypair[0] != "/socialnet/") && ($keypair[0] != "/static/") && ($keypair[0] != "/static/resources/") && ($keypair[0] != "/static/resources/userphotos/") && ($keypair[0] != "/static/resources/userfiles/") && ($keypair[0] != "/library/") && ($keypair[0] != "/ishare/") && ($keypair[0] != "/system/") && ($keypair[0] != "/cms/")) {
  		$dirOutput .=  "<option value=\"".$keypair[0]."\" ";
 		if ($keypair[0] == $selected) {$dirOutput .= " selected=\"selected\" ";}
 		$dirOutput .=  ">".$keypair[1]."</option>\r\n";
 		}
 	}
 	
-	$dirOutput .="</select>";
+	$dirOutput .="</select><i></i>";
 	echo $dirOutput;
 }
 
@@ -2907,7 +2907,7 @@ function compileDirList() {
 	$fileList .= $value."/|".$value."/[iKiosk]";
 	}
 	$fileList = substr($fileList, 0, -8);
-	$directoryFile = $SYSTEM['ikiosk_docroot']."/webapps/cms/dir_browser/".$SITE['site_id'].".txt";
+	$directoryFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root']."/cms/dirMap.txt";
 	
 	$fh = fopen($directoryFile, 'w') or errorLog("Unable to create CMS directory file: ".$directoryFile, "System Error", $redirect);
 	fwrite($fh, $fileList);

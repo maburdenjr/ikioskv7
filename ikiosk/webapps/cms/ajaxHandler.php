@@ -1,20 +1,6 @@
 <?php
 $pageRefresh = "location.reload();\r\n";
 
-// Begin AJAX Action Wrapper ###########################################################################
-if (isset($_GET['ajaxAction'])) {
-	switch($_GET['ajaxAction']) {
-		case "editPageProperties":
-				$actionFile = "admin-pageProperties.php";
-				break;
-		case "create":
-			$panelAction = "create";
-			break;
-	}
-	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
-}
-
-
 //Load Site Properties
 mysql_select_db($database_ikiosk, $ikiosk);
 $query_getSite = "SELECT * FROM sys_sites WHERE site_id = '".$SITE['site_id']."' AND deleted = '0'";
@@ -26,6 +12,19 @@ $_SESSION['site_id'] = $SITE['site_id'];
 if (empty($_SESSION['user_id'])) {
 	$USER['user_timezone'] = $SITE['site_timezone'];
 	$USER['user_dateformat'] = $SITE['site_dateformat'];
+}
+
+// Begin AJAX Action Wrapper ###########################################################################
+if (isset($_GET['ajaxAction'])) {
+	switch($_GET['ajaxAction']) {
+		case "editPageProperties":
+				$actionFile = "admin-pageProperties.php";
+				break;
+		case "create":
+			$panelAction = "create";
+			break;
+	}
+	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
 }
 
 // Begin AJAX Post Wrapper ###########################################################################
