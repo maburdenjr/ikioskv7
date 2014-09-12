@@ -4,6 +4,35 @@
   </div>
   <fieldset>
     <div class="form-response"></div>
+    <div class="row">
+      <section class="col col-6">
+        <label class="label">Title</label>
+        <label class="input">
+          <input type="text" name="title" />
+        </label>
+      </section>
+      <section class="col col-6">
+        <label class="label">Template</label>
+        <label class="select">
+          <?php templateList("template_id", $row_getRecord['template_id']); ?>
+          <i></i> </label>
+      </section>
+    </div>
+    <div class="row">
+      <section class="col col-6">
+        <label class="label">Directory</label>
+        <label class="select">
+          <?php displayDirBrowser("static_folder", $row_getRecord['static_folder']); ?>
+          <i></i> </label>
+      </section>
+      <section class="col col-6">
+        <label class="label">Filename</label>
+        <label class="input">
+          <input type="text" name="static_file" />
+        </label>
+      </section>
+      </section>
+    </div>
   </fieldset>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>

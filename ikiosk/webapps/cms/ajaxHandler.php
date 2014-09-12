@@ -31,6 +31,53 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+	//Create New Page Properties-----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-createPage")) {
+		
+		//Create Page
+		$pageID = create_guid();
+		$insertSQL = sprintf("INSERT INTO cms_pages (page_id, site_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+				GetSQLValueString($pageID, "text"),
+				GetSQLValueString($_SESSION['site_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"));
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+		
+		//Create Page Version
+		$pageVersionID = create_guid();
+		$insertSQL = sprintf("INSERT INTO cms_page_versions (page_version_id, page_id, site_id, title, version, status, auto_expire, menu_display, menu_display_order, date_created, created_by, date_modified, modified_by, template_id, static_folder, static_file) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+					GetSQLValueString($pageVersionID, "text"),
+					GetSQLValueString($pageID, "text"),
+					GetSQLValueString($_SESSION['site_id'], "text"),
+					GetSQLValueString($_POST['title'], "text"),
+					GetSQLValueString("0.0", "text"),
+					GetSQLValueString("Published", "text"),
+					GetSQLValueString("No", "text"),
+					GetSQLValueString("No", "text"),
+					GetSQLValueString("0.00", "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($_POST['template_id'], "text"),
+					GetSQLValueString($_POST['static_folder'], "text"),
+					GetSQLValueString($_POST['static_file'], "text"));
+			
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+		
+		v7publishPage($pageID);
+		$js = "window.location=\"".$_POST['static_folder'].$_POST['static_file']."\"\r\n";
+		insertJS($hideModal.$js);
+		exit;
+		
+	}
 	
 	//Edit Page Properties-----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editPageProperties")) {
