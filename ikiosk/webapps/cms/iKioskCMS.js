@@ -32,16 +32,17 @@ function iKioskUI() {
 			$('#iKioskCMS-editContent #redactorEditor').html(original_html);
 		}
 	});
-	
-	//Redactor Editor
-	$('.redactor-editor').redactor({ 
-		autoresize: true,  
-		cleanup: false,  
-		convertDivs: false,
-		minHeight: 500, 
-		fixed:true,
-		imageUpload: base_url+'/cms/ajaxHandler.php?option=uploadPhoto',
-	});
+	if ($('.redactor-editor').length) {
+		//Redactor Editor
+		$('.redactor-editor').redactor({ 
+			autoresize: true,  
+			cleanup: false,  
+			convertDivs: false,
+			minHeight: 500, 
+			fixed:true,
+			imageUpload: base_url+'/cms/ajaxHandler.php?option=uploadPhoto',
+		});
+	}
 	
 	var original_html = $('#iKioskCMS-editContent #redactorEditor').html();
 

@@ -54,7 +54,7 @@ $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
         </label>
         </section>
         <div class="pull-right">
-          <button class="btn btn-primary btn-ajax-submit" data-form="cmsUILogin">Login </button>
+          <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cmsUILogin">Login </button>
         </div>
       </div>
     </div>
