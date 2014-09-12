@@ -19,10 +19,10 @@ if (empty($_SESSION['user_id'])) {
 if (isset($_GET['ajaxAction'])) {
 	switch($_GET['ajaxAction']) {
 		case "editPageProperties":
-				$actionFile = "admin-pageProperties.php";
-				break;
-		case "create":
-			$panelAction = "create";
+			$actionFile = "admin-pageProperties.php";
+			break;
+		case "createPage":
+			$actionFile = "admin-createPage.php";
 			break;
 	}
 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
@@ -44,6 +44,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 			mysql_select_db($database_ikiosk, $ikiosk);
 			$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
 			sqlQueryLog($updateSQL);
+			unlink($SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root'].$_POST['original_file']);
 		}
 		
 		//Update Page Parent

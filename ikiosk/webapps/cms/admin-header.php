@@ -1,11 +1,13 @@
 <header id="header">
   <div id="logo-group" class="hidden-mobile"> <span><?php echo $SITE['site_name']; ?></span> </div>
   <div class="pull-left">
-  		
+  		<!-- New Page -->
+      <div id="createPage" class="btn-header transparent pull-right"> <span> <a href="/cms/ajaxHandler.php?ajaxAction=createPage&recordID=<?php echo $row_getPage['page_version_id']; ?>&appCode=CMS" title="Create New Page" class="dynamicModal" rel="tooltip" data-placement="bottom"><i class="fa fa-plus"></i></a> </span> </div>
       <!-- Edit Page Properties -->
       <div id="editPageProperties" class="btn-header transparent pull-right"> <span> <a href="/cms/ajaxHandler.php?ajaxAction=editPageProperties&recordID=<?php echo $row_getPage['page_version_id']; ?>&appCode=CMS" title="Edit Page Properties" class="dynamicModal" rel="tooltip" data-placement="bottom"><i class="fa fa-wrench"></i></a> </span> </div>
       <!-- Edit Page -->
       <div id="editPage" class="btn-header transparent pull-right"> <span> <a href="" title="Edit Page Content"  rel="tooltip" data-placement="bottom"><i class="fa fa-edit"></i></a> </span> </div>
+      
 
   </div>
   <!-- pulled right: nav area -->

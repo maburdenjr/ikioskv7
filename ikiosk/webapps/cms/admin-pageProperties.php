@@ -162,6 +162,7 @@ $totalRows_pageIndex = mysql_num_rows($pageIndex);
   <input type="hidden" name="iKioskForm" value="Yes" />
   <input type="hidden" name="appCode" value="CMS" />
   <input type="hidden" name="content" value="<?php echo htmlentities($row_getRecord['content']); ?>" />
+  <input type="hidden" name="original_file" value="<?php echo $row_getRecord['static_folder'].$row_getRecord['static_file'];  ?>" />
   </div>
 </form>
 <script type="text/javascript">
