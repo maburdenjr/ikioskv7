@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/smartadmin-cms.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/redactor.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/iKioskUI.css">
 <link rel="shortcut icon" href="<?php echo $assetUrl; ?>img/favicon/favicon.ico" type="image/x-icon">
 <link rel="icon" href="<?php echo $assetUrl; ?>img/favicon/favicon.ico" type="image/x-icon">
@@ -28,9 +29,7 @@
   <div id = "iKioskCMSdisplay">
   <?php v7ContentProcessor($row_getPage['content']); ?>
   </div>
-  <!-- Editor Display -->
-  <div id = "iKioskCMSeditor" class="ikiosk-cms-editor">
-  </div>
+	<?php include($systemFileRoot."/ikiosk/webapps/cms/admin-editor.php"); ?>
   <!-- Template Footer Code -->
   <?php v7ContentProcessor($row_getTemplate['body_footer_code']); ?>
 </div>
@@ -43,6 +42,11 @@
     </div>
   </div>
 </div> 
+<form id="ikiosk_keys" name="ikiosk_keys" style="display:none;">
+	<input name="site_url" class="site_url" type="hidden" value="<?php echo $SITE['site_url']; ?>">
+  <input name="current_page" class="current_page" type="hidden" value="<?php echo $SYSTEM['current_page']; ?>">
+  <input name="template_id" class="template_id" type="hidden" value="<?php echo $row_getTemplate['template_id']; ?>">
+</form>
  <!-- CMS Editor Scripts --> 
 <script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script>
 <script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script> 
@@ -64,9 +68,12 @@
 <script src="<?php echo $assetUrl; ?>js/plugin/datatables/dataTables.bootstrap.min.js"></script>
 <script src="<?php echo $assetUrl; ?>js/app.min.js"></script>
 <script src="<?php echo $assetUrl; ?>js/freeformatter.js"></script>
+<script src="<?php echo $assetUrl; ?>js/redactor.js"></script>
+<script src="<?php echo $assetUrl; ?>js/tabifier.js"></script>
 <script src="/cms/iKioskCMS.js"></script>
 <script type="text/javascript">
    pageSetUp();
+	 runAllForms();
 </script>
 </body>
 </html>

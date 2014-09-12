@@ -1,6 +1,44 @@
 <?php
 /* IntelliKiosk 7.0 Tiger */
 
+//Publish Page Routine
+function v7publishPage($page_id) {
+	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+	
+	//Get Page Index
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$query_getPageIndex = "SELECT * FROM cms_pages WHERE page_id = '".$page_id."' AND deleted = '0' AND ".$SYSTEM['active_site_filter']." ORDER BY date_modified DESC";
+	$getPageIndex = mysql_query($query_getPageIndex, $ikiosk) or sqlError(mysql_error());
+	$row_getPageIndex = mysql_fetch_assoc($getPageIndex);
+	$totalRows_getPageIndex = mysql_num_rows($getPageIndex);
+	
+	//Get Page Detail
+	$page = getContentPage($row_getPageIndex['page_id']);
+	
+	//Get Site Properties
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$query_getSiteInfo = "SELECT * FROM sys_sites WHERE site_id = '".$row_getPageIndex['site_id']."' AND deleted = '0' AND ".$SYSTEM['active_site_filter']."";
+	$getSiteInfo = mysql_query($query_getSiteInfo, $ikiosk) or sqlError(mysql_error());
+	$row_getSiteInfo = mysql_fetch_assoc($getSiteInfo);
+	$totalRows_getSiteInfo = mysql_num_rows($getSiteInfo);
+	
+	$physicalFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSiteInfo['site_root'].$page['static_folder'].$page['static_file'];
+	$pageContent = urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/pageTemplate.php");
+	
+	//Page Specific Replace
+	$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
+	$site_id = $row_getSiteInfo['site_id'];
+	$pageContent = str_replace("ikiosk-tmp-core", $ikioskCore, $pageContent);
+	$pageContent = str_replace("ikiosk-tmp-page", $page_id, $pageContent);
+	$pageContent = str_replace("ikiosk_tmp_site", $site_id, $pageContent);
+	
+	if ($page['static_file'] != "") {
+		$fh = fopen($physicalFile, 'w+') or errorLog("Unable to create ".$physicalFile);
+		fwrite($fh, $pageContent);
+		fclose($fh);
+	}
+}
+
 //Smart Content Processor
 function v7ContentProcessor($content) {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER, $row_getPage, $row_getTemplate, $row_getCMS;	
@@ -171,9 +209,21 @@ function v7InitSite($site_id) {
 			$fh = fopen($destinationFile, 'w') or errorLog("Unable to create create: ".$destinationFile, "System Error", $redirect);	
 			fwrite($fh, $fileContents);
 			fclose($fh);
+			
+			//Grab and Compile ajaxHandler File
+			$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
+			$fileContents = "<?php\r\n\$PAGE['track'] = \"No\";\r\n";
+			$fileContents .= "\$PAGE['application_code'] = isset(\$_POST['appCode']) ? \$_POST['appCode'] : \$_GET['appCode'];\r\n";
+			$fileContents .= "require('".$ikioskCore."'); // Load iKiosk Core Files\r\n";
+			$fileContents .= "\$SITE['site_id'] = \"".$site_id."\";\r\n";
+			$fileContents .= "include(\$systemFileRoot.\"/ikiosk/webapps/cms/ajaxHandler.php\"); \r\n?>\r\n";
+			$destinationFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/cms/ajaxHandler.php";
+			$fh = fopen($destinationFile, 'w') or errorLog("Unable to create create: ".$destinationFile, "System Error", $redirect);	
+			fwrite($fh, $fileContents);
+			fclose($fh);
 						
 			//Copy CMS Admin Files
-			$cmsAdmin = array("editPage.php", "displayPage.php", "index.php", "login.php", "iKioskCMS.js", "ajaxHandler.php", "logout.php");
+			$cmsAdmin = array("editPage.php", "displayPage.php", "index.php", "login.php", "iKioskCMS.js", "logout.php");
 			foreach ($cmsAdmin as $key => $value) {
 					$fileContent = 	urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/".$value);
 					$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";

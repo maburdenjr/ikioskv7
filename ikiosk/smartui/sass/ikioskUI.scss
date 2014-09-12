@@ -83,3 +83,18 @@
 		overflow-y:scroll;
 	}
 }
+
+#iKioskCMSeditor {
+	display:none;
+	padding:5px;
+	.redactorHeader {
+		background-color:#F7F7F7;
+		padding:10px;
+		margin-bottom:5px;
+		border: 1px dotted #DDD;
+	}
+}
+
+.align-right {
+	text-align:right;
+}

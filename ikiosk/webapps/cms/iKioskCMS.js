@@ -1,14 +1,55 @@
 // JavaScript Document
 function iKioskUI() {
 	
+	var base_url = $('#ikiosk_keys .site_url').val();
+	
 	//Edit Page Toggle
 	$('#iKioskCMSheader').on("click", '#editPage a', function(e) {
 		e.preventDefault();
 		$('#iKioskCMSheader a').removeClass('active');
 		$(this).toggleClass('active');
-		$('#iKioskCMSwrapper').hide();
+		$('#iKioskCMSdisplay').hide();
 		$('#iKioskCMSeditor').show();
+	  $("#iKioskCMS-editContent").validate({
+				errorPlacement : function(error, element) {
+					error.insertAfter(element.parent());
+				},
+				submitHandler: function(form) {
+					var targetForm = $(this.currentForm).attr("id");
+					 submitAjaxForm(targetForm);
+				 }
+       });
 	});
+	
+	//Cancel Page Edit
+	$('#iKioskCMSeditor').on("click", '.editContentCancel', function(e) {
+		e.preventDefault();
+		var cancelEdit = confirm("Are you sure you want to cancel and discard changes.");
+		if (cancelEdit == true) {
+			$('#iKioskCMSheader a').removeClass('active');
+			$('#iKioskCMSdisplay').show();
+			$('#iKioskCMSeditor').hide();
+			$('#iKioskCMS-editContent #redactorEditor').html(original_html);
+		}
+	});
+	
+	//Redactor Editor
+	$('.redactor-editor').redactor({ 
+		autoresize: true,  
+		cleanup: false,  
+		convertDivs: false,
+		minHeight: 500, 
+		fixed:true,
+		imageUpload: base_url+'/cms/ajaxHandler.php?option=uploadPhoto',
+	});
+	
+	var original_html = $('#iKioskCMS-editContent #redactorEditor').html();
+
+	//Submit Form
+	$('.ikiosk-cms-editor').on('click', '.btn-ajax-submit', function(e) {
+		var targetForm = $(this).data("form");
+		$('#'+targetForm).submit();
+	})
 	
 }
 
