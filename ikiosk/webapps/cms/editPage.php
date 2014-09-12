@@ -38,7 +38,7 @@
 <?php if ($SYSTEM['debug'] == "Yes") { include ($systemFileRoot."/ikiosk/webapps/admin/systemDebug.php"); } ?>
   <div class="modal fade" id="dynamicModal">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content">Hi
       </div>
     </div>
   </div>

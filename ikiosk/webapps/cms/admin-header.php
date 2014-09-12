@@ -3,7 +3,7 @@
   <div class="pull-left">
   		
       <!-- Edit Page Properties -->
-      <div id="editPageProperties" class="btn-header transparent pull-right"> <span> <a title="Edit Page Properties" class="dynamicModal" data-toggle="modal" data-target="#dynamicModal" rel="tooltip" data-placement="bottom"><i class="fa fa-wrench"></i></a> </span> </div>
+      <div id="editPageProperties" class="btn-header transparent pull-right"> <span> <a href="/cms/ajaxHandler.php?ajaxAction=editPageProperties&recordID=<?php echo $row_getPage['page_version_id']; ?>&appCode=CMS" title="Edit Page Properties" class="dynamicModal" data-toggle="modal" data-target="#dynamicModal" rel="tooltip" data-placement="bottom"><i class="fa fa-wrench"></i></a> </span> </div>
       <!-- Edit Page -->
       <div id="editPage" class="btn-header transparent pull-right"> <span> <a href="" title="Edit Page Content"  rel="tooltip" data-placement="bottom"><i class="fa fa-edit"></i></a> </span> </div>
 
