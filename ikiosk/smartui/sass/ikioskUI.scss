@@ -98,3 +98,9 @@
 .align-right {
 	text-align:right;
 }
+
+@media only screen and (max-width : 768px) {
+	.debug-value {
+		max-width: 200px;
+	}
+}
