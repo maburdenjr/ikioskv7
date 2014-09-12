@@ -4,7 +4,7 @@ function iKioskUI() {
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
 	//Edit Page Toggle
-	$('#iKioskCMSheader').on("click", '#editPage a', function(e) {
+	$('#iKioskCMSheader').on("touchstart click", '#editPage a', function(e) {
 		e.preventDefault();
 		$('#iKioskCMSheader a').removeClass('active');
 		$(this).toggleClass('active');
