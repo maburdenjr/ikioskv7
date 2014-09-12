@@ -86,8 +86,8 @@
   text-align: right;
 }
 
-@media only screen and (max-width: 768px) {
-  .debug-value {
+@media only screen and (max-width: 480px) {
+  .debug-value, .debug-variable {
     max-width: 200px;
   }
 }
