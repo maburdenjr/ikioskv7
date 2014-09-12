@@ -83,8 +83,7 @@ $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
 <script src="/cms/iKioskCMS.js"></script>
 <script type="text/javascript">
    pageSetUp();
-	 
-	  runAllForms();
+  
    
    $(function() {
        $("#cmsUILogin").validate({

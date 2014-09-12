@@ -159,9 +159,7 @@ $totalRows_pageIndex = mysql_num_rows($pageIndex);
   </div>
 </form>
 <script type="text/javascript">
-	pageSetUp();
-	runAllForms();
-   
+ pageSetUp();
   $(function() {
 		 $("#cms-editPageProperties").validate({
 				 rules : {

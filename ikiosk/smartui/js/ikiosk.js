@@ -63,21 +63,24 @@ function iKioskUI() {
 	}
 	
 	
-	$('.widget-body').on('click', '.dynamicModal', function(e){
+	$(document).on('click', '.dynamicModal', function(e){
 		e.preventDefault();
+		e.stopPropagation();
 		var targetURL = $(this).attr("href");
 		dynamicModal(targetURL);
 	});
 	
 	$(document).on("click", 'nav a[target="modal"]', function (a) {
 		a.preventDefault();
+		a.stopPropagation();
 		var targetURL = $(this).attr("href");
 		dynamicModal(targetURL);
 		$('#dynamicModal').modal('show');
 	}),
 	
 	//Dynamic File Browser
-	$('.widget-body').on('click', '.browserLink', function(){
+	$(document).on('click', '.browserLink', function(){
+		event.stopPropagation();
 		var directory = $(this).data('directory');
 		var record = $(this).data('record');
 		$.ajax({
@@ -111,7 +114,7 @@ function iKioskUI() {
 	}
 	
 	//Custom Actions
-	$('.widget-body, .widget-toolbar').on('click', '.icon-action', function(){
+	$(document).on('click', '.icon-action', function(){
 			event.stopPropagation();
 			var iconAction = $(this).data('type');
 			var code = $(this).data("code");
@@ -135,7 +138,7 @@ function iKioskUI() {
 	}); // End Custom Actions
 	
 	//Delete Records
-	$('.widget-body').on('click', '.delete-record', function(){
+	$(document).on('click', '.delete-record', function(){
 		event.stopPropagation();
 		var deleteRecord = confirm("Are you sure you want to delete this item?");
 		if (deleteRecord == true) {

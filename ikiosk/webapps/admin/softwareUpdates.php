@@ -81,4 +81,6 @@ $softwareList = explode("[iKiosk]", $softwareList);
 </section>
 <script type="text/javascript">
 		pageSetUp();
+
+
 </script> 

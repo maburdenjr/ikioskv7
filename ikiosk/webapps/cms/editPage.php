@@ -74,7 +74,7 @@
 <script src="/cms/iKioskCMS.js"></script>
 <script type="text/javascript">
    pageSetUp();
-	 runAllForms();
+   iKioskUI();
 </script>
 </body>
 </html>

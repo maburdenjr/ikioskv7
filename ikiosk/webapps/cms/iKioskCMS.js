@@ -1,14 +1,13 @@
 // JavaScript Document
 function iKioskUI() {
-	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
 	//Dynamic Modal
 	$('.ikiosk-cms-editor').on("touchstart click", 'a.dynamicModal', function(e) {
-			e.preventDefault();
-			e.stopPropagation();
-			var targetURL = $(this).attr('href');
-			dynamicModal(targetURL);
+		e.preventDefault();
+		e.stopPropagation();
+		var targetURL = $(this).attr('href');
+		dynamicModal(targetURL);
 	});
 	
 	//Dynamic Modal

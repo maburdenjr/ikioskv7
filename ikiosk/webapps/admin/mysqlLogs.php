@@ -94,4 +94,6 @@ foreach ($accessLogData  as $key => $value) {
 <?php } ?>
 <script type="text/javascript">
    pageSetUp();
+
+
 </script>

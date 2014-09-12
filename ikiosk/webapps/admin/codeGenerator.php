@@ -177,6 +177,8 @@ do {
 </script> 
 <script type="text/javascript">
 		pageSetUp();
+
+
 		
 		$('#query_table').on("change", function() {
 			var dbTable = $(this).val();

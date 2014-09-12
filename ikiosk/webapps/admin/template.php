@@ -35,4 +35,6 @@ require('../../includes/core/ikiosk.php');
 </section>
 <script type="text/javascript">
 		pageSetUp();
+
+
 </script>

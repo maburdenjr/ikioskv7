@@ -11,4 +11,6 @@ require('../../includes/core/ikiosk.php');
 <section id="widget-grid"> </section>
 <script type="text/javascript">
 		pageSetUp();
+
+
 </script> 

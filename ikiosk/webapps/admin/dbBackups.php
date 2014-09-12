@@ -60,4 +60,6 @@ $totalRows_listView = mysql_num_rows($listView);
 	  $('.dataTables_length').before('<button class="btn btn-primary icon-action btn-add" data-type="createBackup" data-code="<?php echo $APPLICATION['application_code']; ?>"><i class="fa fa-plus"></i> Create <span class="hidden-mobile">Backup</span></button>');
    pageSetUp();
 
+
+
 </script>

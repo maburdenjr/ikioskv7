@@ -212,4 +212,6 @@
 <?php } ?>
 <script type="text/javascript">
    pageSetUp();
+
+
 </script>
