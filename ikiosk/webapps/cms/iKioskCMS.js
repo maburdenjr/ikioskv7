@@ -3,6 +3,30 @@ function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
+	//Dynamic Modal
+	$('.ikiosk-cms-editor').on("touchstart click", 'a.dynamicModal', function(e) {
+			e.preventDefault();
+			var targetURL = $(this).attr('href');
+			dynamicModal(targetURL);
+	});
+	
+	//Dynamic Modal
+	function dynamicModal(targetURL) {
+		$('#dynamicModal .modal-content').html("<div class='modal-body'><i class='fa fa-cog fa-spin'></i> Loading..</div>").fadeIn('slow');	
+		$.ajax({
+			url: targetURL,
+			timeout: 10000,	
+			error: function(data) {
+				var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+				$('#dynamicModal .modal-body').html(error).fadeIn('slow');
+			},	
+			success: function(data) {
+				$('#dynamicModal .modal-content').html(data).fadeIn('slow');
+			}
+		});
+		$('#dynamicModal').modal('show');
+	}
+
 	//Edit Page Toggle
 	$('#iKioskCMSheader').on("touchstart click", '#editPage a', function(e) {
 		e.preventDefault();

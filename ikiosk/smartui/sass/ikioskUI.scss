@@ -101,7 +101,9 @@
 
 .modal {
 	.smart-form {
-		.modal-header { padding: 15px; }
+		.modal-header { 
+			padding: 15px;
+ 		 }
 		.modal-body { padding: 20px; }
 		.modal-footer { 
 			margin-top: 15px;
@@ -110,6 +112,11 @@
 		.btn {
 			padding: 6px 12px;
 		}
+	}
+	.modal-title {
+		font-weight:400;	
+		letter-spacing: -1px;
+		color:#333;	 
 	}
 }
 
@@ -129,4 +136,130 @@
 	.modal-dialog {
 		width: 900px;
 	}
+}
+
+.smart-form {
+ fieldset {
+	background-color: #FDFDFD;
+		header {
+			margin-bottom:25px;
+			margin-left:0px;
+			margin-right:0px;
+			margin-top:0px;
+			background-color:transparent;
+		}
+	}
+	.note {
+	  margin-bottom:6px;
+	  margin-top:-4px;  
+  }
+}
+
+.icon {
+	text-align:center;
+}
+.delete-record, .icon-action {
+	cursor:pointer;
+	color:rgba(0,0,0,0.75);
+}
+
+.btn-primary.icon-action {
+	color:#FFF;
+}
+
+.delete-record i, icon-action i {
+		font-size:16px;
+		text-align:center;
+}
+
+button.icon-action {
+	color:#FFF;
+}
+
+.btn-add {
+	float:right;
+	margin-left:10px;
+}
+
+.hidden-panel {
+	display:none;
+}
+
+pre.prettyprint {
+	padding:10px !important;
+}
+
+pre.html {
+	height:500px;
+}
+
+.smart-form .col-12 {
+	width:100%;
+}
+
+.pb10 {
+	padding-bottom:10px;
+}
+
+.form-header {
+	border-bottom: 1px dashed rgba(0,0,0,.2);
+	padding: 8px 0;
+	margin-bottom:15px;
+}
+
+.ui-sortable .jarviswidget-sortable>header {
+		box-shadow: none;
+}
+
+.jarviswidget>div {
+	border-bottom: 1px solid;
+}
+
+.table>thead>tr>th {
+		border-bottom: 	1px solid #ddd; 
+
+}
+
+td.icon {
+	width:50px;
+}
+
+@media (max-width:640px) {
+	.dataTable tr th, .dataTable tr td {
+		display:none;
+	}
+	
+	.dataTable tr th:first-child, .dataTable tr td:first-child, .dataTable tr th:last-child, .dataTable tr td:last-child  {
+		display:table-cell;
+	}
+	
+	.dt-toolbar div:last-child {
+		padding-left:0px;
+	}
+	
+	.dt-toolbar .btn-add {
+		display:block;
+		float:left;
+		width:160px;
+		margin-left:0px;
+	}
+	
+	.dt-toolbar>:last-child .dataTables_length {
+		float:left;
+		margin-left:5px;		
+	}
+	
+	div.dataTables_paginate {
+		float:left;
+	}
+	.dt-toolbar-footer>:last-child, .dt-toolbar>:last-child {
+		padding-left:0px;
+	}
+}
+.modal-header, .modal-footer {
+		background-color:#F7F7F7;		
+}
+
+.smart-form .label {
+	font-weight:600;	
 }
