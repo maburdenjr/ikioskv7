@@ -386,7 +386,7 @@ button.icon-action {
   right: 200px;
 }
 
-#dynModalWrapper.menu-visible #cms-menu, #dynModalWrapper.animating #cms-menu {
+#dynModalWrapper.menu-visible #cms-menu, #dynModalWrapper.animating.left #cms-menu {
 	color: #666;
 	background-color:#000000;
 	border: 1px solid #666;	
