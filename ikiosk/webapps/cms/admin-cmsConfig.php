@@ -1,5 +1,5 @@
 <div id = "dynModalWrapper">
-  <a id="cms-menu" class="btn-primary"><i class="fa fa-reorder"></i> Menu</a>
+  <a id="cms-menu" class="btn-default"><i class="fa fa-reorder"></i></a>
   <div id ="dynModalMenu">
     <ul>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=contentPages&appCode=CMS" class="modalDynLink"><i class="fa fa-file-text-o"></i> Content Pages</a></li>

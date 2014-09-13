@@ -3,6 +3,30 @@ function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
+	//Admin Modal
+	$(document).on('touchstart click', '#cms-menu', function(e) {
+		 e.preventDefault();
+		var $body = $( '#dynModalWrapper'),
+     		$page = $( '#dynModalContent'),
+      		$menu = $( '#dynModalMenu'),
+			transitionEnd = 'transitionend webkitTransitionEnd otransitionend MSTransitionEnd';
+			
+		$body.addClass( 'animating' );
+		if ( $body.hasClass( 'menu-visible' ) ) {
+		   $body.addClass( 'right' );
+		  } else {
+		   $body.addClass( 'left' );
+		  }
+		  
+		 $page.on( transitionEnd, function() {
+		   $body
+			.removeClass( 'animating left right' )
+			.toggleClass( 'menu-visible' );
+		 
+		   $page.off( transitionEnd );
+		  }); 
+	});
+	
 	//Admin Modal Ajax
 	$(document).on('touchstart click', '.modalDynLink', function(e) {
 		e.preventDefault();

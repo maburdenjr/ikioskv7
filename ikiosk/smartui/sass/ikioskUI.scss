@@ -311,15 +311,17 @@ button.icon-action {
 	position:relative;
 	z-index:2500;
 	background-color:#000;
-	
+	overflow:hidden;
+		
 	#cms-menu {
-	  position: absolute;
-    top: 13px;
-    right: 20px;
+	  	position: absolute;
+    	top: 13px;
+    	right: 10px;
 		cursor:pointer;
 		z-index:30;
 		padding: 6px 12px;
 		border-radius: 2px;
+		border: 1px solid #CCC;
 		&:hover {
 			text-decoration:none;
 		}
@@ -328,14 +330,17 @@ button.icon-action {
 		position:relative;
 		z-index:20;
 		background-color:#FFF;
+		.modal-body {
+			min-height:200px;	
+		}
 	}
 	
 	#dynModalMenu {
-		display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 190px;
+		display: none;
+    	position: absolute;
+   		top: 15px;
+   		right: 0;
+    	width: 190px;
 		z-index: 10;
 		ul {
 			padding: 20px;
@@ -356,4 +361,41 @@ button.icon-action {
 			}
 		}
 	}
+}
+
+#dynModalWrapper.animating #dynModalMenu, #dynModalWrapper.menu-visible #dynModalMenu {
+  display: block;
+}
+
+#dynModalWrapper.animating #dynModalContent, #dynModalWrapper.animating #cms-menu {
+  transition: transform .25s ease-in-out;
+  -webkit-transition: -webkit-transform .25s ease-in-out;
+}
+
+#dynModalWrapper.animating.left #dynModalContent {
+  transform: translate3d( -200px, 0, 0 );
+  -webkit-transform: translate3d( -200px, 0, 0 );
+}
+
+#dynModalWrapper.animating.right #dynModalContent {
+  transform: translate3d( 200px, 0, 0 );
+  -webkit-transform: translate3d( 200px, 0, 0 );
+}
+
+#dynModalWrapper.menu-visible #dynModalContent {
+  right: 200px;
+}
+
+#dynModalWrapper.animating.left #cms-menu {
+  transform: translate3d( -210px, 0, 0 );
+  -webkit-transform: translate3d( -210px, 0, 0 );
+}
+
+#dynModalWrapper.animating.right #cms-menu {
+  transform: translate3d( 210px, 0, 0 );
+  -webkit-transform: translate3d( 210px, 0, 0 );
+}
+
+#dynModalWrapper.menu-visible #cms-menu {
+  right: 210px;
 }
