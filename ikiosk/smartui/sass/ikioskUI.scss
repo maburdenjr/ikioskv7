@@ -330,9 +330,11 @@ button.icon-action {
 		position:relative;
 		z-index:20;
 		background-color:#FFF;
+		min-height:328px;	
 		.modal-body {
 			min-height:200px;	
 		}
+
 	}
 	
 	#dynModalMenu {

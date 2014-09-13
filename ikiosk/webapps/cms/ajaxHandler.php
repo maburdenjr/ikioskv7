@@ -30,6 +30,9 @@ if (isset($_GET['ajaxAction'])) {
 		case "cmsAdmin":
 			$actionFile = "admin-cmsConfig.php";
 			break;		
+		case "contentPages":
+			$actionFile = "admin-contentPages.php";
+			break;			
 	}
 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
 	

@@ -27,6 +27,10 @@ function iKioskUI() {
 		  }); 
 	});
 	
+	$(document).on('touchstart click', '#dynModalMenu .modalDynLink', function(e) {
+		$('#cms-menu').click();	
+	});
+	
 	//Admin Modal Ajax
 	$(document).on('touchstart click', '.modalDynLink', function(e) {
 		e.preventDefault();

@@ -310,6 +310,7 @@ button.icon-action {
   position: relative;
   z-index: 20;
   background-color: #FFF;
+  min-height: 328px;
 }
 #dynModalWrapper #dynModalContent .modal-body {
   min-height: 200px;
