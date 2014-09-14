@@ -630,6 +630,8 @@ function auto_backup() {
 function ikiosk_backup() {
 	
 	global $ikiosk, $database_ikiosk,  $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+	
+	v7recordCleanup();
 
 	mysql_select_db($database_ikiosk, $ikiosk);
 	$query_listView = "SHOW TABLES";

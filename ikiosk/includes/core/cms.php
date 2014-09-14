@@ -1,36 +1,68 @@
 <?php
 /* IntelliKiosk 7.0 Tiger */
 
+//Clean Up Orphaned Records
+function v7recordCleanup() {
+	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$query_getRecord = "SELECT * FROM sys_sites WHERE deleted = '1'";
+			$getRecord = mysql_query($query_getRecord, $ikiosk) or sqlError(mysql_error());
+			$row_getRecord = mysql_fetch_assoc($getRecord);
+			$totalRows_getRecord = mysql_num_rows($getRecord);
+			
+			if ($totalRows_getRecord != 0) {
+				do {
+					deleteRecordv7("sys_users2sites", "site_id", $row_getRecord['site_id']);
+				} while ($row_getRecord = mysql_fetch_assoc($getRecord));	
+
+			}
+			
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$query_getRecord = "SELECT * FROM sys_teams WHERE deleted = '1'";
+			$getRecord = mysql_query($query_getRecord, $ikiosk) or sqlError(mysql_error());
+			$row_getRecord = mysql_fetch_assoc($getRecord);
+			$totalRows_getRecord = mysql_num_rows($getRecord);
+			
+			if ($totalRows_getRecord != 0) {
+				do {
+					deleteRecordv7("sys_users2teams", "team_id", $row_getRecord['team_id']);
+				} while ($row_getRecord = mysql_fetch_assoc($getRecord));	
+
+			}
+
+}
+
 //Publish Page Routine
 function v7publishPage($page_id) {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
-	
+		
 	//Get Page Index
 	mysql_select_db($database_ikiosk, $ikiosk);
-	$query_getPageIndex = "SELECT * FROM cms_pages WHERE page_id = '".$page_id."' AND deleted = '0' AND ".$SYSTEM['active_site_filter']." ORDER BY date_modified DESC";
+	$query_getPageIndex = "SELECT * FROM cms_pages WHERE page_id = '".$page_id."' AND deleted = '0' AND ".$_SESSION['site_filter']." ORDER BY date_modified DESC";
 	$getPageIndex = mysql_query($query_getPageIndex, $ikiosk) or sqlError(mysql_error());
 	$row_getPageIndex = mysql_fetch_assoc($getPageIndex);
 	$totalRows_getPageIndex = mysql_num_rows($getPageIndex);
-	
+			
 	//Get Page Detail
 	$page = getContentPage($row_getPageIndex['page_id']);
 	
 	//Get Site Properties
 	mysql_select_db($database_ikiosk, $ikiosk);
-	$query_getSiteInfo = "SELECT * FROM sys_sites WHERE site_id = '".$row_getPageIndex['site_id']."' AND deleted = '0' AND ".$SYSTEM['active_site_filter']."";
+	$query_getSiteInfo = "SELECT * FROM sys_sites WHERE site_id = '".$row_getPageIndex['site_id']."' AND deleted = '0' AND ".$_SESSION['site_filter']."";
 	$getSiteInfo = mysql_query($query_getSiteInfo, $ikiosk) or sqlError(mysql_error());
 	$row_getSiteInfo = mysql_fetch_assoc($getSiteInfo);
 	$totalRows_getSiteInfo = mysql_num_rows($getSiteInfo);
-	
+			
 	$physicalFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSiteInfo['site_root'].$page['static_folder'].$page['static_file'];
 	$pageContent = urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/pageTemplate.php");
-	
+		
 	//Page Specific Replace
 	$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
 	$site_id = $row_getSiteInfo['site_id'];
 	$pageContent = str_replace("ikiosk-tmp-core", $ikioskCore, $pageContent);
 	$pageContent = str_replace("ikiosk-tmp-page", $page_id, $pageContent);
 	$pageContent = str_replace("ikiosk_tmp_site", $site_id, $pageContent);
+
 	
 	if ($page['static_file'] != "") {
 		$fh = fopen($physicalFile, 'w+') or errorLog("Unable to create ".$physicalFile);
@@ -131,7 +163,7 @@ function v7InitSite($site_id) {
 					$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
 					sqlQueryLog($insertSQL);
 					
-					v7quickPublish($site_id, $pageID, "/", "index.html");
+					v7publishPage($pageID);
 					
 					//Create System Album
 					mysql_select_db($database_ikiosk, $ikiosk);

@@ -32,7 +32,10 @@ if (isset($_GET['ajaxAction'])) {
 			break;		
 		case "contentPages":
 			$actionFile = "admin-contentPages.php";
-			break;			
+			break;
+		case "codeSnippets":
+			$actionFile = "admin-codeSnippets.php";
+			break;				
 	}
 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
 	
@@ -46,6 +49,53 @@ if (isset($_GET['ajaxAction'])) {
 
 // Begin AJAX Post Wrapper ###########################################################################
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
+	
+	//Create Code Snippet -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-createCodeSnippet")) {
+		
+		$generateID = create_guid();
+    $insertSQL = sprintf("INSERT INTO cms_page_elements (`page_element_id`, `site_id`, `template_section_id`, `title`, `content`, `status`, `display_order`, `date_created`, `created_by`, `date_modified`, `modified_by`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+        GetSQLValueString($generateID, "text"),
+        GetSQLValueString($SITE['site_id'], "text"),
+        GetSQLValueString($_POST['template_section_id'], "text"),
+        GetSQLValueString($_POST['title'], "text"),
+        GetSQLValueString($_POST['content'], "text"),
+        GetSQLValueString($_POST['status'], "text"),
+        GetSQLValueString($_POST['display_order'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"));
+
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($insertSQL);
+			
+			$js = "$('.dynRefresh').click();\r\n";
+			insertJS($js);
+			exit;
+	}
+
+	
+	//Edit Code Snippet -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editCodeSnippet")) {
+		
+		$updateSQL = sprintf("UPDATE cms_page_elements SET title=%s, content=%s, status=%s, date_modified=%s, modified_by=%s WHERE page_element_id=%s",
+        GetSQLValueString($_POST['title'], "text"),
+        GetSQLValueString($_POST['content'], "text"),
+        GetSQLValueString($_POST['status'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($_POST['page_element_id'], "text"));
+
+				mysql_select_db($database_ikiosk, $ikiosk);
+				$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+				sqlQueryLog($updateSQL);	
+				
+		displayAlert("success", "Changes saved.");
+		exit;
+		
+	}
 	
 	//Create New Page Properties-----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-createPage")) {
@@ -107,7 +157,6 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 			mysql_select_db($database_ikiosk, $ikiosk);
 			$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
 			sqlQueryLog($updateSQL);
-			unlink($SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root'].$_POST['original_file']);
 		}
 		
 		//Update Page Parent

@@ -14,7 +14,7 @@ if (!empty($_GET['page'])) {
 
 //Load Page Properties
 mysql_select_db($database_ikiosk, $ikiosk);
-$query_getPage = "SELECT * FROM cms_page_versions WHERE page_id = '".$page_id."' ".$filter." AND deleted = '0'";
+$query_getPage = "SELECT * FROM cms_page_versions WHERE page_id = '".$page_id."' ".$filter." AND deleted = '0' AND site_id='".$SITE['site_id']."'";
 $getPage = mysql_query($query_getPage, $ikiosk) or sqlError(mysql_error());
 $row_getPage = mysql_fetch_assoc($getPage);
 $totalRows_getPage = mysql_num_rows($getPage);
