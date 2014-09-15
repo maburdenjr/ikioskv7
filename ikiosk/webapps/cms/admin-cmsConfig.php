@@ -4,7 +4,7 @@
     <ul>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=contentPages&appCode=CMS" class="modalDynLink"><i class="fa fa-file-text-o"></i> Content Pages</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=codeSnippets&appCode=CMS" class="modalDynLink"><i class="fa fa-file-code-o"></i> Code Snippets</a></li>
-      <li><a href="/cms/ajaxHandler.php?ajaxAction=contentPages&appCode=CMS" class="modalDynLink"><i class="fa fa-folder"></i> File Manager</a></li>
+      <li><a href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS" class="modalDynLink"><i class="fa fa-folder"></i> File Manager</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=contentPages&appCode=CMS" class="modalDynLink"><i class="fa fa-file-image-o"></i> Photos</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=contentPages&appCode=CMS" class="modalDynLink"><i class="fa fa-cog"></i> Settings</a></a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=contentPages&appCode=CMS" class="modalDynLink"><i class="fa fa-cube"></i> Templates</a></a></li>

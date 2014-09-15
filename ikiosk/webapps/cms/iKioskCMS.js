@@ -3,6 +3,13 @@ function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
+	//Hidden Panels
+	$(document).on('touchstart click', ".panelTrigger", function(e) {
+		e.preventDefault();
+		var panel = $(this).data('panel');
+		$('#'+panel).slideToggle('fast');
+	});
+	
 	//Admin Modal
 	$(document).on('touchstart click', '#cms-menu', function(e) {
 		 e.preventDefault();

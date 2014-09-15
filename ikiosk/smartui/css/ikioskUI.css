@@ -315,6 +315,46 @@ button.icon-action {
 #dynModalWrapper #dynModalContent .modal-body {
   min-height: 200px;
 }
+#dynModalWrapper #dynModalContent table {
+  min-height: 115px;
+}
+#dynModalWrapper #dynModalContent .hide-me {
+  display: none;
+}
+#dynModalWrapper #dynModalContent .enhanced-well {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #F2F2F2;
+  background-color: #F6F6F6;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+#dynModalWrapper #dynModalContent .file-wrapper {
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 15px;
+  border: 1px solid #FFF;
+}
+#dynModalWrapper #dynModalContent .file-wrapper:hover {
+  border: 1px solid #F2F2F2;
+  background-color: #F6F6F6;
+}
+#dynModalWrapper #dynModalContent .file-wrapper .icon-link {
+  color: #999;
+}
+#dynModalWrapper #dynModalContent .file-wrapper .icon-image {
+  max-width: 100%;
+  max-height: 52px;
+}
+#dynModalWrapper #dynModalContent .file-wrapper .file-title {
+  padding-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#dynModalWrapper #dynModalContent .file-wrapper .file-title .icon-text {
+  color: #3276b1;
+}
 #dynModalWrapper #dynModalMenu {
   display: none;
   position: absolute;

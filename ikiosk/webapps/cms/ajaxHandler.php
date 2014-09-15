@@ -35,7 +35,10 @@ if (isset($_GET['ajaxAction'])) {
 			break;
 		case "codeSnippets":
 			$actionFile = "admin-codeSnippets.php";
-			break;				
+			break;			
+		case "fileManager":
+			$actionFile = "admin-fileManager.php";
+			break;					
 	}
 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
 	
