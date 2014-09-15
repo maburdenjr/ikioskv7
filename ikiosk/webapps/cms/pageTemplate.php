@@ -49,7 +49,7 @@ $totalRows_getCMS = mysql_num_rows($getCMS);
 
 $inlineEdit = cmsInlineCheck();
 
-if ($inlineEdit == "Yes") {	
+if (($inlineEdit == "Yes") && ($_GET['editor'] != "off")) {	
 	include($SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root']."/cms/editPage.php");
 } else {
 	include($SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root']."/cms/displayPage.php");

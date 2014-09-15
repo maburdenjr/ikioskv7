@@ -3,6 +3,54 @@ function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
+	//Smart Actions
+	$(document).on('touchstart click', ".cms-action", function(e) {
+			event.stopPropagation();
+			var action = $(this).data('action');
+			var confirmation = $(this).data("confirm");
+			var record = $(this).data("record");
+			var processAction = "Yes";
+			if (confirmation != "") {
+				var getConfirm = confirm(confirmation);
+				if (getConfirm == true) {	
+					var processAction = "Yes";
+				} else {
+					var processAction = "No";
+				}
+			}
+			if (processAction == "Yes") {
+				progressBar();	
+				$.ajax({
+							url: "/cms/ajaxHandler.php",	
+							data: {appCode: "CMS", ajaxAction: action, recordID: record},
+							timeout: 600000,
+							error: function(data) {
+									var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+									$('.system-message').html(error).fadeIn('slow');
+							},
+							success: function(data) {
+									$('.system-message').html(data).fadeIn('slow');
+	
+							}
+					});
+			}
+	});
+	
+	//Display Progress Bar
+	function progressBar() {
+		var progressBar = "<div class='progress progress-sm progress-striped active'><div class='progress-bar bg-color-blue' style='width: 0px'></div></div>";		
+		$('.system-message').html(progressBar).fadeIn();
+		$('.system-message .progress-bar').animate({
+				width: "100%"
+				}, 
+				{duration: 500,
+				complete: function () {
+					setTimeout(function(){
+					}, 600);
+				}
+			});
+	}
+	
 	//Hidden Panels
 	$(document).on('touchstart click', ".panelTrigger", function(e) {
 		e.preventDefault();

@@ -10,6 +10,7 @@ $SITE =  mysql_fetch_assoc($getSite);
 $totalRows_getSite = mysql_num_rows($getSite);
 
 $_SESSION['site_id'] = $SITE['site_id'];
+
 if (empty($_SESSION['user_id'])) {
 	$USER['user_timezone'] = $SITE['site_timezone'];
 	$USER['user_dateformat'] = $SITE['site_dateformat'];
@@ -48,6 +49,23 @@ if (isset($_GET['ajaxAction'])) {
 			insertJS("$('.".$_GET['record']."').fadeOut();");
 		}
 	}
+	
+	if($_GET['ajaxAction'] == "deleteDir") {
+		$dir = htmlentities($_GET['recordID']);
+		$dir = $SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root'].$dir;
+		deleteDirectory($dir);
+		insertJS("$('.parentDir').click();");
+		exit;
+	}
+	
+	if($_GET['ajaxAction'] == "deleteFile") {
+		$file = $SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root'].$_GET['recordID'];
+		unlink($file);
+		insertJS("$('.parentDir').click();");
+		exit;
+	}
+	
+	
 }
 
 // Begin AJAX Post Wrapper ###########################################################################

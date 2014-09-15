@@ -350,6 +350,13 @@ button.icon-action {
 			padding:10px;
 			margin-bottom:10px;
 		}
+		
+		iframe {
+			width:100%;
+			height:300px;
+			overflow-x: scroll;
+			border: 1px solid #F2F2F2;
+		}
 
 		.file-wrapper {
 			text-align: center;
@@ -442,4 +449,8 @@ button.icon-action {
 	color: #333;
 	background-color:#FFF;
 	border: 1px solid #CCC;	
+}
+
+.tooltip {
+	z-index:40000 !important;
 }
