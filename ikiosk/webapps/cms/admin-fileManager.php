@@ -21,7 +21,7 @@ $dh  = opendir($serverDirectory);
 }
 
 
-$restricted = array(".", "..", "/static/resources", "cms", "blog", "system", ".htaccess");
+$restricted = array(".", "..", "resources", "cms", "blog", "system", ".htaccess");
 
 if (empty($_GET['action'])) { ?>
 <div class="modal-header">
@@ -34,15 +34,60 @@ if (empty($_GET['action'])) { ?>
     <?php if (!empty($parentFolder)) { ?>
   		<a class="btn btn-default modalDynLink" href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=<?php echo $parentFolder; ?>"><i class="fa fa-mail-reply"></i></a>
     <?php } ?>  
-			<a class="btn btn-default"><?php echo str_replace("//", "/", $parentFolder.$activeFolder); ?></a>
+			<a class="btn btn-default fileSelf modalDynLink" href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=<?php echo $currentDir; ?>"><?php $currentDir = str_replace("//", "/", $parentFolder.$activeFolder); echo $currentDir; ?></a>
      </div>
      <div class="pull-right"> 
-    	<a class="btn btn-default panelTrigger" data-panel="file-newFolder"><i class="fa fa-plus"></i> New Folder</a>
+    	<a class="btn btn-default panelTrigger" data-panel="file-newFolder"><i class="fa fa-plus"></i> New Directory</a>
       <a class="btn btn-primary"><i class="fa fa-cloud-upload"></i> Upload Files</a>
      </div>
   </div>
   <div id="file-newFolder" class="enhanced-well hide-me">
-  
+  	<form id = "cms-newFileFolder" class="smart-form">
+        <div class="form-response"></div>
+
+    <section>
+    	<label class="label">Directory Name</label>
+      <div class="note">Directory name should only include alphanumeric characters</div>     
+      <label class="input">
+     		 <input type="text" name="foldername" />
+ 			</label>
+    </section>
+    <div class="align-right">
+        <button type="button" class="btn btn-default panelTrigger" data-panel="file-newFolder"><i class="fa fa-times"></i> Cancel </button>
+
+    <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-newFileFolder"> <i class="fa fa-check"></i> Save </button>
+    <input type="hidden" name="formID" value="cms-newFileFolder">
+    <input type="hidden" name="parent" value="<?php echo $currentDir; ?>" />
+    <input type="hidden" name="iKioskForm" value="Yes" />
+    <input type="hidden" name="appCode" value="CMS" />
+    </div>
+		</form>
+    <script type="text/javascript">
+ pageSetUp();
+  $(function() {
+		 $("#cms-newFileFolder").validate({
+				 rules : {
+					foldername : {
+						required : true
+					}
+				},
+				
+				messages : {
+					foldername : {
+						required : 'Please enter a name for this directory'
+					}
+				},
+				
+				errorPlacement : function(error, element) {
+					error.insertAfter(element.parent());
+				},
+				submitHandler: function(form) {
+					var targetForm = $(this.currentForm).attr("id");
+					 submitAjaxForm(targetForm);
+				 }
+		 });
+   });
+</script>
   </div>
 	<div id="fileList" class="row">
  <?php 

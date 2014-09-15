@@ -53,6 +53,17 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+	//Create New Folder -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-newFileFolder")) {
+		$foldername = preg_replace("/[^A-Za-z0-9 ]/", '', $_POST['foldername']);
+		$rootFolder = $SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root'];
+		$newFolder = $rootFolder.$_POST['parent']."/".$foldername;
+		createDIR($newFolder);
+		$js = "$('.fileSelf').click();\r\n";
+		insertJS($js);
+		exit;
+	}
+	
 	//Create Code Snippet -----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-createCodeSnippet")) {
 		
