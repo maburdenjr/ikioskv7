@@ -194,9 +194,6 @@ $totalRows_getPhotos = mysql_num_rows($getPhotos);
 <div class="superbox-list"><img src="<?php echo $row_getPhotos['image_thumbnail']; ?>" data-img="<?php echo $row_getPhotos['image_original']; ?>" alt="<?php echo $row_getPhotos['description']; ?>" title="<?php echo $row_getPhotos['title']; ?>" class="superbox-img" data-description="<?php echo $row_getPhotos['description']; ?>" data-photoid="<?php echo $row_getPhotos['photo_id']; ?>"></div><?php } while ($row_getPhotos = mysql_fetch_assoc($getPhotos)); }?>
 			</div>
     </div>
-     <script type="text/javascript">
-		 		$('.superbox').SuperBox();
-		 </script>
     <form id = "cms-editPhoto" class="smart-form">
         <div class="form-response"></div>
     		<section>
@@ -212,6 +209,7 @@ $totalRows_getPhotos = mysql_num_rows($getPhotos);
         </label>
       	</section>
         <div class="align-right">
+        <a class="btn btn-danger cms-action" data-action="deletePhoto" data-record="" data-confirm="Are you sure you want to delete this photo?"><i class="fa fa-trash-o"></i> Delete</a>
         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-editPhoto"> <i class="fa fa-check"></i> Save </button>
        	 <input type="hidden" name="photo_id" value="">
         <input type="hidden" name="formID" value="cms-editPhoto">
@@ -232,6 +230,9 @@ $totalRows_getPhotos = mysql_num_rows($getPhotos);
          });
        });
     </script> 
+     <script type="text/javascript">
+		 		$('.superbox').SuperBox();
+		 </script>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>

@@ -17,16 +17,17 @@
 										description = d.data('description');
 										photo_id = d.data('photoid');
 										
-									$('#cms-editPhoto').appendTo('#imgInfoBox');
 									$('#cms-editPhoto input[name="title"]').val(title);
 									$('#cms-editPhoto textarea[name="description"]').val(description);
 									$('#cms-editPhoto input[name="photo_id"]').val(photo_id);
+									$('#cms-editPhoto .btn-danger').data('record', photo_id);
 									
                 c.attr("src", e), a(".superbox-list").removeClass("active"), $this.addClass("active"), 0 == a(".superbox-current-img").css("opacity") && a(".superbox-current-img").animate({
                     opacity: 1
                 }), a(this).next().hasClass("superbox-show") ? (a(".superbox-list").removeClass("active"), b.toggle()) : (b.insertAfter(this).css("display", "block"), $this.addClass("active")), a("html, body").animate({
                     scrollTop: b.position().top - d.width()
-                }, "medium")
+                }, "medium"), $('#cms-editPhoto').appendTo('#imgInfoBox')
+
             }), a(".superbox").on("click", ".superbox-close", function() {
                 a(".superbox-list").removeClass("active"), a(".superbox-current-img").animate({
                     opacity: 0

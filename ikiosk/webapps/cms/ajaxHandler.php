@@ -107,6 +107,12 @@ if (isset($_GET['ajaxAction'])) {
 		exit;
 	}
 	
+	if($_GET['ajaxAction'] == "deletePhoto") {
+		$status = deleteRecordv7("sys_photos", "photo_id", $_GET['recordID']);
+		insertJS("$('.dynRefresh').click();");
+		exit;
+	}
+	
 	
 }
 
