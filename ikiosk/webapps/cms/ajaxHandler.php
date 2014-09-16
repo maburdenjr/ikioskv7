@@ -94,6 +94,7 @@ if (isset($_GET['ajaxAction'])) {
 	if($_GET['ajaxAction'] == "refreshPhotos") {
 		$refresh = urlFetch($SITE['site_url']."/cms/ajaxHandler.php?ajaxAction=photoGallery&appCode=IKIOSK&recordID=".$_GET['recordID']."&action=refreshPhotos");
 		$js = "\r\n var refreshHTML = '".trim($refresh)."';\r\n";
+		$js .= "$('#cms-editPhoto').appendTo('#dynModalContent .modal-body');\r\n";
 		$js .= "$('#photoList .superbox').html(refreshHTML);\r\n";
 		$js .= "$('.superbox').SuperBox();\r\n";
 		insertJS($js);
