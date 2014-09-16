@@ -384,7 +384,18 @@ button.icon-action {
 				}
 			}
 			
+			
+			
 		}
+		@media (max-width:640px) {
+				.pull-left {
+					margin-bottom:5px;
+				}
+				.pull-left, .pull-right {
+					display:block !important;
+					float:none !important;
+				}
+			}
 
 	}
 	

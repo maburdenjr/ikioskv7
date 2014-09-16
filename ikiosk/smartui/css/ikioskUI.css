@@ -361,6 +361,15 @@ button.icon-action {
 #dynModalWrapper #dynModalContent .file-wrapper .file-title .icon-text {
   color: #3276b1;
 }
+@media (max-width: 640px) {
+  #dynModalWrapper #dynModalContent .pull-left {
+    margin-bottom: 5px;
+  }
+  #dynModalWrapper #dynModalContent .pull-left, #dynModalWrapper #dynModalContent .pull-right {
+    display: block !important;
+    float: none !important;
+  }
+}
 #dynModalWrapper #dynModalMenu {
   display: none;
   position: absolute;
