@@ -65,6 +65,20 @@ if (isset($_GET['ajaxAction'])) {
 		exit;
 	}
 	
+	if($_GET['ajaxAction'] == "uploadFiles") {
+		include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-uploadFiles.php");
+		exit;
+	}
+	
+	if($_GET['ajaxAction'] == "refreshFiles") {
+		$dir = htmlentities($_GET['recordID']);
+		$refresh = urlFetch($SITE['site_url']."/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=IKIOSK&directory=".$dir."&action=refreshFiles");
+		$js = "\r\n var refreshHTML = '".trim($refresh)."';\r\n";
+		$js .= "$('#fileList').html(refreshHTML);\r\n";
+		insertJS($js);
+		exit;
+	}
+	
 	
 }
 

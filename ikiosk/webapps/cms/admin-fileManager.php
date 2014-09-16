@@ -43,7 +43,10 @@ if (empty($_GET['action'])) { ?>
       <a class="btn btn-default cms-action" data-action="deleteDir" data-record="<?php echo $currentDir; ?>" data-confirm="Are you sure you want to delete this directory?"><i class="fa fa-trash-o"></i></a>
       <?php } ?>
       <?php } ?>
-      <a class="btn btn-default fileSelf modalDynLink hidden-mobile" href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=<?php echo $currentDir; ?>"><?php echo $currentDir; ?></a> </div>
+      <a class="btn btn-default fileSelf modalDynLink hidden-mobile" href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=<?php echo $currentDir; ?>"><?php echo $currentDir; ?></a>
+      <a class="btn btn-default cms-action refreshFiles" data-action="refreshFiles" data-record="<?php echo $currentDir; ?>" data-confirm="none"><i class="fa fa-refresh"></i></a>
+       </div>
+      
     <div class="pull-right"> <a class="btn btn-default panelTrigger" data-panel="file-newFolder"><i class="fa fa-plus"></i> <span class="hidden-mobile">New Directory</span></a> <a class="btn btn-primary panelTrigger" data-panel="file-uploadFiles"><i class="fa fa-cloud-upload"></i> <span class="hidden-mobile">Upload Files</span></a> </div>
   </div>
   <!-- Rename -->
@@ -141,6 +144,22 @@ if (empty($_GET['action'])) { ?>
 		 });
    });
 </script> 
+<script type="text/javascript" language="javascript">
+function createUploader(targetFolder){         
+	var uploader = new qq.FileUploader({
+		element: document.getElementById('file-uploadFiles'),
+		action: '/cms/ajaxHandler.php?appCode=CMS&ajaxAction=uploadFiles&filePath=<?php echo $serverDirectory; ?>/',
+		debug: true,
+		 params: {
+			process: targetFolder
+		},
+		onComplete: function(){
+			jQuery('.refreshFiles').click();
+			jQuery('.alert-warning .fa').removeClass('fa-check').addClass('fa-warning');
+		}
+	});           
+}
+</script>
   </div>
   <div id="fileList" class="row">
     <?php 
@@ -254,4 +273,50 @@ if (empty($_GET['action'])) { ?>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
 </div>
+<?php } ?>
+<?php if ((!empty($_GET['action'])) && ($_GET['action'] == "refreshFiles")) { ?>
+    <?php 
+ foreach ($fileArray as $key => $value) {  
+ if (!in_array($value, $restricted)) {
+	 
+	$activeFile = $serverDirectory."/".$value;
+	$modDate = (filemtime($activeFile));
+	$modDate = date("m/d/Y g:i:s a", $modDate);
+	
+	if(is_dir($activeFile)) {
+			$iconLink = "<a href=\"/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=".$thisFolder."/".$value."\" class=\"modalDynLink icon-link\"><i class=\"fa fa-4x fa-folder\"></i></a><div class=\"file-title\"><a href=\"/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=".$thisFolder."/".$value."\" class=\"modalDynLink icon-text\">".$value."</a></div>";
+	} else {
+			$extension = explode(".", $value);
+			$extension = end($extension);
+			switch(strtolower($extension)) {
+				case "html":
+					$icon = "<i class=\"fa fa-4x fa-file-code-o\"></i>";
+					break;
+				case "htm":
+					$icon = "<i class=\"fa fa-4x fa-file-code-o\"></i>";
+					break;	
+				case "php":
+					$icon = "<i class=\"fa fa-4x fa-file-code-o\"></i>";
+					break;		
+				case "jpg":
+					$icon = "<img class=\"icon-image\" src=\"".$thisFolder."/".$value."\" />";
+					break;	
+				case "jpeg":
+					$icon = "<img class=\"icon-image\" src=\"".$thisFolder."/".$value."\" />";
+					break;		
+				case "gif":
+					$icon = "<img class=\"icon-image\" src=\"".$thisFolder."/".$value."\" />";
+					break;	
+				case "png":
+					$icon = "<img class=\"icon-image\" src=\"".$thisFolder."/".$value."\" />";
+					break;			
+				default: 
+					$icon = "<i class=\"fa fa-4x fa-file-text-o\"></i>";
+					break;
+			}	
+			
+			$iconLink = "<a href=\"/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=".$thisFolder."&option=fileViewer&file=".$value."\" class=\"icon-link modalDynLink\">".$icon."</a><div class=\"file-title\"><a  href=\"/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=".$thisFolder."&option=fileViewer&file=".$value."\" class=\"icon-text modalDynLink\">".$value."</a></div>";	
+	}
+ ?>
+<div class="col-md-2 col-sm-2 col-xs-6"><div class="file-wrapper"><?php echo $iconLink; ?></div></div><?php } } ?>
 <?php } ?>

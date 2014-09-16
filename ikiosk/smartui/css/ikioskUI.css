@@ -315,6 +315,32 @@ button.icon-action {
 #dynModalWrapper #dynModalContent .modal-body {
   min-height: 200px;
 }
+#dynModalWrapper #dynModalContent .qq-uploader .qq-upload-drop-area {
+  display: block !important;
+  border: 1px dashed #BBB;
+  color: #ccc;
+  text-align: center;
+  background: #FEFEFE;
+  padding: 25px;
+  margin-bottom: 15px;
+}
+#dynModalWrapper #dynModalContent .qq-uploader .qq-upload-list {
+  margin-top: 10px;
+  padding: 0px;
+  list-style-type: none;
+}
+#dynModalWrapper #dynModalContent .qq-uploader .qq-upload-list li {
+  display: block;
+  list-style-type: none;
+  padding: 5px;
+  border: 1px dashed #BBB;
+  background: #FEFEFE;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+#dynModalWrapper #dynModalContent .qq-uploader .qq-upload-file, #dynModalWrapper #dynModalContent .qq-uploader .qq-upload-spinner, #dynModalWrapper #dynModalContent .qq-uploader .qq-upload-size, #dynModalWrapper #dynModalContent .qq-uploader .qq-upload-cancel, #dynModalWrapper #dynModalContent .qq-uploader .qq-upload-failed-text {
+  margin-right: 7px;
+}
 #dynModalWrapper #dynModalContent table {
   min-height: 115px;
 }
