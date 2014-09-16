@@ -338,6 +338,53 @@ button.icon-action {
 		.modal-body  {
 			min-height:200px;	
 		}
+		
+		#photoList {
+			width:100%;
+			overflow:hidden;
+			
+		}
+		
+		#cms-editPhoto {
+			display:none;
+		}
+		.superbox-close {
+			top:8px;
+			right:8px;
+		}
+		.superbox-show {
+			#cms-editPhoto {
+				display:block;
+				.label {
+					color:#FFF;
+				}
+			}
+			
+			.superbox-imageinfo {
+				display:block;
+				max-width:none;
+				min-width: 300px;
+				span {
+					display:none;
+				}
+			}
+			.superbox-current-img {
+				float:none;
+			}
+			
+		}
+		
+		.superbox-list {
+			 a:hover {
+				 text-decoration:none; 
+			 }
+			 .note {
+				text-align:center;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;	
+			 }
+		}
 		.qq-uploader {
 			.qq-upload-drop-area {
 				display:block !important;

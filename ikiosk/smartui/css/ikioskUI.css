@@ -319,6 +319,43 @@ button.icon-action {
 #dynModalWrapper #dynModalContent .modal-body {
   min-height: 200px;
 }
+#dynModalWrapper #dynModalContent #photoList {
+  width: 100%;
+  overflow: hidden;
+}
+#dynModalWrapper #dynModalContent #cms-editPhoto {
+  display: none;
+}
+#dynModalWrapper #dynModalContent .superbox-close {
+  top: 8px;
+  right: 8px;
+}
+#dynModalWrapper #dynModalContent .superbox-show #cms-editPhoto {
+  display: block;
+}
+#dynModalWrapper #dynModalContent .superbox-show #cms-editPhoto .label {
+  color: #FFF;
+}
+#dynModalWrapper #dynModalContent .superbox-show .superbox-imageinfo {
+  display: block;
+  max-width: none;
+  min-width: 300px;
+}
+#dynModalWrapper #dynModalContent .superbox-show .superbox-imageinfo span {
+  display: none;
+}
+#dynModalWrapper #dynModalContent .superbox-show .superbox-current-img {
+  float: none;
+}
+#dynModalWrapper #dynModalContent .superbox-list a:hover {
+  text-decoration: none;
+}
+#dynModalWrapper #dynModalContent .superbox-list .note {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 #dynModalWrapper #dynModalContent .qq-uploader .qq-upload-drop-area {
   display: block !important;
   border: 1px dashed #BBB;

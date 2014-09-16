@@ -2897,11 +2897,10 @@ function albumData($album_id, $data, $output) {
 		//Album Cover
 		if ($data == "album_cover") {
 			if ($totalRows_getPhotos == "0") {
-				$albumData = $SYSTEM['html_root'].$SYSTEM['ikiosk_root']."/library/images/defaults/empty_album.jpg";	
+				$albumData = $SYSTEM['system_url'].$SYSTEM['ikiosk_root']."/smartui/img/empty_album.jpg";	
 			} else {
 				//Get Site Root
-				$siteroot = getSiteData($row_getPhotos['site_id'], "site_root");
-				$albumData = $SYSTEM['html_root']."/sites".$siteroot.$row_getPhotos['image_thumbnail'];
+				$albumData = $row_getPhotos['image_thumbnail'];
 			}
 		}
 
@@ -2909,10 +2908,9 @@ function albumData($album_id, $data, $output) {
 		if ($data == "album_cover_mini") {
 			//Get Site Root
 			if ($totalRows_getPhotos == "0") {
-				$albumData = $SYSTEM['html_root'].$SYSTEM['ikiosk_root']."/library/images/defaults/empty_album.jpg";	
+				$albumData = $SYSTEM['system_url'].$SYSTEM['ikiosk_root']."/smartui/img/empty_album.jpg";	
 			} else {
-			$siteroot = getSiteData($row_getPhotos['site_id'], "site_root");
-			$albumData = $SYSTEM['html_root']."/sites".$siteroot.$row_getPhotos['image_mini_thumbnail'];
+			$albumData = $row_getPhotos['image_mini_thumbnail'];
 			}
 		}
 

@@ -143,7 +143,8 @@ class qqFileUploader {
         }
         
         if ($this->file->save($uploadDirectory . $filename . '.' . $ext)){	
-			   return array('success'=>true, 'filePath'=>$_GET['filePath']);
+			   photoUploadAJAX($filename . '.' . $ext, $_GET['recordID'], $SITE['site_id'], $redirect);
+			   return array('success'=>true);
         } else {
             return array('error'=> 'Could not save uploaded file.' .
                 'The upload was cancelled, or server error encountered');
@@ -153,11 +154,11 @@ class qqFileUploader {
 }
 
 // list of valid extensions, ex. array("jpeg", "xml", "bmp")
-$allowedExtensions = array("pdf", "doc", "docx", "xls", "csv", "txt", "rtf", "html", "zip", "mp3", "wma", "mpg", "flv", "avi", "jpg", "jpeg", "png", "gif", "psd", "xml" );
+$allowedExtensions = array("jpeg", "png", "jpg");
 // max file size in bytes
 $sizeLimit = 8 * 1024 * 1024;
 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
-$result = $uploader->handleUpload($_GET['filePath']);
+$result = $uploader->handleUpload($SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root']."/static/resources/userphotos/");
 // to pass data through iframe you will need to encode all html tags
 echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
 ?>

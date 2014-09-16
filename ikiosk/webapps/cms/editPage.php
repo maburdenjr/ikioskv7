@@ -71,6 +71,7 @@
 <script src="<?php echo $assetUrl; ?>js/freeformatter.js"></script>
 <script src="<?php echo $assetUrl; ?>js/redactor.js"></script>
 <script src="<?php echo $assetUrl; ?>js/tabifier.js"></script>
+<script src="<?php echo $assetUrl; ?>js/plugin/superbox/superbox.cms.js"></script>
 <script src="/cms/iKioskCMS.js"></script>
 <script type="text/javascript">
    pageSetUp();

@@ -1,4 +1,7 @@
 <?php
+ini_set('post_max_size', '20M');
+ini_set('post_max_size', '20M');
+
 $pageRefresh = "location.reload();\r\n";
 $hideModal = "$('.modal').modal('hide');\r\n";
 
@@ -39,7 +42,11 @@ if (isset($_GET['ajaxAction'])) {
 			break;			
 		case "fileManager":
 			$actionFile = "admin-fileManager.php";
-			break;					
+			break;		
+			
+		case "photoGallery":
+			$actionFile = "admin-photoGallery.php";
+			break;						
 	}
 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
 	
@@ -70,6 +77,11 @@ if (isset($_GET['ajaxAction'])) {
 		exit;
 	}
 	
+	if($_GET['ajaxAction'] == "uploadPhotos") {
+		include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-uploadPhotos.php");
+		exit;
+	}
+	
 	if($_GET['ajaxAction'] == "refreshFiles") {
 		$dir = htmlentities($_GET['recordID']);
 		$refresh = urlFetch($SITE['site_url']."/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=IKIOSK&directory=".$dir."&action=refreshFiles");
@@ -79,11 +91,82 @@ if (isset($_GET['ajaxAction'])) {
 		exit;
 	}
 	
+	if($_GET['ajaxAction'] == "refreshPhotos") {
+		$refresh = urlFetch($SITE['site_url']."/cms/ajaxHandler.php?ajaxAction=photoGallery&appCode=IKIOSK&recordID=".$_GET['recordID']."&action=refreshPhotos");
+		$js = "\r\n var refreshHTML = '".trim($refresh)."';\r\n";
+		$js .= "$('#photoList .superbox').html(refreshHTML);\r\n";
+		$js .= "$('.superbox').SuperBox();\r\n";
+		insertJS($js);
+		exit;
+	}
+	
+	if($_GET['ajaxAction'] == "deletePhotoAlbum") {
+		$status = deleteRecordv7("sys_photo_albums", "album_id", $_GET['recordID']);
+		insertJS("$('.parentAlbum').click();");
+		exit;
+	}
+	
 	
 }
 
 // Begin AJAX Post Wrapper ###########################################################################
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
+	
+	//Edit Photo Properties -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editPhoto")) {
+		$updateSQL = sprintf("UPDATE sys_photos SET title=%s, description=%s, date_modified=%s, modified_by=%s WHERE photo_id=%s",
+        GetSQLValueString($_POST['title'], "text"),
+        GetSQLValueString($_POST['description'], "text"),
+        GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+        GetSQLValueString($_SESSION['user_id'], "text"),
+        GetSQLValueString($_POST['photo_id'], "text"));
+	
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($updateSQL);
+		
+		insertJS("$('.superbox-close').click();\r\n $('.dynRefresh').click();");
+		exit;
+	}
+	
+	
+	//Edit Photo Album -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editAlbumPhoto")) {
+				$updateSQL = sprintf("UPDATE sys_photo_albums SET title=%s, description=%s, date_modified=%s, modified_by=%s WHERE album_id=%s",
+					GetSQLValueString($_POST['title'], "text"),
+					GetSQLValueString($_POST['description'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($_POST['album_id'], "text"));
+			
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($updateSQL);
+			insertJS("$('.dynRefresh').click();");
+			exit;
+	}
+	
+	//Create Photo Album -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-newPhotoAlbum")) {
+		
+			$generateID = create_guid();
+			$insertSQL = sprintf("INSERT INTO sys_photo_albums (album_id, site_id, title, description, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+					GetSQLValueString($generateID, "text"),
+					GetSQLValueString($_SESSION['site_id'], "text"),
+					GetSQLValueString($_POST['title'], "text"),
+					GetSQLValueString($_POST['description'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"));
+			
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($insertSQL);
+			
+			$js = "$('.dynRefresh').click();\r\n";
+			insertJS($js);		
+	}
 	
 	
 	//Rename File -----------------------------------------------------------
