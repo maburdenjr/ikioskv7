@@ -44,7 +44,7 @@ if (empty($_GET['action'])) { ?>
       <?php } ?>
       <?php } ?>
       <a class="btn btn-default fileSelf modalDynLink hidden-mobile" href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=<?php echo $currentDir; ?>"><?php echo $currentDir; ?></a>
-      <a class="btn btn-default cms-action refreshFiles" data-action="refreshFiles" data-record="<?php echo $currentDir; ?>" data-confirm="none"><i class="fa fa-refresh"></i></a>
+      <a class="btn btn-default cms-action refreshFiles hidden-mobile" data-action="refreshFiles" data-record="<?php echo $currentDir; ?>" data-confirm="none"><i class="fa fa-refresh"></i></a>
        </div>
       
     <div class="pull-right"> <a class="btn btn-default panelTrigger" data-panel="file-newFolder"><i class="fa fa-plus"></i> <span class="hidden-mobile">New Directory</span></a> <a class="btn btn-primary panelTrigger" data-panel="file-uploadFiles"><i class="fa fa-cloud-upload"></i> <span class="hidden-mobile">Upload Files</span></a> </div>
