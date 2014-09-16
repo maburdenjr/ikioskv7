@@ -356,6 +356,7 @@ button.icon-action {
 			height:300px;
 			overflow-x: scroll;
 			border: 1px solid #F2F2F2;
+	
 		}
 
 		.file-wrapper {
@@ -363,6 +364,7 @@ button.icon-action {
 			margin-bottom: 10px;
 			padding: 15px;
 			border: 1px solid #FFF;
+			min-height:115px;
 			&:hover {
 				border: 1px solid #F2F2F2;
 				background-color: #F6F6F6;
@@ -387,15 +389,6 @@ button.icon-action {
 			
 			
 		}
-		@media (max-width:640px) {
-				.pull-left {
-					margin-bottom:5px;
-				}
-				.pull-left, .pull-right {
-					display:block !important;
-					float:none !important;
-				}
-			}
 
 	}
 	
@@ -463,5 +456,5 @@ button.icon-action {
 }
 
 .tooltip {
-	z-index:40000 !important;
+	z-index:40000 !important; 
 }

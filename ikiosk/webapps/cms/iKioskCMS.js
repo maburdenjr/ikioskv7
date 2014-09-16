@@ -89,7 +89,6 @@ function iKioskUI() {
 	//Admin Modal Ajax
 	$(document).on('touchstart click', '.modalDynLink', function(e) {
 		e.preventDefault();
-		e.stopPropagation();	
 		var targetURL = $(this).attr('href');
 		$('#dynModalContent').html("<div class='modal-body'><i class='fa fa-cog fa-spin'></i> Loading..</div>").fadeIn('slow');	
 		$.ajax({

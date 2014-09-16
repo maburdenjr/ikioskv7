@@ -1,3 +1,4 @@
+<?php $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/"; ?>
 <?php
 // Publish Date
 $currentDate = time();
@@ -49,6 +50,9 @@ if ((empty($_GET['page'])) && (!empty($row_getPage['expiration_date'])) && ($row
     <?php v7ContentProcessor($row_getTemplate['body_footer_code']); ?>
     
 <?php } else { echo $SITE['site_status_message']; }  // Site is Active ?>
+ <!-- CMS Editor Scripts --> 
+<script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script>
+<script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
 </html>

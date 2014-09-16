@@ -71,6 +71,40 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+	
+	//Rename File -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-renameFile")) {
+		$rootFolder = $SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root'];
+		$oldFile = $rootFolder.$_POST['original'];
+		$newFile = $rootFolder.$_POST['parent']."/".$_POST['filename'];
+		
+		if (!rename($oldFile, $newFile)) {
+			displayAlert("danger", "Unable to rename file.");
+		} else {
+			$js = "$('.parentDir').click();\r\n";
+			insertJS($js);	
+		}
+		exit;
+	}
+	
+	
+	//Rename Folder -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-renameFolder")) {
+		$foldername = preg_replace("/[^A-Za-z0-9 ]/", '', $_POST['foldername']);
+		$rootFolder = $SYSTEM['ikiosk_filesystem_root']."/sites".$SITE['site_root'];
+		$oldFolder = $rootFolder.$_POST['original'];
+		$newFolder = $rootFolder.$_POST['parent']."/".$foldername;
+		
+		if (!rename($oldFolder, $newFolder)) {
+			displayAlert("danger", "Unable to rename folder.");
+		} else {
+			$js = "$('.parentDir').click();\r\n";
+			insertJS($js);	
+		}
+		exit;
+	}
+	
+	
 	//Create New Folder -----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-newFileFolder")) {
 		$foldername = preg_replace("/[^A-Za-z0-9 ]/", '', $_POST['foldername']);
