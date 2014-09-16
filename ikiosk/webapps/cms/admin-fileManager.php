@@ -41,8 +41,12 @@ if (empty($_GET['action'])) { ?>
       <?php } ?>
       <?php } ?>
       <a class="btn btn-default fileSelf modalDynLink" href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=<?php echo $currentDir; ?>"><?php echo $currentDir; ?></a> </div>
-    <div class="pull-right"> <a class="btn btn-default panelTrigger" data-panel="file-newFolder"><i class="fa fa-plus"></i> New Directory</a> <a class="btn btn-primary"><i class="fa fa-cloud-upload"></i> Upload Files</a> </div>
+    <div class="pull-right"> <a class="btn btn-default panelTrigger" data-panel="file-newFolder"><i class="fa fa-plus"></i> New Directory</a> <a class="btn btn-primary panelTrigger" data-panel="file-uploadFiles"><i class="fa fa-cloud-upload"></i> Upload Files</a> </div>
   </div>
+  <!-- Upload Files -->
+  <div id="file-uploadFiles" class="enhanced-well hide-me">
+	</div>
+  <!-- New Folder -->
   <div id="file-newFolder" class="enhanced-well hide-me">
     <form id = "cms-newFileFolder" class="smart-form">
       <div class="form-response"></div>
@@ -137,13 +141,13 @@ if (empty($_GET['action'])) { ?>
       <div class="file-wrapper"><?php echo $iconLink; ?></div>
     </div>
     <?php } } ?>
-    <?php } else { ?>
-    <div class="enhanced-well">
-      <div class="pull-left"> <a class="btn btn-default parentDir modalDynLink" href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=<?php echo $currentDir; ?>"><i class="fa fa-mail-reply" rel="tooltip" title="Back to directory listing"></i></a> <a class="btn btn-default cms-action" data-action="deleteFile" data-record="<?php echo $currentDir.$_GET['file']; ?>" data-confirm="Are you sure you want to delete this file?" rel="tooltip" title="Delete this file"><i class="fa fa-times"></i></a> <a class="btn btn-default fileSelf modalDynLink" href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=<?php echo $currentDir; ?>"><?php echo $currentDir.$_GET['file']; ?></a> </div>
-    </div>
-    <iframe src="<?php echo $SITE['site_url'].$currentDir.$_GET['file']; ?>?editor=off" class="fileViewer custom-scroll"></iframe>
-    <?php } ?>
   </div>
+  <?php } else { ?>
+  <div class="enhanced-well">
+    <div class="pull-left"> <a class="btn btn-default parentDir modalDynLink" href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=<?php echo $currentDir; ?>"><i class="fa fa-mail-reply" rel="tooltip" title="Back to directory listing"></i></a> <a class="btn btn-default cms-action" data-action="deleteFile" data-record="<?php echo $currentDir.$_GET['file']; ?>" data-confirm="Are you sure you want to delete this file?" rel="tooltip" title="Delete this file"><i class="fa fa-times"></i></a> <a class="btn btn-default fileSelf modalDynLink" href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS&directory=<?php echo $currentDir; ?>"><?php echo $currentDir.$_GET['file']; ?></a> </div>
+  </div>
+  <iframe src="<?php echo $SITE['site_url'].$currentDir.$_GET['file']; ?>?editor=off" class="fileViewer custom-scroll"></iframe>
+  <?php } ?>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
