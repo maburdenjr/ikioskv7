@@ -286,6 +286,10 @@ button.icon-action {
   .dataTable tr th:first-child, .dataTable tr td:first-child, .dataTable tr th:last-child, .dataTable tr td:last-child {
     display: table-cell;
   }
+
+  #dynModalWrapper #dynModalContent .qq-uploader .qq-upload-drop-area.hidden-mobile {
+    display: none !important;
+  }
 }
 #dynModalWrapper {
   position: relative;
@@ -323,9 +327,6 @@ button.icon-action {
   background: #FEFEFE;
   padding: 25px;
   margin-bottom: 15px;
-}
-#dynModalWrapper #dynModalContent .qq-uploader .qq-upload-drop-area.hidden-mobile {
-  display: none !important;
 }
 #dynModalWrapper #dynModalContent .qq-uploader .qq-upload-list {
   margin-top: 10px;

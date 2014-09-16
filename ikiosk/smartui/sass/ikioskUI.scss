@@ -305,6 +305,10 @@ button.icon-action {
 	.dataTable tr th:first-child, .dataTable tr td:first-child, .dataTable tr th:last-child, .dataTable tr td:last-child  {
 		display:table-cell;
 	}
+	
+	#dynModalWrapper #dynModalContent .qq-uploader .qq-upload-drop-area.hidden-mobile {
+		display:none !important;	
+	}
 }
 
 #dynModalWrapper {
@@ -343,9 +347,6 @@ button.icon-action {
 				background:#FEFEFE;
 				padding:25px;
 				margin-bottom:15px;
-				&.hidden-mobile {
-					display:none !important;	
-				}
 			}
 			.qq-upload-list {
 				margin-top:10px;
