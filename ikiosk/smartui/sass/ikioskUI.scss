@@ -343,6 +343,9 @@ button.icon-action {
 				background:#FEFEFE;
 				padding:25px;
 				margin-bottom:15px;
+				.hidden-mobile {
+					display:none !important;	
+				}
 			}
 			.qq-upload-list {
 				margin-top:10px;
