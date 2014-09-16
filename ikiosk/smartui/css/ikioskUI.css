@@ -339,7 +339,6 @@ button.icon-action {
 #dynModalWrapper #dynModalContent .superbox-show .superbox-imageinfo {
   display: block;
   max-width: none;
-  min-width: 300px;
 }
 #dynModalWrapper #dynModalContent .superbox-show .superbox-imageinfo span {
   display: none;
