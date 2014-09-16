@@ -343,7 +343,7 @@ button.icon-action {
 				background:#FEFEFE;
 				padding:25px;
 				margin-bottom:15px;
-				.hidden-mobile {
+				&.hidden-mobile {
 					display:none !important;	
 				}
 			}

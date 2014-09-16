@@ -324,7 +324,7 @@ button.icon-action {
   padding: 25px;
   margin-bottom: 15px;
 }
-#dynModalWrapper #dynModalContent .qq-uploader .qq-upload-drop-area .hidden-mobile {
+#dynModalWrapper #dynModalContent .qq-uploader .qq-upload-drop-area.hidden-mobile {
   display: none !important;
 }
 #dynModalWrapper #dynModalContent .qq-uploader .qq-upload-list {
