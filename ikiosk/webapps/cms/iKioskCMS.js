@@ -7,6 +7,7 @@ function iKioskUI() {
 	$(document).on('click', '.insertCode', function() {
 		var code = $(this).data('code');
 		$('.redactor-editor').data('redactor').insertHtml(code);
+		$('.ikiosk-cmsSnippet').attr('contenteditable', false);
 		$('#cms-widget-popover').fadeOut('fast');
 	});
 	
@@ -21,10 +22,11 @@ function iKioskUI() {
 	//Code Preview
 	$(document).on('click', '.codePreview', function() {
 			var title = $(this).data('title');
-			var code = $(this).data('code');
+			var code = $(this).data('htmlcode');
+			var systemTag = $(this).data('code');
 			$('.snippetTitle').html(title);
 			$('.htmlCode').html(htmlEntities(code));
-			$('#codePreview .insertCode').data('code', code);
+			$('#codePreview .insertCode').data('code', systemTag);
 			 prettyPrint();
 	});
 	

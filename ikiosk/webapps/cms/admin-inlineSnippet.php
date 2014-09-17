@@ -21,7 +21,7 @@ $totalRows_listView = mysql_num_rows($listView);
 </div>
 <div id="codeList">
 <?php  do { ?>
-<a class="btn btn-default inlineBtn codePreview panelToggle" data-code="<?php echo htmlentities($row_listView['content']); ?>" data-title="<?php echo $row_listView['title']; ?>" data-close="codeList" data-open="codePreview"><?php echo $row_listView['title']; ?></a>
+<a class="btn btn-default inlineBtn codePreview panelToggle" data-htmlcode="<?php echo htmlentities($row_listView['content']); ?>" data-code="<?php echo htmlentities("<span class=\"ikiosk-cmsSnippet\">snippet:".$row_listView['page_element_id']."</span>"); ?>" data-title="<?php echo $row_listView['title']; ?>" data-close="codeList" data-open="codePreview"><?php echo $row_listView['title']; ?></a>
 <?php } while ($row_listView = mysql_fetch_assoc($listView)); ?>
 </div>
 <?php  } else { ?>

@@ -743,3 +743,12 @@ button.icon-action {
 	background-color:#000 !important;
 	border: 1px solid #000 !important;
 }
+
+#iKioskCMSeditor {
+	.ikiosk-cmsSnippet {
+		display: inline-block;
+		background-color: rgba(50,118,177,0.22);
+		padding:5px;
+		border: 1px dotted rgba(50,118,177,0.69);
+	}
+}
