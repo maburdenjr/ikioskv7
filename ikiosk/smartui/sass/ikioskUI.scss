@@ -590,6 +590,9 @@ button.icon-action {
 				&:nth-of-type(even) {
 					margin-right:0px;
 				}
+				&.btn-expanded {
+					width: 229px;	
+				}
 			}
 			
 			.btn.inlineBtn {

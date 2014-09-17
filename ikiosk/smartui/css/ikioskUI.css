@@ -543,6 +543,9 @@ button.icon-action {
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.cmstooltip:nth-of-type(even) {
   margin-right: 0px;
 }
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.cmstooltip.btn-expanded {
+  width: 229px;
+}
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.inlineBtn {
   width: 170px;
   margin-right: 10px;
