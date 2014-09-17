@@ -222,9 +222,9 @@ function iKioskUI() {
 	//Cancel Page Edit
 	$('#iKioskCMSwrapper').on("click", '.editContentCancel', function(e) {
 		e.preventDefault();
-		$('#cms-widget-popover').hide();
 		var cancelEdit = confirm("Are you sure you want to cancel and discard changes.");
 		if (cancelEdit == true) {
+			$('#cms-widget-popover').hide();
 			$('#iKioskCMSheader a').removeClass('active');
 			$('body').removeClass('ikiosk-editor-active');
 			$('#iKioskCMSdisplay').show();
