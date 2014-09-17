@@ -139,7 +139,7 @@ var RLANG = {
 			autoresize: true,
 			minHeight: false,
 			fixed: false,
-			fixedTop: 0, // pixels
+			fixedTop: 49, // pixels
 			fixedBox: false,
 			source: true,
 			shortcuts: true,

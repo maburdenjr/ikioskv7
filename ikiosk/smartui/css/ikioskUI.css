@@ -15,7 +15,7 @@
 #iKioskCMSheader #header {
   background: #225074;
   border-top: 2px solid #000;
-  box-shadow: -11px 12px 23px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 #iKioskCMSheader #header .btn-header > :first-child > a {
   border-radius: 0px;
@@ -492,4 +492,70 @@ button.icon-action {
 
 .tooltip {
   z-index: 40000 !important;
+}
+
+#iKioskCMSwrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+#iKioskCMSwrapper #iKioskCMSContent {
+  position: relative;
+  overflow: hidden;
+}
+#iKioskCMSwrapper #iKioskCMSInlineEditor {
+  position: relative;
+  display: none;
+}
+
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSContent {
+  float: left;
+  border-right: 1px solid #CCC;
+  width: 100%;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor {
+  float: left;
+  width: 250px;
+  background: #F7F7F7;
+  display: block;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .floatingWidget {
+  position: fixed;
+  width: 230px;
+  top: 40px;
+  right: 10px;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .cms-widget {
+  position: relative;
+  margin-top: 25px;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .cms-widget .cms-widget-title {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 568px) {
+  .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSContent {
+    float: right;
+    width: 100%;
+  }
+  .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor {
+    float: left;
+    position: relative;
+    width: 100%;
+  }
+  .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .cms-widget {
+    display: none;
+  }
+  .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #redactorControl {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    background-color: rgba(199, 232, 244, 0.8);
+  }
+  .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .floatingWidget {
+    top: 25px;
+    right: 0px;
+    width: 100%;
+  }
 }

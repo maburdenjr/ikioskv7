@@ -3,6 +3,23 @@ function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
+	function resizeEditor() {
+		var docWidth = $(window).width();
+		var docHeight = $('#iKioskCMSContent').height();
+		var rightPanel = $('#iKioskCMSInlineEditor').width();
+		var leftPanel = docWidth-rightPanel;
+		if (docWidth > 568) {
+			$('#iKioskCMSContent').css('width', leftPanel);
+			$('#iKioskCMSInlineEditor').css('height', docHeight);
+		} else {
+			$('#iKioskCMSContent').css('width', '100%');
+		}
+	}
+	
+	$(window).on('resize', function () {
+		resizeEditor();
+	});
+	
 	//Smart Actions
 	$(document).on('touchstart click', ".cms-action", function(e) {
 			event.stopPropagation();
@@ -165,10 +182,12 @@ function iKioskUI() {
 	//Edit Page Toggle
 	$('#iKioskCMSheader').on("touchstart click", '#editPage a', function(e) {
 		e.preventDefault();
+		resizeEditor();
 		$('#iKioskCMSheader a').removeClass('active');
 		$(this).toggleClass('active');
 		$('#iKioskCMSdisplay').hide();
 		$('#iKioskCMSeditor').show();
+		$('body').addClass('ikiosk-editor-active');
 	  $("#iKioskCMS-editContent").validate({
 				errorPlacement : function(error, element) {
 					error.insertAfter(element.parent());
@@ -181,11 +200,12 @@ function iKioskUI() {
 	});
 	
 	//Cancel Page Edit
-	$('#iKioskCMSeditor').on("click", '.editContentCancel', function(e) {
+	$('#iKioskCMSwrapper').on("click", '.editContentCancel', function(e) {
 		e.preventDefault();
 		var cancelEdit = confirm("Are you sure you want to cancel and discard changes.");
 		if (cancelEdit == true) {
 			$('#iKioskCMSheader a').removeClass('active');
+			$('body').removeClass('ikiosk-editor-active');
 			$('#iKioskCMSdisplay').show();
 			$('#iKioskCMSeditor').hide();
 			$('#iKioskCMS-editContent #redactorEditor').html(original_html);
@@ -198,7 +218,7 @@ function iKioskUI() {
 			cleanup: false,  
 			convertDivs: false,
 			minHeight: 500, 
-			fixed:true,
+			fixed:false,
 			imageUpload: base_url+'/cms/ajaxHandler.php?option=uploadPhoto',
 		});
 	}
@@ -206,7 +226,7 @@ function iKioskUI() {
 	var original_html = $('#iKioskCMS-editContent #redactorEditor').html();
 
 	//Submit Form
-	$('.ikiosk-cms-editor').on('click', '.btn-ajax-submit', function(e) {
+	$('#iKioskCMSwrapper').on('click', '.btn-ajax-submit', function(e) {
 		var targetForm = $(this).data("form");
 		$('#'+targetForm).submit();
 	})

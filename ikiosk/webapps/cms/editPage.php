@@ -24,21 +24,26 @@
 <?php include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-header.php"); ?>
 </div>
 <div id ="iKioskCMSwrapper">
-  <!-- Template Header Code -->
-  <?php v7ContentProcessor($row_getTemplate['body_header_code']); ?>
-  <!-- Page Display -->
-  <div id = "iKioskCMSdisplay">
-  <?php v7ContentProcessor($row_getPage['content']); ?>
+	<div id="iKioskCMSContent">
+    <!-- Template Header Code -->
+    <?php v7ContentProcessor($row_getTemplate['body_header_code']); ?>
+    <!-- Page Display -->
+    <div id = "iKioskCMSdisplay">
+    <?php v7ContentProcessor($row_getPage['content']); ?>
+    </div>
+    <?php include($systemFileRoot."/ikiosk/webapps/cms/admin-editor.php"); ?>
+    <!-- Template Footer Code -->
+    <?php v7ContentProcessor($row_getTemplate['body_footer_code']); ?>
   </div>
-	<?php include($systemFileRoot."/ikiosk/webapps/cms/admin-editor.php"); ?>
-  <!-- Template Footer Code -->
-  <?php v7ContentProcessor($row_getTemplate['body_footer_code']); ?>
+  <div id="iKioskCMSInlineEditor" class="ikiosk-cms-editor">
+  	<?php include ($systemFileRoot."/ikiosk/webapps/cms/admin-cmsEditPanel.php"); ?>
+  </div>
 </div>
 <div id="iKioskCMSmodals">
 <?php if ($SYSTEM['debug'] == "Yes") { include ($systemFileRoot."/ikiosk/webapps/admin/systemDebug.php"); } ?>
   <div class="modal fade" id="dynamicModal">
     <div class="modal-dialog">
-      <div class="modal-content">Hi
+      <div class="modal-content">
       </div>
     </div>
   </div>

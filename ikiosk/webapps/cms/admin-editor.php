@@ -1,15 +1,5 @@
 <!-- Editor Display -->
 <div id = "iKioskCMSeditor" class="ikiosk-cms-editor">
-  <div class="redactorHeader">
-    <div class="row">
-      <div class="col-md-6">
-      </div>
-      <div class="col-md-6 align-right">
-        <button class="btn editContentCancel btn-default"><i class="fa fa-times"></i> Cancel</button>
-        <button type="submit" class="btn editContentSave btn-primary btn-ajax-submit" data-form="iKioskCMS-editContent"><i class="fa fa-check"></i> Save</button>
-      </div>
-    </div>
-  </div>
 <form id ="iKioskCMS-editContent" class="smart-form" method="post">
 	<div class="form-response"></div>
   <section>
