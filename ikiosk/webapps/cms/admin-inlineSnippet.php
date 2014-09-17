@@ -13,9 +13,11 @@ $totalRows_listView = mysql_num_rows($listView);
 	<p class="snippetTitle"></p>
 	<pre class="htmlCode prettyprint custom-scroll">
   </pre>
+  <div class="align-right">
    <a class="btn btn-default panelToggle" title="Back to Snippet List" data-open="codeList" data-close="codePreview"><i class="fa fa-reply"></i></a>
-   <a class="btn btn-default btn-labeled insertCode" title="Insert Code" data-code="">
+   <a class="btn btn-primary btn-labeled insertCode" title="Insert Code" data-code="">
    <span class="btn-label"><i class="fa fw fa-file-code-o"></i></span> Insert Code</a>
+   </div>
 </div>
 <div id="codeList">
 <?php  do { ?>
