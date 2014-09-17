@@ -6,10 +6,12 @@ function iKioskUI() {
 	function resizeEditor() {
 		var docWidth = $(window).width();
 		var docHeight = $('#iKioskCMSContent').height();
+		var winHeight = $(window).height();
 		var rightPanel = $('#iKioskCMSInlineEditor').width();
 		var leftPanel = docWidth-rightPanel;
 		if (docWidth > 568) {
 			$('#iKioskCMSContent').css('width', leftPanel);
+			$('#iKioskCMSInlineEditor').css('min-height', winHeight);
 			$('#iKioskCMSInlineEditor').css('height', docHeight);
 		} else {
 			$('#iKioskCMSContent').css('width', '100%');
