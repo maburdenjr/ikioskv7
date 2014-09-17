@@ -5,7 +5,14 @@
   </div>
   <div class="cms-widget">
   	<p class="cms-widget-title">Insert Element</p>
-    <a class="btn btn-default" title="Image"><i class="fa fw fa-image"></i></a> 
-		<a class="btn btn-default" title="Code Snippet"><i class="fa fw fa-file-code-o"></i></a>
+    <a class="btn btn-default cmstooltip" title="Image" data-arrow="20" data-cmstooltop="128" data-cmstoolright="245"><i class="fa fw fa-image"></i></a> 
+		<a class="btn btn-default cmstooltip" title="Code Snippet" data-arrow="20" data-cmstooltop="128" data-cmstoolright="200"><i class="fa fw fa-file-code-o"></i></a>
+  </div>
+  <div id="cms-widget-popover">
+ 		<i class="fa fa-times cmstooltip-close"></i> 
+  	<div class="widget-popover-title">Insert Element</div>
+    <div class="widget-popover-body">Test</div>
+    <div class="widget-popover-footer">
+    </div>
   </div>
 </div>

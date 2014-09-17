@@ -580,6 +580,42 @@ button.icon-action {
 					margin-bottom: 10px;
 				}
 			}
+			
+			#cms-widget-popover {
+				display: none;
+				position: fixed;
+				width: 400px;
+				height: 250px;
+				line-height: 20px;
+				padding: 15px;
+				font-size: 14px;
+				text-align: left;
+				color: rgb(255, 255, 255);
+				background: rgba(0, 0, 0, 0.9);
+				border: 1px solid rgb(0, 0, 0);
+				border-radius: 5px;
+				text-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 1px;
+				box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 2px 0px;
+				right:255px;
+				top:100px;
+				.cmstooltip-close {
+					position: absolute;
+					right: 10px;
+					top:10px;
+					cursor: pointer;
+				}
+			}
+			#cms-widget-popover:after {
+				content: "";
+				position: absolute;
+				width: 0;
+				height: 0;
+				border-width: 10px;
+				border-style: solid;
+				border-color: transparent transparent transparent rgba(0, 0, 0, 0.9);
+				top: 25px;
+				left: 398px;
+			}
 		}
 	}
 }

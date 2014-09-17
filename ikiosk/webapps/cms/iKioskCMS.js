@@ -3,6 +3,21 @@ function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
+	//CMS ToolTips
+	$(document).on('click', '.cmstooltip', function() {
+		var arrow = $(this).data('arrow');
+		var tooltiptop = $(this).data('cmstooltop');
+		var tooltipright = $(this).data('cmstoolright');
+		$('#cms-widget-popover').css('top', tooltiptop);
+		$('#cms-widget-popover').css('right', tooltipright);
+		$('#cms-widget-popover:after').css('top', arrow);
+		$('#cms-widget-popover').fadeIn('fast');
+		
+	});
+	
+	$(document).on('click', '.cmstooltip-close', function() {
+		$('#cms-widget-popover').fadeOut('fast');
+	});
 	function resizeEditor() {
 		var docWidth = $(window).width();
 		var docHeight = $('#iKioskCMSContent').height();
