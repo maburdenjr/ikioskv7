@@ -50,7 +50,10 @@ if (isset($_GET['ajaxAction'])) {
 			
 		case "templates":
 			$actionFile = "admin-templates.php";
-			break;							
+			break;		
+		case "inlineEdit":
+			$actionFile = "admin-inlineEdit.php";
+			break;								
 	}
 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
 	

@@ -3,26 +3,74 @@ function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
+	//Insert Code
+	$(document).on('click', '.insertCode', function() {
+		var code = $(this).data('code');
+		$('.redactor-editor').data('redactor').insertHtml(code);
+		$('#cms-widget-popover').fadeOut('fast');
+	});
+	
+	//Panel Toggle
+	$(document).on('click', '.panelToggle', function() {
+			var openPanel = $(this).data('open');
+			var closePanel = $(this).data('close');
+			$('#'+closePanel).hide();
+			$('#'+openPanel).show();
+	});
+	
+	//Code Preview
+	$(document).on('click', '.codePreview', function() {
+			var title = $(this).data('title');
+			var code = $(this).data('code');
+			$('.snippetTitle').html(title);
+			$('.htmlCode').html(htmlEntities(code));
+			$('#codePreview .insertCode').data('code', code);
+			 prettyPrint();
+	});
+	
 	//CMS ToolTips
 	$(document).on('click', '.cmstooltip', function() {
-		var arrow = $(this).data('arrow');
-		var tooltiptop = $(this).data('cmstooltop');
-		var tooltipright = $(this).data('cmstoolright');
-		$('#cms-widget-popover').css('top', tooltiptop);
-		$('#cms-widget-popover').css('right', tooltipright);
-		$('#cms-widget-popover:after').css('top', arrow);
-		$('#cms-widget-popover').fadeIn('fast');
+		$('#cms-widget-popover .widget-popover-wrapper').html("<i class='fa fa-cog fa-spin'></i> Loading..").fadeIn('slow');	
+		if ($(this).hasClass("mainBtn")) {
+			var arrow = $(this).data('arrow');
+			var tooltiptop = $(this).data('cmstooltop');
+			var tooltipright = $(this).data('cmstoolright');
+			$('#cms-widget-popover').css('top', tooltiptop);
+			$('#cms-widget-popover').css('right', tooltipright);
+			$('#cms-widget-popover:after').css('top', arrow);
+			$('#cms-widget-popover').fadeIn('fast');
+			$('#cms-widget-popover').addClass('active');
+		}
+		var action = "inlineEdit";
+		var panel = $(this).data('panel');
+		var record = $(this).data('record');
+		var option = $(this).data('option');
+		$.ajax({
+					url: "/cms/ajaxHandler.php",	
+					data: {appCode: "CMS", ajaxAction: action, panel: panel, recordID: record, option: option},
+					timeout: 600000,
+					error: function(data) {
+							var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+							$('#cms-widget-popover .widget-popover-wrapper').html(error).fadeIn('slow');
+					},
+					success: function(data) {
+							$('#cms-widget-popover .widget-popover-wrapper').html(data).fadeIn('slow');
+
+					}
+			});
 		
 	});
 	
-	$(document).on('click', '.cmstooltip-close', function() {
+	$(document).on('click', '.cmstooltip-close, .redactor_toolbar', '#header', function(e) {
+		e.stopPropagation();
 		$('#cms-widget-popover').fadeOut('fast');
+		$('#cms-widget-popover').removeClass('active');
 	});
 	function resizeEditor() {
 		var docWidth = $(window).width();
 		var docHeight = $('#iKioskCMSContent').height();
 		var winHeight = $(window).height();
-		var rightPanel = $('#iKioskCMSInlineEditor').width();
+		var rightPanel = 250;
 		var leftPanel = docWidth-rightPanel;
 		if (docWidth > 568) {
 			$('#iKioskCMSContent').css('width', leftPanel);
@@ -252,6 +300,9 @@ function iKioskUI() {
 		$('#'+targetForm).submit();
 	})
 	
+}
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 //AJAX Form Processing

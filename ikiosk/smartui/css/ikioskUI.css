@@ -533,21 +533,45 @@ button.icon-action {
   text-transform: uppercase;
   margin-bottom: 10px;
 }
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.cmstooltip {
+  width: 108px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 12px;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.cmstooltip:nth-of-type(even) {
+  margin-right: 0px;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.inlineBtn {
+  width: 170px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.inlineBtn:nth-of-type(even) {
+  margin-right: 0px;
+}
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover {
   display: none;
   position: fixed;
   width: 400px;
-  height: 250px;
+  min-height: 100px;
   line-height: 20px;
   padding: 15px;
   font-size: 14px;
   text-align: left;
   color: white;
   background: rgba(0, 0, 0, 0.9);
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 5px;
   text-shadow: rgba(0, 0, 0, 0.09804) 1px 1px 1px;
-  box-shadow: rgba(0, 0, 0, 0.09804) 1px 1px 2px 0px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   right: 255px;
   top: 100px;
 }
@@ -556,6 +580,58 @@ button.icon-action {
   right: 10px;
   top: 10px;
   cursor: pointer;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-title {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .hide-me {
+  display: none;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .htmlCode {
+  position: relative;
+  height: 175px;
+  overflow-y: scroll;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body {
+  position: relative;
+  overflow-y: scroll;
+  max-height: 250px;
+  font-size: 12px;
+  color: #CCC;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .widget-row {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .widget-row .imageList {
+  padding: 0px;
+  margin: 0px;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .widget-row .imageList li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width: 53px;
+  height: 53px;
+  border: 1px solid #000;
+  opacity: 0.90;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .widget-row .imageList li img {
+  max-width: 100%;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .widget-row .imageList li:hover {
+  border: 1px solid #FFF;
+  opacity: 1;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .widget-row .imageList li a {
+  cursor: pointer;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .widget-row .imageList li.full {
+  width: 82px;
+  height: 82px;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover:after {
   content: "";
@@ -582,6 +658,9 @@ button.icon-action {
   .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .cms-widget {
     display: none;
   }
+  .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover {
+    display: none !important;
+  }
   .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #redactorControl {
     display: block;
     width: 100%;
@@ -593,4 +672,12 @@ button.icon-action {
     right: 0px;
     width: 100%;
   }
+}
+.widget-popover-body.custom-scroll::-webkit-scrollbar-thumb:horizontal, .widget-popover-body.custom-scroll::-webkit-scrollbar-thumb:vertical {
+  background-color: #666 !important;
+}
+
+.widget-popover-body.custom-scroll::-webkit-scrollbar:hover {
+  background-color: #000 !important;
+  border: 1px solid #000 !important;
 }

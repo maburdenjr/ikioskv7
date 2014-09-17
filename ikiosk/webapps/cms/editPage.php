@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/smartadmin-cms.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/redactor.css">
+<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/prettify.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/iKioskUI.css">
 <link rel="shortcut icon" href="<?php echo $assetUrl; ?>img/favicon/favicon.ico" type="image/x-icon">
 <link rel="icon" href="<?php echo $assetUrl; ?>img/favicon/favicon.ico" type="image/x-icon">
