@@ -46,7 +46,11 @@ if (isset($_GET['ajaxAction'])) {
 			
 		case "photoGallery":
 			$actionFile = "admin-photoGallery.php";
-			break;						
+			break;	
+			
+		case "templates":
+			$actionFile = "admin-templates.php";
+			break;							
 	}
 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
 	
@@ -119,6 +123,92 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
+	//EditTemplate -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editTemplate")) {
+		
+		if ($_POST['version'] != 0.00) {
+			$version = $_POST['version'] + 0.05;
+		} else {
+			$version = $_POST['version'] + 1.00;	
+		}
+		
+		if ($_POST['status'] == "Published") {
+			$updateSQL = sprintf("UPDATE cms_template_versions SET status = 'Draft' WHERE template_id=%s",
+				GetSQLValueString($_POST['template_id'], "text"));
+		
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($updateSQL);
+		}
+		
+		$generateID = create_guid();
+		$insertSQL = sprintf("INSERT INTO cms_template_versions (template_version_id, site_id, template_id, version, title, description, header_code, body_header_code, body_footer_code, status, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+				GetSQLValueString($generateID, "text"),
+				GetSQLValueString($SITE['site_id'], "text"),
+				GetSQLValueString($_POST['template_id'], "text"),
+				GetSQLValueString($version, "text"),
+				GetSQLValueString($_POST['title'], "text"),
+				GetSQLValueString($_POST['description'], "text"),
+				GetSQLValueString($_POST['header_code'], "text"),
+				GetSQLValueString($_POST['body_header_code'], "text"),
+				GetSQLValueString($_POST['body_footer_code'], "text"),
+				GetSQLValueString($_POST['status'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"));
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+		
+		$js = "$('.dynRefresh').click();\r\n";
+		insertJS($js);	
+		exit;
+	}
+	
+	//Create New Template -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-createTemplate")) {
+		$templateID = create_guid();
+		$insertSQL = sprintf("INSERT INTO cms_templates (template_id, site_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+				GetSQLValueString($templateID, "text"),
+				GetSQLValueString($SITE['site_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"));
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+		
+		//Create Template Version
+		$template_version_id = create_guid();
+		$insertSQL = sprintf("INSERT INTO cms_template_versions (template_version_id, template_id, site_id, title, version, status, header_code, body_header_code, body_footer_code, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+						GetSQLValueString($template_version_id, "text"),
+						GetSQLValueString($templateID, "text"),
+						GetSQLValueString($SITE['site_id'], "text"),
+						GetSQLValueString($_POST['title'], "text"),
+						GetSQLValueString("1.0", "text"),
+						GetSQLValueString("Published", "text"),
+						GetSQLValueString($_POST['header_code'], "text"),
+						GetSQLValueString($_POST['body_header_code'], "text"),
+						GetSQLValueString($_POST['body_footer_code'], "text"),
+						GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+						GetSQLValueString($_SESSION['user_id'], "text"),
+						GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+						GetSQLValueString($_SESSION['user_id'], "text"));
+				
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($insertSQL);		
+			
+			$js = "$('.dynRefresh').click();\r\n";
+			insertJS($js);	
+			exit;
+	}
+	
+	
 	//Edit Photo Properties -----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editPhoto")) {
 		$updateSQL = sprintf("UPDATE sys_photos SET title=%s, description=%s, date_modified=%s, modified_by=%s WHERE photo_id=%s",
@@ -173,6 +263,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 			
 			$js = "$('.dynRefresh').click();\r\n";
 			insertJS($js);		
+			exit;
 	}
 	
 	

@@ -32,6 +32,10 @@ if (empty($_SESSION['user_id'])) {
 	$USER['user_dateformat'] = $SITE['site_dateformat'];
 }
 
+if (!empty($_GET['template'])) {
+	$row_getPage['template_id'] = $_GET['template'];	
+}
+
 //Load Template Properties
 mysql_select_db($database_ikiosk, $ikiosk);
 $query_getTemplate = "SELECT * FROM cms_template_versions WHERE template_id = '".$row_getPage['template_id']."' AND status = 'Published' AND deleted = '0'";

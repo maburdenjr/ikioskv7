@@ -146,7 +146,7 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
-    <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-editCodeSnippet"> <i class="fa fa-check"></i> Save </button>
+    <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-createCodeSnippet"> <i class="fa fa-check"></i> Save </button>
     <input type="hidden" name="formID" value="cms-createCodeSnippet">
     <input type="hidden" name="iKioskForm" value="Yes" />
     <input type="hidden" name="appCode" value="CMS" />
