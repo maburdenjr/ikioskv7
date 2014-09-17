@@ -11,7 +11,7 @@ function iKioskUI() {
 		var leftPanel = docWidth-rightPanel;
 		if (docWidth > 568) {
 			$('#iKioskCMSContent').css('width', leftPanel);
-			$('#iKioskCMSInlineEditor').css('min-height', winHeight);
+			$('#iKioskCMSInlineEditor, #iKioskCMSContent').css('min-height', winHeight);
 			$('#iKioskCMSInlineEditor').css('height', docHeight);
 		} else {
 			$('#iKioskCMSContent').css('width', '100%');
