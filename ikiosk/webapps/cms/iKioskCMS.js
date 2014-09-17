@@ -40,6 +40,7 @@ function iKioskUI() {
 	//Smart Actions
 	$(document).on('touchstart click', ".cms-action", function(e) {
 			event.stopPropagation();
+			$('#cms-widget-popover').hide();
 			var action = $(this).data('action');
 			var confirmation = $(this).data("confirm");
 			var record = $(this).data("record");
@@ -178,6 +179,7 @@ function iKioskUI() {
 	
 	//Dynamic Modal
 	function dynamicModal(targetURL) {
+		$('#cms-widget-popover').hide();
 		$('#dynamicModal .modal-content').html("<div class='modal-body'><i class='fa fa-cog fa-spin'></i> Loading..</div>").fadeIn('slow');	
 		$.ajax({
 			url: targetURL,
@@ -200,6 +202,7 @@ function iKioskUI() {
 	$('#iKioskCMSheader').on("touchstart click", '#editPage a', function(e) {
 		e.preventDefault();
 		resizeEditor();
+		$('#cms-widget-popover').hide();
 		$('#iKioskCMSheader a').removeClass('active');
 		$(this).toggleClass('active');
 		$('#iKioskCMSdisplay').hide();
@@ -219,6 +222,7 @@ function iKioskUI() {
 	//Cancel Page Edit
 	$('#iKioskCMSwrapper').on("click", '.editContentCancel', function(e) {
 		e.preventDefault();
+		$('#cms-widget-popover').hide();
 		var cancelEdit = confirm("Are you sure you want to cancel and discard changes.");
 		if (cancelEdit == true) {
 			$('#iKioskCMSheader a').removeClass('active');
