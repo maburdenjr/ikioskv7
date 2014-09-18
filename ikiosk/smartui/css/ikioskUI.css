@@ -533,17 +533,20 @@ button.icon-action {
   text-transform: uppercase;
   margin-bottom: 10px;
 }
-.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.cmstooltip {
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .hide-me {
+  display: none;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.cmstooltip, .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.half {
   width: 108px;
   margin-right: 10px;
   margin-bottom: 10px;
   text-align: left;
   font-size: 12px;
 }
-.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.cmstooltip:nth-of-type(even) {
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.cmstooltip:nth-of-type(even), .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.half:nth-of-type(even) {
   margin-right: 0px;
 }
-.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.cmstooltip.btn-expanded {
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.cmstooltip.btn-expanded, .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.half.btn-expanded {
   width: 229px;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .btn.inlineBtn {
@@ -690,4 +693,89 @@ button.icon-action {
   background-color: rgba(50, 118, 177, 0.22);
   padding: 5px;
   border: 1px dotted rgba(50, 118, 177, 0.69);
+}
+#iKioskCMSeditor #redactorEditor .cms-element-hover {
+  background-color: rgba(255, 255, 204, 0.45);
+}
+#iKioskCMSeditor #redactorEditor .ui-draggable {
+  cursor: move;
+}
+#iKioskCMSeditor #redactorEditor .cms-selected-element {
+  background-color: rgba(255, 255, 204, 0.45);
+  border: 1px dashed #ebd570;
+}
+#iKioskCMSeditor #redactorEditor .ui-resizable-handle {
+  background: none repeat scroll 0 0 #FFFFFF;
+  display: block;
+  font-size: 0.1px;
+  height: 9px;
+  margin: 0 !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  outline: 1px solid #CCC;
+  padding: 0 !important;
+  position: absolute;
+  width: 9px;
+  z-index: 2147483647;
+}
+#iKioskCMSeditor #redactorEditor .ui-resizable-disabled .ui-resizable-handle, #iKioskCMSeditor #redactorEditor .ui-resizable-autohide .ui-resizable-handle {
+  display: none;
+}
+#iKioskCMSeditor #redactorEditor .ui-resizable-n {
+  cursor: n-resize;
+  left: 50% !important;
+  margin-left: -5px !important;
+  top: -5px !important;
+  width: 9px !important;
+  height: 9px !important;
+}
+#iKioskCMSeditor #redactorEditor .ui-resizable-s {
+  bottom: -5px !important;
+  cursor: s-resize !important;
+  left: 50% !important;
+  margin-left: -5px !important;
+  width: 9px !important;
+  height: 9px !important;
+}
+#iKioskCMSeditor #redactorEditor .ui-resizable-e {
+  cursor: e-resize !important;
+  margin-top: -5px !important;
+  right: -5px !important;
+  top: 50% !important;
+  width: 9px !important;
+  height: 9px !important;
+}
+#iKioskCMSeditor #redactorEditor .ui-resizable-w {
+  cursor: w-resize !important;
+  left: -5px !important;
+  margin-top: -5px !important;
+  top: 50% !important;
+  width: 9px !important;
+  height: 9px !important;
+}
+#iKioskCMSeditor #redactorEditor .ui-resizable-se {
+  bottom: -5px !important;
+  cursor: se-resize !important;
+  right: -5px !important;
+  width: 9px !important;
+  height: 9px !important;
+}
+#iKioskCMSeditor #redactorEditor .ui-resizable-sw {
+  bottom: -5px !important;
+  cursor: sw-resize !important;
+  left: -5px !important;
+}
+#iKioskCMSeditor #redactorEditor .ui-resizable-nw {
+  cursor: nw-resize !important;
+  left: -5px !important;
+  top: -5px !important;
+  width: 9px !important;
+  height: 9px !important;
+}
+#iKioskCMSeditor #redactorEditor .ui-resizable-ne {
+  cursor: ne-resize !important;
+  right: -5px !important;
+  top: -5px !important;
+  width: 9px !important;
+  height: 9px !important;
 }

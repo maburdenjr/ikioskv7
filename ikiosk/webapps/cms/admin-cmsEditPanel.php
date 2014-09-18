@@ -7,8 +7,11 @@
   	<p class="cms-widget-title">Insert Element</p>
     <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Image" data-arrow="20" data-cmstooltop="128" data-cmstoolright="245" data-panel="insertImage"> <span class="btn-label"><i class="fa fw fa-image"></i></span> Photo</a>
     <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Code Snippet" data-arrow="20" data-cmstooltop="128" data-cmstoolright="122" data-panel="codeSnippet"><span class="btn-label"><i class="fa fw fa-code"></i></span> Snippet</a>
-    
-    <a class="btn btn-default cmstooltip mainBtn btn-labeled btn-expanded" title="Bootstrap" data-arrow="20" data-cmstooltop="171" data-cmstoolright="245" data-panel="bootStrap"><span class="btn-label"><i class="fa fw fa-code"></i></span> Bootstrap Snippets</a>
+  </div>
+  <div id="cms-editElement" class="cms-widget hide-me">
+  	<p class="cms-widget-title">Edit Element</p>
+     <a class="btn btn-default btn-labeled half elementResize"><span class="btn-label"><i class="fa fw fa-arrows-alt"></i></span> Resize</a>
+     <a class="btn btn-default btn-labeled half elementMove"><span class="btn-label"><i class="fa fw fa-location-arrow"></i></span> Move</a>
   </div>
   <div id="cms-widget-popover">
  		<i class="fa fa-times cmstooltip-close"></i> 

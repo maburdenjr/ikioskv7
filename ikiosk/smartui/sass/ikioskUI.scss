@@ -581,7 +581,11 @@ button.icon-action {
 				}
 			}
 			
-			.btn.cmstooltip {
+			.hide-me {
+				display:none;
+			}
+			
+			.btn.cmstooltip, .btn.half {
 				width: 108px;	
 				margin-right:10px;
 				margin-bottom:10px;
@@ -609,7 +613,7 @@ button.icon-action {
 					margin-right:0px;
 				}
 			}
-			
+				
 			#cms-widget-popover {
 				display: none;
 				position: fixed;
@@ -753,5 +757,96 @@ button.icon-action {
 		background-color: rgba(50,118,177,0.22);
 		padding:5px;
 		border: 1px dotted rgba(50,118,177,0.69);
+	}
+	#redactorEditor {
+		.cms-element-hover {
+			background-color: rgba(255,255,204,0.45);
+		}
+		
+		.ui-draggable {
+			cursor:move;
+		}
+		
+		.cms-selected-element {
+			background-color: rgba(255,255,204,0.45); 
+			border: 1px dashed rgba(235,213,112,1.00);
+			&.cms-element-hover {
+			}
+		}	
+		.ui-resizable-handle {
+				background: none repeat scroll 0 0 #FFFFFF;
+				display: block;
+				font-size: 0.1px;
+				height: 9px;
+				margin: 0 !important;
+				min-height: 0 !important;
+				min-width: 0 !important;
+				outline: 1px solid #CCC;
+				padding: 0 !important;
+				position: absolute;
+				width: 9px;
+				z-index: 2147483647;
+		}
+		.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle {
+				display: none;
+		}
+		.ui-resizable-n {
+				cursor: n-resize;
+				left: 50% !important;
+				margin-left: -5px !important;
+				top: -5px !important;
+			width:9px !important;
+			height:9px !important;
+		}
+		.ui-resizable-s {
+				bottom: -5px !important;
+				cursor: s-resize !important;
+				left: 50% !important;
+				margin-left: -5px !important;
+			width:9px !important;
+			height:9px !important;	
+		}
+		.ui-resizable-e {
+				cursor: e-resize !important;
+				margin-top: -5px !important;
+				right: -5px !important;
+				top: 50% !important;
+			width:9px !important;
+			height:9px !important;	
+		}
+		.ui-resizable-w {
+				cursor: w-resize !important;
+				left: -5px !important;
+				margin-top: -5px !important;
+				top: 50% !important;
+			width:9px !important;
+			height:9px !important;		
+		}
+		.ui-resizable-se {
+				bottom: -5px !important;
+				cursor: se-resize !important;
+				right: -5px !important;
+			width:9px !important;
+			height:9px !important;	
+		}
+		.ui-resizable-sw {
+				bottom: -5px !important;
+				cursor: sw-resize !important;
+				left: -5px !important;
+		}
+		.ui-resizable-nw {
+				cursor: nw-resize !important;
+				left: -5px !important;
+				top: -5px !important;
+			width:9px !important;
+			height:9px !important;	
+		}
+		.ui-resizable-ne {
+				cursor: ne-resize !important;
+				right: -5px !important;
+				top: -5px !important;
+			width:9px !important;
+			height:9px !important;	
+		}
 	}
 }
