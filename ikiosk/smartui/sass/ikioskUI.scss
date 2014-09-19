@@ -551,6 +551,9 @@ button.icon-action {
 		position: relative;
 		display: none;
 	}
+	#iKioskCMSdisplay {
+		position: relative;
+	}
 }
 
 .ikiosk-editor-active {
@@ -714,7 +717,6 @@ button.icon-action {
 			#iKioskCMSContent {
 				float: right;
 				width: 100%;
-
 			}
 			#iKioskCMSInlineEditor {
 				float: left;
@@ -761,6 +763,10 @@ button.icon-action {
 	#redactorEditor {
 		.cms-element-hover {
 			background-color: rgba(255,255,204,0.45);
+		}
+		
+		.cms-placeholder {
+			border: 1px dotted #CCC;	
 		}
 		
 		.ui-draggable {

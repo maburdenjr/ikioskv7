@@ -2,6 +2,7 @@
 function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
+	resizeEditor();
 	
 	//Delete Element 
 	$(document).on('click', '.elementDelete', function(e) {
@@ -39,29 +40,29 @@ function iKioskUI() {
 		
 			$(this).addClass('btn-primary');
 			
-			var tag = $(".cms-selected-element").prop("tagName");
+		 var tag = $(".cms-selected-element").prop("tagName");
 			var thisWidth = $('.cms-selected-element').width();
 			var thisHeight = $('.cms-selected-element').height();
 			var thisPosition = $(".cms-selected-element").offsetRelative("#redactorEditor");
 			var topPos =  thisPosition.top;
 			var leftPos = thisPosition.left;
 			
-			//Clone element and create spaceholder
+			/*
 			var ePosition = $(".cms-selected-element").css("position");
 			var eFloat = $(".cms-selected-element").css("float");
 			var eDisplay = $(".cms-selected-element").css("display");
 			var eMargin = $(".cms-selected-element").css("margin");
 			var ePadding = $(".cms-selected-element").css("padding");
 			
-			var wrapper = "<span style='position: "+ePosition+"; float: "+eFloat+"; width: "+thisWidth+"px; height: "+thisHeight+"px; display: "+eDisplay+"; margin: "+eMargin+"; padding: "+ePadding+";' class='cms-placeholder'></span>";
-			$('.cms-selected-element').wrap(wrapper);
+			var wrapper = "<span style='position: "+ePosition+"; float: "+eFloat+"; width: "+thisWidth+"px; height: "+thisHeight+"px; display: "+eDisplay+"; margin: "+eMargin+"; padding: "+ePadding+"; left: "+leftPos+"px; top: "+topPos+"px;' class='cms-placeholder'></span>";
+			$('.cms-selected-element').wrap(wrapper); */
 		
 			$('.cms-selected-element').css('position', 'absolute');	
 			$('.cms-selected-element').css('left', leftPos);	
 			$('.cms-selected-element').css('top', topPos);
 			$('.cms-selected-element').css('width', thisWidth);	
 			$('.cms-selected-element').css('height', thisHeight);	
-			
+					
 			$('.cms-selected-element').draggable({
 				containment: "#redactorEditor",
 				cursor: "move",

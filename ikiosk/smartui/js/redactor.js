@@ -1949,7 +1949,7 @@ var RLANG = {
 			{
 				$('#redactorEditor .ui-resizable').resizable("destroy");
 				$('#redactorEditor .ui-draggable').draggable("destroy");
-				$('#redactorEditor .cms_selectedElement').removeClass('cms_selectedElement');
+				$('#redactorEditor .cms-selected-element').removeClass('cms-selected-element');
 				var height = this.$editor.innerHeight();
 
 				this.$editor.hide();
