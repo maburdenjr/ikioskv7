@@ -4,6 +4,11 @@ function iKioskUI() {
 	var base_url = $('#ikiosk_keys .site_url').val();
 	resizeEditor();
 	
+	//Style Editor
+	$(document).on('click', '.cssTrigger', function(e) {
+		$('#cms-widget-popover').addClass('css-styles');	
+	});
+	
 	//Delete Element 
 	$(document).on('click', '.elementDelete', function(e) {
 		var deleteElement = confirm("Are you sure you want to delete this element?");
@@ -132,7 +137,8 @@ function iKioskUI() {
 	$(document).on('click', '#redactorEditor div:not(.cms-selected-element), #redactorEditor p:not(.cms-selected-element), #redactorEditor h1:not(.cms-selected-element), #redactorEditor h2:not(.cms-selected-element), #redactorEditor h3:not(.cms-selected-element), #redactorEditor h4:not(.cms-selected-element), #redactorEditor h5:not(.cms-selected-element), #redactorEditor ul:not(.cms-selected-element), #redactorEditor li:not(.cms-selected-element), #redactorEditor span:not(.cms-selected-element), #redactorEditor footer:not(.cms-selected-element), #redactorEditor header:not(.cms-selected-element), #redactorEditor section:not(.cms-selected-element), #redactorEditor nav:not(.cms-selected-element), #redactorEditor article:not(.cms-selected-element), #redactorEditor a:not(.cms-selected-element), #redactorEditor img:not(.cms-selected-element)', function(e) {
 		e.stopPropagation(e);
 		$('#cms-editElement').hide();
-		$('.elementResize, .elementMove').removeClass('btn-primary');
+		$('.css-styles').hide();
+		$('.elementResize, .elementMove, .cssTrigger').removeClass('btn-primary');
 		$('.cms-selected-element').removeClass('.cms-selected-element');		
 		//Clear Styles in CSS Editor
 	});
@@ -153,6 +159,7 @@ function iKioskUI() {
 		$('.redactor-editor').data('redactor').insertHtml(code);
 		$('.ikiosk-cmsSnippet').attr('contenteditable', false);
 		$('#cms-widget-popover').fadeOut('fast');
+		$('.cmstooltip').removeClass('btn-primary');
 	});
 	
 	//Panel Toggle
@@ -178,6 +185,7 @@ function iKioskUI() {
 	$(document).on('click', '.cmstooltip', function() {
 		$('#cms-widget-popover .widget-popover-wrapper').html("<i class='fa fa-cog fa-spin'></i> Loading..").fadeIn('slow');	
 		if ($(this).hasClass("mainBtn")) {
+			$('.cmstooltip').removeClass('btn-primary');
 			var arrow = $(this).data('arrow');
 			var tooltiptop = $(this).data('cmstooltop');
 			var tooltipright = $(this).data('cmstoolright');
@@ -186,6 +194,7 @@ function iKioskUI() {
 			$('#cms-widget-popover:after').css('top', arrow);
 			$('#cms-widget-popover').fadeIn('fast');
 			$('#cms-widget-popover').addClass('active');
+			$(this).addClass('btn-primary');
 		}
 		var action = "inlineEdit";
 		var panel = $(this).data('panel');
@@ -211,6 +220,7 @@ function iKioskUI() {
 		e.stopPropagation();
 		$('#cms-widget-popover').fadeOut('fast');
 		$('#cms-widget-popover').removeClass('active');
+		$('.cmstooltip').removeClass('btn-primary');
 	});
 	function resizeEditor() {
 		var docWidth = $(window).width();

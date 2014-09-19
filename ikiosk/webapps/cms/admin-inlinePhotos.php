@@ -46,7 +46,7 @@
 <div class="widget-row">
 <ul class="imageList">
 <?php do {  ?>
-<li class="full"><a class="insertCode" data-code="<?php echo htmlentities("<img src=\"".$row_getPhotos['image_resized']."\" />"); ?>"><img src="<?php echo $row_getPhotos['image_thumbnail']; ?>"  title="<?php echo $row_getPhotos['title']; ?>" /></a></li>
+<li class="full"><a class="insertCode" data-code="<?php echo htmlentities("<img src=\"".$row_getPhotos['image_inline']."\" />"); ?>"><img src="<?php echo $row_getPhotos['image_thumbnail']; ?>"  title="<?php echo $row_getPhotos['title']; ?>" /></a></li>
   <?php } while ($row_getPhotos = mysql_fetch_assoc($getPhotos)); ?>
 <ul>
 </div>
