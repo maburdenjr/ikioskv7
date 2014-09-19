@@ -661,6 +661,52 @@ button.icon-action {
 					max-height:250px;
 					font-size:12px;
 					color:#CCC;
+					
+					.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+						background-color:#999;
+						color:#fff;
+						border:1px solid #999;
+						border-top-left-radius:3px;
+						border-top-right-radius:3px;
+					}
+					
+					.nav-tabs {
+						border-bottom:none;
+					}
+					.nav-tabs>li.active>a {
+						border-top-width: 1px !important;
+						box-shadow: none !important;
+						font-weight:normal !important;
+					}
+					
+					.dropdown-toggle {
+						background-color:#000;
+						color:#FFF;
+							border: 1px dotted #999;	
+						&:hover {
+							background-color:#999;
+							border: 1px solid #999;	
+						}
+					}
+					
+					.tab-pane {
+						padding-top:10px;
+					}
+					
+					.dropdown-menu {
+						background-color:#999;
+						border-bottom-left-radius:3px;
+						border-bottom-right-radius:3px;
+						border-top-right-radius:3px;
+						color:#fff;
+						border: 1px solid #999;
+						li a {
+							color:#EEE;
+							&:hover {
+								color:#FFF;
+							}
+						}
+					}
 					.widget-row {
 						position:relative;
 						width:100%;
@@ -694,6 +740,11 @@ button.icon-action {
 							}
 						}
 					}
+				}
+				#styleCategories {
+					position:relative;
+					height:210px;
+					overflow-y: scroll;
 				}
 			}
 			#cms-widget-popover:after {

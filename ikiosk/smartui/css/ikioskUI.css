@@ -609,6 +609,47 @@ button.icon-action {
   font-size: 12px;
   color: #CCC;
 }
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .nav .open > a, .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .nav .open > a:focus, .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .nav .open > a:hover {
+  background-color: #999;
+  color: #fff;
+  border: 1px solid #999;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .nav-tabs {
+  border-bottom: none;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .nav-tabs > li.active > a {
+  border-top-width: 1px !important;
+  box-shadow: none !important;
+  font-weight: normal !important;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .dropdown-toggle {
+  background-color: #000;
+  color: #FFF;
+  border: 1px dotted #999;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .dropdown-toggle:hover {
+  background-color: #999;
+  border: 1px solid #999;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .tab-pane {
+  padding-top: 10px;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .dropdown-menu {
+  background-color: #999;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  color: #fff;
+  border: 1px solid #999;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .dropdown-menu li a {
+  color: #EEE;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .dropdown-menu li a:hover {
+  color: #FFF;
+}
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .widget-row {
   position: relative;
   width: 100%;
@@ -641,6 +682,11 @@ button.icon-action {
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .widget-row .imageList li.full {
   width: 82px;
   height: 82px;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories {
+  position: relative;
+  height: 210px;
+  overflow-y: scroll;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover:after {
   content: "";
