@@ -1947,9 +1947,8 @@ var RLANG = {
 
 			if (this.opts.visual)
 			{
-				$('#redactorEditor .cms_smartDiv').resizable("destroy").draggable("destroy");
-				$('#redactorEditor .cms_smartCol, #redactorEditor .ui-resizable').resizable("destroy");
-				$('#redactorEditor .cms_preset').removeClass('cms_preset');
+				$('#redactorEditor .ui-resizable').resizable("destroy");
+				$('#redactorEditor .ui-draggable').draggable("destroy");
 				$('#redactorEditor .cms_selectedElement').removeClass('cms_selectedElement');
 				var height = this.$editor.innerHeight();
 

@@ -438,12 +438,15 @@ function iKioskUI() {
 	}
 	
 	var original_html = $('#iKioskCMS-editContent #redactorEditor').html();
+	
+	$(document).on('click', '.editContentSave', function(e) {
+		$('.redactor-editor').data('redactor').toggle();
+		$('#iKioskCMS-editContent').submit();
+	});
 
 	//Submit Form
 	$('#iKioskCMSwrapper').on('click', '.btn-ajax-submit', function(e) {
-			$('#redactorEditor .ui-resizable').resizable("destroy");
-			$('#redactorEditor .ui-draggable').draggable("destroy");
-			var targetForm = $(this).data("form");
+		var targetForm = $(this).data("form");
 		$('#'+targetForm).submit();
 	})
 	
