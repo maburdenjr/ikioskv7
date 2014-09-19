@@ -700,7 +700,6 @@ button.icon-action {
 #iKioskCMSeditor #redactorEditor .ui-draggable {
   cursor: move;
   border-style: dotted !important;
-  opacity: 0.75;
 }
 #iKioskCMSeditor #redactorEditor .cms-selected-element {
   background-color: rgba(255, 255, 204, 0.45);

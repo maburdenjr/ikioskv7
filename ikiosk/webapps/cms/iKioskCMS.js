@@ -3,14 +3,41 @@ function iKioskUI() {
 	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	
+	//Delete Element 
+	$(document).on('click', '.elementDelete', function(e) {
+		var deleteElement = confirm("Are you sure you want to delete this element?");
+		if (deleteElement == true) {
+			$('.cms-selected-element').remove();
+			$('#cms-editElement').hide();
+			$('.elementResize, .elementMove').removeClass('btn-primary');
+		} 	
+	});
+	
 	//Fix Draggables
 	$(document).on('click', '.ui-draggable', function(e) {
 		$(this).draggable("destroy");
+		$(this).addClass('ui-drag-pause');
 	});
 	
+	$(document).on('mouseout', '.ui-drag-pause', function(e) {
+		$(this).draggable({
+				containment: "#redactorEditor",
+				cursor: "move",
+				snap: true,
+				start: function() {
+					$('#cmsStyleEditor').hide();
+				},
+				stop: function() {
+					$('.redactor-editor').data('redactor').syncCode();
+				}
+		});
+		$(this).removeClass('ui-drag-pause');
+	});
 	
 	//Move Element
 	$(document).on('click', '.elementMove', function(e) {
+		
+			$(this).addClass('btn-primary');
 			
 			var tag = $(".cms-selected-element").prop("tagName");
 			var thisWidth = $('.cms-selected-element').width();
@@ -50,6 +77,9 @@ function iKioskUI() {
 
 	//Resize Element
 	$(document).on('click', '.elementResize', function(e) {
+		
+		$(this).addClass('btn-primary');
+		
 		var tag = $(".cms-selected-element").prop("tagName");
 		if (tag == "IMG") { 
 			$('.cms-selected-element').resizable({
@@ -91,6 +121,8 @@ function iKioskUI() {
 			e.stopPropagation(e);
 			$('.cms-selected-element').removeClass('cms-selected-element');
 			$(this).addClass('cms-selected-element');
+			if ($(this).hasClass('ui-drag-pause')) { $('.elementMove').addClass('btn-primary'); }
+			if ($(this).hasClass('ui-resizable')) { $('.elementResize').addClass('btn-primary'); }
 			$('#cms-editElement').show();
 			updateStyleEditor();
 		});
@@ -99,8 +131,8 @@ function iKioskUI() {
 	$(document).on('click', '#redactorEditor div:not(.cms-selected-element), #redactorEditor p:not(.cms-selected-element), #redactorEditor h1:not(.cms-selected-element), #redactorEditor h2:not(.cms-selected-element), #redactorEditor h3:not(.cms-selected-element), #redactorEditor h4:not(.cms-selected-element), #redactorEditor h5:not(.cms-selected-element), #redactorEditor ul:not(.cms-selected-element), #redactorEditor li:not(.cms-selected-element), #redactorEditor span:not(.cms-selected-element), #redactorEditor footer:not(.cms-selected-element), #redactorEditor header:not(.cms-selected-element), #redactorEditor section:not(.cms-selected-element), #redactorEditor nav:not(.cms-selected-element), #redactorEditor article:not(.cms-selected-element), #redactorEditor a:not(.cms-selected-element), #redactorEditor img:not(.cms-selected-element)', function(e) {
 		e.stopPropagation(e);
 		$('#cms-editElement').hide();
-		$('.cms-selected-element').removeClass('.cms-selected-element');
-		
+		$('.elementResize, .elementMove').removeClass('btn-primary');
+		$('.cms-selected-element').removeClass('.cms-selected-element');		
 		//Clear Styles in CSS Editor
 	});
 		
@@ -409,7 +441,8 @@ function iKioskUI() {
 
 	//Submit Form
 	$('#iKioskCMSwrapper').on('click', '.btn-ajax-submit', function(e) {
-			$('#redactorEditor *').resizable("destroy").draggable("destroy");
+			$('#redactorEditor .ui-resizable').resizable("destroy");
+			$('#redactorEditor .ui-draggable').draggable("destroy");
 			var targetForm = $(this).data("form");
 		$('#'+targetForm).submit();
 	})

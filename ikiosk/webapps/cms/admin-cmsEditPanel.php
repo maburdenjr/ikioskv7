@@ -13,6 +13,8 @@
      <a class="btn btn-default btn-labeled half elementResize"><span class="btn-label"><i class="fa fw fa-arrows-alt"></i></span> Resize</a>
      <a class="btn btn-default btn-labeled half elementMove"><span class="btn-label"><i class="fa fw fa-location-arrow"></i></span> Move</a>
      
+     <a class="btn btn-default btn-labeled half cmstooltop mainBtn"><span class="btn-label"><i class="fa fw fa-css3"></i></span> CSS</a>
+     
      <a class="btn btn-default btn-labeled half elementDelete"><span class="btn-label"><i class="fa fw fa-trash-o"></i></span> Delete</a>
   </div>
   <div id="cms-widget-popover">
