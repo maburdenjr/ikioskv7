@@ -32,7 +32,6 @@ function iKioskUI() {
 			$('.cms-selected-element').css('position', 'absolute');	
 			$('.cms-selected-element').css('left', leftPos);	
 			$('.cms-selected-element').css('top', topPos);
-			$('.cms-selected-element').css('zIndex', 2000);	
 			$('.cms-selected-element').css('width', thisWidth);	
 			$('.cms-selected-element').css('height', thisHeight);	
 			
@@ -98,6 +97,7 @@ function iKioskUI() {
 		
 	//Disable Element Editing
 	$(document).on('click', '#redactorEditor div:not(.cms-selected-element), #redactorEditor p:not(.cms-selected-element), #redactorEditor h1:not(.cms-selected-element), #redactorEditor h2:not(.cms-selected-element), #redactorEditor h3:not(.cms-selected-element), #redactorEditor h4:not(.cms-selected-element), #redactorEditor h5:not(.cms-selected-element), #redactorEditor ul:not(.cms-selected-element), #redactorEditor li:not(.cms-selected-element), #redactorEditor span:not(.cms-selected-element), #redactorEditor footer:not(.cms-selected-element), #redactorEditor header:not(.cms-selected-element), #redactorEditor section:not(.cms-selected-element), #redactorEditor nav:not(.cms-selected-element), #redactorEditor article:not(.cms-selected-element), #redactorEditor a:not(.cms-selected-element), #redactorEditor img:not(.cms-selected-element)', function(e) {
+		e.stopPropagation(e);
 		$('#cms-editElement').hide();
 		$('.cms-selected-element').removeClass('.cms-selected-element');
 		

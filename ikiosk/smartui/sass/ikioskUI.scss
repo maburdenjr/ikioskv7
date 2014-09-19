@@ -756,7 +756,7 @@ button.icon-action {
 		display: inline-block;
 		background-color: rgba(50,118,177,0.22);
 		padding:5px;
-		border: 1px dotted rgba(50,118,177,0.69);
+		border: 1px dashed rgba(50,118,177,0.69);
 	}
 	#redactorEditor {
 		.cms-element-hover {
@@ -765,6 +765,8 @@ button.icon-action {
 		
 		.ui-draggable {
 			cursor:move;
+			border-style: dotted !important;
+			opacity:0.75;
 		}
 		
 		.cms-selected-element {
