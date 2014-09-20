@@ -10,7 +10,11 @@ if (isset($_GET['panel'])) {
 			
 		case "cssStyles":
 			$actionFile = "admin-inlineCSS.php";
-			break;							
+			break;	
+		case "columnLayout":
+			$actionFile = "admin-columnLayout.php";
+			break;		
+									
 	}
 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/".$actionFile);
 } // Wrapper
