@@ -104,6 +104,21 @@ function v7ContentProcessor($content) {
 				$content = str_replace($search, $replace, $content);
 			} while ($row_showColumns = mysql_fetch_assoc($showColumns));	
 		}	
+		
+		//Code Snippets
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$query_listView = "SELECT * FROM cms_page_elements WHERE deleted = '0' AND  ".$SYSTEM['active_site_filter'];
+		$listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
+		$row_listView = mysql_fetch_assoc($listView);
+		$totalRows_listView = mysql_num_rows($listView);
+		
+		do {
+			$search = "snippet:".$row_listView['page_element_id'];
+			$replace = $row_listView['content'];
+			$content = str_replace($search, $replace, $content);
+		} while ($row_listView = mysql_fetch_assoc($listView));	
+	
+		
 		echo $content;
 }
 

@@ -863,3 +863,11 @@ button.icon-action {
   width: 9px !important;
   height: 9px !important;
 }
+
+.modal-backdrop {
+  z-index: 5000;
+}
+
+.modal {
+  z-index: 5050;
+}

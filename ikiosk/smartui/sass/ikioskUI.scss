@@ -943,3 +943,10 @@ button.icon-action {
 		}
 	}
 }
+
+.modal-backdrop {
+	z-index:5000;
+}
+.modal {
+	z-index:5050;
+}
