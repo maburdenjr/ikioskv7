@@ -9,6 +9,21 @@ function iKioskUI() {
 		$('#cms-widget-popover').addClass('css-styles');	
 	});
 	
+	
+	$(document).on('change', '.cms-style-update', function(e) {
+		var styleDeclaration = $(this).attr('rel');
+		var styleValue = $(this).val();
+		$('.cms-selected-element').css(''+styleDeclaration, ''+styleValue);
+		$('.redactor-editor').data('redactor').syncCode();
+	})
+	
+	$(document).on('change', '.cms-attr-update', function(e) {
+		var attrDeclaration = $(this).attr('rel');
+		var attrValue = $(this).val();
+		$('.cms-selected-element').css(''+attrDeclaration, ''+attrValue);
+		$('.redactor-editor').data('redactor').syncCode();
+	});
+	
 	//Delete Element 
 	$(document).on('click', '.elementDelete', function(e) {
 		var deleteElement = confirm("Are you sure you want to delete this element?");
@@ -150,7 +165,18 @@ function iKioskUI() {
 	
 	//Style Editor
 	function updateStyleEditor() {
-		
+		if ($('#styleCategories').length) {
+			$('#styleCategories input.cms-style-update, #styleCategories select.cms-style-update').each(function() {
+					var thisAttr = $(this).attr('rel');
+					var targetAttr = $('.cms-selected-element').css(thisAttr);
+					$(this).val(targetAttr);
+			});
+			$('#styleCategories input.cms-attr-update, #styleCategories select.cms-attr-update').each(function() {
+					var thisAttr = $(this).attr('rel');
+					var targetAttr = $('.cms-selected-element').attr(thisAttr);
+					$(this).val(targetAttr);	
+			});
+		}
 	}
 	
 	function syncCode() {
@@ -214,7 +240,7 @@ function iKioskUI() {
 					},
 					success: function(data) {
 							$('#cms-widget-popover .widget-popover-wrapper').html(data).fadeIn('slow');
-
+							updateStyleEditor();
 					}
 			});
 		

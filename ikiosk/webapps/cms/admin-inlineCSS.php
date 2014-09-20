@@ -21,23 +21,8 @@
         <div class="row">
           <div class="col col-6">
             <label class="label">Font Family</label>
-            <label class="select">
-              <select name="font-family" class="cms-style-update text-input" rel="font-family" id="font-family">
-                <option value="" selected="selected"></option>
-                <option value="Arial, Helvetica, sans-serif">Arial, Helvetica, sans-serif </option>
-                <option value="Arial Black, Gadget, sans-serif">Arial Black, Gadget, sans-serif </option>
-                <option value="'Comic Sans MS', cursive, sans-serif">'Comic Sans MS', cursive, sans-serif </option>
-                <option value="'Courier New', Courier, monospace">'Courier New', Courier, monospace </option>
-                <option value="Impact, Charcoal, sans-serif">Impact, Charcoal, sans-serif </option>
-                <option value="'Lucida Console', Monaco, monospace">'Lucida Console', Monaco, monospace </option>
-                <option value="'Lucida Sans Unicode', 'Lucida Grande', sans-serif">'Lucida Sans Unicode', 'Lucida Grande', sans-serif </option>
-                <option value="'Palatino Linotype', 'Book Antiqua', Palatino, serif">'Palatino Linotype', 'Book Antiqua', Palatino, serif</option>
-                <option value="Tahoma, Geneva, sans-serif">Tahoma, Geneva, sans-serif </option>
-                <option value="'Trebuchet MS', Helvetica, sans-serif">'Trebuchet MS', Helvetica, sans-serif </option>
-                <option value="'Times New Roman', Times, serif">'Times New Roman', Times, serif</option>
-                <option value="Verdana, Geneva, sans-serif">Verdana, Geneva, sans-serif </option>
-              </select>
-              <i></i> </label>
+            <label class="input">
+               <input name="font-family" type="text" class="cms-style-update text-input" id="line-height" value="<?php echo $row_getRecord['line-height']; ?>" rel="font-family" /></label>
           </div>
           <div class="col col-6">
             <label class="label">Color</label>

@@ -10,7 +10,7 @@
   position: fixed;
   width: 100%;
   top: 0px;
-  z-index: 30;
+  z-index: 1000;
 }
 #iKioskCMSheader #header {
   background: #225074;
@@ -527,6 +527,7 @@ button.icon-action {
   width: 230px;
   top: 40px;
   right: 10px;
+  z-index: 5000;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .cms-widget {
   position: relative;
@@ -568,7 +569,7 @@ button.icon-action {
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover {
   display: none;
-  position: fixed;
+  position: absolute;
   width: 400px;
   min-height: 100px;
   line-height: 20px;

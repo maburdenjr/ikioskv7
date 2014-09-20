@@ -5,15 +5,15 @@
   </div>
   <div class="cms-widget">
   	<p class="cms-widget-title">Insert Element</p>
-    <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Image" data-arrow="20" data-cmstooltop="128" data-cmstoolright="245" data-panel="insertImage"> <span class="btn-label"><i class="fa fw fa-image"></i></span> Photo</a>
-    <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Code Snippet" data-arrow="20" data-cmstooltop="128" data-cmstoolright="122" data-panel="codeSnippet"><span class="btn-label"><i class="fa fw fa-code"></i></span> Snippet</a>
+    <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Image" data-arrow="20" data-cmstooltop="88" data-cmstoolright="245" data-panel="insertImage"> <span class="btn-label"><i class="fa fw fa-image"></i></span> Photo</a>
+    <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Code Snippet" data-arrow="20" data-cmstooltop="88" data-cmstoolright="122" data-panel="codeSnippet"><span class="btn-label"><i class="fa fw fa-code"></i></span> Snippet</a>
   </div>
   <div id="cms-editElement" class="cms-widget hide-me">
   	<p class="cms-widget-title">Edit Element</p>
      <a class="btn btn-default btn-labeled half elementResize"><span class="btn-label"><i class="fa fw fa-arrows-alt"></i></span> Resize</a>
      <a class="btn btn-default btn-labeled half elementMove"><span class="btn-label"><i class="fa fw fa-location-arrow"></i></span> Move</a>
      
-     <a class="btn btn-default btn-labeled half cmstooltip mainBtn cssTrigger"  data-arrow="20" data-cmstooltop="265" data-cmstoolright="245" data-panel="cssStyles"><span class="btn-label"><i class="fa fw fa-css3"></i></span> CSS</a>
+     <a class="btn btn-default btn-labeled half cmstooltip mainBtn cssTrigger"  data-arrow="20" data-cmstooltop="225" data-cmstoolright="245" data-panel="cssStyles"><span class="btn-label"><i class="fa fw fa-css3"></i></span> CSS</a>
      
      <a class="btn btn-default btn-labeled half elementDelete"><span class="btn-label"><i class="fa fw fa-trash-o"></i></span> Delete</a>
   </div>
