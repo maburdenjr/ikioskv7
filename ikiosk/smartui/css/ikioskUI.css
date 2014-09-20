@@ -705,8 +705,8 @@ button.icon-action {
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories input, .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories select {
   background-color: #333;
-  color: #CCC;
-  border: 1px solid #999;
+  color: #FFF;
+  border: 1px dotted #666;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories .select i {
   box-shadow: 0 0 0 9px #333;
