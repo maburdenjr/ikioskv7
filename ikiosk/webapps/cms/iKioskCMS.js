@@ -15,6 +15,7 @@ function iKioskUI() {
 		if (deleteElement == true) {
 			$('.cms-selected-element').remove();
 			$('#cms-editElement').hide();
+			$('.css-styles').hide();
 			$('.elementResize, .elementMove').removeClass('btn-primary');
 		} 	
 	});

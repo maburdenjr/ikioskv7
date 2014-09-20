@@ -594,6 +594,15 @@ button.icon-action {
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-label {
+  text-transform: uppercase;
+  color: #FFF;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .label {
+  color: #CCC;
+  font-size: 12px;
+  font-weight: normal;
+}
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .hide-me {
   display: none;
 }
@@ -627,14 +636,14 @@ button.icon-action {
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .dropdown-toggle {
   background-color: #000;
   color: #FFF;
-  border: 1px dotted #999;
+  border: 1px solid #333;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .dropdown-toggle:hover {
   background-color: #999;
   border: 1px solid #999;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .tab-pane {
-  padding-top: 10px;
+  padding: 10px;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover .widget-popover-body .dropdown-menu {
   background-color: #999;
@@ -685,8 +694,29 @@ button.icon-action {
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories {
   position: relative;
-  height: 210px;
+  height: 205px;
   overflow-y: scroll;
+  overflow-x: hidden;
+  border: 1px solid #333;
+  margin-top: 5px;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories .row {
+  margin-top: 8px;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories input, .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories select {
+  background-color: #333;
+  color: #CCC;
+  border: 1px solid #999;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories .select i {
+  box-shadow: 0 0 0 9px #333;
+  background: #333;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories .select i:before {
+  border-bottom: 4px solid #ccc;
+}
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover #styleCategories .select i:after {
+  border-top: 4px solid #ccc;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover:after {
   content: "";

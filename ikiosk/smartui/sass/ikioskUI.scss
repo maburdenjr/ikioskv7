@@ -645,6 +645,17 @@ button.icon-action {
 					text-transform:uppercase;
 				}
 				
+				.widget-label {
+					text-transform:uppercase;
+					color: #FFF;
+				}
+				
+				.label {
+					color: #CCC;
+					font-size: 12px;
+					font-weight: normal;
+				}
+				
 				.hide-me {
 					display:none;
 				}
@@ -682,7 +693,7 @@ button.icon-action {
 					.dropdown-toggle {
 						background-color:#000;
 						color:#FFF;
-							border: 1px dotted #999;	
+							border: 1px solid #333;	
 						&:hover {
 							background-color:#999;
 							border: 1px solid #999;	
@@ -690,7 +701,7 @@ button.icon-action {
 					}
 					
 					.tab-pane {
-						padding-top:10px;
+						padding: 10px;
 					}
 					
 					.dropdown-menu {
@@ -743,8 +754,31 @@ button.icon-action {
 				}
 				#styleCategories {
 					position:relative;
-					height:210px;
+					height:205px;
 					overflow-y: scroll;
+					overflow-x: hidden;
+					border: 1px solid #333;
+					margin-top:5px;	
+					.row {
+						margin-top:8px;
+					}
+					input, select {
+						background-color: #333;
+						color: #CCC;
+						border: 1px solid #999;
+					}
+					
+					.select i {
+						box-shadow: 0 0 0 9px #333;
+						background: #333;
+						&:before {
+							border-bottom: 4px solid #ccc;
+						}
+						&:after {
+							border-top: 4px solid #ccc;
+						}
+					}
+			
 				}
 			}
 			#cms-widget-popover:after {
