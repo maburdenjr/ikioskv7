@@ -81,6 +81,15 @@
   margin-bottom: 5px;
   border: 1px dotted #DDD;
 }
+#iKioskCMSeditor .row {
+  border-left: 1px dotted #DDD;
+  border-top: 1px dotted #DDD;
+  border-bottom: 1px dotted #DDD;
+}
+#iKioskCMSeditor .col-md-1, #iKioskCMSeditor .col-md-2, #iKioskCMSeditor .col-md-3, #iKioskCMSeditor .col-md-4, #iKioskCMSeditor .col-md-6 {
+  border-right: 1px dotted #DDD;
+  min-height: 25px;
+}
 
 .align-right {
   text-align: right;

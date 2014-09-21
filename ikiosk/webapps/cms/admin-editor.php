@@ -1,6 +1,6 @@
 <!-- Editor Display -->
 <div id = "iKioskCMSeditor" class="ikiosk-cms-editor">
-<form id ="iKioskCMS-editContent" class="smart-form" method="post">
+<form id ="iKioskCMS-editContent" method="post">
 	<div class="form-response"></div>
   <section>
   <textarea name="content" class="redactor-editor"><?php echo $row_getPage['content']; ?></textarea>

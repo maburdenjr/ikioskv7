@@ -93,6 +93,15 @@
 		margin-bottom:5px;
 		border: 1px dotted #DDD;
 	}
+	.row {
+			border-left: 1px dotted #DDD;
+			border-top: 1px dotted #DDD;
+			border-bottom: 1px dotted #DDD;
+	}
+	.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-6 {
+			border-right: 1px dotted #DDD;
+			min-height:25px;
+	}
 }
 
 .align-right {

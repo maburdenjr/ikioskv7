@@ -1,6 +1,5 @@
 // JavaScript Document
 function iKioskUI() {
-	
 	var base_url = $('#ikiosk_keys .site_url').val();
 	resizeEditor();
 	
@@ -20,7 +19,7 @@ function iKioskUI() {
 	$(document).on('change', '.cms-attr-update', function(e) {
 		var attrDeclaration = $(this).attr('rel');
 		var attrValue = $(this).val();
-		$('.cms-selected-element').css(''+attrDeclaration, ''+attrValue);
+		$('.cms-selected-element').attr(''+attrDeclaration, ''+attrValue);
 		$('.redactor-editor').data('redactor').syncCode();
 	});
 	
@@ -158,7 +157,7 @@ function iKioskUI() {
 		$('#cms-editElement').hide();
 		$('.css-styles').hide();
 		$('.elementResize, .elementMove, .cssTrigger').removeClass('btn-primary');
-		$('.cms-selected-element').removeClass('.cms-selected-element');		
+		$('.cms-selected-element').removeClass('.cms-selected-element');	
 		//Clear Styles in CSS Editor
 	});
 		
@@ -186,8 +185,9 @@ function iKioskUI() {
 	//Insert Code
 	$(document).on('click', '.insertCode', function() {
 		var code = $(this).data('code');
-		$('.redactor-editor').data('redactor').insertHtml(code);
+		doInsert();
 		$('.ikiosk-cmsSnippet').attr('contenteditable', false);
+		$('.redactor-editor').data('redactor').insertHtml(code);
 		$('#cms-widget-popover').fadeOut('fast');
 		$('.cmstooltip').removeClass('btn-primary');
 	});
@@ -1840,4 +1840,34 @@ function css2json(css) {
         }
     }
     return s;
+}
+
+
+var savedRange = null;
+
+document.addEventListener("selectionchange", HandleSelectionChange, false);
+
+function HandleSelectionChange() {
+    var sel = window.getSelection && window.getSelection();
+    if (sel && sel.rangeCount > 0) {
+        savedRange = sel.getRangeAt(0);
+    }
+}
+
+function doInsert(text) {
+			
+			var rangeContent = String(savedRange.endContainer);
+			if (rangeContent.indexOf("redactorEditor") >= 0) {
+				var sel = window.getSelection && window.getSelection();
+				if (sel && sel.rangeCount == 0 && savedRange != null) {
+						sel.addRange(savedRange);
+				}
+				if (sel && sel.rangeCount > 0) {
+						var range = sel.getRangeAt(0);
+						//var node = document.createTextNode(text);
+						//range.deleteContents();
+						//range.insertNode(node);
+				}
+			}
+		
 }
