@@ -23,6 +23,12 @@ function iKioskUI() {
 		$('.redactor-editor').data('redactor').syncCode();
 	});
 	
+	
+	//Clone Element 
+	$(document).on('click', '.elementClone', function(e) {
+		$( ".cms-selected-element" ).clone().removeClass('cms-selected-element').insertAfter( ".cms-selected-element" )
+	});
+	
 	//Delete Element 
 	$(document).on('click', '.elementDelete', function(e) {
 		var deleteElement = confirm("Are you sure you want to delete this element?");
@@ -1855,19 +1861,16 @@ function HandleSelectionChange() {
 }
 
 function doInsert(text) {
-			
-			var rangeContent = String(savedRange.endContainer);
-			if (rangeContent.indexOf("redactorEditor") >= 0) {
-				var sel = window.getSelection && window.getSelection();
-				if (sel && sel.rangeCount == 0 && savedRange != null) {
-						sel.addRange(savedRange);
-				}
-				if (sel && sel.rangeCount > 0) {
-						var range = sel.getRangeAt(0);
-						//var node = document.createTextNode(text);
-						//range.deleteContents();
-						//range.insertNode(node);
-				}
-			}
+		var sel = window.getSelection && window.getSelection();
+		if (sel && sel.rangeCount == 0 && savedRange != null) {
+				sel.addRange(savedRange);
+		}
+		if (sel && sel.rangeCount > 0) {
+				var range = sel.getRangeAt(0);
+				console.log(range);
+				//var node = document.createTextNode(text);
+				//range.deleteContents();
+				//range.insertNode(node);
+		}
 		
 }

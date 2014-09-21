@@ -18,6 +18,8 @@
      
      <a class="btn btn-default btn-labeled half cmstooltip mainBtn cssTrigger"  data-arrow="20" data-cmstooltop="265" data-cmstoolright="245" data-panel="cssStyles"><span class="btn-label"><i class="fa fw fa-css3"></i></span> CSS</a>
      
+     <a class="btn btn-default btn-labeled half elementClone"><span class="btn-label"><i class="fa fw fa-copy"></i></span> Clone</a>
+     
      <a class="btn btn-default btn-labeled half elementDelete"><span class="btn-label"><i class="fa fw fa-trash-o"></i></span> Delete</a>
   </div>
   <div id="cms-widget-popover">
