@@ -93,14 +93,11 @@
 		margin-bottom:5px;
 		border: 1px dotted #DDD;
 	}
-	.row {
-			border-left: 1px dotted #DDD;
-			border-top: 1px dotted #DDD;
-			border-bottom: 1px dotted #DDD;
-	}
-	.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-6 {
-			border-right: 1px dotted #DDD;
-			min-height:25px;
+	
+	//Block Element Outlines
+	article, aside, blockquote, canvas, div, footer, h1, h2, h3, h4, h5, h6, header, ol, p, ul, section, table, video {
+		outline: 1px dotted #DDD;
+		min-height:25px;
 	}
 }
 
@@ -802,6 +799,9 @@ button.icon-action {
 				top: 25px;
 				left: 398px;
 			}
+			#cms-widget-popover.css-styles:after {
+				top:205px;
+			}
 		}
 	}
 }
@@ -853,11 +853,10 @@ button.icon-action {
 		display: inline-block;
 		background-color: rgba(50,118,177,0.22);
 		padding:5px;
-		border: 1px dashed rgba(50,118,177,0.69);
 	}
 	#redactorEditor {
 		.cms-element-hover {
-			background-color: rgba(255,255,204,0.45);
+			outline: #2c699d solid 1px;
 		}
 		
 		.cms-placeholder {
@@ -866,12 +865,12 @@ button.icon-action {
 		
 		.ui-draggable {
 			cursor:move;
-			border-style: dotted !important;
+			background-color: rgba(255, 255, 204, 0.15) !important;
 		}
 		
 		.cms-selected-element {
-			background-color: rgba(255,255,204,0.45); 
-			border: 1px dashed rgba(235,213,112,1.00);
+			outline: #2c699d dashed 3px;
+			background-color: #FFF;
 			&.cms-element-hover {
 			}
 		}	

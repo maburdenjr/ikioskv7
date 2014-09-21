@@ -81,13 +81,8 @@
   margin-bottom: 5px;
   border: 1px dotted #DDD;
 }
-#iKioskCMSeditor .row {
-  border-left: 1px dotted #DDD;
-  border-top: 1px dotted #DDD;
-  border-bottom: 1px dotted #DDD;
-}
-#iKioskCMSeditor .col-md-1, #iKioskCMSeditor .col-md-2, #iKioskCMSeditor .col-md-3, #iKioskCMSeditor .col-md-4, #iKioskCMSeditor .col-md-6 {
-  border-right: 1px dotted #DDD;
+#iKioskCMSeditor article, #iKioskCMSeditor aside, #iKioskCMSeditor blockquote, #iKioskCMSeditor canvas, #iKioskCMSeditor div, #iKioskCMSeditor footer, #iKioskCMSeditor h1, #iKioskCMSeditor h2, #iKioskCMSeditor h3, #iKioskCMSeditor h4, #iKioskCMSeditor h5, #iKioskCMSeditor h6, #iKioskCMSeditor header, #iKioskCMSeditor ol, #iKioskCMSeditor p, #iKioskCMSeditor ul, #iKioskCMSeditor section, #iKioskCMSeditor table, #iKioskCMSeditor video {
+  outline: 1px dotted #DDD;
   min-height: 25px;
 }
 
@@ -739,6 +734,9 @@ button.icon-action {
   top: 25px;
   left: 398px;
 }
+.ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover.css-styles:after {
+  top: 205px;
+}
 
 @media only screen and (min-width: 320px) and (max-width: 568px) {
   .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSContent {
@@ -781,21 +779,20 @@ button.icon-action {
   display: inline-block;
   background-color: rgba(50, 118, 177, 0.22);
   padding: 5px;
-  border: 1px dashed rgba(50, 118, 177, 0.69);
 }
 #iKioskCMSeditor #redactorEditor .cms-element-hover {
-  background-color: rgba(255, 255, 204, 0.45);
+  outline: #2c699d solid 1px;
 }
 #iKioskCMSeditor #redactorEditor .cms-placeholder {
   border: 1px dotted #CCC;
 }
 #iKioskCMSeditor #redactorEditor .ui-draggable {
   cursor: move;
-  border-style: dotted !important;
+  background-color: rgba(255, 255, 204, 0.15) !important;
 }
 #iKioskCMSeditor #redactorEditor .cms-selected-element {
-  background-color: rgba(255, 255, 204, 0.45);
-  border: 1px dashed #ebd570;
+  outline: #2c699d dashed 3px;
+  background-color: #FFF;
 }
 #iKioskCMSeditor #redactorEditor .ui-resizable-handle {
   background: none repeat scroll 0 0 #FFFFFF;

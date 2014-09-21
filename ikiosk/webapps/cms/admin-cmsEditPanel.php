@@ -4,7 +4,7 @@
     <button type="submit" class="btn editContentSave btn-primary" data-form="iKioskCMS-editContent"><i class="fa fa-check"></i> Save</button>
   </div>
   <div class="cms-widget">
-  	<p class="cms-widget-title">Insert Element</p>
+  	<p class="cms-widget-title">Insert CMS Resource</p>
     <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Image" data-arrow="20" data-cmstooltop="88" data-cmstoolright="245" data-panel="insertImage"> <span class="btn-label"><i class="fa fw fa-image"></i></span> Photo</a>
     <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Code Snippet" data-arrow="20" data-cmstooltop="88" data-cmstoolright="122" data-panel="codeSnippet"><span class="btn-label"><i class="fa fw fa-code"></i></span> Snippet</a>
     
@@ -16,7 +16,7 @@
      <a class="btn btn-default btn-labeled half elementResize"><span class="btn-label"><i class="fa fw fa-arrows-alt"></i></span> Resize</a>
      <a class="btn btn-default btn-labeled half elementMove"><span class="btn-label"><i class="fa fw fa-location-arrow"></i></span> Move</a>
      
-     <a class="btn btn-default btn-labeled half cmstooltip mainBtn cssTrigger"  data-arrow="20" data-cmstooltop="265" data-cmstoolright="245" data-panel="cssStyles"><span class="btn-label"><i class="fa fw fa-css3"></i></span> CSS</a>
+     <a class="btn btn-default btn-labeled half cmstooltip mainBtn cssTrigger"  data-arrow="207" data-cmstooltop="85" data-cmstoolright="245" data-panel="cssStyles"><span class="btn-label"><i class="fa fw fa-css3"></i></span> CSS</a>
      
      <a class="btn btn-default btn-labeled half elementClone"><span class="btn-label"><i class="fa fw fa-copy"></i></span> Clone</a>
      

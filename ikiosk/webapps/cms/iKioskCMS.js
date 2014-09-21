@@ -3,12 +3,6 @@ function iKioskUI() {
 	var base_url = $('#ikiosk_keys .site_url').val();
 	resizeEditor();
 	
-	//Style Editor
-	$(document).on('click', '.cssTrigger', function(e) {
-		$('#cms-widget-popover').addClass('css-styles');	
-	});
-	
-	
 	$(document).on('change', '.cms-style-update', function(e) {
 		var styleDeclaration = $(this).attr('rel');
 		var styleValue = $(this).val();
@@ -222,12 +216,13 @@ function iKioskUI() {
 		$('#cms-widget-popover .widget-popover-wrapper').html("<i class='fa fa-cog fa-spin'></i> Loading..").fadeIn('slow');	
 		if ($(this).hasClass("mainBtn")) {
 			$('.cmstooltip').removeClass('btn-primary');
+			$('#cms-widget-popover').removeClass('css-styles');	
 			var arrow = $(this).data('arrow');
 			var tooltiptop = $(this).data('cmstooltop');
 			var tooltipright = $(this).data('cmstoolright');
 			$('#cms-widget-popover').css('top', tooltiptop);
 			$('#cms-widget-popover').css('right', tooltipright);
-			$('#cms-widget-popover:after').css('top', arrow);
+			$('#cms-widget-popover :after').css('top', arrow);
 			$('#cms-widget-popover').fadeIn('fast');
 			$('#cms-widget-popover').addClass('active');
 			$(this).addClass('btn-primary');
@@ -250,6 +245,11 @@ function iKioskUI() {
 					}
 			});
 		
+	});
+	
+	//Style Editor
+	$(document).on('click', '.cssTrigger', function(e) {
+		$('#cms-widget-popover').addClass('css-styles');	
 	});
 	
 	$(document).on('click', '.cmstooltip-close, .redactor_toolbar, #header', function(e) {
