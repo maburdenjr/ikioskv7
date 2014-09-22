@@ -1,6 +1,71 @@
 <?php
 /* IntelliKiosk 7.0 Tiger */
 
+
+//Publish Blog
+function v7publishBlog($article_version_id) {
+	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
+	
+	mysql_select_db($database_ikiosk, $ikiosk);
+	$query_getRecords = "SELECT * FROM cms_blog_article_versions WHERE deleted = '0' AND ".$SYSTEM['active_site_filter']." AND article_version_id = '".$article_version_id."' ORDER BY title ASC";
+	$getRecords = mysql_query($query_getRecords, $ikiosk) or sqlError(mysql_error());
+	$row_getRecords = mysql_fetch_assoc($getRecords);
+	$totalRows_getRecords = mysql_num_rows($getRecords);
+	
+	
+	if ($totalRows_getRecords != 0) {
+		//Get Site Properties
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$query_getSiteInfo = "SELECT * FROM sys_sites WHERE site_id = '".$row_getRecords['site_id']."' AND deleted = '0' AND ".$_SESSION['site_filter']."";
+		$getSiteInfo = mysql_query($query_getSiteInfo, $ikiosk) or sqlError(mysql_error());
+		$row_getSiteInfo = mysql_fetch_assoc($getSiteInfo);
+		$totalRows_getSiteInfo = mysql_num_rows($getSiteInfo);
+				
+		$physicalFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSiteInfo['site_root']."/blog/articles/".$row_getRecords['permalink_filename'];
+		$pageContent = urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/blogTemplate.php");
+		
+		errorLog("Building File: ".$physicalFile);	
+			
+		//Page Specific Replace
+		$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
+		$site_id = $row_getSiteInfo['site_id'];
+		$pageContent = str_replace("ikiosk-tmp-core", $ikioskCore, $pageContent);
+		$pageContent = str_replace("ikiosk-tmp-page", $row_getRecords['article_id'], $pageContent);
+		$pageContent = str_replace("ikiosk_tmp_site", $row_getRecords['site_id'], $pageContent);
+	
+		if ($row_getRecords['permalink_filename'] != "") {
+			$fh = fopen($physicalFile, 'w+') or errorLog("Unable to create ".$physicalFile);
+			fwrite($fh, $pageContent);
+			fclose($fh);
+		}
+	} else {
+		errorLog("Blog article not found [".$query_getRecords."']");	
+	}
+
+}
+
+//Sluggify
+function sluggify($url)
+{
+    # Prep string with some basic normalization
+    $url = strtolower($url);
+    $url = strip_tags($url);
+    $url = stripslashes($url);
+    $url = html_entity_decode($url);
+
+    # Remove quotes (can't, etc.)
+    $url = str_replace('\'', '', $url);
+
+    # Replace non-alpha numeric with hyphens
+    $match = '/[^a-z0-9]+/';
+    $replace = '-';
+    $url = preg_replace($match, $replace, $url);
+
+    $url = trim($url, '-');
+
+    return $url;
+}
+
 //Clean Up Orphaned Records
 function v7recordCleanup() {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
@@ -136,6 +201,7 @@ function v7InitSite($site_id) {
 			if (!file_exists($rootFolder)) {
 					createDIR($rootFolder);	
 					createDIR($rootFolder."/blog");
+					createDIR($rootFolder."/blog/articles");
 					createDIR($rootFolder."/static");
 					createDIR($rootFolder."/cms");
 					createDIR($rootFolder."/static/resources");
@@ -282,6 +348,21 @@ function v7InitSite($site_id) {
 					fwrite($fh, $fileContent);
 					fclose($fh);
 			}
+			
+			//Copy Blog Files
+				$cmsAdmin = array("editPost.php", "displayPost.php", "index.php", "indexEdit.php", "indexDisplay.php");
+			foreach ($cmsAdmin as $key => $value) {
+					$fileContent = 	urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/blog-".$value);
+					$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
+					$fileContent = str_replace("ikiosk-tmp-core", $ikioskCore, $fileContent);
+					$fileContent = str_replace("ikiosk_tmp_site", $site_id, $fileContent);
+					
+					$adminFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSite['site_root']."/blog/".$value;
+					$fh = fopen($adminFile, 'w') or errorLog("Unable to create ".$adminFile);
+					fwrite($fh, $fileContent);
+					fclose($fh);
+			}
+			
 }
 
 //Quickly Creates Blank Page

@@ -28,6 +28,9 @@ if (isset($_GET['ajaxAction'])) {
 		case "createPage":
 			$actionFile = "admin-createPage.php";
 			break;
+		case "createBlog":
+			$actionFile = "admin-createBlog.php";
+			break;	
 		case "pageVersions":
 			$actionFile = "admin-pageVersions.php";
 			break;	
@@ -125,6 +128,53 @@ if (isset($_GET['ajaxAction'])) {
 
 // Begin AJAX Post Wrapper ###########################################################################
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
+	
+	//EditTemplate -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-createBlog")) {
+		
+		$blogFile = sluggify($_POST['title']).".html";
+	
+		//Create Blog
+		$articleID = create_guid();
+		$insertSQL = sprintf("INSERT INTO cms_blog_articles (article_id, site_id, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s)",
+				GetSQLValueString($articleID, "text"),
+				GetSQLValueString($_SESSION['site_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"),
+				GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+				GetSQLValueString($_SESSION['user_id'], "text"));
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);
+		
+		//Create Blog Version
+		$articleVersionID = create_guid();
+		$insertSQL = sprintf("INSERT INTO cms_blog_article_versions (article_version_id, article_id, site_id, title, version, status, auto_expire, permalink_filename, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+					GetSQLValueString($articleVersionID, "text"),
+					GetSQLValueString($articleID, "text"),
+					GetSQLValueString($_SESSION['site_id'], "text"),
+					GetSQLValueString($_POST['title'], "text"),
+					GetSQLValueString("0.0", "text"),
+					GetSQLValueString("Draft", "text"),
+					GetSQLValueString("No", "text"),
+					GetSQLValueString($blogFile, "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"));
+			
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);	
+		v7publishBlog($articleVersionID);	
+		
+		$js = "window.location=\"/blog/articles/".$blogFile."?mode=draft&version_id=".$articleVersionID."\"\r\n";
+		insertJS($hideModal.$js);
+		exit;
+
+	}
+	
 	
 	//EditTemplate -----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editTemplate")) {
