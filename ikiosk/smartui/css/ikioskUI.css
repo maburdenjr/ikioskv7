@@ -796,7 +796,6 @@ button.icon-action {
 }
 #iKioskCMSeditor #redactorEditor .ui-draggable {
   cursor: move;
-  background-color: rgba(255, 255, 204, 0.15) !important;
 }
 #iKioskCMSeditor #redactorEditor .cms-selected-element {
   outline: #2c699d dashed 3px;
@@ -880,15 +879,18 @@ button.icon-action {
 #iKioskCMSeditor.cms-layout-editor .cms-selected-element {
   outline: none !important;
 }
-#iKioskCMSeditor.cms-layout-editor .ui-sortable > * {
+#iKioskCMSeditor.cms-layout-editor .cms-placeholder {
+  background-color: #E1E0E0 !important;
+  border: 3px dashed #95A5A6 !important;
+  height: 150px;
+}
+#iKioskCMSeditor.cms-layout-editor .level-1 {
   cursor: move;
 }
-#iKioskCMSeditor.cms-layout-editor .cms-droppable-hover {
-  border: #2c699d dashed 2px !important;
-  background-color: rgba(255, 255, 255, 0) !important;
-}
-#iKioskCMSeditor.cms-layout-editor .ui-draggable-dragging {
-  position: fixed !important;
+#iKioskCMSeditor.cms-layout-editor .level-1 .cms-placeholder {
+  height: 50px;
+  width: 100px;
+  float: left;
 }
 
 .modal-backdrop {

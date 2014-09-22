@@ -17,16 +17,19 @@ function iKioskUI() {
 	
 	//Handle Drag, Drop, Sortable 
 	function dragAndDrop() {
-		$("#iKioskCMSeditor .cms-sort, #redactorEditor").sortable({
-			placeholder: "ui-state-highlight",
-			tolerance: 'pointer',
-			connectWith: '.cms-sort',
+		
+		$('#redactorEditor > *').addClass('cms-level level-1');	
+		$('#redactorEditor > * > *').addClass('cms-level level-2');	
+		$('#redactorEditor > * > * > *').addClass('cms-level level-3');	
+		$("#redactorEditor, #redactorEditor .level-1, #redactorEditor .level-2").sortable({
+			placeholder: "cms-placeholder",
 			opacity: 0.6,
+			tolerance: 'pointer',
 			revert: true,
-			});
+		});			
 	
-		$('#iKioskCMSeditor .ui-sortable > *, #redactorEditor').droppable({
-			accept: ".ui-draggable",
+	 $('#redactorEditor .level-1, #redactorEditor .level-2').droppable({
+			accept: ".ui-elements",
 			activeClass: "cms-drop-active",
       hoverClass: "cms-drop-hover",
 			greedy: true,
@@ -36,11 +39,13 @@ function iKioskUI() {
 			}
 		});
 		
-		$('#iKioskCMSeditor .ui-sortable > * > *').draggable({
+		 /*$('#redactorEditor .level-3').draggable({
+			 connectToSortable: ".level-2",
+			 containment: 'parent',
 			 helper: "clone",
 			 revert: "invalid",
 			 zIndex: 4000  
-		});
+		}); */
 	}
 	
 	//CMS Mode 
@@ -59,6 +64,7 @@ function iKioskUI() {
 			$("#iKioskCMSeditor .ui-sortable").sortable('destroy');
 			$("#iKioskCMSeditor .ui-droppable").droppable('destroy');
 			$("#iKioskCMSeditor .ui-draggable").draggable('destroy');
+			$('#redactorEditor .cms-level').removeClass('cms-level level-1 level-2 level-3 level-4');
 		} else { // Layout Editor
 			$('#cmsModeContent').hide();	
 			$('#cmsModeLayout').fadeIn();
