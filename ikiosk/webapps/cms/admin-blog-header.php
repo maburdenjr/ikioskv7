@@ -3,11 +3,11 @@
   <div class="pull-left">
   <?php if ($blogModule != "index") { ?>
       <!-- Versions -->
-      <div id="pageVersions" class="btn-header transparent pull-right"> <span> <a href="/cms/ajaxHandler.php?ajaxAction=pageVersions&recordID=<?php echo $row_getPage['page_id']; ?>&appCode=CMS" title="Versions" class="dynamicModal" rel="tooltip" data-placement="bottom"><i class="fa fa-code-fork"></i></a> </span> </div>
+      <div id="blogVersions" class="btn-header transparent pull-right"> <span> <a href="/cms/ajaxHandler.php?ajaxAction=blogVersions&recordID=<?php echo $row_getPage['article_id']; ?>&appCode=CMS" title="Versions" class="dynamicModal" rel="tooltip" data-placement="bottom"><i class="fa fa-code-fork"></i></a> </span> </div>
       <!-- Edit Page Properties -->
-      <div id="editPageProperties" class="btn-header transparent pull-right"> <span> <a href="/cms/ajaxHandler.php?ajaxAction=editPageProperties&recordID=<?php echo $row_getPage['page_version_id']; ?>&appCode=CMS" title="Edit Page Properties" class="dynamicModal" rel="tooltip" data-placement="bottom"><i class="fa fa-wrench"></i></a> </span> </div>
+      <div id="editBlogProperties" class="btn-header transparent pull-right"> <span> <a href="/cms/ajaxHandler.php?ajaxAction=editBlogProperties&recordID=<?php echo $row_getPage['article_version_id']; ?>&appCode=CMS" title="Edit Article Properties" class="dynamicModal" rel="tooltip" data-placement="bottom"><i class="fa fa-wrench"></i></a> </span> </div>
       <!-- Edit Page -->
-      <div id="editPage" class="btn-header transparent pull-right"> <span> <a href="" title="Edit Page Content"  rel="tooltip" data-placement="bottom"><i class="fa fa-edit"></i></a> </span> </div>
+      <div id="editBlog" class="btn-header transparent pull-right"> <span> <a href="" title="Edit Article Content"  rel="tooltip" data-placement="bottom"><i class="fa fa-edit"></i></a> </span> </div>
   <?php } ?>    
 
   </div>

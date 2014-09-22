@@ -534,6 +534,57 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 				exit;
 	}
 	
+	//Save Blog Edits-----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "iKioskCMS-editArticle")) {
+		
+		//Grab Existing Article Details
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$query_getRecord = "SELECT * FROM cms_blog_article_versions WHERE article_version_id = '".$_POST['article_version_id']."' AND deleted = '0' AND ".$SYSTEM['active_site_filter'];
+		$getRecord = mysql_query($query_getRecord, $ikiosk) or sqlError(mysql_error());
+		$row_getRecord = mysql_fetch_assoc($getRecord);
+		$totalRows_getRecord = mysql_num_rows($getRecord);
+		
+		if ($totalRows_getRecord != 0) {
+			//Update Version
+			if ($row_getRecord['version'] != 0.00) {
+				$version = $row_getRecord['version'] + 0.05;
+			} else {
+				$version = $row_getRecord['version'] + 1.00;	
+			}
+			
+			//Create Blog Version
+		$articleVersionID = create_guid();
+		$insertSQL = sprintf("INSERT INTO cms_blog_article_versions (article_version_id, article_id, site_id, title, content, version, status, auto_expire, publish_date, expiration_date, permalink_filename, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+					GetSQLValueString($articleVersionID, "text"),
+					GetSQLValueString($row_getRecord['article_id'], "text"),
+					GetSQLValueString($row_getRecord['site_id'], "text"),
+					GetSQLValueString($row_getRecord['title'], "text"),
+					GetSQLValueString($_POST['content'], "text"),
+					GetSQLValueString($version, "text"),
+					GetSQLValueString("Draft", "text"),
+					GetSQLValueString($row_getRecord['auto-expire'], "text"),
+					GetSQLValueString($row_getRecord['publish_date'], "text"),
+					GetSQLValueString($row_getRecord['expiration_date'], "text"),
+					GetSQLValueString($row_getRecord['permalink_filename'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"));
+			
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);	
+		v7publishBlog($articleVersionID);	
+		
+		$js = "window.location=\"/blog/articles/".$row_getRecord['permalink_filename']."?mode=draft&version_id=".$articleVersionID."\"\r\n";
+		insertJS($hideModal.$js);
+		exit;
+			
+		}
+		
+	}
+	
+	
 	//Save Page Edits-----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "iKioskCMS-editContent")) {
 		

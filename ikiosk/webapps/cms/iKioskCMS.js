@@ -530,7 +530,7 @@ function iKioskUI() {
 	}
 
 	//Edit Page Toggle
-	$('#iKioskCMSheader').on("touchstart click", '#editPage a', function(e) {
+	$('#iKioskCMSheader').on("touchstart click", '#editPage a, #editBlog a', function(e) {
 		e.preventDefault();
 		$('body').addClass('ikiosk-editor-active');
 		resizeEditor();
@@ -539,7 +539,7 @@ function iKioskUI() {
 		$(this).toggleClass('active');
 		$('#iKioskCMSdisplay').hide();
 		$('#iKioskCMSeditor').show();
-	  $("#iKioskCMS-editContent").validate({
+	  $("#iKioskCMS-editContent, #iKioskCMS-editArticle").validate({
 				errorPlacement : function(error, element) {
 					error.insertAfter(element.parent());
 				},
@@ -560,7 +560,7 @@ function iKioskUI() {
 			$('body').removeClass('ikiosk-editor-active');
 			$('#iKioskCMSdisplay').show();
 			$('#iKioskCMSeditor').hide();
-			$('#iKioskCMS-editContent #redactorEditor').html(original_html);
+			$('#iKioskCMS-editContent #redactorEditor, #iKioskCMS-editArticle #redactorEditor').html(original_html);
 			resizeEditor();
 
 		}
@@ -581,7 +581,12 @@ function iKioskUI() {
 	
 	$(document).on('click', '.editContentSave', function(e) {
 		$('.redactor-editor').data('redactor').toggle();
-		$('#iKioskCMS-editContent').submit();
+		if ($('#iKioskCMS-editContent').length) {
+			$('#iKioskCMS-editContent').submit();
+		}
+		if ($('#iKioskCMS-editArticle').length) {
+			$('#iKioskCMS-editArticle').submit();
+		}
 	});
 
 	//Submit Form
