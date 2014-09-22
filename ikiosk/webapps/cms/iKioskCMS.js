@@ -14,11 +14,10 @@ function iKioskUI() {
 		$(this).removeClass('cms-droppable-hover');
 	});
 	
-	
-	//Handle Drag, Drop, Sortable 
-	function updatePlaceholder() {
+	$(document).on('change', '.toggleGrid', function() {
+		$('#redactorEditor').toggleClass('cms-layout-grid');
+	});
 		
-	}
 	function dragAndDrop() {
 		
 		$('#redactorEditor > *').addClass('cms-level level-1');	

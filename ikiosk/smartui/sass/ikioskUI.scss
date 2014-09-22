@@ -96,10 +96,14 @@
 	
 	
 	#redactorEditor {
-		//Block Element Outlines
-		article, aside, blockquote, canvas, div, footer, h1, h2, h3, h4, h5, h6, header, ol, p, ul, section, table, video {
-			outline: 1px dotted #DDD;
-			min-height:25px;
+		&.cms-layout-grid {
+			article, aside, blockquote, canvas, div, footer, h1, h2, h3, h4, h5, h6, header, ol, p, ul, section, table, video {
+				outline: 1px dotted #DDD;
+				min-height:25px;
+			}
+			.cms-element-hover {
+				outline: #2c699d solid 1px;
+			}
 		}
 		.ui-sortable {
 			display: block; 

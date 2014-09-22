@@ -81,9 +81,12 @@
   margin-bottom: 5px;
   border: 1px dotted #DDD;
 }
-#iKioskCMSeditor #redactorEditor article, #iKioskCMSeditor #redactorEditor aside, #iKioskCMSeditor #redactorEditor blockquote, #iKioskCMSeditor #redactorEditor canvas, #iKioskCMSeditor #redactorEditor div, #iKioskCMSeditor #redactorEditor footer, #iKioskCMSeditor #redactorEditor h1, #iKioskCMSeditor #redactorEditor h2, #iKioskCMSeditor #redactorEditor h3, #iKioskCMSeditor #redactorEditor h4, #iKioskCMSeditor #redactorEditor h5, #iKioskCMSeditor #redactorEditor h6, #iKioskCMSeditor #redactorEditor header, #iKioskCMSeditor #redactorEditor ol, #iKioskCMSeditor #redactorEditor p, #iKioskCMSeditor #redactorEditor ul, #iKioskCMSeditor #redactorEditor section, #iKioskCMSeditor #redactorEditor table, #iKioskCMSeditor #redactorEditor video {
+#iKioskCMSeditor #redactorEditor.cms-layout-grid article, #iKioskCMSeditor #redactorEditor.cms-layout-grid aside, #iKioskCMSeditor #redactorEditor.cms-layout-grid blockquote, #iKioskCMSeditor #redactorEditor.cms-layout-grid canvas, #iKioskCMSeditor #redactorEditor.cms-layout-grid div, #iKioskCMSeditor #redactorEditor.cms-layout-grid footer, #iKioskCMSeditor #redactorEditor.cms-layout-grid h1, #iKioskCMSeditor #redactorEditor.cms-layout-grid h2, #iKioskCMSeditor #redactorEditor.cms-layout-grid h3, #iKioskCMSeditor #redactorEditor.cms-layout-grid h4, #iKioskCMSeditor #redactorEditor.cms-layout-grid h5, #iKioskCMSeditor #redactorEditor.cms-layout-grid h6, #iKioskCMSeditor #redactorEditor.cms-layout-grid header, #iKioskCMSeditor #redactorEditor.cms-layout-grid ol, #iKioskCMSeditor #redactorEditor.cms-layout-grid p, #iKioskCMSeditor #redactorEditor.cms-layout-grid ul, #iKioskCMSeditor #redactorEditor.cms-layout-grid section, #iKioskCMSeditor #redactorEditor.cms-layout-grid table, #iKioskCMSeditor #redactorEditor.cms-layout-grid video {
   outline: 1px dotted #DDD;
   min-height: 25px;
+}
+#iKioskCMSeditor #redactorEditor.cms-layout-grid .cms-element-hover {
+  outline: #2c699d solid 1px;
 }
 #iKioskCMSeditor #redactorEditor .ui-sortable {
   display: block;

@@ -9,6 +9,7 @@
       <i class="fa fw fa-file-text-o"></i> Content</a>
     <a class="btn btn-default mainBtn half cmsMode align-center" title="Layout" data-mode="layout">
       <i class="fa fw fa-columns"></i> Layout</a>
+      <p><input type="checkbox" class="toggleGrid"> Show layout grid</p>
   </div>
   <div id="cmsModeContent">
     <!-- Resources -->
