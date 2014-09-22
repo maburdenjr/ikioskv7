@@ -884,14 +884,6 @@ button.icon-action {
   border: 3px dashed #95A5A6 !important;
   height: 150px;
 }
-#iKioskCMSeditor.cms-layout-editor .level-1 {
-  cursor: move;
-}
-#iKioskCMSeditor.cms-layout-editor .level-1 .cms-placeholder {
-  height: 50px;
-  width: 100px;
-  float: left;
-}
 
 .modal-backdrop {
   z-index: 5000;

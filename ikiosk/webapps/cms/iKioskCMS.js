@@ -16,6 +16,9 @@ function iKioskUI() {
 	
 	
 	//Handle Drag, Drop, Sortable 
+	function updatePlaceholder() {
+		
+	}
 	function dragAndDrop() {
 		
 		$('#redactorEditor > *').addClass('cms-level level-1');	
@@ -25,13 +28,22 @@ function iKioskUI() {
 			placeholder: "cms-placeholder",
 			opacity: 0.6,
 			tolerance: 'pointer',
-			revert: true,
+			helper: 'clone',
+			start: function( event, ui ) {
+				var thisWidth = $(ui.helper).css('width');
+				var thisFloat = $(ui.helper).css('float');
+				var thisHeight = $(ui.helper).css('height');
+				$('.cms-placeholder').css('width', thisWidth);
+				$('.cms-placeholder').css('float', thisFloat);
+				if (!$(ui.this).hasClass('.level-1')) {
+						$('.cms-placeholder').css('height', thisHeight);
+				}
+				
+			}
 		});			
 	
-	 $('#redactorEditor .level-1, #redactorEditor .level-2').droppable({
+	 $('#redacorEditor, #redactorEditor .level-1, #redactorEditor .level-2').droppable({
 			accept: ".ui-elements",
-			activeClass: "cms-drop-active",
-      hoverClass: "cms-drop-hover",
 			greedy: true,
       drop: function( event, ui ) {
 				$(ui.draggable).hide().appendTo(this).fadeIn();
