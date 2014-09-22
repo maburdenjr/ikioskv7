@@ -31,9 +31,9 @@ function iKioskUI() {
 			helper: 'clone',
 			pointer: 'move',
 			start: function( event, ui ) {
-				var thisWidth = $(ui.helper).css('width');
-				var thisFloat = $(ui.helper).css('float');
-				var thisHeight = $(ui.helper).css('height');
+				var thisWidth = $(ui.item).css('width');
+				var thisFloat = $(ui.item).css('float');
+				var thisHeight = $(ui.item).css('height');
 				$('.cms-placeholder').css('width', thisWidth);
 				$('.cms-placeholder').css('float', thisFloat);
 				if (!$(ui.this).hasClass('.level-1')) {
