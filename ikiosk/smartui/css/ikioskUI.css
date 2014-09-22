@@ -81,13 +81,21 @@
   margin-bottom: 5px;
   border: 1px dotted #DDD;
 }
-#iKioskCMSeditor article, #iKioskCMSeditor aside, #iKioskCMSeditor blockquote, #iKioskCMSeditor canvas, #iKioskCMSeditor div, #iKioskCMSeditor footer, #iKioskCMSeditor h1, #iKioskCMSeditor h2, #iKioskCMSeditor h3, #iKioskCMSeditor h4, #iKioskCMSeditor h5, #iKioskCMSeditor h6, #iKioskCMSeditor header, #iKioskCMSeditor ol, #iKioskCMSeditor p, #iKioskCMSeditor ul, #iKioskCMSeditor section, #iKioskCMSeditor table, #iKioskCMSeditor video {
+#iKioskCMSeditor #redactorEditor article, #iKioskCMSeditor #redactorEditor aside, #iKioskCMSeditor #redactorEditor blockquote, #iKioskCMSeditor #redactorEditor canvas, #iKioskCMSeditor #redactorEditor div, #iKioskCMSeditor #redactorEditor footer, #iKioskCMSeditor #redactorEditor h1, #iKioskCMSeditor #redactorEditor h2, #iKioskCMSeditor #redactorEditor h3, #iKioskCMSeditor #redactorEditor h4, #iKioskCMSeditor #redactorEditor h5, #iKioskCMSeditor #redactorEditor h6, #iKioskCMSeditor #redactorEditor header, #iKioskCMSeditor #redactorEditor ol, #iKioskCMSeditor #redactorEditor p, #iKioskCMSeditor #redactorEditor ul, #iKioskCMSeditor #redactorEditor section, #iKioskCMSeditor #redactorEditor table, #iKioskCMSeditor #redactorEditor video {
   outline: 1px dotted #DDD;
   min-height: 25px;
+}
+#iKioskCMSeditor #redactorEditor .ui-sortable {
+  display: block;
+  overflow: hidden;
 }
 
 .align-right {
   text-align: right;
+}
+
+.align-center {
+  text-align: center !important;
 }
 
 .modal .smart-form .modal-header {
@@ -735,7 +743,7 @@ button.icon-action {
   left: 398px;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor #cms-widget-popover.css-styles:after {
-  top: 205px;
+  top: 125px;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 568px) {
@@ -868,6 +876,16 @@ button.icon-action {
   top: -5px !important;
   width: 9px !important;
   height: 9px !important;
+}
+#iKioskCMSeditor.cms-layout-editor .cms-selected-element {
+  outline: none !important;
+}
+#iKioskCMSeditor.cms-layout-editor .ui-sortable > * {
+  cursor: move;
+}
+#iKioskCMSeditor.cms-layout-editor .ui-state-highlight {
+  background-color: #FFC;
+  border: 1px dashed #A7A7A7;
 }
 
 .modal-backdrop {

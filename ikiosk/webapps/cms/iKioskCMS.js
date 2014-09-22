@@ -3,12 +3,48 @@ function iKioskUI() {
 	var base_url = $('#ikiosk_keys .site_url').val();
 	resizeEditor();
 	
+	//Handle Drag, Drop, Sortable 
+	function dragAndDrop() {
+		$("#iKioskCMSeditor .cms-sort, #redactorEditor").sortable({
+			placeholder: "ui-state-highlight",
+			containment: "parent",
+			tolerance: 'pointer',
+			opacity: 0.6
+			});
+		console.log('sortable turned on');	
+	}
+	
+	//CMS Mode 
+	$(document).on('click', '.cmsMode', function(e) {
+		var mode = $(this).data('mode');
+		$('.cmsMode').removeClass('btn-primary');
+		$(this).addClass('btn-primary');
+		$('#cms-widget-popover').fadeOut('fast');
+		$('.cmstooltip').removeClass('btn-primary');
+		
+		if (mode == 'content') { // Content Editor
+			$('#cmsModeLayout').hide();
+			$('#cmsModeContent').fadeIn();
+			$('#iKioskCMSeditor').removeClass('cms-layout-editor');		
+			$('.redactor_toolbar').show();	
+			$("#iKioskCMSeditor .cms-sort, #redactorEditor").sortable('destroy');
+		} else { // Layout Editor
+			$('#cmsModeContent').hide();	
+			$('#cmsModeLayout').fadeIn();
+			$('.redactor_toolbar').hide();
+			$('#iKioskCMSeditor').addClass('cms-layout-editor');
+			dragAndDrop();	
+		}
+	});
+	
+	
+	//Style Updates
 	$(document).on('change', '.cms-style-update', function(e) {
 		var styleDeclaration = $(this).attr('rel');
 		var styleValue = $(this).val();
 		$('.cms-selected-element').css(''+styleDeclaration, ''+styleValue);
 		$('.redactor-editor').data('redactor').syncCode();
-	})
+	});
 	
 	$(document).on('change', '.cms-attr-update', function(e) {
 		var attrDeclaration = $(this).attr('rel');

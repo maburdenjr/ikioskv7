@@ -1,11 +1,11 @@
 <?php
 
-$col2 = '<div class="row"><div class="col-md-6"></div><div class="col-md-6"></div></row>';
-$col3 = '<div class="row"><div class="col-md-4"></div><div class="col-md-4"></div><div class="col-md-4"></div>
+$col2 = '<div class="row cms-sort"><div class="col-md-6"></div><div class="col-md-6"></div></row>';
+$col3 = '<div class="row cms-sort"><div class="col-md-4"></div><div class="col-md-4"></div><div class="col-md-4"></div>
 </row>';
-$col4 = '<div class="row"><div class="col-md-3"></div><div class="col-md-3"></div><div class="col-md-3"></div><div class="col-md-3"></div></row>';
-$col6 = '<div class="row"><div class="col-md-2"></div><div class="col-md-2"></div><div class="col-md-2"></div><div class="col-md-2"></div><div class="col-md-2"></div></row>';
-$col12 = '<div class="row"><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div><div class="row"><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div></row>';
+$col4 = '<div class="row cms-sort"><div class="col-md-3"></div><div class="col-md-3"></div><div class="col-md-3"></div><div class="col-md-3"></div></row>';
+$col6 = '<div class="row cms-sort"><div class="col-md-2"></div><div class="col-md-2"></div><div class="col-md-2"></div><div class="col-md-2"></div><div class="col-md-2"></div></row>';
+$col12 = '<div class="row cms-sort"><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div><div class="row"><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div><div class="col-md-1"></div></row>';
 ?>
 
 <div class="widget-popover-title">Column Layout</div>

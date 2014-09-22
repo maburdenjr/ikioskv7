@@ -94,15 +94,26 @@
 		border: 1px dotted #DDD;
 	}
 	
-	//Block Element Outlines
-	article, aside, blockquote, canvas, div, footer, h1, h2, h3, h4, h5, h6, header, ol, p, ul, section, table, video {
-		outline: 1px dotted #DDD;
-		min-height:25px;
+	
+	#redactorEditor {
+		//Block Element Outlines
+		article, aside, blockquote, canvas, div, footer, h1, h2, h3, h4, h5, h6, header, ol, p, ul, section, table, video {
+			outline: 1px dotted #DDD;
+			min-height:25px;
+		}
+		.ui-sortable {
+			display: block; 
+			overflow: hidden;
+		}
 	}
 }
 
 .align-right {
 	text-align:right;
+}
+
+.align-center {
+	text-align:center !important;
 }
 
 .modal {
@@ -800,7 +811,7 @@ button.icon-action {
 				left: 398px;
 			}
 			#cms-widget-popover.css-styles:after {
-				top:205px;
+				top:125px;
 			}
 		}
 	}
@@ -948,6 +959,20 @@ button.icon-action {
 				top: -5px !important;
 			width:9px !important;
 			height:9px !important;	
+		}
+	}
+	&.cms-layout-editor {
+		.cms-selected-element {
+			outline:none !important;
+		}
+		
+		.ui-sortable > * {
+			cursor: move;
+		}
+		
+		.ui-state-highlight {
+				background-color: #FFC;
+				border: 1px dashed #A7A7A7
 		}
 	}
 }
