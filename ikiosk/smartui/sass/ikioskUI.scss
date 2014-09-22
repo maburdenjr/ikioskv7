@@ -881,7 +881,7 @@ button.icon-action {
 		
 		.cms-selected-element {
 			outline: #2c699d dashed 3px;
-			background-color: #FFF;
+			background-color:  rgba(255, 255, 255, 0.25);
 			&.cms-element-hover {
 			}
 		}	
@@ -969,10 +969,12 @@ button.icon-action {
 		.ui-sortable > * {
 			cursor: move;
 		}
-		
-		.ui-state-highlight {
-				background-color: #FFC;
-				border: 1px dashed #A7A7A7
+		.cms-droppable-hover {
+			border: #2c699d dashed 2px !important;
+			background-color: rgba(255,255,255,0) !important;
+		}
+		.ui-draggable-dragging {
+			position: fixed !important;
 		}
 	}
 }

@@ -800,7 +800,7 @@ button.icon-action {
 }
 #iKioskCMSeditor #redactorEditor .cms-selected-element {
   outline: #2c699d dashed 3px;
-  background-color: #FFF;
+  background-color: rgba(255, 255, 255, 0.25);
 }
 #iKioskCMSeditor #redactorEditor .ui-resizable-handle {
   background: none repeat scroll 0 0 #FFFFFF;
@@ -883,9 +883,12 @@ button.icon-action {
 #iKioskCMSeditor.cms-layout-editor .ui-sortable > * {
   cursor: move;
 }
-#iKioskCMSeditor.cms-layout-editor .ui-state-highlight {
-  background-color: #FFC;
-  border: 1px dashed #A7A7A7;
+#iKioskCMSeditor.cms-layout-editor .cms-droppable-hover {
+  border: #2c699d dashed 2px !important;
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+#iKioskCMSeditor.cms-layout-editor .ui-draggable-dragging {
+  position: fixed !important;
 }
 
 .modal-backdrop {

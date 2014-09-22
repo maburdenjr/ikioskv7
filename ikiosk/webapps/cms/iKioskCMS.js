@@ -3,15 +3,44 @@ function iKioskUI() {
 	var base_url = $('#ikiosk_keys .site_url').val();
 	resizeEditor();
 	
+	//MouseOver Highlight
+	$(document).on('mouseover', '#iKioskCMSeditor.cms-layout-editor .ui-droppable', function(e) {
+		e.stopPropagation();
+		$(this).addClass('cms-droppable-hover');
+	});
+	
+	$(document).on('mouseout', '#iKioskCMSeditor.cms-layout-editor .ui-droppable', function(e) {
+		e.stopPropagation();
+		$(this).removeClass('cms-droppable-hover');
+	});
+	
+	
 	//Handle Drag, Drop, Sortable 
 	function dragAndDrop() {
 		$("#iKioskCMSeditor .cms-sort, #redactorEditor").sortable({
 			placeholder: "ui-state-highlight",
-			containment: "parent",
 			tolerance: 'pointer',
-			opacity: 0.6
+			connectWith: '.cms-sort',
+			opacity: 0.6,
+			revert: true,
 			});
-		console.log('sortable turned on');	
+	
+		$('#iKioskCMSeditor .ui-sortable > *, #redactorEditor').droppable({
+			accept: ".ui-draggable",
+			activeClass: "cms-drop-active",
+      hoverClass: "cms-drop-hover",
+			greedy: true,
+      drop: function( event, ui ) {
+				$(ui.draggable).hide().appendTo(this).fadeIn();
+				dragAndDrop();
+			}
+		});
+		
+		$('#iKioskCMSeditor .ui-sortable > * > *').draggable({
+			 helper: "clone",
+			 revert: "invalid",
+			 zIndex: 4000  
+		});
 	}
 	
 	//CMS Mode 
@@ -27,12 +56,16 @@ function iKioskUI() {
 			$('#cmsModeContent').fadeIn();
 			$('#iKioskCMSeditor').removeClass('cms-layout-editor');		
 			$('.redactor_toolbar').show();	
-			$("#iKioskCMSeditor .cms-sort, #redactorEditor").sortable('destroy');
+			$("#iKioskCMSeditor .ui-sortable").sortable('destroy');
+			$("#iKioskCMSeditor .ui-droppable").droppable('destroy');
+			$("#iKioskCMSeditor .ui-draggable").draggable('destroy');
 		} else { // Layout Editor
 			$('#cmsModeContent').hide();	
 			$('#cmsModeLayout').fadeIn();
 			$('.redactor_toolbar').hide();
 			$('#iKioskCMSeditor').addClass('cms-layout-editor');
+			$("#iKioskCMSeditor .ui-resizable").resizable('destroy');
+			$("#iKioskCMSeditor .ui-draggable").draggable('destroy');
 			dragAndDrop();	
 		}
 	});
