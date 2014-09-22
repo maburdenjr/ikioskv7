@@ -29,6 +29,7 @@ function iKioskUI() {
 			opacity: 0.6,
 			tolerance: 'pointer',
 			helper: 'clone',
+			pointer: 'move',
 			start: function( event, ui ) {
 				var thisWidth = $(ui.helper).css('width');
 				var thisFloat = $(ui.helper).css('float');
