@@ -114,6 +114,13 @@
 .modal .smart-form .btn {
   padding: 6px 12px;
 }
+.modal .smart-form header {
+  padding: 0px;
+  margin: 0px;
+}
+.modal .smart-form header {
+  margin-bottom: 15px;
+}
 .modal .modal-title {
   font-weight: 400;
   letter-spacing: -1px;

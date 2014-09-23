@@ -57,6 +57,9 @@ if (isset($_GET['ajaxAction'])) {
 		case "templates":
 			$actionFile = "admin-templates.php";
 			break;		
+		case "cmsSettings":
+			$actionFile = "admin-cmsSettings.php";
+			break;			
 		case "inlineEdit":
 			$actionFile = "admin-inlineEdit.php";
 			break;								
@@ -132,7 +135,82 @@ if (isset($_GET['ajaxAction'])) {
 // Begin AJAX Post Wrapper ###########################################################################
 if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	
-	//EditTemplate -----------------------------------------------------------
+	// Edit Blog Properties  -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editBlogProperties")) {
+		
+		if ($_POST['status'] == "Published") {
+			//Update Page Status
+			$updateSQL = sprintf("UPDATE cms_blog_article_versions SET status = 'Draft' WHERE article_id=%s",
+				GetSQLValueString($_POST['article_id'], "text"));
+		
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($updateSQL);
+		}
+		
+		if ($_POST['version'] != 0.00) {
+			$version = $_POST['version'] + 0.05;
+		} else {
+			$version = $_POST['version'] + 1.00;	
+		}
+		
+		//Create New Version
+		$publishDate = smartDates($_POST['publish_date']);
+		$expirationDate = smartDates($_POST['expire_date']);
+		
+		//Create Blog Version
+		$articleVersionID = create_guid();
+		$blogFile = sluggify($_POST['title']).".html";
+		
+		$insertSQL = sprintf("INSERT INTO cms_blog_article_versions (article_version_id, article_id, site_id, title, version, status, auto_expire, permalink_filename, content, date_created, created_by, date_modified, modified_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+					GetSQLValueString($articleVersionID, "text"),
+					GetSQLValueString($_POST['article_id'], "text"),
+					GetSQLValueString($SITE['site_id'], "text"),
+					GetSQLValueString($_POST['title'], "text"),
+					GetSQLValueString($version, "text"),
+					GetSQLValueString($_POST['status'], "text"),
+					GetSQLValueString($_POST['auto-expire'], "text"),
+					GetSQLValueString($blogFile, "text"),
+					GetSQLValueString($_POST['content'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"),
+					GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+					GetSQLValueString($_SESSION['user_id'], "text"));
+			
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($insertSQL);	
+		v7publishBlog($articleVersionID);
+		$js = "window.location=\"/blog/articles/".$blogFile."?mode=draft&version_id=".$articleVersionID."\"\r\n";
+		insertJS($hideModal.$js);
+		exit;
+		
+	}
+	
+	
+	//Update CMS Settings  -----------------------------------------------------------
+	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-updateSettings")) {
+		
+		$updateSQL = sprintf("UPDATE cms_config SET  blog_title=%s, blog_display_count=%s, blog_home_template=%s, blog_article_template=%s, date_modified=%s, modified_by=%s WHERE site_id=%s",
+
+			GetSQLValueString($_POST['blog_title'], "text"),
+			GetSQLValueString($_POST['blog_display_count'], "text"),
+			GetSQLValueString($_POST['blog_home_template'], "text"),
+			GetSQLValueString($_POST['blog_article_template'], "text"),
+			GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
+			GetSQLValueString($_SESSION['user_id'], "text"),
+			GetSQLValueString($SITE['site_id'], "text"));
+	
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$Result1 = mysql_query($updateSQL, $ikiosk) or sqlError(mysql_error());
+		sqlQueryLog($updateSQL);
+		
+		displayAlert("success", "Changes saved.");
+		exit;
+		
+	}
+	
+	//Create Blog Post -----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-createBlog")) {
 		
 		$blogFile = sluggify($_POST['title']).".html";

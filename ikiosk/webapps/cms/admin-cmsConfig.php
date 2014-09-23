@@ -2,10 +2,12 @@
   <a id="cms-menu" class="btn-default"><i class="fa fa-reorder"></i></a>
   <div id ="dynModalMenu">
     <ul>
+      <li><a href="/cms/ajaxHandler.php?ajaxAction=blogArticles&appCode=CMS" class="modalDynLink"><i class="fa fa-file-text-o"></i> Blog Articles</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=contentPages&appCode=CMS" class="modalDynLink"><i class="fa fa-file-text-o"></i> Content Pages</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=codeSnippets&appCode=CMS" class="modalDynLink"><i class="fa fa-file-code-o"></i> Code Snippets</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS" class="modalDynLink"><i class="fa fa-folder"></i> File Manager</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=photoGallery&appCode=CMS" class="modalDynLink"><i class="fa fa-file-image-o"></i> Photos</a></li>
+      <li><a href="/cms/ajaxHandler.php?ajaxAction=cmsSettings&appCode=CMS" class="modalDynLink"><i class="fa fa-cog"></i> Settings</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=templates&appCode=CMS" class="modalDynLink"><i class="fa fa-cube"></i> Templates</a></a></li>
     </ul>
   </div>
