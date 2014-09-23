@@ -33,17 +33,19 @@ $author = getUserData($row_getPage['created_by'], "display_name");
     <!-- Template Header Code -->
     <?php v7ContentProcessor($row_getTemplate['body_header_code']); ?>
     <div id = "iKioskCMSdisplay">
-    	<article id="<?php echo $row_getPage['article_id']; ?>">
-      	<header>
-        	<h1><?php echo $row_getPage['title']; ?></h1>
+      <article id="<?php echo $row_getPage['article_id']; ?>">
+        <header>
+          <h1><?php echo $row_getPage['title']; ?></h1>
           <p>Posted on <?php echo $timePosted." by ".$author; ?></p>
         </header>
         <section>
-      		<?php v7ContentProcessor($row_getPage['content']); ?>
+          <?php v7ContentProcessor($row_getPage['content']); ?>
         </section>
       </article>
     </div>
-    <?php include($systemFileRoot."/ikiosk/webapps/cms/admin-editor-blog.php"); ?>
+
+        <?php include($systemFileRoot."/ikiosk/webapps/cms/admin-editor-blog.php"); ?>
+
     <?php v7ContentProcessor($row_getTemplate['body_footer_code']); ?>
   </div>
   <div id="iKioskCMSInlineEditor" class="ikiosk-cms-editor">
