@@ -519,7 +519,7 @@ button.icon-action {
 }
 
 .tooltip {
-  z-index: 40000 !important;
+  z-index: 60000 !important;
 }
 
 #iKioskCMSwrapper {
@@ -894,6 +894,13 @@ button.icon-action {
 }
 #iKioskCMSeditor.cms-layout-editor .cms-selected-element {
   outline: none !important;
+}
+#iKioskCMSeditor.cms-layout-editor .cms-element-hover {
+  outline: none !important;
+}
+#iKioskCMSeditor.cms-layout-editor .cms-element-hover.cms-level {
+  outline: 2px dashed #95A5A6 !important;
+  cursor: pointer;
 }
 #iKioskCMSeditor.cms-layout-editor .cms-placeholder {
   background-color: #E1E0E0 !important;

@@ -53,7 +53,7 @@ if($_GET['mode'] == "draft") {
 	$totalRows_getPage = mysql_num_rows($getPage);
 
 }
-
+if ($totalRows_getPage == 0) {header("Location: /blog"); exit;} 
 $inlineEdit = cmsInlineCheck();
 
 if (($inlineEdit == "Yes") && ($_GET['editor'] != "off")) {	

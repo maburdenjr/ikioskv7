@@ -569,7 +569,7 @@ button.icon-action {
 }
 
 .tooltip {
-	z-index:40000 !important; 
+	z-index:60000 !important; 
 }
 
 #iKioskCMSwrapper {
@@ -980,6 +980,13 @@ button.icon-action {
 	&.cms-layout-editor {
 		.cms-selected-element {
 			outline:none !important;
+		}
+		.cms-element-hover {
+			outline:none !important;
+			&.cms-level {
+				outline: 2px dashed #95A5A6 !important;	
+				cursor: pointer;	
+			}
 		}
 		.cms-placeholder {
 			background-color: #E1E0E0 !important;

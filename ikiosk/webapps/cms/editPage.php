@@ -40,7 +40,7 @@
   	<?php include ($systemFileRoot."/ikiosk/webapps/cms/admin-cmsEditPanel.php"); ?>
   </div>
 </div>
-<div id="iKioskCMSmodals">
+<div id="iKioskCMSmodals" class="ikiosk-cms-editor">
 <?php if ($SYSTEM['debug'] == "Yes") { include ($systemFileRoot."/ikiosk/webapps/admin/systemDebug.php"); } ?>
   <div class="modal fade" id="dynamicModal">
     <div class="modal-dialog">

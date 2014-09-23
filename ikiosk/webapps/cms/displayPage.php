@@ -35,13 +35,13 @@ if ((empty($_GET['page'])) && (!empty($row_getPage['expiration_date'])) && ($row
 <?php } ?>
 <?php if (!empty($row_getPage['meta_robots'])) { ?>
 <meta name="robots" content="<?php echo  $row_getPage['meta_robots']; ?>">
+<?php } ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
  <!-- CMS Editor Scripts --> 
 <script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script>
 <script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <?php v7ContentProcessor($row_getTemplate['header_code']); ?>
-<?php } ?>
 </head>
 <body<?php if (!empty($row_getPage['content_id'])) { echo " id=\"".v7ContentProcessor("page:content_id")."\"";} ?>>
 <?php if ($SITE['site_status'] == "Active") { //Site is Active ?>

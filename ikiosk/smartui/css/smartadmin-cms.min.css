@@ -14887,7 +14887,7 @@ body.modal-open {
 a:active, a:focus, a:hover, button, button:active, button:focus, embed, input::-moz-focus-inner, object {
 outline:0
 }
-h1, h2, h3, h4 {
+.ikiosk-cms-editor h1, .ikiosk-cms-editor h2, .ikiosk-cms-editor h3, .ikiosk-cms-editor h4 {
 	margin: 0;
 	font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
 	font-weight: 300
@@ -14901,7 +14901,7 @@ h1, h2, h3, h4 {
 	display: inline-block;
 	vertical-align: 1px
 }
-label {
+.ikiosk-cms-editor label {
 	font-weight: 400
 }
 :focus {
@@ -14948,7 +14948,7 @@ a, button, input {
 	padding: 10px 14px;
 	position: relative
 }
-body.container {
+/* body.container {
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -14956,13 +14956,13 @@ body.container {
 	border-left: 1px solid #bfbfbf;
 	border-right: 1px solid #bfbfbf;
 	box-shadow: 0 2px 70px rgba(0,0,0,.45)
-}
-h1 {
+}*/
+.ikiosk-cms-editor h1 {
 	letter-spacing: -1px;
 	font-size: 24px;
 	margin: 10px 0
 }
-h1 small {
+.ikiosk-cms-editor h1 small {
 	font-size: 18px;
 	font-weight: 300;
 	letter-spacing: -1px
@@ -14970,29 +14970,29 @@ h1 small {
 .lead {
 	font-size: 19px
 }
-h2 {
+.ikiosk-cms-editor h2 {
 	letter-spacing: -1px;
 	font-size: 22px;
 	margin: 20px 0;
 	line-height: normal
 }
-h3 {
+.ikiosk-cms-editor h3 {
 	display: block;
 	font-size: 19px;
 	font-weight: 400;
 	margin: 20px 0;
 	line-height: normal
 }
-h4 {
+.ikiosk-cms-editor h4 {
 	line-height: normal
 }
-h5 {
+.ikiosk-cms-editor h5 {
 	font-size: 17px;
 	font-weight: 300;
 	margin: 10px 0;
 	line-height: normal
 }
-h6 {
+.ikiosk-cms-editor h6 {
 	font-size: 15px;
 	margin: 10px 0;
 	font-weight: 700;
@@ -15016,7 +15016,7 @@ h6 {
 .bordered:hover {
 	border: 1px solid rgba(0,0,0,.4)
 }
-aside {
+.ikiosk-cms-editor aside {
 	display: block;
 	overflow: hidden;
 	background: #3a3633;

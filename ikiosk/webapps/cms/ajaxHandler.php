@@ -41,6 +41,9 @@ if (isset($_GET['ajaxAction'])) {
 		case "blogVersions":
 			$actionFile = "admin-blogVersions.php";
 			break;		
+		case "blogArticles":
+			$actionFile = "admin-blogArticles.php";
+			break;			
 		case "cmsAdmin":
 			$actionFile = "admin-cmsConfig.php";
 			break;		
