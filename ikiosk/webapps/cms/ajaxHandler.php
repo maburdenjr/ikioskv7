@@ -22,6 +22,9 @@ if (empty($_SESSION['user_id'])) {
 // Begin AJAX Action Wrapper ###########################################################################
 if (isset($_GET['ajaxAction'])) {
 	switch($_GET['ajaxAction']) {
+		case "editBlogProperties":
+			$actionFile = "admin-blogProperties.php";
+			break;
 		case "editPageProperties":
 			$actionFile = "admin-pageProperties.php";
 			break;
