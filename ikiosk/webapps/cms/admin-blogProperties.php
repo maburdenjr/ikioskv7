@@ -47,8 +47,8 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
         <label class="label">Auto-Expire?</label>
         <label class="select">
           <select name="auto_expire">
+          <option value="No" <?php if (!(strcmp("No", $row_getRecord['auto_expire']))) {echo "selected=\"selected\"";} ?>>No</option>
             <option value="Yes" <?php if (!(strcmp("Yes", $row_getRecord['auto_expire']))) {echo "selected=\"selected\"";} ?>>Yes</option>
-            <option value="No" <?php if (!(strcmp("No", $row_getRecord['auto_expire']))) {echo "selected=\"selected\"";} ?>>No</option>
           </select>
           <i></i> </label>
       </section>
