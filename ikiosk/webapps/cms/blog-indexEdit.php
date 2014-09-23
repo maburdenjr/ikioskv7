@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title><?php echo $SITE['site_name']; ?> - iKioskCMS Editor</title>
+<title><?php echo $CMS['blog_title']; ?> - iKioskCMS Editor</title>
 <!-- Template Head -->
 <?php v7ContentProcessor($row_getTemplate['header_code']); ?>
 <!-- CMS Editor CSS -->
