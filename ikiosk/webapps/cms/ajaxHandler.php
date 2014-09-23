@@ -153,7 +153,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		}
 		
 		if ($_POST['version'] != 0.00) {
-			$version = $_POST['version'] + 0.05;
+			$version = getLatestVersion("cms_blog_article_versions", "article_id", $_POST['article_id']) + 0.01;
 		} else {
 			$version = $_POST['version'] + 1.00;	
 		}
@@ -265,7 +265,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editTemplate")) {
 		
 		if ($_POST['version'] != 0.00) {
-			$version = $_POST['version'] + 0.05;
+			$version = getLatestVersion("cms_template_versions", "template_id", $_POST['template_id']) + 0.01;
 		} else {
 			$version = $_POST['version'] + 1.00;	
 		}
@@ -570,7 +570,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		sqlQueryLog($updateSQL);
 		
 		if ($_POST['version'] != 0.00) {
-			$version = $_POST['version'] + 0.05;
+				$version = getLatestVersion("cms_page_versions", "page_id", $_POST['page_id']) + 0.01;
 		} else {
 			$version = $_POST['version'] + 1.00;	
 		}
@@ -632,7 +632,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		if ($totalRows_getRecord != 0) {
 			//Update Version
 			if ($row_getRecord['version'] != 0.00) {
-				$version = $row_getRecord['version'] + 0.05;
+				$version = getLatestVersion("cms_blog_article_versions", "article_id", $_POST['article_id']) + 0.01;
 			} else {
 				$version = $row_getRecord['version'] + 1.00;	
 			}
@@ -683,7 +683,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		if ($totalRows_getRecord != 0) {
 			//Update Version
 			if ($row_getRecord['version'] != 0.00) {
-				$version = $row_getRecord['version'] + 0.05;
+				$version = getLatestVersion("cms_page_versions", "page_id", $row_getRecord['page_id']) + 0.01;
 			} else {
 				$version = $row_getRecord['version'] + 1.00;	
 			}

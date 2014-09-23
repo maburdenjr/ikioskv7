@@ -1,6 +1,18 @@
 <?php
 /* IntelliKiosk 7.0 Tiger */
 
+//Version Management
+function getLatestVersion($table, $field, $id) {
+		global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;	
+		
+		mysql_select_db($database_ikiosk, $ikiosk);
+		$query_getRecords = "SELECT * FROM ".$table." WHERE deleted = '0' AND ".$SYSTEM['active_site_filter']." AND ".$field."= '".$id."' ORDER BY version DESC";
+		$getRecords = mysql_query($query_getRecords, $ikiosk) or sqlError(mysql_error());
+		$row_getRecords = mysql_fetch_assoc($getRecords);
+		$totalRows_getRecords = mysql_num_rows($getRecords);
+		
+		return $row_getRecords['version'];
+}
 
 //Publish Blog
 function v7publishBlog($article_version_id) {
