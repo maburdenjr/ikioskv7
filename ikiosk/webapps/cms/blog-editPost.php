@@ -1,7 +1,7 @@
 <?php 
 $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
-$timePosted = timezoneProcess($row_getPage['date_created'], "return");
-$author = getUserData($row_getPage['created_by'], "display_name");
+$timePosted = timezoneProcess($row_getPage['date_modified'], "return");
+$author = getUserData($row_getPage['created_by'], "modified_by");
  ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title><?php echo $CMS['blog_title']; ?> - iKioskCMS Editor</title>
+<title><?php echo $CMS['blog_title']; ?>- iKioskCMS Editor</title>
 <!-- Template Head -->
 <?php v7ContentProcessor($row_getTemplate['header_code']); ?>
 <!-- CMS Editor CSS -->
@@ -22,28 +22,45 @@
 <body>
 <!-- CMS Header -->
 <div id ="iKioskCMSheader" class="ikiosk-cms-editor">
-<?php include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-blog-header.php"); ?>
+  <?php include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-blog-header.php"); ?>
 </div>
+<div id ="iKioskCMSwrapper">
 <!-- Template Header Code -->
 <?php v7ContentProcessor($row_getTemplate['body_header_code']); ?>
- 
+<?php do {
+	$displayPage = 	cmsPublishCheckBlog($row_getPage['article_version_id']);
+	if ($displayPage == "Yes"){	
+	
+	$timePosted = timezoneProcess($row_getPage['date_modified'], "return");
+	$author = getUserData($row_getPage['modified_by'], "display_name");
+?>
+<article id="<?php echo $row_getPage['article_id']; ?>">
+  <header>
+    <h1><a href="/blog/articles/<?php echo $row_getPage['permalink_filename']; ?>"><?php echo $row_getPage['title']; ?></a></h1>
+    <p>Posted on <?php echo $timePosted." by ".$author; ?></p>
+  </header>
+  <section>
+    <?php v7ContentProcessor($row_getPage['content']); ?>
+  </section>
+</article>
+<?php } } while ($row_getPage = mysql_fetch_assoc($getPage)); ?>
 <?php v7ContentProcessor($row_getTemplate['body_footer_code']); ?>
+</div>
 <div id="iKioskCMSmodals">
-<?php if ($SYSTEM['debug'] == "Yes") { include ($systemFileRoot."/ikiosk/webapps/admin/systemDebug.php"); } ?>
+  <?php if ($SYSTEM['debug'] == "Yes") { include ($systemFileRoot."/ikiosk/webapps/admin/systemDebug.php"); } ?>
   <div class="modal fade" id="dynamicModal">
     <div class="modal-dialog">
-      <div class="modal-content">
-      </div>
+      <div class="modal-content"> </div>
     </div>
   </div>
-</div> 
+</div>
 <form id="ikiosk_keys" name="ikiosk_keys" style="display:none;">
-	<input name="site_url" class="site_url" type="hidden" value="<?php echo $SITE['site_url']; ?>">
+  <input name="site_url" class="site_url" type="hidden" value="<?php echo $SITE['site_url']; ?>">
   <input name="current_page" class="current_page" type="hidden" value="<?php echo $SYSTEM['current_page']; ?>">
   <input name="template_id" class="template_id" type="hidden" value="<?php echo $row_getTemplate['template_id']; ?>">
 </form>
- <!-- CMS Editor Scripts --> 
-<script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script>
+<!-- CMS Editor Scripts --> 
+<script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script> 
 <script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script> 
 <script src="<?php echo $assetUrl; ?>js/bootstrap/bootstrap.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/notification/SmartNotification.min.js"></script> 
@@ -56,17 +73,17 @@
 <script src="<?php echo $assetUrl; ?>js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/plugin/msie-fix/jquery.mb.browser.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/plugin/fastclick/fastclick.min.js"></script> 
-<script src="<?php echo $assetUrl; ?>js/plugin/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="<?php echo $assetUrl; ?>js/plugin/datatables/jquery.dataTables.min.js"></script>
-<script src="<?php echo $assetUrl; ?>js/plugin/datatables/dataTables.colVis.min.js"></script>
-<script src="<?php echo $assetUrl; ?>js/plugin/datatables/dataTables.tableTools.min.js"></script>
-<script src="<?php echo $assetUrl; ?>js/plugin/datatables/dataTables.bootstrap.min.js"></script>
-<script src="<?php echo $assetUrl; ?>js/app.min.js"></script>
-<script src="<?php echo $assetUrl; ?>js/freeformatter.js"></script>
-<script src="<?php echo $assetUrl; ?>js/redactor.js"></script>
-<script src="<?php echo $assetUrl; ?>js/tabifier.js"></script>
-<script src="<?php echo $assetUrl; ?>js/plugin/superbox/superbox.cms.js"></script>
-<script src="/cms/iKioskCMS.js"></script>
+<script src="<?php echo $assetUrl; ?>js/plugin/slimscroll/jquery.slimscroll.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/datatables/jquery.dataTables.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/datatables/dataTables.colVis.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/datatables/dataTables.tableTools.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/datatables/dataTables.bootstrap.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/app.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/freeformatter.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/redactor.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/tabifier.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/superbox/superbox.cms.js"></script> 
+<script src="/cms/iKioskCMS.js"></script> 
 <script type="text/javascript">
    pageSetUp();
    iKioskUI();
