@@ -169,6 +169,10 @@ function v7ContentProcessor($content) {
 					$prefix = "template";
 					$activeRecord = $row_getTemplate;
 					break;
+				case "cms_blog_article_versions":
+					$prefix = "article";
+					$activeRecord = $row_getPage;
+					break;	
 				case "sys_sites":
 					$prefix = "site";
 					$activeRecord = $row_getCMS;

@@ -3,12 +3,24 @@ function iKioskUI() {
 	var base_url = $('#ikiosk_keys .site_url').val();
 	resizeEditor();
 	
+	//Custom Accordion 
+	$('.acc-section-trigger:first-child').addClass('accActive');
+	$('.acc-section-trigger:first-child').next().css('display', 'block');
+	
+	$(document).on('click', '.acc-section-trigger', function(e) {
+		e.stopPropagation();
+		$('.accActive').removeClass('accActive');
+		$('.acc-section-content').hide();
+		$(this).addClass('accActive');
+		$(this).next().show();
+	});
+		
 	//MouseOver Highlight
 	$(document).on('mouseover', '#iKioskCMSeditor.cms-layout-editor .ui-droppable', function(e) {
 		e.stopPropagation();
 		$(this).addClass('cms-droppable-hover');
 	});
-	
+		
 	$(document).on('mouseout', '#iKioskCMSeditor.cms-layout-editor .ui-droppable', function(e) {
 		e.stopPropagation();
 		$(this).removeClass('cms-droppable-hover');
@@ -20,6 +32,7 @@ function iKioskUI() {
 		
 	function dragAndDrop() {
 		
+		$('#redactorEditor').addClass('cms-level');	
 		$('#redactorEditor > *').addClass('cms-level level-1');	
 		$('#redactorEditor > * > *').addClass('cms-level level-2');	
 		$('#redactorEditor > * > * > *').addClass('cms-level level-3');	
@@ -33,31 +46,31 @@ function iKioskUI() {
 				var thisWidth = $(ui.item).css('width');
 				var thisFloat = $(ui.item).css('float');
 				var thisHeight = $(ui.item).css('height');
-				$('.cms-placeholder').css('width', thisWidth);
 				$('.cms-placeholder').css('float', thisFloat);
 				if (!$(ui.this).hasClass('.level-1')) {
 						$('.cms-placeholder').css('height', thisHeight);
 				}
-				
-			}
+			},
 		});			
 	
-	 $('#redacorEditor, #redactorEditor .level-1, #redactorEditor .level-2').droppable({
-			accept: ".ui-elements",
+	 $('#redactorEditor, #redactorEditor .level-1, #redactorEditor .level-2').droppable({
+			accept: ".ui-element",
 			greedy: true,
       drop: function( event, ui ) {
-				$(ui.draggable).hide().appendTo(this).fadeIn();
+				var code = $(ui.draggable).data('code');
+				$(code).insertAfter(ui.draggable);
+				$(ui.draggable).remove();
 				dragAndDrop();
 			}
 		});
 		
-		 /*$('#redactorEditor .level-3').draggable({
-			 connectToSortable: ".level-2",
-			 containment: 'parent',
-			 helper: "clone",
+		 $('#layoutElements .ui-element').draggable({
+			 connectToSortable: ".cms-level",
+			 containment: 'window',
+			 helper: 'clone',
 			 revert: "invalid",
-			 zIndex: 4000  
-		}); */
+			 zIndex: 5000  
+			}); 
 	}
 	
 	//CMS Mode 
