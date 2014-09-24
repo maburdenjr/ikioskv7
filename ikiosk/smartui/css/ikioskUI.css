@@ -957,3 +957,7 @@ button.icon-action {
 .modal {
   z-index: 5050;
 }
+
+.ikiosk-cms-editor {
+  font-size: 13px;
+}

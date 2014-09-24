@@ -8,27 +8,28 @@ $col12 = '<div class="row"><div class="col-md-1"></div><div class="col-md-1"></d
 ?>
 
 <div id="layoutElements">
-  <div class="acc-section-trigger"><i class="fa fa-fw fa-columns"></i> Multi-Column Layouts</div>
+	<!-- Grid Layout -->
+  <div class="acc-section-trigger"><i class="fa fa-fw fa-columns"></i> Multi-Column Grid Layouts</div>
   <div class="acc-section-content custom-scroll">
   	<div class="layoutItem ui-element" data-code="<?php echo htmlentities($col2); ?>">
-    	<div class="layoutImage"></div>
+    	<div class="layoutImage"><img src="<?php echo $assetUrl; ?>img/layout/2col.jpg" /></div>
     	<div class="layoutTitle">2 Columns</div>	
     </div>
     <div class="layoutItem ui-element" data-code="<?php echo htmlentities($col3); ?>">
-    	<div class="layoutImage"></div>
+    	<div class="layoutImage"><img src="<?php echo $assetUrl; ?>img/layout/3col.jpg" /></div>
     	<div class="layoutTitle">3 Columns</div>	
     </div>
     <div class="layoutItem ui-element" data-code="<?php echo htmlentities($col4); ?>">
-    	<div class="layoutImage"></div>
+    	<div class="layoutImage"><img src="<?php echo $assetUrl; ?>img/layout/4col.jpg" /></div>
     	<div class="layoutTitle">4 Columns</div>	
     </div>
-    <div class="layoutItem ui-element" data-code="<?php echo htmlentities($col6); ?>">
-    	<div class="layoutImage"></div>
-    	<div class="layoutTitle">6 Columns</div>	
-    </div>
-    <div class="layoutItem ui-element" data-code="<?php echo htmlentities($col12); ?>">
-    	<div class="layoutImage"></div>
-    	<div class="layoutTitle">12 Columns</div>	
-    </div>
   </div>
+  <!-- Carousels -->
+  <div class="acc-section-trigger"><i class="fa fa-fw fa-columns"></i> Carousels</div>
+    <div class="acc-section-content custom-scroll">
+    <div class="layoutItem ui-element" data-code="<?php echo htmlentities($carousel1); ?>">
+    	<div class="layoutImage"><img src="<?php echo $assetUrl; ?>img/layout/carousel1.jpg" /></div>
+    	<div class="layoutTitle">Extended Carousel</div>	
+    </div>
+    </div>
 </div>
