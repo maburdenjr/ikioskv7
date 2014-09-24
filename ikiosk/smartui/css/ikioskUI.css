@@ -592,6 +592,7 @@ button.icon-action {
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .cms-widget #layoutElements .acc-section-content .layoutItem {
   position: relative;
   border: 1px solid #DDD;
+  margin-bottom: 15px;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .cms-widget #layoutElements .acc-section-content .layoutItem .layoutImage {
   max-width: 100%;
@@ -604,7 +605,7 @@ button.icon-action {
   padding: 3px;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .cms-widget #layoutElements .acc-section-content .layoutItem.ui-draggable-dragging {
-  min-width: 200px;
+  width: 200px;
 }
 .ikiosk-editor-active #iKioskCMSwrapper #iKioskCMSInlineEditor .hide-me {
   display: none;
@@ -855,7 +856,7 @@ button.icon-action {
   cursor: move;
 }
 #iKioskCMSeditor #redactorEditor .cms-selected-element {
-  outline: #2c699d dashed 3px;
+  outline: #2c699d dashed 3px !important;
   background-color: rgba(255, 255, 255, 0.25);
 }
 #iKioskCMSeditor #redactorEditor .ui-resizable-handle {

@@ -18,7 +18,6 @@
       <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Image" data-arrow="20" data-cmstooltop="183" data-cmstoolright="245" data-panel="insertImage">
         <span class="btn-label"><i class="fa fw fa-image"></i></span> Photo</a>
       <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Code Snippet" data-arrow="20" data-cmstooltop="183" data-cmstoolright="122" data-panel="codeSnippet"><span class="btn-label"><i class="fa fw fa-code"></i></span> Snippet</a>
-      <a class="btn btn-default btn-labeled half mainBtn btn-expanded cmstooltip" data-panel="columnLayout"  data-arrow="20" data-cmstooltop="185" data-cmstoolright="245" ><span class="btn-label"><i class="fa fw fa-columns"></i></span> Multi-Column Layout</a>
     </div>
     <div id="cms-editElement" class="cms-widget hide-me">
       <p class="cms-widget-title">Edit Element</p>

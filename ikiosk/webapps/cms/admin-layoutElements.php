@@ -14,5 +14,21 @@ $col12 = '<div class="row"><div class="col-md-1"></div><div class="col-md-1"></d
     	<div class="layoutImage"></div>
     	<div class="layoutTitle">2 Columns</div>	
     </div>
+    <div class="layoutItem ui-element" data-code="<?php echo htmlentities($col3); ?>">
+    	<div class="layoutImage"></div>
+    	<div class="layoutTitle">3 Columns</div>	
+    </div>
+    <div class="layoutItem ui-element" data-code="<?php echo htmlentities($col4); ?>">
+    	<div class="layoutImage"></div>
+    	<div class="layoutTitle">4 Columns</div>	
+    </div>
+    <div class="layoutItem ui-element" data-code="<?php echo htmlentities($col6); ?>">
+    	<div class="layoutImage"></div>
+    	<div class="layoutTitle">6 Columns</div>	
+    </div>
+    <div class="layoutItem ui-element" data-code="<?php echo htmlentities($col12); ?>">
+    	<div class="layoutImage"></div>
+    	<div class="layoutTitle">12 Columns</div>	
+    </div>
   </div>
 </div>

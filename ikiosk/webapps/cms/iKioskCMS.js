@@ -2,7 +2,6 @@
 function iKioskUI() {
 	var base_url = $('#ikiosk_keys .site_url').val();
 	resizeEditor();
-	
 	//Custom Accordion 
 	$('.acc-section-trigger:first-child').addClass('accActive');
 	$('.acc-section-trigger:first-child').next().css('display', 'block');
@@ -46,6 +45,8 @@ function iKioskUI() {
 				var thisWidth = $(ui.item).css('width');
 				var thisFloat = $(ui.item).css('float');
 				var thisHeight = $(ui.item).css('height');
+				$(ui.helper).css('width', '200px');
+				$(ui.helper).css('height', '100px');
 				$('.cms-placeholder').css('float', thisFloat);
 				if (!$(ui.this).hasClass('.level-1')) {
 						$('.cms-placeholder').css('height', thisHeight);
@@ -97,6 +98,7 @@ function iKioskUI() {
 			$('#iKioskCMSeditor').addClass('cms-layout-editor');
 			$("#iKioskCMSeditor .ui-resizable").resizable('destroy');
 			$("#iKioskCMSeditor .ui-draggable").draggable('destroy');
+			$('.cms-selected-element').removeClass('cms-selected-element');
 			dragAndDrop();	
 		}
 	});
@@ -588,6 +590,8 @@ function iKioskUI() {
 			fixed:false,
 			imageUpload: base_url+'/cms/ajaxHandler.php?option=uploadPhoto',
 		});
+			$('.toggleGrid').click();
+
 	}
 	
 	var original_html = $('#iKioskCMS-editContent #redactorEditor').html();
