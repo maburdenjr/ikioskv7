@@ -43,7 +43,7 @@ $softwareList = explode("[iKiosk]", $softwareList);
               <tbody>
               <?php foreach ($softwareList as $key => $value) { 
 										$softwareDetail = explode("|", $value);
-										if (!empty($softwareDetail[2])) {
+										if (!empty($softwareDetail[2]) && ($softwareDetail[6] !="CMS Template")) {
 										?>
                <tr>
               		 <td><?php echo $softwareDetail[1]; ?></td>

@@ -22,6 +22,9 @@ if (empty($_SESSION['user_id'])) {
 // Begin AJAX Action Wrapper ###########################################################################
 if (isset($_GET['ajaxAction'])) {
 	switch($_GET['ajaxAction']) {
+		case "processTemplate":
+			$actionFile = "admin-processTemplate.php";
+			break;
 		case "editBlogProperties":
 			$actionFile = "admin-blogProperties.php";
 			break;
@@ -63,6 +66,9 @@ if (isset($_GET['ajaxAction'])) {
 			
 		case "templates":
 			$actionFile = "admin-templates.php";
+			break;	
+		case "downloadTemplate":
+			$actionFile = "admin-downloadTemplate.php";
 			break;		
 		case "cmsSettings":
 			$actionFile = "admin-cmsSettings.php";

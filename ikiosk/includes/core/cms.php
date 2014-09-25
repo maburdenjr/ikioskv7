@@ -220,6 +220,7 @@ function v7InitSite($site_id) {
 					createDIR($rootFolder."/blog/articles");
 					createDIR($rootFolder."/static");
 					createDIR($rootFolder."/cms");
+					createDIR($rootFolder."/templates");
 					createDIR($rootFolder."/static/resources");
 					createDIR($rootFolder."/static/resources/userfiles");
 					createDIR($rootFolder."/static/resources/userphotos");
@@ -3063,7 +3064,7 @@ function directoryToArray($directory, $recursive) {
   		while (false !== ($file = readdir($handle))) {
   			if ($file != "." && $file != "..") {
  				if (is_dir($directory. "/" . $file)) {
-					if ($file != "_notes" && $file != "fckeditor" && $file != "dir_browser" && $file != "phpmyadmin" && $file != "logs" && $file != ".svn" && $file != "backups" && $file != "system"  && $file != "sites" && $file != ".git"  && $file != "ishare"  && $file != "static"  && $file != "blog"&& $file != "library") {
+					if ($file != "_notes" && $file != "fckeditor" && $file != "dir_browser" && $file != "phpmyadmin" && $file != "logs" && $file != ".svn" && $file != "backups" && $file != "api"  && $file != "software_apps" && $file != "sql"  && $file != ".idea"  && $file != ".sass-cache" && $file != "sites" && $file != ".git"  && $file != "ishare"  && $file != "static"  && $file != "blog"&& $file != "library") {
 						$array_items = array_merge($array_items, directoryToArray($directory. "/" . $file, $recursive));
 						$file = $directory . "/" . $file;
 						$array_items[] = preg_replace("/\/\//si", "/", $file);

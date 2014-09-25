@@ -79,7 +79,7 @@ $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
 <script src="<?php echo $assetUrl; ?>js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/plugin/msie-fix/jquery.mb.browser.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/plugin/fastclick/fastclick.min.js"></script> 
-<script src="<?php echo $assetUrl; ?>js/app.min.js"></script>
+<script src="<?php echo $assetUrl; ?>js/app.cms.min.js"></script>
 <script src="/cms/iKioskCMS.js"></script>
 <script type="text/javascript">
    pageSetUp();

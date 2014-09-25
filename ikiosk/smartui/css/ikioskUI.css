@@ -959,5 +959,5 @@ button.icon-action {
 }
 
 .ikiosk-cms-editor {
-  font-size: 13px;
+  font-size: 13px !important;
 }

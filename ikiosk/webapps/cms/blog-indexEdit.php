@@ -78,7 +78,7 @@
 <script src="<?php echo $assetUrl; ?>js/plugin/datatables/dataTables.colVis.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/plugin/datatables/dataTables.tableTools.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/plugin/datatables/dataTables.bootstrap.min.js"></script> 
-<script src="<?php echo $assetUrl; ?>js/app.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/app.cms.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/freeformatter.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/redactor.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/tabifier.js"></script> 

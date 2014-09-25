@@ -2,6 +2,32 @@
 function iKioskUI() {
 	var base_url = $('#ikiosk_keys .site_url').val();
 	resizeEditor();
+	
+	//Custom Actions
+	$(document).on('click', '.icon-action', function(){
+			event.stopPropagation();
+			var iconAction = $(this).data('type');
+			var code = $(this).data("code");
+			var record = $(this).data("record");
+			var file = $(this).data('file');
+
+				progressBar();
+				$.ajax({
+							url: "/cms/ajaxHandler.php",	
+							data: {appCode: code, ajaxAction: iconAction, recordID: record, file: file},
+							timeout: 600000,
+							error: function(data) {
+									var error="<div class='alert alert-danger fade in'><a class='close' data-dismiss='alert' href='#'>×</a> An unknown error has occurred.  Please try again.</div>";
+									$('.system-message').html(error).fadeIn('slow');
+							},
+							success: function(data) {
+									$('.system-message').html(data).fadeIn('slow');
+	
+							}
+					});
+	}); // End Custom Actions
+	
+	
 	//Custom Accordion 
 	$('.acc-section-trigger:first-child').addClass('accActive');
 	$('.acc-section-trigger:first-child').next().css('display', 'block');

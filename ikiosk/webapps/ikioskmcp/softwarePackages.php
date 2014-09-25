@@ -70,6 +70,7 @@
                   <option value="Full Version">Full Version</option>
                   <option value="Patch">Patch</option>
                   <option value="Upgrade">Upgrade</option>
+                  <option value="CMS Template">CMS Template</option>
                 </select>
                 <i></i> </label>
             </section>
@@ -287,6 +288,7 @@
                         <option value="Full Version" <?php if (!(strcmp("Full Version", $row_getRecord['software_type']))) {echo "selected=\"selected\"";} ?>>Full Version</option>
                         <option value="Patch" <?php if (!(strcmp("Patch", $row_getRecord['software_type']))) {echo "selected=\"selected\"";} ?>>Patch</option>
                         <option value="Upgrade" <?php if (!(strcmp("Upgrade", $row_getRecord['software_type']))) {echo "selected=\"selected\"";} ?>>Upgrade</option>
+                        <option value="CMS Template" <?php if (!(strcmp("CMS Template", $row_getRecord['software_type']))) {echo "selected=\"selected\"";} ?>>CMS Template</option>
                       </select>
                       <i></i> </label>
                   </section>
