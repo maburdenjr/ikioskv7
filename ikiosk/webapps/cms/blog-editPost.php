@@ -10,6 +10,8 @@ $author = getUserData($row_getPage['created_by'], "modified_by");
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title><?php echo $CMS['blog_title']; ?>- iKioskCMS Editor</title>
+<script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script> 
+<script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script> 
 <!-- Template Head -->
 <?php v7ContentProcessor($row_getTemplate['header_code']); ?>
 <!-- CMS Editor CSS -->
@@ -66,8 +68,6 @@ $author = getUserData($row_getPage['created_by'], "modified_by");
   <input name="template_id" class="template_id" type="hidden" value="<?php echo $row_getTemplate['template_id']; ?>">
 </form>
 <!-- CMS Editor Scripts --> 
-<script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script> 
-<script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script> 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/notification/SmartNotification.min.js"></script> 
 <script src="<?php echo $assetUrl; ?>js/smartwidgets/jarvis.widget.min.js"></script> 
