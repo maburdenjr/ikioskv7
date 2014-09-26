@@ -24,12 +24,4 @@ $col12 = '<div class="row"><div class="col-md-1"></div><div class="col-md-1"></d
     	<div class="layoutTitle">4 Columns</div>	
     </div>
   </div>
-  <!-- Carousels -->
-  <div class="acc-section-trigger"><i class="fa fa-fw fa-columns"></i> Carousels</div>
-    <div class="acc-section-content custom-scroll">
-    <div class="layoutItem ui-element" data-code="<?php echo htmlentities($carousel1); ?>">
-    	<div class="layoutImage"><img src="<?php echo $assetUrl; ?>img/layout/carousel1.jpg" /></div>
-    	<div class="layoutTitle">Extended Carousel</div>	
-    </div>
-    </div>
 </div>

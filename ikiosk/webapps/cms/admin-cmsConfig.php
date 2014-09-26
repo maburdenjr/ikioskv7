@@ -3,7 +3,7 @@
   <div id ="dynModalMenu">
     <ul>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=blogArticles&appCode=CMS" class="modalDynLink"><i class="fa fa-file-text-o"></i> Blog Articles</a></li>
-      <li><a href="/cms/ajaxHandler.php?ajaxAction=contentPages&appCode=CMS" class="modalDynLink"><i class="fa fa-file-text-o"></i> Content Pages</a></li>
+      <li><a href="/cms/ajaxHandler.php?ajaxAction=contentPages&appCode=CMS" class="modalDynLink default"><i class="fa fa-file-text-o"></i> Content Pages</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=codeSnippets&appCode=CMS" class="modalDynLink"><i class="fa fa-file-code-o"></i> Code Snippets</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=fileManager&appCode=CMS" class="modalDynLink"><i class="fa fa-folder"></i> File Manager</a></li>
       <li><a href="/cms/ajaxHandler.php?ajaxAction=photoGallery&appCode=CMS" class="modalDynLink"><i class="fa fa-file-image-o"></i> Photos</a></li>
@@ -15,7 +15,9 @@
     <div class="modal-header">
       <h4 class="modal-title">iKioskCMS</h4>
     </div>
-    <div class="modal-body"> </div>
+    <div class="modal-body">
+    
+    </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
     </div>
