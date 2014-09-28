@@ -236,11 +236,11 @@ function contentEdit() {
 
 function layoutEdit() {
 	$('.redactor_toolbar').hide();
+	$('#layoutWidget').show();
 	$('#iKioskCMSeditor').addClass('cms-layout-editor');
 	$("#iKioskCMSeditor .ui-resizable").resizable('destroy');
 	$("#iKioskCMSeditor .ui-draggable").draggable('destroy');
 	$('.cms-selected-element').removeClass('cms-selected-element');
-	$('#layoutWidget').show();
 	dragAndDrop();
 }
 

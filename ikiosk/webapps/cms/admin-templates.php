@@ -40,7 +40,7 @@ $totalRows_listView = mysql_num_rows($listView);
 </div>
 <script type="text/javascript">
 		var listView = $('#dt-templates').dataTable();
-		   $('.dataTables_length').before('<a href="/cms/ajaxHandler.php?ajaxAction=templates&appCode=CMS&action=create" class="btn btn-primary btn-toggle btn-add modalDynLink""><i class="fa fa-plus"></i> New <span class="hidden-mobile"> Template</span></a>');
+		   $('.dataTables_length').before('<a href="/cms/ajaxHandler.php?ajaxAction=templates&appCode=CMS&action=create" class="btn btn-primary btn-toggle btn-add modalDynLink""><i class="fa fa-plus"></i> New <span class="hidden-mobile"> Template</span></a> <a href="/cms/ajaxHandler.php?ajaxAction=downloadTemplate&appCode=CMS" class="btn btn-default btn-toggle btn-add modalDynLink""><i class="fa fa-cloud-download"></i> Download <span class="hidden-mobile"> Template</span></a>');
 	
 </script>
 <?php } ?>
