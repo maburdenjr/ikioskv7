@@ -33,12 +33,6 @@
     	<p class="cms-widget-title">Layout Controls</p>
       <p>Rearrage elements by dragging them into the desired position.</p>
     </div>
-    <div id="layoutElements" class="cms-widget">
-    	<p class="cms-widget-title">Layout Elements</p>
-      <p>Add elements to your page by dragging them onto the canvas.</p>
-      <?php include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-layoutElements.php");
- ?>
-    </div>
   </div>
   <div id="cms-widget-popover">
     <i class="fa fa-times cmstooltip-close"></i>

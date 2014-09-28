@@ -1,7 +1,4 @@
-<?php 
-	$assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/"; 
-	if($_GET['mode'] != "edit") {
-?>
+<?php $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +8,8 @@
 <title><?php v7ContentProcessor("page:title"); ?> - iKioskCMS Editor</title>
 <script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script>
 <script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script> 
+<!-- Template Head -->
+<?php v7ContentProcessor($row_getTemplate['header_code']); ?>
 <!-- CMS Editor CSS -->
 <link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
@@ -22,14 +21,22 @@
 <link rel="icon" href="<?php echo $assetUrl; ?>img/favicon/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 </head>
-<body>
+<body<?php if (!empty($row_getPage['content_id'])) { echo " id=\"".v7ContentProcessor("page:content_id")."\"";} ?>>
 <!-- CMS Header -->
 <div id ="iKioskCMSheader" class="ikiosk-cms-editor">
 <?php include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-header.php"); ?>
 </div>
 <div id ="iKioskCMSwrapper">
 	<div id="iKioskCMSContent">
-  	<iframe id="editorFrame" src="<?php echo $row_getPage['static_folder'].$row_getPage['static_file']; ?>?mode=edit"></iframe>     
+    <!-- Template Header Code -->
+    <?php v7ContentProcessor($row_getTemplate['body_header_code']); ?>
+    <!-- Page Display -->
+    <div id = "iKioskCMSdisplay">
+    <?php v7ContentProcessor($row_getPage['content']); ?>
+    </div>
+    <?php include($systemFileRoot."/ikiosk/webapps/cms/admin-editor.php"); ?>
+    <!-- Template Footer Code -->
+    <?php v7ContentProcessor($row_getTemplate['body_footer_code']); ?>
   </div>
   <div id="iKioskCMSInlineEditor" class="ikiosk-cms-editor">
   	<?php include ($systemFileRoot."/ikiosk/webapps/cms/admin-cmsEditPanel.php"); ?>
@@ -78,4 +85,3 @@
 </script>
 </body>
 </html>
-<?php } else { 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/editPageSnippet.php");	 } ?>

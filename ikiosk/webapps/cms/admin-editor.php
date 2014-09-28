@@ -11,4 +11,11 @@
   <input type="hidden" name="iKioskForm" value="Yes" />
   <input type="hidden" name="appCode" value="CMS" />
  </form>
+ 
+   <div id="layoutWidget" class="cms-widget">
+    <p class="cms-widget-title">Layout Elements<span style="font-size: 10px; line-height:100%; display:block; margin-top:5px;">Add elements to your page by dragging them onto the canvas.</span></p>
+    
+    <?php include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-layoutElements.php");
+  ?>
+  </div>
 </div>

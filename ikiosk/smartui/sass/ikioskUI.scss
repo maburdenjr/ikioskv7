@@ -65,7 +65,7 @@
 
 #iKioskCMSwrapper {
 	position:relative;
-	margin-top:51px;
+	margin-top:48px;
 }
 
 #systemDebug {
@@ -104,7 +104,7 @@
 				outline: 1px dotted #DDD;
 			}
 			.cms-element-hover {
-				outline: #2c699d solid 1px;
+				outline: #2c699d dashed 1px;
 			}
 		}
 		.ui-sortable {
@@ -580,6 +580,12 @@ button.icon-action {
 	#iKioskCMSContent {
 		position: relative;
 		overflow: hidden;
+		
+		#editorFrame {
+			border: none;
+			width: 100%;
+		
+		}
 	}
 	#iKioskCMSInlineEditor {
 		position: relative;
@@ -920,10 +926,70 @@ button.icon-action {
 }
 
 #iKioskCMSeditor {
+	position:relative;
 	.ikiosk-cmsSnippet {
 		display: inline-block;
 		background-color: rgba(50,118,177,0.22);
 		padding:5px;
+	}
+	
+	#layoutWidget  {
+		position: fixed;
+		top:5px;
+		right:15px;
+		font-size: 11px;
+		border: 1px solid #DDD;
+		margin-top:20px;
+		border-bottom: none;
+		display: none;
+		background-color: #fff;
+		border: 1px solid rgba(0,0,0,.2);
+		box-shadow: 0 3px 9px rgba(0,0,0,.5);
+		width: 240px;
+		font-family: 'Arial';
+		.cms-widget-title {
+			background-color: #000;
+			color: #FFF;
+			font-size: 13px;
+			padding: 10px;
+			border-bottom: 1px solid #e5e5e5;
+			margin: 0px;
+		}
+		.acc-section-trigger {
+			cursor: pointer;
+			padding:10px;
+			border-bottom: 1px solid #DDD;
+			background-color:#FBFBF8;
+			&.accActive {
+				font-weight: bold;
+			}
+		}
+		.acc-section-content {
+			display: none;
+			max-height:250px;
+			overflow-y:scroll;
+			background-color:#FFF;
+			padding: 8px;
+			border-bottom: 1px solid #EEE;
+			.layoutItem {
+				position:relative;
+				border: 1px solid #DDD;
+				margin-bottom:15px;
+				.layoutImage {
+					max-width: 100%;
+					min-height:100px;
+				}
+				.layoutTitle {
+						color: #ccc;
+						text-align:center;
+						background-color: #666;
+						padding:3px;
+				}
+				&.ui-draggable-dragging {
+						width:200px;
+				}
+			}
+		}
 	}
 	#redactorEditor {
 		.cms-element-hover {

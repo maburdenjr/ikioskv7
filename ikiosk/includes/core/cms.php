@@ -353,7 +353,7 @@ function v7InitSite($site_id) {
 			fclose($fh);
 						
 			//Copy CMS Admin Files
-			$cmsAdmin = array("editPage.php", "displayPage.php", "index.php", "login.php", "iKioskCMS.js", "logout.php");
+			$cmsAdmin = array("editPage.php", "displayPage.php", "index.php", "login.php", "iKioskCMS.js", "iKioskCMSEditMode.js", "logout.php");
 			foreach ($cmsAdmin as $key => $value) {
 					$fileContent = 	urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/".$value);
 					$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
