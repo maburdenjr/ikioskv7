@@ -8,8 +8,6 @@
 <title><?php echo $CMS['blog_title']; ?>- iKioskCMS Editor</title>
 <script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script> 
 <script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script> 
-<!-- Template Head -->
-<?php v7ContentProcessor($row_getTemplate['header_code']); ?>
 <!-- CMS Editor CSS -->
 <link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
@@ -27,26 +25,9 @@
   <?php include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-blog-header.php"); ?>
 </div>
 <div id ="iKioskCMSwrapper">
-<!-- Template Header Code -->
-<?php v7ContentProcessor($row_getTemplate['body_header_code']); ?>
-<?php do {
-	$displayPage = 	cmsPublishCheckBlog($row_getPage['article_version_id']);
-	if ($displayPage == "Yes"){	
-	
-	$timePosted = timezoneProcess($row_getPage['date_modified'], "return");
-	$author = getUserData($row_getPage['modified_by'], "display_name");
-?>
-<article id="<?php echo $row_getPage['article_id']; ?>">
-  <header>
-    <h1><a href="/blog/articles/<?php echo $row_getPage['permalink_filename']; ?>"><?php echo $row_getPage['title']; ?></a></h1>
-    <p>Posted on <?php echo $timePosted." by ".$author; ?></p>
-  </header>
-  <section>
-    <?php v7ContentProcessor($row_getPage['content']); ?>
-  </section>
-</article>
-<?php } } while ($row_getPage = mysql_fetch_assoc($getPage)); ?>
-<?php v7ContentProcessor($row_getTemplate['body_footer_code']); ?>
+	<div id="iKioskCMSContent">
+  	<iframe id="editorFrame" src="<?php echo $SITE['site_url']; ?>/blog/index.php?editor=off"></iframe>   
+  </div>
 </div>
 <div id="iKioskCMSmodals">
   <?php if ($SYSTEM['debug'] == "Yes") { include ($systemFileRoot."/ikiosk/webapps/admin/systemDebug.php"); } ?>

@@ -2,6 +2,7 @@
 $assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
 $timePosted = timezoneProcess($row_getPage['date_modified'], "return");
 $author = getUserData($row_getPage['created_by'], "modified_by");
+if($_GET['mode'] != "edit") {
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +13,6 @@ $author = getUserData($row_getPage['created_by'], "modified_by");
 <title><?php echo $CMS['blog_title']; ?>- iKioskCMS Editor</title>
 <script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script> 
 <script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script> 
-<!-- Template Head -->
-<?php v7ContentProcessor($row_getTemplate['header_code']); ?>
 <!-- CMS Editor CSS -->
 <link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
@@ -31,24 +30,8 @@ $author = getUserData($row_getPage['created_by'], "modified_by");
   <?php include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-blog-header.php"); ?>
 </div>
 <div id ="iKioskCMSwrapper">
-  <div id="iKioskCMSContent"> 
-    <!-- Template Header Code -->
-    <?php v7ContentProcessor($row_getTemplate['body_header_code']); ?>
-    <div id = "iKioskCMSdisplay">
-      <article id="<?php echo $row_getPage['article_id']; ?>">
-        <header>
-          <h1><?php echo $row_getPage['title']; ?></h1>
-          <p>Posted on <?php echo $timePosted." by ".$author; ?></p>
-        </header>
-        <section>
-          <?php v7ContentProcessor($row_getPage['content']); ?>
-        </section>
-      </article>
-    </div>
-
-        <?php include($systemFileRoot."/ikiosk/webapps/cms/admin-editor-blog.php"); ?>
-
-    <?php v7ContentProcessor($row_getTemplate['body_footer_code']); ?>
+  <div id="iKioskCMSContent">
+  	<iframe id="editorFrame" src="/blog/articles/<?php echo $row_getPage['permalink_filename'];?>?mode=edit"></iframe>     
   </div>
   <div id="iKioskCMSInlineEditor" class="ikiosk-cms-editor">
     <?php include ($systemFileRoot."/ikiosk/webapps/cms/admin-cmsEditPanel.php"); ?>
@@ -95,3 +78,4 @@ $author = getUserData($row_getPage['created_by'], "modified_by");
    iKioskUI();
 </script>
 </body>
+<?php } else { 	include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/editBlogSnippet.php");	 } ?>

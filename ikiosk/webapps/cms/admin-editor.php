@@ -13,7 +13,7 @@
  </form>
  
    <div id="layoutWidget" class="cms-widget">
-    <p class="cms-widget-title">Layout Elements<span style="font-size: 10px; line-height:100%; display:block; margin-top:5px;">Add elements to your page by dragging them onto the canvas.</span></p>
+    <p class="cms-widget-title">Layout Elements<span style="font-size: 11px; line-height:100%; display:block; margin-top:5px; color: #CCC;">Add elements to your page by dragging them onto the canvas.</span></p>
     
     <?php include($SYSTEM['ikiosk_filesystem_root']."/ikiosk/webapps/cms/admin-layoutElements.php");
   ?>

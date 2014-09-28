@@ -194,8 +194,8 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		$Result1 = mysql_query($insertSQL, $ikiosk) or sqlError(mysql_error());
 		sqlQueryLog($insertSQL);	
 		v7publishBlog($articleVersionID);
-		$js = "window.location=\"/blog/articles/".$blogFile."?mode=draft&version_id=".$articleVersionID."\"\r\n";
-		insertJS($hideModal.$js);
+		$js = "window.location=\"/blog/articles/".$blogFile."?mode=draft&version_id=".$articleVersionID."\";\r\n";
+		insertJS($js);
 		exit;
 		
 	}
@@ -263,8 +263,8 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		sqlQueryLog($insertSQL);	
 		v7publishBlog($articleVersionID);	
 		
-		$js = "window.location=\"/blog/articles/".$blogFile."?mode=draft&version_id=".$articleVersionID."\"\r\n";
-		insertJS($hideModal.$js);
+		$js = "window.location=\"/blog/articles/".$blogFile."?mode=draft&version_id=".$articleVersionID."\";\r\n";
+		insertJS($js);
 		exit;
 
 	}
@@ -547,8 +547,8 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		sqlQueryLog($insertSQL);
 		
 		v7publishPage($pageID);
-		$js = "window.location=\"".$_POST['static_folder'].$_POST['static_file']."\"\r\n";
-		insertJS($hideModal.$js);
+		$js = "window.location=\"".$_POST['static_folder'].$_POST['static_file']."\";\r\n";
+		insertJS($js);
 		exit;
 		
 	}
@@ -623,8 +623,8 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 				sqlQueryLog($insertSQL);
 				
 				v7publishPage($_POST['page_id']);	
-				$js = "window.location=\"".$_POST['static_folder'].$_POST['static_file']."\"\r\n";
-				insertJS($hideModal.$js);
+				$js = "window.location=\"".$_POST['static_folder'].$_POST['static_file']."\";\r\n";
+				insertJS($js);
 				exit;
 	}
 	
@@ -641,7 +641,7 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		if ($totalRows_getRecord != 0) {
 			//Update Version
 			if ($row_getRecord['version'] != 0.00) {
-				$version = getLatestVersion("cms_blog_article_versions", "article_id", $_POST['article_id']) + 0.01;
+				$version = getLatestVersion("cms_blog_article_versions", "article_id", $row_getRecord['article_id']) + 0.01;
 			} else {
 				$version = $row_getRecord['version'] + 1.00;	
 			}
@@ -670,8 +670,8 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 		sqlQueryLog($insertSQL);	
 		v7publishBlog($articleVersionID);	
 		
-		$js = "window.location=\"/blog/articles/".$row_getRecord['permalink_filename']."?mode=draft&version_id=".$articleVersionID."\"\r\n";
-		insertJS($hideModal.$js);
+		$js = "window.top.location.href=\"/blog/articles/".$row_getRecord['permalink_filename']."?mode=draft&version_id=".$articleVersionID."\";\r\n";
+		insertJS($js);
 		exit;
 			
 		}

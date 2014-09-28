@@ -1,3 +1,4 @@
+<script type="text/javascript">if (top !== self) top.location.replace(self.location.href);</script>
 <header id="header">
   <div id="logo-group" class="hidden-mobile"> <span><?php echo $SITE['site_name']; ?></span> </div>
   <div class="pull-left">

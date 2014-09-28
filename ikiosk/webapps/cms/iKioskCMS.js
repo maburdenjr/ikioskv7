@@ -205,6 +205,7 @@ function iKioskUI() {
 			this.style.height =
 			this.contentWindow.document.body.offsetHeight + 'px';
 			$(this).css('min-height', winHeight);
+			$('#editorFrame').contents().find('a').attr('target', '_top');
 	});
 		
 	//Smart Actions
