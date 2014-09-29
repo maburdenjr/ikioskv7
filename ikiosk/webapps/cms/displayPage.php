@@ -16,7 +16,9 @@ if ((empty($_GET['page'])) && (!empty($row_getPage['expiration_date'])) && ($row
 ?>
 <?php if ($displayPage == "Yes") { ?>
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

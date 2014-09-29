@@ -4,7 +4,9 @@ $timePosted = timezoneProcess($row_getPage['date_created'], "return");
 $author = getUserData($row_getPage['created_by'], "display_name");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]--> 
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

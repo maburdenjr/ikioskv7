@@ -28,7 +28,7 @@ $totalRows_listView = mysql_num_rows($listView);
         <td><a href="/cms/ajaxHandler.php?ajaxAction=codeSnippets&appCode=CMS&action=edit&recordID=<?php echo $row_listView['page_element_id']; ?>" class="modalDynLink"><?php echo $row_listView['title']; ?></a></td>
         <td><?php echo $row_listView['status']; ?></td>
         <td><?php timezoneProcess($row_listView['date_modified'], "print"); ?></td>
-        <td class="icon"><a class="delete-record" data-table="cms_page_elements" data-record="<?php echo $row_listView['page_element_id']; ?>" data-code="CMS" data-field="page_id"><i class="fa fa-trash-o"></i></a></td>
+        <td class="icon"><a class="delete-record" data-table="cms_page_elements" data-record="<?php echo $row_listView['page_element_id']; ?>" data-code="CMS" data-field="page_element_id"><i class="fa fa-trash-o"></i></a></td>
         <?php } while ($row_listView = mysql_fetch_assoc($listView)); } ?>
     </tbody>
   </table>

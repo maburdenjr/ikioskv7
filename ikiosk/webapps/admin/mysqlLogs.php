@@ -75,7 +75,7 @@ foreach ($accessLogData  as $key => $value) {
             <td><a href="index.php?action=edit&recordID=<?php echo $accessLogRow[7]; ?>#webapps/admin/users.php" class="ajaxLink"><?php echo $userName; ?></a></td>
             <td><?php echo $accessLogRow[3]; ?></td>
             <td><a href="index.php?action=edit&recordID=<?php echo trim($accessLogRow[0]); ?>#webapps/admin/sites.php" class="ajaxLink"><?php echo $siteName; ?></a></td>
-            <td><a href="index.php?action=edit&recordID=<?php echo $applicationID; ?>#webapps/admin/applications.php" class="ajaxLink"><?php echo $applicationName; ?></a><br><?php echo $accessLogRow[4]; ?><br><br><?php echo $accessLogRow[5]; ?></td>
+            <td><a href="index.php?action=edit&recordID=<?php echo $applicationID; ?>#webapps/admin/applications.php" class="ajaxLink"><?php echo $applicationName; ?></a><br><?php echo $accessLogRow[4]; ?><br><br><?php echo htmlentities($accessLogRow[5]); ?></td>
         </tr>
 <?php } } ?>
 	</tbody>
