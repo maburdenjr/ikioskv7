@@ -17,7 +17,7 @@ var Index = function () {
 			        responsive : true,
 			        responsiveUnder : 960,
 			        layersContainer : 960,
-			        skinsPath: 'assets/plugins/layer-slider/layerslider/skins/'
+			        skinsPath: '/templates/unify/assets/plugins/layer-slider/layerslider/skins/'
 			    });
 		    });     
         },

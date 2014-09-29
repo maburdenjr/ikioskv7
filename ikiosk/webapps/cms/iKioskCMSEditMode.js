@@ -257,6 +257,16 @@ function validateForms() {
 }
 
 function submitForms() {
+	$('#redactorEditor .cms-level').removeClass('cms-level');
+	$('#redactorEditor .level-1').removeClass('level-1');
+	$('#redactorEditor .level-2').removeClass('level-2');
+	$('#redactorEditor .level-3').removeClass('level-3');
+	$('#redactorEditor .ui-sortable').removeClass('ui-sortable');
+	$('#redactorEditor .ui-draggable').removeClass('ui-draggable');
+	$('#redactorEditor .ui-droppable').removeClass('ui-droppable');
+	$('#redactorEditor .ui-resizable').removeClass('ui-resizable')
+	$('#redactorEditor .ui-sortable-handle').removeClass('ui-sortable-handle');
+	
 	$('.redactor-editor').data('redactor').toggle();
 	if ($('#iKioskCMS-editContent').length) {
 		$('#iKioskCMS-editContent').submit();

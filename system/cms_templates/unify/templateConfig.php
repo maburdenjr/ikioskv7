@@ -26,17 +26,30 @@ $templates[0]['header_code'] = '
     <link rel="stylesheet" href="/templates/unify/assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/templates/unify/assets/css/style.css">
 
-    <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="/templates/unify/assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="/templates/unify/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/templates/unify/assets/plugins/flexslider/flexslider.css">  
-    <link rel="stylesheet" href="/templates/unify/assets/plugins/parallax-slider/css/parallax-slider.css">
-
     <!-- CSS Theme -->    
     <link rel="stylesheet" href="/templates/unify/assets/css/themes/default.css" id="style_color">
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="/templates/unify/assets/css/custom.css">
+		
+	<!-- JS Global Compulsory -->			
+	<script> if (!window.jQuery) { document.write(\'<script src="/templates/unify/assets/plugins/jquery-2.0.2.min.js"><\/script>\');} </script>
+	<script type="text/javascript" src="/templates/unify/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="/templates/unify/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="/templates/unify/assets/plugins/back-to-top.js"></script>
+	<!-- JS Page Level -->           
+	<script type="text/javascript" src="/templates/unify/assets/js/app.js"></script>
+	<script type="text/javascript" src="/templates/unify/assets/js/pages/index.js"></script>
+	<script type="text/javascript">
+			jQuery(document).ready(function() {
+					App.init();   
+			});
+	</script>
+	<!--[if lt IE 9]>
+			<script src="/templates/unify/assets/js/respond.js"></script>
+			<script src="/templates/unify/assets/plugins/html5shiv.js"></script>    
+	<![endif]-->
 ';
 $templates[0]['body_header_code'] = '
 <span class="ikiosk-cmsSnippet">snippet:template-unify-style-switcher</span>
@@ -53,30 +66,6 @@ $templates[0]['body_footer_code'] = '
 		<span class="ikiosk-cmsSnippet">snippet:template-unify-copyright</span>
 
 </div><!--/wrapper-->
-
-<!-- JS Global Compulsory -->			
-<script> if (!window.jQuery) { document.write(\'<script src="templates/unify/assets/plugins/jquery-2.0.2.min.js"><\/script>\');} </script>
-<script type="text/javascript" src="/templates/unify/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="/templates/unify/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- JS Implementing Plugins -->
-<script type="text/javascript" src="/templates/unify/assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="/templates/unify/assets/plugins/flexslider/jquery.flexslider-min.js"></script>
-<script type="text/javascript" src="/templates/unify/assets/plugins/parallax-slider/js/modernizr.js"></script>
-<script type="text/javascript" src="/templates/unify/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
-<!-- JS Page Level -->           
-<script type="text/javascript" src="/templates/unify/assets/js/app.js"></script>
-<script type="text/javascript" src="/templates/unify/assets/js/pages/index.js"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-      	App.init();
-        App.initSliders();
-        Index.initParallaxSlider();        
-    });
-</script>
-<!--[if lt IE 9]>
-    <script src="/templates/unify/assets/plugins/respond.js"></script>
-    <script src="/templates/unify/assets/plugins/html5shiv.js"></script>    
-<![endif]-->
 ';
 
 	foreach($templates as $key=>$value) {

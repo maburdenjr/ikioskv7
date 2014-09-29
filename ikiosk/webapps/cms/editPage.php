@@ -1,6 +1,7 @@
 <?php 
 	$assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/"; 
 	if($_GET['mode'] != "edit") {
+			if (!empty($_GET['page'])) { $pageFilter = "&page=".$_GET['page']; }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +30,7 @@
 </div>
 <div id ="iKioskCMSwrapper">
 	<div id="iKioskCMSContent">
-  	<iframe id="editorFrame" src="<?php echo $row_getPage['static_folder'].$row_getPage['static_file']; ?>?mode=edit"></iframe>     
+  	<iframe id="editorFrame" src="<?php echo $row_getPage['static_folder'].$row_getPage['static_file']; ?>?mode=edit<?php echo $pageFilter; ?>"></iframe>     
   </div>
   <div id="iKioskCMSInlineEditor" class="ikiosk-cms-editor">
   	<?php include ($systemFileRoot."/ikiosk/webapps/cms/admin-cmsEditPanel.php"); ?>
