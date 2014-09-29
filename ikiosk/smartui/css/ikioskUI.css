@@ -1037,6 +1037,23 @@ button.icon-action {
 .ikiosk-cms-editor .form-control {
   height: 32px;
 }
+.ikiosk-cms-editor .cmsIcons {
+  text-align: center;
+}
+.ikiosk-cms-editor .cmsIcons a {
+  display: block;
+  padding: 15px;
+}
+.ikiosk-cms-editor .cmsIcons a:hover {
+  text-decoration: none;
+}
+.ikiosk-cms-editor .cmsIcons i {
+  display: block;
+  margin-bottom: 15px;
+}
+.ikiosk-cms-editor .cmsIcons .btn {
+  margin-bottom: 15px;
+}
 
 .system-message {
   display: none;

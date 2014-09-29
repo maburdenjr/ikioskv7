@@ -1128,6 +1128,24 @@ button.icon-action {
 	.form-control {
 		height: 32px;
 	}
+	.cmsIcons {
+		text-align: center;
+		a {
+			display:block;
+			padding:15px;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+		i {
+			display:block;
+			margin-bottom:15px;
+		}
+		.btn {
+			margin-bottom:15px;
+		}
+	}
+	
 }
 
 .system-message {
