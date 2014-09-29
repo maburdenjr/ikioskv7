@@ -32,7 +32,7 @@ $totalRows_listView = mysql_num_rows($listView);
         </label>
       </section>
       <div class="align-right">
-        <button type="button" class="btn btn-default panelTrigger" data-panel="photo-newAlbum"><i class="fa fa-times"></i> Cancel </button>
+        <button type="button" class="btn btn-default panelTrigger" data-panel="photo-newAlbum"><i class="fa fa-times"></i> Close </button>
         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-newPhotoAlbum"> <i class="fa fa-check"></i> Save </button>
         <input type="hidden" name="formID" value="cms-newPhotoAlbum">
         <input type="hidden" name="iKioskForm" value="Yes" />
@@ -154,7 +154,7 @@ $totalRows_getPhotos = mysql_num_rows($getPhotos);
         </label>
       </section>
       <div class="align-right">
-        <button type="button" class="btn btn-default panelTrigger" data-panel="cms-editPhotoAlbum"><i class="fa fa-times"></i> Cancel </button>
+        <button type="button" class="btn btn-default panelTrigger" data-panel="cms-editPhotoAlbum"><i class="fa fa-times"></i> Close </button>
         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-editAlbumPhoto"> <i class="fa fa-check"></i> Save </button>
        	 <input type="hidden" name="album_id" value="<?php echo $row_sys_photo_albums['album_id']; ?>">
         <input type="hidden" name="formID" value="cms-editAlbumPhoto">

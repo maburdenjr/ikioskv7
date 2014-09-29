@@ -3,6 +3,20 @@
 
 if (isset($_GET['ajaxAction'])) {
 	
+	//Purge Deleted Records
+	if($_GET['ajaxAction'] == "purgeDB") {
+		$purgeTables = array("cms_blog_articles", "cms_blog_article_versions", "cms_pages", "cms_page_elements", "cms_page_versions", "sys_photos", "sys_photo_albums", "sys_teams", "sys_users", "sys_users2teams", "sys_sites", "sys_users2sites", "cms_templates", "cms_template_versions");
+		foreach ($purgeTables as $key => $value) {
+			$deleteSQL = "DELETE FROM ".$value." WHERE deleted = '1'";
+			mysql_select_db($database_ikiosk, $ikiosk);
+			$Result1 = mysql_query($deleteSQL, $ikiosk) or sqlError(mysql_error());
+			sqlQueryLog($deleteSQL);
+		}
+		
+		displayAlert("success", "DB purge complete.  All deleted records have been removed.");
+		exit;	
+	}
+	
 	// Software Download Archive ---------------------------------------------
 	if($_GET['ajaxAction'] == "softwareHistory") {
 		$response =  htmlWidget($_GET['appCode'], "admin", "softwareHistory", $_GET['recordID']);

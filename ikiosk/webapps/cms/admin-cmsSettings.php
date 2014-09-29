@@ -60,7 +60,7 @@ if ($totalRows_getRecord == "0") {
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
     <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-updateSettings"> <i class="fa fa-check"></i> Save </button>
   </div>
   <input type="hidden" name="formID" value="cms-updateSettings">

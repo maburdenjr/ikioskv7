@@ -437,7 +437,7 @@ i.style-switcher-btn-option:hover {
    top: 37px;
    width: 205px;
    display: none;
-   z-index: 555555;
+   z-index: 3400;
    position: fixed;
    background: #585f69;
    border: solid 1px #666d76;

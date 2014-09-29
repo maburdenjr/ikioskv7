@@ -55,7 +55,7 @@ $templates[0]['body_footer_code'] = '
 </div><!--/wrapper-->
 
 <!-- JS Global Compulsory -->			
-<script> if (!window.jQuery) { document.write(\'/templates/unify/assets/plugins/jquery-2.0.2.min.js"><\/script>\');} </script>
+<script> if (!window.jQuery) { document.write(\'<script src="templates/unify/assets/plugins/jquery-2.0.2.min.js"><\/script>\');} </script>
 <script type="text/javascript" src="/templates/unify/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="/templates/unify/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- JS Implementing Plugins -->

@@ -152,7 +152,7 @@ $totalRows_pageIndex = mysql_num_rows($pageIndex);
     </div>
   </fieldset>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
     <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-editPageProperties"> <i class="fa fa-check"></i> Save </button>
   </div>
   <input type="hidden" name="page_id" value="<?php echo $row_getRecord['page_id']; ?>" />

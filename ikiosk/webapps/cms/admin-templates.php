@@ -59,8 +59,7 @@ $totalRows_listView = mysql_num_rows($listView);
     </section>
     <section>
       <label class="label">Header Code</label>
-      <div class="note">Code appears between the &lt;head&gt;> and &lt;/head&gt; tags. <br>
-        All templates are pre-loaded with jQuery 2.0.2, jQueryUI 1.10.3, and Bootstrap 3.1.1.</div>
+      <div class="note">Code appears between the &lt;head&gt;> and &lt;/head&gt; tags.</div>
       <label class="textarea">
         <textarea rows="4" class="custom-scroll" name="header_code"><?php echo $row_getRecord['header_code']; ?></textarea>
       </label>

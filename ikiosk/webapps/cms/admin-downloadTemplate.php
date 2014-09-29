@@ -32,10 +32,10 @@ $softwareList = explode("[iKiosk]", $softwareList);
       <?php } } ?>
     </tbody>
   </table>
-    <div class="system-message"></div>
+    <div class="system-message padding-10"></div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+  <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
 </div>
 <script type="text/javascript">
 				 var listView = $('#dt-softwareDownloadList').dataTable();

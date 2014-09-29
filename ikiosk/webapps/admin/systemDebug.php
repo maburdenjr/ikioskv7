@@ -45,6 +45,8 @@
           </div>
         </div>
       <div class="modal-footer" style="margin-top:0px;">
+      	<div class="system-message"></div>
+        <button type="button" class="btn btn-primary icon-action" data-type="purgeDB" data-code="SYS"><i class="fa fa-database"></i> Purge Deleted Records</button>
         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
       </div>
     </div>

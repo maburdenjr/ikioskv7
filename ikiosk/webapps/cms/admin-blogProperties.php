@@ -55,7 +55,7 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
     </div>
   </fieldset>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
     <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-editBlogProperties"> <i class="fa fa-check"></i> Save </button>
     <input type="hidden" name="article_id" value="<?php echo $row_getRecord['article_id']; ?>" />
     <input type="hidden" name="version" value="<?php echo $row_getRecord['version']; ?>" />

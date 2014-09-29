@@ -36,7 +36,7 @@ $totalRows_listView = mysql_num_rows($listView);
 </table>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel </button>
+  <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
 </div>
 <script type="text/javascript">
 		var listView = $('#dt-pageVersions').dataTable({

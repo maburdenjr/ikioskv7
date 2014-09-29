@@ -61,7 +61,7 @@ if (empty($_GET['action'])) { ?>
         </label>
       </section>
       <div class="align-right">
-        <button type="button" class="btn btn-default panelTrigger" data-panel="file-renameFolder"><i class="fa fa-times"></i> Cancel </button>
+        <button type="button" class="btn btn-default panelTrigger" data-panel="file-renameFolder"><i class="fa fa-times"></i> Close </button>
         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-renameFolder"> <i class="fa fa-check"></i> Save </button>
         <input type="hidden" name="formID" value="cms-renameFolder">
         <input type="hidden" name="original" value="<?php echo $currentDir; ?>" />
@@ -110,7 +110,7 @@ if (empty($_GET['action'])) { ?>
         </label>
       </section>
       <div class="align-right">
-        <button type="button" class="btn btn-default panelTrigger" data-panel="file-newFolder"><i class="fa fa-times"></i> Cancel </button>
+        <button type="button" class="btn btn-default panelTrigger" data-panel="file-newFolder"><i class="fa fa-times"></i> Close </button>
         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-newFileFolder"> <i class="fa fa-check"></i> Save </button>
         <input type="hidden" name="formID" value="cms-newFileFolder">
         <input type="hidden" name="parent" value="<?php echo $currentDir; ?>" />
@@ -232,7 +232,7 @@ function createUploader(targetFolder){
         </label>
       </section>
       <div class="align-right">
-        <button type="button" class="btn btn-default panelTrigger" data-panel="file-renameFile"><i class="fa fa-times"></i> Cancel </button>
+        <button type="button" class="btn btn-default panelTrigger" data-panel="file-renameFile"><i class="fa fa-times"></i> Close </button>
         <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-renameFile"> <i class="fa fa-check"></i> Save </button>
         <input type="hidden" name="formID" value="cms-renameFile">
         <input type="hidden" name="original" value="<?php echo $currentDir."/".$_GET['file']; ?>" />
