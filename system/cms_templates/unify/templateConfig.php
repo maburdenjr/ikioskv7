@@ -68,6 +68,98 @@ $templates[0]['body_footer_code'] = '
 </div><!--/wrapper-->
 ';
 
+$templates[1]['title'] = 'Unify: One Page';
+$templates[1]['header_code'] = '
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="/templates/unify/One-Page/assets/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/templates/unify/One-Page/assets/css/style.css">
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="/templates/unify/One-Page/assets/plugins/line-icons/line-icons.css">
+	<link rel="stylesheet" href="/templates/unify/One-Page/assets/plugins/font-awesome/css/font-awesome.min.css">    
+	<link rel="stylesheet" href="/templates/unify/One-Page/assets/plugins/pace/pace-flash.css">
+	<link rel="stylesheet" href="/templates/unify/One-Page/assets/plugins/YTPlayer/css/YTPlayer.css">
+	<link rel="stylesheet" href="/templates/unify/One-Page/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">    
+	<link rel="stylesheet" href="/templates/unify/One-Page/assets/plugins/revolution-slider/examples-sources/rs-plugin/css/settings.css" type="text/css" media="screen">
+
+	<!-- load css for cubeportfolio -->
+	<link rel="stylesheet" type="text/css" href="/templates/unify/One-Page/assets/plugins/cbp-plugin/cubeportfolio/css/cubeportfolio.min.css">
+
+	<!-- load main css for this page -->
+	<link rel="stylesheet" type="text/css" href="/templates/unify/One-Page/assets/plugins/cbp-plugin/templates/lightbox-gallery/css/main.css">
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="/templates/unify/One-Page/assets/css/custom.css">
+';
+$templates[1]['body_header_code'] = '
+	<span class="ikiosk-cmsSnippet">snippet:template-unify-onepage-nav</span>
+';
+$templates[1]['body_footer_code'] = '
+	<!-- JS Global Compulsory -->
+	<script> if (!window.jQuery) { document.write(\'<script src="/templates/unify/One-Page/assets/plugins/jquery-2.0.2.min.js"><\/script>\');} </script>
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/jquery-migrate-1.2.1.min.js"></script>    
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/jquery.parallax.js"></script>
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/counter/waypoints.min.js"></script>
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/counter/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>    
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/revolution-slider/examples-sources/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/revolution-slider/examples-sources/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <!-- load caPortfolio plugin -->
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/cbp-plugin/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+    <!-- load main js -->
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/plugins/cbp-plugin/templates/lightbox-gallery/js/main.js"></script>
+
+    <!-- JS Page Level-->
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/js/app.js"></script>
+    <script type="text/javascript" src="/templates/unify/One-Page/assets/js/plugins/owl-carousel.js"></script>    
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            OwlCarousel.initOwlCarousel();            
+        });
+    </script>
+
+    <script type="text/javascript">
+        var revapi;
+        jQuery(document).ready(function() {
+           revapi = jQuery(\'.fullscreenbanner\').revolution(
+            {
+                delay:15000,
+                startwidth:1170,
+                startheight:500,
+                hideThumbs:10,
+                fullWidth:"on",
+                fullScreen:"on",
+                dottedOverlay:"twoxtwo",
+                fullScreenOffsetContainer: "",
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        paceOptions = {
+          // Disable the \'elements\' source
+          elements: false,
+
+          // Only show the progress on regular and ajax-y page navigation,
+          // not every request
+          restartOnRequestAfter: false
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="/templates/unify/One-Page/assets/plugins/respond.js"></script>
+        <script src="/templates/unify/One-Page/assets/plugins/html5shiv.js"></script>
+    <![endif]-->  
+';
+
 	foreach($templates as $key=>$value) {
 		echo $value['title']."--|--".$value['header_code']."--|--".$value['body_header_code']."--|--".$value['body_footer_code']."[iKiosk]";	
 	}
@@ -722,6 +814,54 @@ if ($_GET['option'] == "snippetList") {
     </div><!--/copyright--> 
     <!--=== End Copyright ===-->
 ';
+
+	$snippets[5]['id'] = "template-unify-onepage-nav";
+	$snippets[5]['title'] = "Unify: One Page Navigation";
+	$snippets[5]['html'] = '<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#intro">
+                    <span>U</span>nify
+                    <!-- <img src="assets/img/logo1.png" alt="Logo"> -->
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="page-scroll home">
+                        <a href="#body">Home</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">About Us</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#services">Services</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#news">News</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#contact">Contact</a>
+                    </li>                    
+                    <li class="page-scroll">
+                        <a href="../index.html">Main</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>';
 
 foreach($snippets as $key=>$value) {
 		echo $value['id']."--|--".$value['title']."--|--".$value['html']."[iKiosk]";	

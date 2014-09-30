@@ -755,9 +755,29 @@ button.icon-action {
 					overflow-y: scroll;
 				}
 				
+				.snippetList {
+					.row {
+						margin-bottom:10px;
+					}
+					
+					.codeText {
+							color: #FFF;
+							padding: 6px 12px;
+							display:block;
+							cursor: pointer;
+							border-radius:2px;
+							border:1px solid #333;	
+							&:hover {
+									border: 1px solid #FFF;
+									text-decoration:none;
+							}
+					}
+				}
+				
 				.widget-popover-body {
 					position:relative;
 					overflow-y:scroll;
+					overflow-x: hidden;
 					max-height:250px;
 					font-size:12px;
 					color:#CCC;
