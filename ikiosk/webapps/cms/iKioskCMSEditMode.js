@@ -266,6 +266,7 @@ function submitForms() {
 	$('#redactorEditor .ui-droppable').removeClass('ui-droppable');
 	$('#redactorEditor .ui-resizable').removeClass('ui-resizable')
 	$('#redactorEditor .ui-sortable-handle').removeClass('ui-sortable-handle');
+	$('#layoutWidget').fadeOut();
 	
 	$('.redactor-editor').data('redactor').toggle();
 	if ($('#iKioskCMS-editContent').length) {

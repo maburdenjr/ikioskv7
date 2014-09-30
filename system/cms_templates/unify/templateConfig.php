@@ -119,6 +119,10 @@ $templates[1]['body_footer_code'] = '
     <script type="text/javascript" src="/templates/unify/One-Page/assets/js/plugins/owl-carousel.js"></script>    
     <script type="text/javascript">
         jQuery(document).ready(function() {
+						$("body").addClass("demo-lightbox-gallery");
+						$("body").attr("id", "body");
+						$("body").attr("data-spy", "scroll");
+						$("body").attr("data-target", ".navbar-fixed-top");
             App.init();
             App.initCounter();
             App.initParallaxBg();

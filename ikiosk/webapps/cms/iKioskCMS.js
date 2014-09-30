@@ -403,6 +403,7 @@ function iKioskUI() {
 		$('#cms-widget-popover').hide();
 		$('#iKioskCMSheader a').removeClass('active');
 		$('body').removeClass('ikiosk-editor-active');
+		resizeEditor();
 	});
 
 	//Submit Form
