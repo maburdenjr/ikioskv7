@@ -378,7 +378,7 @@ function codeSyncDirCreate($directory, $recursive) {
 			while (false !== ($file = readdir($handle))) {
 				if ($file != "." && $file != "..") {
 					if (is_dir($directory. "/" . $file)) {
-						if ($file != "system" && $file != "sandbox" && $file != "app_template" && $file != "crm" && $file != "dropbox" && $file != "ikioskmcp" && $file != "itrac" && $file != "store" && $file != "cms" && $file != "clientportal" && $file != ".git" && $file != ".idea") {
+						if ($file != "software_apps" && $file != "sandbox" && $file != "app_template" && $file != "crm" && $file != "dropbox" && $file != "ikioskmcp" && $file != "itrac" && $file != "store" && $file != "cms" && $file != "clientportal" && $file != ".git" && $file != ".idea") {
 							$array_items = array_merge($array_items, codeSyncDirCreate($directory. "/" . $file, $recursive));
 							$file = $directory . "/" . $file;
 							$array_items[] = preg_replace("/\/\//si", "/", $file);
