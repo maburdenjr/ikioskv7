@@ -1,7 +1,7 @@
 <?php
 //List View
 mysql_select_db($database_ikiosk, $ikiosk);
-$query_listView = "SELECT * FROM cms_page_elements WHERE deleted = '0' AND ".$SYSTEM['active_site_filter']. " ORDER BY title ASC";
+$query_listView = "SELECT * FROM cms_page_elements WHERE deleted = '0' AND template_id='".$_GET['recordID']."' AND ".$SYSTEM['active_site_filter']. " ORDER BY title ASC";
 $listView = mysql_query($query_listView, $ikiosk) or sqlError(mysql_error());
 $row_listView = mysql_fetch_assoc($listView);
 $totalRows_listView = mysql_num_rows($listView);

@@ -476,14 +476,14 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-createCodeSnippet")) {
 		
 		$generateID = create_guid();
-    $insertSQL = sprintf("INSERT INTO cms_page_elements (`page_element_id`, `site_id`, `template_section_id`, `title`, `content`, `status`, `display_order`, `date_created`, `created_by`, `date_modified`, `modified_by`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+    $insertSQL = sprintf("INSERT INTO cms_page_elements (`page_element_id`, `site_id`, `template_id`, `title`, `content`, `status`, `category`, `date_created`, `created_by`, `date_modified`, `modified_by`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
         GetSQLValueString($generateID, "text"),
         GetSQLValueString($SITE['site_id'], "text"),
-        GetSQLValueString($_POST['template_section_id'], "text"),
+        GetSQLValueString($_POST['template_id'], "text"),
         GetSQLValueString($_POST['title'], "text"),
         GetSQLValueString($_POST['content'], "text"),
         GetSQLValueString($_POST['status'], "text"),
-        GetSQLValueString($_POST['display_order'], "text"),
+        GetSQLValueString($_POST['category'], "text"),
         GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
         GetSQLValueString($_SESSION['user_id'], "text"),
         GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
@@ -502,10 +502,12 @@ if ((isset($_POST["iKioskForm"])) && ($_POST["iKioskForm"] == "Yes")) {
 	//Edit Code Snippet -----------------------------------------------------------
 	if ((isset($_POST["formID"])) && ($_POST["formID"] == "cms-editCodeSnippet")) {
 		
-		$updateSQL = sprintf("UPDATE cms_page_elements SET title=%s, content=%s, status=%s, date_modified=%s, modified_by=%s WHERE page_element_id=%s",
+		$updateSQL = sprintf("UPDATE cms_page_elements SET title=%s, content=%s, status=%s, template_id=%s, category=%s, date_modified=%s, modified_by=%s WHERE page_element_id=%s",
         GetSQLValueString($_POST['title'], "text"),
         GetSQLValueString($_POST['content'], "text"),
         GetSQLValueString($_POST['status'], "text"),
+				GetSQLValueString($_POST['template_id'], "text"),
+				GetSQLValueString($_POST['category'], "text"),
         GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
         GetSQLValueString($_SESSION['user_id'], "text"),
         GetSQLValueString($_POST['page_element_id'], "text"));

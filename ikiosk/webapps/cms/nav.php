@@ -22,7 +22,7 @@ $app_shortcuts["cms"] = array(
 	
 );
 
-
+/*
 $page_nav["cms"] = array(
 	"title" => "CMS",
 	"url" => "webapps/cms/dashboard.php",
@@ -61,5 +61,5 @@ $page_nav["cms"] = array(
 				"url" => "webapps/cms/videos.php"
 			)
 		)
-)
+)*/
 ?>

@@ -96,14 +96,14 @@ foreach ($folderList as $key => $value) {
 					$row_listView = mysql_fetch_assoc($listView);
 					$totalRows_listView = mysql_num_rows($listView);
 					if ($totalRows_listView == 0) {
-						$insertSQL = sprintf("INSERT INTO cms_page_elements (`page_element_id`, `site_id`, `template_section_id`, `title`, `content`, `status`, `display_order`, `date_created`, `created_by`, `date_modified`, `modified_by`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+						$insertSQL = sprintf("INSERT INTO cms_page_elements (`page_element_id`, `site_id`, `template_id`, `title`, `content`, `status`, `category`, `date_created`, `created_by`, `date_modified`, `modified_by`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
 							GetSQLValueString($snippetSummary[0], "text"),
 							GetSQLValueString($SITE['site_id'], "text"),
-							GetSQLValueString($_POST['template_section_id'], "text"),
+							GetSQLValueString($templateID, "text"),
 							GetSQLValueString($snippetSummary[1], "text"),
 							GetSQLValueString($snippetSummary[2], "text"),
 							GetSQLValueString("Active", "text"),
-							GetSQLValueString($_POST['display_order'], "text"),
+							GetSQLValueString($snippetSummary[3], "text"),
 							GetSQLValueString($SYSTEM['mysql_datetime'], "text"),
 							GetSQLValueString($_SESSION['user_id'], "text"),
 							GetSQLValueString($SYSTEM['mysql_datetime'], "text"),

@@ -68,6 +68,7 @@ $templates[0]['body_footer_code'] = '
 </div><!--/wrapper-->
 ';
 
+/*
 $templates[1]['title'] = 'Unify: One Page';
 $templates[1]['header_code'] = '
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -162,7 +163,7 @@ $templates[1]['body_footer_code'] = '
         <script src="/templates/unify/One-Page/assets/plugins/respond.js"></script>
         <script src="/templates/unify/One-Page/assets/plugins/html5shiv.js"></script>
     <![endif]-->  
-';
+'; */
 
 	foreach($templates as $key=>$value) {
 		echo $value['title']."--|--".$value['header_code']."--|--".$value['body_header_code']."--|--".$value['body_footer_code']."[iKiosk]";	
@@ -176,6 +177,7 @@ if ($_GET['option'] == "snippetList") {
 	//Style Switcher
 	$snippets[0]['id'] = "template-unify-style-switcher";
 	$snippets[0]['title'] = "Unify: Style Switcher";
+	$snippets[0]['category'] = "Miscellaneous";
 	$snippets[0]['html'] = '<!--=== Style Switcher ===-->    
 <i class="style-switcher-btn fa fa-cogs hidden-xs"></i>
 <div class="style-switcher animated fadeInRight">
@@ -207,6 +209,7 @@ if ($_GET['option'] == "snippetList") {
 //Top Bar Navigation
 	$snippets[1]['id'] = "template-unify-topbar-nav";
 	$snippets[1]['title'] = "Unify: Top Bar Navigation";
+	$snippets[1]['category'] = "Navigation";
 	$snippets[1]['html'] = '<!-- Topbar -->
         <div class="topbar">
             <div class="container">
@@ -238,6 +241,7 @@ if ($_GET['option'] == "snippetList") {
 //Top Bar Navigation
 	$snippets[2]['id'] = "template-unify-nav";
 	$snippets[2]['title'] = "Unify: Main Navigation";
+	$snippets[2]['category'] = "Navigation";
 	$snippets[2]['html'] = '<!-- Navbar -->
         <div class="navbar navbar-default" role="navigation">
             <div class="container">
@@ -713,6 +717,7 @@ if ($_GET['option'] == "snippetList") {
 	//Footer
 	$snippets[3]['id'] = "template-unify-footer";
 	$snippets[3]['title'] = "Unify: Footer";
+	$snippets[3]['category'] = "Navigation";
 	$snippets[3]['html'] = '<!--=== Footer ===-->
     <div class="footer">
         <div class="container">
@@ -798,6 +803,7 @@ if ($_GET['option'] == "snippetList") {
 //Footer
 	$snippets[4]['id'] = "template-unify-copyright";
 	$snippets[4]['title'] = "Unify: Copyright";
+	$snippets[4]['category'] = "Miscellaneous";
 	$snippets[4]['html'] = '<!--=== Copyright ===-->
     <div class="copyright">
         <div class="container">
@@ -821,6 +827,7 @@ if ($_GET['option'] == "snippetList") {
 
 	$snippets[5]['id'] = "template-unify-onepage-nav";
 	$snippets[5]['title'] = "Unify: One Page Navigation";
+	$snippets[5]['category'] = "Navigation";
 	$snippets[5]['html'] = '<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
@@ -867,8 +874,282 @@ if ($_GET['option'] == "snippetList") {
         <!-- /.container -->
     </nav>';
 
+	$snippets[6]['id'] = "template-unify-home-slider2";
+	$snippets[6]['title'] = "Unify: Home Slider 2";
+	$snippets[6]['category'] = "Carousels & Sliders";
+	$snippets[6]['html'] = ' <link rel="stylesheet" href="/templates/unify/assets/plugins/revolution-slider/examples/rs-plugin/css/settings.css">
+<!--=== Slider ===-->
+    <div class="tp-banner-container">
+        <div class="tp-banner">
+            <ul>
+                <!-- SLIDE -->
+                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000">
+                    <!-- MAIN IMAGE -->
+                    <img src="/templates/unify/assets/img/sliders/1.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+
+                    <div class="tp-caption revolution-ch1 sft start"
+                        data-x="center"
+                        data-hoffset="0"
+                        data-y="100"
+                        data-speed="1500"
+                        data-start="500"
+                        data-easing="Back.easeInOut"
+                        data-endeasing="Power1.easeIn"                        
+                        data-endspeed="300">
+                        Introducing Unify Template
+                    </div>
+
+                    <!-- LAYER -->
+                    <div class="tp-caption revolution-ch2 sft"
+                        data-x="center"
+                        data-hoffset="0"
+                        data-y="190"
+                        data-speed="1400"
+                        data-start="2000"
+                        data-easing="Power4.easeOut"
+                        data-endspeed="300"
+                        data-endeasing="Power1.easeIn"
+                        data-captionhidden="off"
+                        style="z-index: 6">
+                        We are creative technology company providing <br/>
+                        key digital services on web and mobile.
+                    </div>
+
+                    <!-- LAYER -->
+                    <div class="tp-caption sft"
+                        data-x="center"
+                        data-hoffset="0"
+                        data-y="310"
+                        data-speed="1600"
+                        data-start="2800"
+                        data-easing="Power4.easeOut"
+                        data-endspeed="300"
+                        data-endeasing="Power1.easeIn"
+                        data-captionhidden="off"
+                        style="z-index: 6">
+                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a>
+                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a>
+                    </div>
+                </li>
+                <!-- END SLIDE -->
+
+                <!-- SLIDE -->
+                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000">
+                    <!-- MAIN IMAGE -->
+                    <img src="/templates/unify/assets/img/sliders/2.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+
+                    <div class="tp-caption revolution-ch1 sft start"
+                        data-x="center"
+                        data-hoffset="0"
+                        data-y="100"
+                        data-speed="1500"
+                        data-start="500"
+                        data-easing="Back.easeInOut"
+                        data-endeasing="Power1.easeIn"                        
+                        data-endspeed="300">
+                        Includes 120+ Template Pages
+                    </div>
+
+                    <!-- LAYER -->
+                    <div class="tp-caption revolution-ch2 sft"
+                        data-x="center"
+                        data-hoffset="0"
+                        data-y="190"
+                        data-speed="1400"
+                        data-start="2000"
+                        data-easing="Power4.easeOut"
+                        data-endspeed="300"
+                        data-endeasing="Power1.easeIn"
+                        data-captionhidden="off"
+                        style="z-index: 6">
+                        We are creative technology company providing <br/>
+                        key digital services on web and mobile.
+                    </div>
+
+                    <!-- LAYER -->
+                    <div class="tp-caption sft"
+                        data-x="center"
+                        data-hoffset="0"
+                        data-y="310"
+                        data-speed="1600"
+                        data-start="2800"
+                        data-easing="Power4.easeOut"
+                        data-endspeed="300"
+                        data-endeasing="Power1.easeIn"
+                        data-captionhidden="off"
+                        style="z-index: 6">
+                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a>
+                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a>
+                    </div>
+                </li>
+                <!-- END SLIDE -->
+
+                <!-- SLIDE -->
+                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000">
+                    <!-- MAIN IMAGE -->
+                    <img src="/templates/unify/assets/img/sliders/3.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+
+                    <div class="tp-caption revolution-ch1 sft start"
+                        data-x="center"
+                        data-hoffset="0"
+                        data-y="100"
+                        data-speed="1500"
+                        data-start="500"
+                        data-easing="Back.easeInOut"
+                        data-endeasing="Power1.easeIn"                        
+                        data-endspeed="300">
+                        Over 9000+ Satisfied Users
+                    </div>
+
+                    <!-- LAYER -->
+                    <div class="tp-caption revolution-ch2 sft"
+                        data-x="center"
+                        data-hoffset="0"
+                        data-y="190"
+                        data-speed="1400"
+                        data-start="2000"
+                        data-easing="Power4.easeOut"
+                        data-endspeed="300"
+                        data-endeasing="Power1.easeIn"
+                        data-captionhidden="off"
+                        style="z-index: 6">
+                        We are creative technology company providing <br/>
+                        key digital services on web and mobile.
+                    </div>
+
+                    <!-- LAYER -->
+                    <div class="tp-caption sft"
+                        data-x="center"
+                        data-hoffset="0"
+                        data-y="310"
+                        data-speed="1600"
+                        data-start="2800"
+                        data-easing="Power4.easeOut"
+                        data-endspeed="300"
+                        data-endeasing="Power1.easeIn"
+                        data-captionhidden="off"
+                        style="z-index: 6">
+                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a>
+                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a>
+                    </div>
+                </li>
+                <!-- END SLIDE -->
+            </ul>
+            <div class="tp-bannertimer tp-bottom"></div>            
+        </div>
+    </div>
+    <!--=== End Slider ===-->
+    <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+<script type="text/javascript" src="/templates/unify/assets/plugins/revolution-slider/examples/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+<script type="text/javascript" src="/templates/unify/assets/plugins/revolution-slider/examples/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        Index.initRevolutionSlider();                                
+    });
+</script>';	
+
+	$snippets[7]['id'] = "template-unify-home-slider3";
+	$snippets[7]['title'] = "Unify: Home Slider 3";
+	$snippets[7]['category'] = "Carousels & Sliders";
+	$snippets[7]['html'] = '<link rel="stylesheet" href="/templates/unify/assets/plugins/layer-slider/layerslider/css/layerslider.css">
+<!--=== Slider ===-->
+<div id="layerslider" style="width: 100%; height: 500px; margin: 0px auto;"> 
+  <!-- First slide -->
+  <div class="ls-slide" data-ls="slidedelay:4500;transition2d:25;">
+    <img src="/templates/unify/assets/img/sliders/layer/bg1.jpg" class="ls-bg" alt="Slide background"/>
+    <img class="ls-l" src="/templates/unify/assets/img/mockup/iphone1.png" style="top: 85%; left: 44%;" 
+            data-ls="offsetxin:left; durationin:1500; delayin:900; fadein:false; offsetxout:left; durationout:1000; fadeout:false;" />
+    <img src="/templates/unify/assets/img/mockup/iphone.png" alt="Slider image" class="ls-s-1" style=" top:62px; left: 29%;" 
+            data-ls="offsetxin:left; durationin:1500; delayin:1500; fadein:false; offsetxout:left; durationout:1000; fadeout:false;">
+    <span class="ls-s-1" style=" text-transform: uppercase; line-height: 45px; font-size:35px; color:#fff; top:200px; left: 590px; slidedirection : top; slideoutdirection : bottom; durationin : 3500; durationout : 3500; delayin : 1000;"> Fully Responsive <br>
+    Bootstrap 3 Template </span>
+    <a class="btn-u btn-u-orange ls-s-1" href="#" style=" padding: 9px 20px; font-size:25px; top:340px; left: 590px; slidedirection : bottom; slideoutdirection : top; durationin : 3500; durationout : 2500; delayin : 1000; "> Download Now </a> </div>
+  
+  <!--Second Slide-->
+  <div class="ls-slide" data-ls="transition2d:93;">
+    <img src="/templates/unify/assets/img/bg/5.jpg" class="ls-bg" alt="Slide background">
+    <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:70px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 1500; durationout : 500; "></i>
+    <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:70px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 1500; durationout : 500; "> Fully Responsive and Easy to Customize </span>
+    <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:120px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 2500; durationout : 1500; "></i>
+    <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:120px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 2500; durationout : 1500; "> Revolution and Layer Slider Included </span>
+    <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:170px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 3500; durationout : 3500; "></i>
+    <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:170px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 3500; durationout : 2500; "> 1000+ Glyphicons Pro and Font Awesome Icons </span>
+    <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:220px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 4500; durationout : 3500; "></i>
+    <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:220px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 4500; durationout : 3500; "> Revolution and Layer Slider Included </span>
+    <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:270px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 5500; durationout : 4500; "></i>
+    <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:270px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 5500; durationout : 4500; "> 60+ Template Pages and 20+ Plugins Included </span>
+    <a class="btn-u btn-u-blue ls-s1" href="#" style=" padding: 9px 20px; font-size:25px; top:340px; left: 40px; slidedirection : bottom; slideoutdirection : bottom; durationin : 6500; durationout : 3500; "> Twitter Bootstrap 3 </a>
+    <img src="/templates/unify/assets/img/mockup/iphone1.png" alt="Slider Image" class="ls-s-1" style=" top:30px; left: 650px; slidedirection : right; slideoutdirection : bottom; durationin : 1500; durationout : 1500; ">
+  </div>
+  
+  <!--Third Slide-->
+  <div class="ls-slide" style="slidedirection: right; transition2d: 92,93,105; ">
+    <img src="/templates/unify/assets/img/sliders/layer/bg2.jpg" class="ls-bg" alt="Slide background">
+    <span class="ls-s-1" style=" color: #777; line-height:45px; font-weight: 200; font-size: 35px; top:100px; left: 50px; slidedirection : top; slideoutdirection : bottom; durationin : 1000; durationout : 1000; "> Unify is Fully Responsive <br>
+    Twitter Bootstrap 3 Template </span>
+    <a class="btn-u btn-u-green ls-s-1" href="#" style=" padding: 9px 20px; font-size:25px; top:220px; left: 50px; slidedirection : bottom; slideoutdirection : bottom; durationin : 2000; durationout : 2000; "> Find Out More </a>
+    <img src="/templates/unify/assets/img/mockup/iphone.png" alt="Slider Image" class="ls-s-1" style=" top:30px; left: 670px; slidedirection : right; slideoutdirection : bottom; durationin : 3000; durationout : 3000; ">
+  </div>
+  <!--End Third Slide--> 
+</div>
+<!--/layer_slider--> 
+<!--=== End Slider ===-->
+<!-- Layer Slider -->
+<script type="text/javascript" src="/templates/unify/assets/plugins/layer-slider/layerslider/js/greensock.js"></script>
+<script type="text/javascript" src="/templates/unify/assets/plugins/layer-slider/layerslider/js/layerslider.transitions.js"></script>
+<script type="text/javascript" src="/templates/unify/assets/plugins/layer-slider/layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+<!-- End Layer Slider -->   
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        Index.initLayerSlider();
+    });
+</script>
+<!--[if lt IE 9]>
+    <script src="/templates/unify/assets/plugins/layer-slider/assets/js/html5.js"></script>
+<![endif]-->';
+
+	$snippets[8]['id'] = "template-unify-home-slider1";
+	$snippets[8]['title'] = "Unify: Home Slider 1";
+	$snippets[8]['category'] = "Carousels & Sliders";
+	$snippets[8]['html'] = '<link rel="stylesheet" href="/templates/unify/assets/plugins/parallax-slider/css/parallax-slider.css">
+	<!--=== Slider ===-->
+    <div class="slider-inner">
+        <div id="da-slider" class="da-slider">
+            <div class="da-slide">
+                <h2><i>CLEAN &amp; FRESH</i> <br /> <i>FULLY RESPONSIVE</i> <br /> <i>DESIGN</i></h2>
+                <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
+                <div class="da-img"><img class="img-responsive" src="/templates/unify/assets/plugins/parallax-slider/img/1.png" alt=""></div>
+            </div>
+            <div class="da-slide">
+                <h2><i>RESPONSIVE VIDEO</i> <br /> <i>SUPPORT AND</i> <br /> <i>MANY MORE</i></h2>
+                <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i></p>
+                <div class="da-img">
+    				<iframe src="http://player.vimeo.com/video/47911018" width="530" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> 
+                </div>
+            </div>
+            <div class="da-slide">
+                <h2><i>USING BEST WEB</i> <br /> <i>SOLUTIONS WITH</i> <br /> <i>HTML5/CSS3</i></h2>
+                <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
+                <div class="da-img"><img src="/templates/unify/assets/plugins/parallax-slider/img/html5andcss3.png" alt="image01" /></div>
+            </div>
+            <div class="da-arrows">
+                <span class="da-arrows-prev"></span>
+                <span class="da-arrows-next"></span>		
+            </div>
+        </div>
+    </div><!--/slider-->
+    <!--=== End Slider ===-->
+		<script type="text/javascript" src="/templates/unify/assets/plugins/parallax-slider/js/modernizr.js"></script>
+		<script type="text/javascript" src="/templates/unify/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
+		<script type="text/javascript">
+				jQuery(document).ready(function() {
+						Index.initParallaxSlider();        
+				});
+		</script>'; 
+		
+
 foreach($snippets as $key=>$value) {
-		echo $value['id']."--|--".$value['title']."--|--".$value['html']."[iKiosk]";	
+		echo $value['id']."--|--".$value['title']."--|--".$value['html']."--|--".$value['category']."[iKiosk]";	
 	}
 
 }

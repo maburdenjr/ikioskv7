@@ -17,24 +17,34 @@ $totalRows_listView = mysql_num_rows($listView);
     <thead>
       <tr>
         <th>Title</th>
+        <th>Template</th>
+        <th>Category</th>
         <th>Status</th>
         <th>Date Modified</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <?php if ($totalRows_listView != 0) { do { ?>
+      <?php if ($totalRows_listView != 0) { do { 
+			 $thisTemplate = getTemplateVersion($row_listView['template_id']);
+			?>
       <tr class="<?php echo $row_listView['page_element_id']; ?>">
         <td><a href="/cms/ajaxHandler.php?ajaxAction=codeSnippets&appCode=CMS&action=edit&recordID=<?php echo $row_listView['page_element_id']; ?>" class="modalDynLink"><?php echo $row_listView['title']; ?></a></td>
+        <td><?php echo $thisTemplate['title']; ?></td>
+        <td><?php echo $row_listView['category']; ?></td>
         <td><?php echo $row_listView['status']; ?></td>
         <td><?php timezoneProcess($row_listView['date_modified'], "print"); ?></td>
-        <td class="icon"><a class="delete-record" data-table="cms_page_elements" data-record="<?php echo $row_listView['page_element_id']; ?>" data-code="CMS" data-field="page_element_id"><i class="fa fa-trash-o"></i></a></td>
+        <td class="icon"><a class="delete-record" data-table="cms_page_elements" data-record="<?php echo $row_listView['page_element_id']; ?>" data-code="CMS" data-field="page_element_id">
+          <i class="fa fa-trash-o"></i>
+          </a></td>
         <?php } while ($row_listView = mysql_fetch_assoc($listView)); } ?>
     </tbody>
   </table>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
+  <button type="button" class="btn btn-default" data-dismiss="modal">
+  <i class="fa fa-times"></i>
+  Close </button>
 </div>
 <script type="text/javascript">
 		var listView = $('#dt-codeSnippets').dataTable({
@@ -63,10 +73,32 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
         <input name="title" value="<?php echo $row_getRecord['title']; ?>" />
       </label>
     </section>
+    <div class="row">
+    <section class="col col-6">
+      <label class="label">Template</label>
+      <label class="select">
+        <?php templateList("template_id", $row_getRecord['template_id']); ?>
+        <i></i>
+      </label>
+    </section>
+    <section class="col col-6">
+      <label class="label">Category</label>
+      <label class="select">
+        <select name="category">
+        <option value="" <?php if (!(strcmp("", $row_getRecord['category']))) {echo "selected=\"selected\"";} ?>></option>
+          <option value="Carousels & Sliders" <?php if (!(strcmp("Carousels & Sliders", $row_getRecord['category']))) {echo "selected=\"selected\"";} ?>>Carousels & Sliders</option>
+          <option value="Forms" <?php if (!(strcmp("Forms", $row_getRecord['category']))) {echo "selected=\"selected\"";} ?>>Forms</option>
+          <option value="Miscellaneous" <?php if (!(strcmp("Miscellaneous", $row_getRecord['category']))) {echo "selected=\"selected\"";} ?>>Miscellaneous</option>
+          <option value="Navigation" <?php if (!(strcmp("Navigation", $row_getRecord['category']))) {echo "selected=\"selected\"";} ?>>Navigation</option>
+        </select>
+        <i></i>
+      </label>
+    </section>
+    </div>
     <section>
       <label class="label">HTML</label>
       <label class="textarea">
-        <textarea rows="8" class="custom-scroll" name="content"><?php echo $row_getRecord['content']; ?></textarea>
+        <textarea rows="15" class="custom-scroll" name="content"><?php echo $row_getRecord['content']; ?></textarea>
       </label>
     </section>
     <section>
@@ -76,12 +108,17 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
           <option value="Active" <?php if (!(strcmp("Active", $row_getRecord['status']))) {echo "selected=\"selected\"";} ?>>Active</option>
           <option value="Inactive" <?php if (!(strcmp("Inactive", $row_getRecord['status']))) {echo "selected=\"selected\"";} ?>>Inactive</option>
         </select>
-        <i></i> </label>
+        <i></i>
+      </label>
     </section>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
-    <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-editCodeSnippet"> <i class="fa fa-check"></i> Save </button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+    <i class="fa fa-times"></i>
+    Close </button>
+    <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-editCodeSnippet">
+    <i class="fa fa-check"></i>
+    Save </button>
     <input type="hidden" name="page_element_id" value="<?php echo $row_getRecord['page_element_id']; ?>" />
     <input type="hidden" name="formID" value="cms-editCodeSnippet">
     <input type="hidden" name="iKioskForm" value="Yes" />
@@ -128,10 +165,33 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
         <input name="title" value="<?php echo $row_getRecord['title']; ?>" />
       </label>
     </section>
+    <div class="row">
+    <section class="col col-6">
+      <label class="label">Template</label>
+      <label class="select">
+        <?php templateList("template_id", $row_getRecord['template_id']); ?>
+        <i></i>
+      </label>
+    </section>
+     <section class="col col-6">
+      <label class="label">Category</label>
+      <label class="select">
+        <select name="category">
+          <option value="" <?php if (!(strcmp("", $row_getRecord['category']))) {echo "selected=\"selected\"";} ?>></option>
+
+          <option value="Carousels & Sliders" <?php if (!(strcmp("Carousels & Sliders", $row_getRecord['category']))) {echo "selected=\"selected\"";} ?>>Carousels & Sliders</option>
+          <option value="Forms" <?php if (!(strcmp("Forms", $row_getRecord['category']))) {echo "selected=\"selected\"";} ?>>Forms</option>
+          <option value="Miscellaneous" <?php if (!(strcmp("Miscellaneous", $row_getRecord['category']))) {echo "selected=\"selected\"";} ?>>Miscellaneous</option>
+          <option value="Navigation" <?php if (!(strcmp("Navigation", $row_getRecord['category']))) {echo "selected=\"selected\"";} ?>>Navigation</option>
+        </select>
+        <i></i>
+      </label>
+    </section>
+    </div>
     <section>
       <label class="label">HTML</label>
       <label class="textarea">
-        <textarea rows="8" class="custom-scroll" name="content"><?php echo $row_getRecord['content']; ?></textarea>
+        <textarea rows="15" class="custom-scroll" name="content"><?php echo $row_getRecord['content']; ?></textarea>
       </label>
     </section>
     <section>
@@ -141,12 +201,17 @@ $totalRows_getRecord = mysql_num_rows($getRecord);
           <option value="Active" <?php if (!(strcmp("Active", $row_getRecord['status']))) {echo "selected=\"selected\"";} ?>>Active</option>
           <option value="Inactive" <?php if (!(strcmp("Inactive", $row_getRecord['status']))) {echo "selected=\"selected\"";} ?>>Inactive</option>
         </select>
-        <i></i> </label>
+        <i></i>
+      </label>
     </section>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
-    <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-createCodeSnippet"> <i class="fa fa-check"></i> Save </button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+    <i class="fa fa-times"></i>
+    Close </button>
+    <button type="submit" class="btn btn-primary btn-ajax-submit" data-form="cms-createCodeSnippet">
+    <i class="fa fa-check"></i>
+    Save </button>
     <input type="hidden" name="formID" value="cms-createCodeSnippet">
     <input type="hidden" name="iKioskForm" value="Yes" />
     <input type="hidden" name="appCode" value="CMS" />

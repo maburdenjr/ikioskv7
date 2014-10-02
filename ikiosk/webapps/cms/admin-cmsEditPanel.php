@@ -17,7 +17,7 @@
       <p class="cms-widget-title">Insert CMS Resource</p>
       <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Image" data-arrow="20" data-cmstooltop="183" data-cmstoolright="245" data-panel="insertImage">
         <span class="btn-label"><i class="fa fw fa-image"></i></span> Photo</a>
-      <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Code Snippet" data-arrow="20" data-cmstooltop="183" data-cmstoolright="122" data-panel="codeSnippet"><span class="btn-label"><i class="fa fw fa-code"></i></span> Snippet</a>
+      <a class="btn btn-default cmstooltip mainBtn btn-labeled" title="Code Snippet" data-arrow="20" data-cmstooltop="183" data-cmstoolright="122" data-panel="codeSnippet" data-record="<?php echo $row_getTemplate['template_id']; ?>"><span class="btn-label"><i class="fa fw fa-code"></i></span> Snippet</a>
     </div>
     <div id="cms-editElement" class="cms-widget hide-me">
       <p class="cms-widget-title">Edit Element</p>
