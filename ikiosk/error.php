@@ -32,6 +32,9 @@ $totalRows_getErrorInfo = mysql_num_rows($getErrorInfo);
 	padding-left: 10px;
 	background: #FFF;
 }
+#cmsUILogin .alert {
+	font-size:11px;	
+}
 </style>
 </head>
 <body>
