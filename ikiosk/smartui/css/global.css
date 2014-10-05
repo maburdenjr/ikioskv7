@@ -257,7 +257,7 @@ td.icon {
 	margin-top:12px;
 }
 
-@media (max-width:768px) {
+@media (max-width:535px) {
 	.dataTable tr th, .dataTable tr td {
 		display:none;
 	}
@@ -294,6 +294,24 @@ td.icon {
 	.page-title {
 		display: block
 	}
+}
+
+@media only screen and (min-width:535px) and (max-width:769px) {
+	.dt-toolbar .col-xs-12, .dt-toolbar-footer .col-xs-12 {
+		width: 50%;	
+	}
+	.dataTable tr th, .dataTable tr td {
+		display:none;
+	}
+	
+	.dataTable tr th:first-child, .dataTable tr td:first-child, .dataTable tr th:last-child, .dataTable tr td:last-child, .dataTable tr th:nth-child(2), .dataTable tr td:nth-child(2)  {
+		display:table-cell;
+	}
+	
+	.dt-toolbar div:last-child {
+		padding-left:0px;
+	}
+	
 }
 
 #systemDebug .debug-variable {
