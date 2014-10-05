@@ -60,7 +60,7 @@ if (isset($_GET['ajaxAction'])) {
 		foreach ($fileList as $key => $value) { 
 			$fileProperties = explode("|", $value);
 			$remoteFile = "/".$softwareSummary[10]."/".$fileProperties[1];
-			$remoteFileURL = $SYSTEM['ikiosk_cloud']."/system32/software_apps".$remoteFile;
+			$remoteFileURL = $SYSTEM['ikiosk_cloud']."/system/software_apps".$remoteFile;
 			$destinationFile = $fileProperties[2];
 			$destinationFileURL = $SYSTEM['ikiosk_filesystem_root'].str_replace('/ikiosk', $SYSTEM['ikiosk_root'], $destinationFile);
 			

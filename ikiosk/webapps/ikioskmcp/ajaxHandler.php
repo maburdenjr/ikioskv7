@@ -431,7 +431,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "edit-IkioskcloudSoftware"
 	sqlQueryLog($updateSQL);
 	
 	//Create Dir
-	$softwareDIR = $SYSTEM['ikiosk_filesystem_root']."/system32/software_apps/".$_POST['local_folder'];
+	$softwareDIR = $SYSTEM['ikiosk_filesystem_root']."/system/software_apps/".$_POST['local_folder'];
 	createDIR($softwareDIR);
 	displayAlert("success", "Changes saved.");
 	insertJS($ajaxRefresh);
@@ -487,7 +487,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudSoftwar
 	sqlQueryLog($insertSQL);
 	
 	//Create Dir
-	$softwareDIR = $SYSTEM['ikiosk_filesystem_root']."/system32/software_apps/".$_POST['local_folder'];
+	$softwareDIR = $SYSTEM['ikiosk_filesystem_root']."/system/software_apps/".$_POST['local_folder'];
 	createDIR($softwareDIR);
 		$hideModal= "$('.modal-backdrop').remove(); \r\n";
 		insertJS($hideModal." ".$refresh);
@@ -621,7 +621,7 @@ if ((isset($_POST["formID"])) && ($_POST["formID"] == "create-IkioskcloudSites")
 		} else {
 	
 			//Create Database
-			$sqlQuery = urlFetch("http://apps.ikioskcloudapps.com/system32/sql/ikiosk_v6.sql");	
+			$sqlQuery = urlFetch("http://apps.ikioskcloudapps.com/system/sql/ikiosk_v6.sql");	
 			$sqlQuery = explode("[iKiosk]", $sqlQuery);
 			mysql_select_db($database_icloud, $icloud);
 			foreach ($sqlQuery as $key => $value) {
