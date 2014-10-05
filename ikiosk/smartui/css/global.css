@@ -257,7 +257,7 @@ td.icon {
 	margin-top:12px;
 }
 
-@media (max-width:640px) {
+@media (max-width:768px) {
 	.dataTable tr th, .dataTable tr td {
 		display:none;
 	}
