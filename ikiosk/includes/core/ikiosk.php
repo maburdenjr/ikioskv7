@@ -2,7 +2,14 @@
 //Start Sessions
 ob_start();
 session_start();
-error_reporting(E_ERROR | E_PARSE);
+
+//Error Reporting
+if ($_SESSION['user_id'] == "sys-admin") {
+	error_reporting(E_ALL);
+	ini_set('display_errors', '1');	
+} else {
+	error_reporting(E_ERROR | E_PARSE);
+}
 
 //Default System Variables
 $SYSTEM = array();
