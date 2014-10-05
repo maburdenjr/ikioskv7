@@ -119,6 +119,7 @@ function v7publishPage($page_id) {
 	$getPageIndex = mysql_query($query_getPageIndex, $ikiosk) or sqlError(mysql_error());
 	$row_getPageIndex = mysql_fetch_assoc($getPageIndex);
 	$totalRows_getPageIndex = mysql_num_rows($getPageIndex);
+	errorLog("Query: ".$query_getPageIndex." | Total Rows: ".$totalRows_getPageIndex, "Debug CMS Publisher");
 			
 	//Get Page Detail
 	$page = getContentPage($row_getPageIndex['page_id']);
@@ -129,9 +130,13 @@ function v7publishPage($page_id) {
 	$getSiteInfo = mysql_query($query_getSiteInfo, $ikiosk) or sqlError(mysql_error());
 	$row_getSiteInfo = mysql_fetch_assoc($getSiteInfo);
 	$totalRows_getSiteInfo = mysql_num_rows($getSiteInfo);
+	errorLog("Query: ".$query_getSiteInfo." | Total Rows: ".$totalRows_getSiteInfo, "Debug CMS Publisher");
+
 			
 	$physicalFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSiteInfo['site_root'].$page['static_folder'].$page['static_file'];
 	$pageContent = urlFetch($SYSTEM['ikiosk_filesystem_root'].$SYSTEM['ikiosk_root']."/webapps/cms/pageTemplate.php");
+	errorLog("Attempting to create: ".$physicalFile, "Debug CMS Publisher");
+
 		
 	//Page Specific Replace
 	$ikioskCore = $SYSTEM['ikiosk_docroot']."/includes/core/ikiosk.php";
