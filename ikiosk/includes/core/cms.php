@@ -2209,7 +2209,7 @@ function getContentPage($page_id) {
 		
 		$page = array();
 		mysql_select_db($database_ikiosk, $ikiosk);
-		$query_getPages = "SELECT * FROM cms_page_versions WHERE page_id = '".$page_id."' AND deleted = '0' AND ".$SYSTEM['active_site_filter']." ORDER BY date_created DESC";
+		$query_getPages = "SELECT * FROM cms_page_versions WHERE page_id = '".$page_id."' AND deleted = '0' AND ".$_SESSION['site_filter']." ORDER BY date_created DESC";
 		$getPages = mysql_query($query_getPages, $ikiosk) or sqlError(mysql_error());
 		$page = mysql_fetch_assoc($getPages);
 		$page['count'] = mysql_num_rows($getPages);

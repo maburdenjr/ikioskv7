@@ -286,7 +286,7 @@ if ($appStatus == "Active") {
 
 
 //Active Site Filter
-$SYSTEM['active_site_filter'] = $_SESSION['team_filter']." AND ".$_SESSION['site_filter']." AND site_id = '".$_SESSION['site_id']."'";
+$SYSTEM['active_site_filter'] = $_SESSION['team_filter']." AND ".$_SESSION['site_filter']."";
 
 
 //Force SSL Connection
