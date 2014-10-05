@@ -1,96 +1,84 @@
 <?php
 /* iKiosk 7.0 Tiger */
 $PAGE['application_code'] = "IKIOSK";
-
 require('includes/core/ikiosk.php');
-require($SYSTEM['ikiosk_docroot'].'/smartui/inc/init.php');
-require($SYSTEM['ikiosk_docroot'].'/smartui/inc/config.ui.php');
 session_destroy();
-
-$page_title = "Logout";
-$page_css[] = "global.css";
-$no_main_header = true;
-$page_body_prop = array("id"=>"extr-page", "class"=>"animated fadeInDown");
-include($SYSTEM['ikiosk_docroot'].'/smartui/inc/header.php');
+$assetUrl = $SYSTEM['system_url']."/ikiosk/smartui/";
 ?>
-<!-- ==========================CONTENT STARTS HERE ========================== -->
-<!-- possible classes: minified, no-right-panel, fixed-ribbon, fixed-header, fixed-width-->
-<header id="header">
-	<!--<span id="logo"></span>-->
-
-	<div id="logo-group">
-		<span id="logo"> <img src="<?php echo ASSETS_URL; ?>/img/logo.png" alt="SmartAdmin"> </span>
-
-		<!-- END AJAX-DROPDOWN -->
-	</div>
-
-</header>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Login - <?php echo $SYSTEM['system_name']; ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/smartadmin-production.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $assetUrl; ?>css/lockscreen.min.css">
+<link rel="shortcut icon" href="<?php echo $assetUrl; ?>img/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="<?php echo $assetUrl; ?>img/favicon/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+<style t	ype="text/css">
+#cmsUILogin .btn {
+  padding: 6px 12px;
+}
+#cmsUILogin input[type="text"], #cmsUILogin input[type="password"] {
+  padding-left: 10px;
+  background: #FFF;
+}
+</style>
+</head>
+<body>
 <div id="main" role="main">
-
-	<!-- MAIN CONTENT -->
-	<div id="content" class="container">
-
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				<div class="well no-padding">
-					<form action="login.php" id="login-form" class="smart-form client-form" method="post">
-						<header>
-							<?php echo $SYSTEM['system_name']; ?>
-						</header>
-
-						<fieldset>
-            <section>
-              <div class="alert alert-success fade in">
-				<button class="close" data-dismiss="alert">
-					×
-				</button>
-				<i class="fa-fw fa fa-check"></i>
-				<strong>Success</strong> You have been logged out.
-			</div>
-             </section>
-							<section>
-								<label class="label">E-mail</label>
-								<label class="input"> <i class="icon-append fa fa-user"></i>
-									<input type="email" name="loginemail">
-									<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b></label>
-							</section>
-
-							<section>
-								<label class="label">Password</label>
-								<label class="input"> <i class="icon-append fa fa-lock"></i>
-									<input type="password" name="password">
-									<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
-							</section>
-
-							
-						</fieldset>
-						<footer>
-							<button type="submit" class="btn btn-primary">
-								Log in
-							</button>
+<form id="cmsUILogin" class="lockscreen animated flipInY smart-form" method="post">
+    <div class="logo">
+      <h1 class="semi-bold"><img src="<?php echo $assetUrl; ?>img/logo-o.png" alt="" /> IntelliKiosk</h1>
+    </div>
+    <div> <img src="<?php echo $assetUrl; ?>img/avatars/sunny-big.png" alt="" width="120" height="120" />
+      <div>
+        <h1 style="padding-bottom:10px;"><i class="fa fa-user fa-3x text-muted air air-top-right hidden-mobile"></i><?php echo $SYSTEM['system_name']; ?><small><i class="fa fa-lock text-muted"></i> &nbsp;Locked</small></h1>
+        <div class="form-response"></div>
+        <section>
+        <label class="input" style="margin-bottom:5px;">
+          <input name= "loginemail" class="form-control" type="text" placeholder="Email Address"><b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b>
+        </label>
+        </section>
+        <section>
+        <label class="input">
+          <input name="password" class="form-control" type="password" placeholder="Password"><b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b>
+        </label>
+        </section>
+        <div class="pull-right">
+          <button class="btn btn-primary">Login </button>
+        </div>
+      </div>
+    </div>
              <input type="hidden" name="ikioskSubmit" value="MasterLogin" />
-						</footer>
-					</form>
 
-				</div>
-			</div>
-		</div>
-	</div>
-
+  </form> 
 </div>
-<!-- END MAIN PANEL -->
-<!-- ==========================CONTENT ENDS HERE ========================== -->
-
-<?php 
-include($SYSTEM['ikiosk_docroot'].'/smartui/inc/scripts.php'); 
-?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> 
+<script> if (!window.jQuery) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-2.0.2.min.js"><\/script>');} </script 
+><script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> 
+<script> if (!window.jQuery.ui) { document.write('<script src="<?php echo $assetUrl; ?>js/libs/jquery-ui-1.11.0.min.js"><\/script>');} </script> 
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/notification/SmartNotification.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/smartwidgets/jarvis.widget.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/sparkline/jquery.sparkline.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/jquery-validate/jquery.validate.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/masked-input/jquery.maskedinput.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/select2/select2.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/msie-fix/jquery.mb.browser.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/plugin/fastclick/fastclick.min.js"></script> 
+<script src="<?php echo $assetUrl; ?>js/app.min.js"></script>
 <script type="text/javascript">
 	runAllForms();
-
 	$(function() {
 		// Validation
-		$("#login-form").validate({
+		$("#cmsUILogin").validate({
 			// Rules for form validation
 			rules : {
 				loginemail : {
@@ -120,9 +108,7 @@ include($SYSTEM['ikiosk_docroot'].'/smartui/inc/scripts.php');
 				error.insertAfter(element.parent());
 			}
 		});
-		
 	});
 </script>
-<?php
-include($SYSTEM['ikiosk_docroot'].'/smartui/inc/google-analytics.php'); 
-?>
+</body>
+</html>
