@@ -14,7 +14,12 @@ function iKioskUI() {
 	
 	function updateUI() {
 		var windowHeight = $(this).height();
-		$('#iKioskMMWrapper').css('min-height', windowHeight-119);		
+		var windowWidth = $(this).width();
+		if (windowWidth > 979) {
+			$('#iKioskMMWrapper').css('min-height', windowHeight-119);		
+		} else {
+			$('#iKioskMMWrapper').css('min-height', windowHeight);		
+		}
 		$('body.mobile-view-activated aside#left-panel, .animating aside#left-panel').css('max-height', windowHeight);	
 	}
 	
