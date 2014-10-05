@@ -123,6 +123,7 @@ function v7publishPage($page_id) {
 			
 	//Get Page Detail
 	$page = getContentPage($row_getPageIndex['page_id']);
+	errorLog("Page Detail: ".print_r($page)."", "Debug CMS Publisher");
 	
 	//Get Site Properties
 	mysql_select_db($database_ikiosk, $ikiosk);
