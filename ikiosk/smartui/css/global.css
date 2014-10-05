@@ -304,7 +304,7 @@ td.icon {
 		display:none;
 	}
 	
-	.dataTable tr th:first-child, .dataTable tr td:first-child, .dataTable tr th:last-child, .dataTable tr td:last-child, .dataTable tr th:nth-child(2), .dataTable tr td:nth-child(2)  {
+	.dataTable tr th:first-child, .dataTable tr td:first-child, .dataTable tr th:last-child, .dataTable tr td:last-child, .dataTable tr th:nth-child(2), .dataTable tr td:nth-child(2), .dataTable tr th:nth-child(3), .dataTable tr td:nth-child(3)  {
 		display:table-cell;
 	}
 	
