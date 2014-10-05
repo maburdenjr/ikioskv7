@@ -119,11 +119,9 @@ function v7publishPage($page_id) {
 	$getPageIndex = mysql_query($query_getPageIndex, $ikiosk) or sqlError(mysql_error());
 	$row_getPageIndex = mysql_fetch_assoc($getPageIndex);
 	$totalRows_getPageIndex = mysql_num_rows($getPageIndex);
-	errorLog("Query: ".$query_getPageIndex." | Total Rows: ".$totalRows_getPageIndex, "Debug CMS Publisher");
 			
 	//Get Page Detail
 	$page = getContentPage($row_getPageIndex['page_id']);
-	errorLog("Page Detail: ".print_r($page)."", "Debug CMS Publisher");
 	
 	//Get Site Properties
 	mysql_select_db($database_ikiosk, $ikiosk);
@@ -131,7 +129,6 @@ function v7publishPage($page_id) {
 	$getSiteInfo = mysql_query($query_getSiteInfo, $ikiosk) or sqlError(mysql_error());
 	$row_getSiteInfo = mysql_fetch_assoc($getSiteInfo);
 	$totalRows_getSiteInfo = mysql_num_rows($getSiteInfo);
-	errorLog("Query: ".$query_getSiteInfo." | Total Rows: ".$totalRows_getSiteInfo, "Debug CMS Publisher");
 
 			
 	$physicalFile = $SYSTEM['ikiosk_filesystem_root']."/sites".$row_getSiteInfo['site_root'].$page['static_folder'].$page['static_file'];
@@ -2203,7 +2200,7 @@ function getContentPage($page_id) {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
 	
 	mysql_select_db($database_ikiosk, $ikiosk);
-	$query_getRecords = "SELECT * FROM cms_pages WHERE page_id = '".$page_id."' AND deleted = '0' AND ".$SYSTEM['active_site_filter']." ORDER BY date_modified DESC";
+	$query_getRecords = "SELECT * FROM cms_pages WHERE page_id = '".$page_id."' AND deleted = '0' AND ".$_SESSION['site_filter']." ORDER BY date_modified DESC";
 	$getRecords = mysql_query($query_getRecords, $ikiosk) or sqlError(mysql_error());
 	$row_getRecords = mysql_fetch_assoc($getRecords);
 	$totalRows_getRecords = mysql_num_rows($getRecords);
