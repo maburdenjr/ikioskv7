@@ -58,7 +58,7 @@ $SYSTEM['active_users'] = userCount();
 $SYSTEM['active_sites'] = siteCount();
 
 //Testing
-if ($_SERVER['HTTP_HOST'] != "http://admin.ikioskcloudapps.com") {
+if ($_SERVER['HTTP_HOST'] == "http://localhost:81") {
 	$SYSTEM['ikiosk_cloud'] = $SYSTEM['system_url'];
 	$SYSTEM['ikiosk_resource_cloud']  = $SYSTEM['system_url']."/ikiosk/library";	
 }
