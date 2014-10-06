@@ -245,7 +245,9 @@ function ikiosk_db_update() {
 	global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
 	
 	$updateList = urlFetch($SYSTEM['ikiosk_cloud']."/system/api/dbUpdates.php?ikiosk_id=".$SYSTEM['ikiosk_id']."&ikiosk_license_key=".$SYSTEM['ikiosk_license_key']."");
+	errorLog($updateList, "DB Migration");
 	$updateList = explode("[iKiosk]", $updateList);
+	
 	
 	foreach($updateList as $key => $value) {
 		if (!empty($value[0])) {
