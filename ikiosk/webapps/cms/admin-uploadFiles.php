@@ -104,7 +104,7 @@ class qqFileUploader {
     /**
      * Returns array('success'=>true) or array('error'=>'error message')
      */
-    function handleUpload($uploadDirectory, $replaceOldFile = FALSE){
+    function handleUpload($uploadDirectory, $replaceOldFile = TRUE){
 		global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
 				
         if (!is_writable($uploadDirectory)){
