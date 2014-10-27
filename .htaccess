@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteRule ^/api/v1/([^\.]+).(xml|json|atom) /api/v1/index.php?request=$1&type=$2
+RewriteRule ^/api/v1/ /api/v1/index.php?request=$1
 </IfModule>
 
 DirectoryIndex index.html index.php
