@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteRule ^/api/v1/ /api/v1/index.php?request=$1
+RewriteRule ^/api/v1 /api/index.php? [R=301,L]
 </IfModule>
 
 DirectoryIndex index.html index.php
