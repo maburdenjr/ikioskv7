@@ -104,7 +104,7 @@ class qqFileUploader {
     /**
      * Returns array('success'=>true) or array('error'=>'error message')
      */
-    function handleUpload($uploadDirectory, $replaceOldFile = FALSE){
+    function handleUpload($uploadDirectory, $replaceOldFile = TRUE){
 		global $ikiosk, $database_ikiosk, $SYSTEM, $SITE, $PAGE, $APPLICATION, $USER;
 				
         if (!is_writable($uploadDirectory)){
@@ -153,7 +153,7 @@ class qqFileUploader {
 }
 
 // list of valid extensions, ex. array("jpeg", "xml", "bmp")
-$allowedExtensions = array("pdf", "doc", "docx", "xls", "csv", "txt", "rtf", "html", "zip", "mp3", "wma", "mpg", "flv", "avi", "jpg", "jpeg", "png", "gif", "psd", "xml" );
+$allowedExtensions = array("pdf", "doc", "docx", "xls", "csv", "txt", "rtf", "html", "zip", "mp3", "wma", "mpg", "flv", "avi", "jpg", "jpeg", "png", "gif", "psd", "xml", "css");
 // max file size in bytes
 $sizeLimit = 8 * 1024 * 1024;
 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
