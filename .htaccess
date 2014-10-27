@@ -1,5 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
+Options +FollowSymLinks
 RewriteRule ^/api/v1 /ikiosk/index.php? [R=301,L]
 </IfModule>
 
