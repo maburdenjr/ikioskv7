@@ -24,25 +24,30 @@ __Software Package administration__:  Allows admin users to create deployable so
 ![Admin1](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin1.png)
 ------------------------------------------------------------------------------------
 
+
 __Dynamic DB Updates__:  Allows admin users to deploy MySQL updates to remote IntelliKiosk installations.
 
 ![Admin2](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin2.png)
 ------------------------------------------------------------------------------------
+
 
 __User Management__:  Users can have access to various sites and be members of various teams for security and permission management.
 
 ![Admin3](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin3.png)
 ------------------------------------------------------------------------------------
 
+
 __Code Generator__:  This is a feature I created to speed up my development time.  Automatic creation of forms for adding and modifying data in IntelliKiosk apps.
 
 ![Admin4](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin4.png)
 ------------------------------------------------------------------------------------
 
+
 __Access Logs__:  Tracking of all access logs and DB queries.
 
 ![Admin5](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin5.png)
 ------------------------------------------------------------------------------------
+
 
 __Site Administration__:  Create and manage multiple websites to be managed within the built-in CMS.  Includes social media and Google apps integration as well as photo uplading and thumbnail generation.
 
