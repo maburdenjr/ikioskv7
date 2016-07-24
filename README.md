@@ -1,2 +1,1 @@
-ikioskv7
-========
+# IntelliKiosk 7.0
