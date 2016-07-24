@@ -5,3 +5,19 @@ One upon a time (circa October 2014) in a land far far away (San Francisco, CA) 
 Ok nice intro, but what is it?
 
 Version 7.0 was two big pieces:  A content management system for building and managing multiple websites and an admin application for managing users, error handling, and other fancy administrative stuff.
+
+## Admin Features
+
+* Application Management
+* Site Management
+* Team Management
+* User Management
+* Access, Error, and MySQL Logging
+* Dynamic DB Updates
+* Software Management
+* License Management
+
+### Admin Screenshots
+
+![Admin1]
+
