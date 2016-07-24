@@ -19,5 +19,17 @@ Version 7.0 was two big pieces:  A content management system for building and ma
 
 ### Admin Screenshots
 
-![Admin1]
+![Admin1](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin1.png)
+
+![Admin2](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin2.png)
+
+![Admin3](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin3.png)
+
+![Admin4](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin4.png)
+
+![Admin5](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin5.png)
+
+![Admin6](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin6.png)
+
+![Admin7](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin7.png)
 
