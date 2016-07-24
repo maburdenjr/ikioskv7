@@ -18,6 +18,18 @@ Version 7.0 was two big pieces:  A content management system for building and ma
 
 ### CMS Screenshots
 
+![Cms1](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/cms1.png)
+--------------------------------------------------------------------------------
+
+![Cms2](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/cms2.png)
+--------------------------------------------------------------------------------
+
+![Cms3](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/cms3.png)
+--------------------------------------------------------------------------------
+
+![Cms4](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/cms4.png)
+--------------------------------------------------------------------------------
+
 ## Admin Features
 
 * Application Management
