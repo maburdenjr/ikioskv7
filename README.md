@@ -22,6 +22,7 @@ Version 7.0 was two big pieces:  A content management system for building and ma
 Software Package administration:  Allows admin users to create deployable software packages by bundling together files.  A software package could then be deployed to remote installations of IntelliKiosk.
 
 ![Admin1](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin1.png)
+---
 
 Dynamic DB Updates:  Allows admin users to deploy MySQL updates to remote IntelliKiosk installations.
 
