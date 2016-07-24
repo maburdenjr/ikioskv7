@@ -8,8 +8,8 @@ Version 7.0 was two big pieces:  A content management system for building and ma
 
 ## Try it Out
 
-*__Admin:__*: http://admin.ikioskcloudapps.com 
-*__CMS:__*: http://www.chasingthedrift.com 
+* __Admin__: http://admin.ikioskcloudapps.com 
+* __CMS__: http://www.chasingthedrift.com/cms
 
 Contact me for the demo username and password.
 
