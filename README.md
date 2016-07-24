@@ -52,6 +52,3 @@ __Access Logs__:  Tracking of all access logs and DB queries.
 __Site Administration__:  Create and manage multiple websites to be managed within the built-in CMS.  Includes social media and Google apps integration as well as photo uplading and thumbnail generation.
 
 ![Admin6](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin6.png)
-
-![Admin7](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin7.png)
-
