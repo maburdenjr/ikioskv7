@@ -19,15 +19,27 @@ Version 7.0 was two big pieces:  A content management system for building and ma
 
 ### Admin Screenshots
 
+Software Package administration:  Allows admin users to create deployable software packages by bundling together files.  A software package could then be deployed to remote installations of IntelliKiosk.
+
 ![Admin1](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin1.png)
+
+Dynamic DB Updates:  Allows admin users to deploy MySQL updates to remote IntelliKiosk installations.
 
 ![Admin2](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin2.png)
 
+User Management:  Users can have access to various sites and be members of various teams for security and permission management.
+
 ![Admin3](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin3.png)
+
+Code Generator:  This is a feature I created to speed up my development time.  Automatic creation of forms for adding and modifying data in IntelliKiosk apps.
 
 ![Admin4](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin4.png)
 
+Access Logs:  Tracking of all access logs and DB queries.
+
 ![Admin5](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin5.png)
+
+Site Administration:  Create and manage multiple websites to be managed within the built-in CMS.  Includes social media and Google apps integration as well as photo uplading and thumbnail generation.
 
 ![Admin6](https://github.com/maburdenjr/ikioskv7/blob/master/screenshots/admin6.png)
 
