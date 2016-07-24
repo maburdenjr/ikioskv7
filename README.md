@@ -6,6 +6,18 @@ Ok nice intro, but what is it?
 
 Version 7.0 was two big pieces:  A content management system for building and managing multiple websites and an admin application for managing users, error handling, and other fancy administrative stuff.
 
+## CMS Features
+
+* Photo plbum: image uploading, album management, and dynamic thumbnail creation
+* Built-in blog functionality
+* WYSIWYG editor: Edit in place with inline CSS editor, resizing, and importing of code snippets
+* Versioning: Quickly revert back to previous version of content
+* File manager
+* Template Management
+
+
+### CMS Screenshots
+
 ## Admin Features
 
 * Application Management
