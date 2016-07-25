@@ -6,13 +6,6 @@ Ok nice intro, but what is it?
 
 Version 7.0 was two big pieces:  A content management system for building and managing multiple websites and an admin application for managing users, error handling, and other fancy administrative stuff.
 
-## Try it Out
-
-* __Admin__: http://admin.ikioskcloudapps.com 
-* __CMS__: http://www.chasingthedrift.com/cms
-
-Contact me for the demo username and password.
-
 ## CMS Features
 
 * Photo plbum: image uploading, album management, and dynamic thumbnail creation
