@@ -6,15 +6,15 @@ $page_nav["cerebro"] = array(
 	"icon" => "fa-cogs",
 		"sub" => array(
 			"grindr" => array(
-				"title" => "Grindr",
+				"title" => "Grindr Archives",
 				"url" => "webapps/cerebro/grindr.php"
 			),
 			"jackd" => array(
-				"title" => "Database Updates",
+				"title" => "Jackd Archives",
 				"url" => "webapps/cerebro/jackd.php"
 			),
 			"scruff" => array(
-				"title" => "Software Packages",
+				"title" => "Scruff Archives",
 				"url" => "webapps/cerebro/scruff.php"
 			)
 		)
